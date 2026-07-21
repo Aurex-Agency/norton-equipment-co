@@ -1,5 +1,5 @@
 /* ============================================================
-   NORTON EQUIPMENT CO. — SITE DESIGN SYSTEM
+   NORTON EQUIPMENT CO. - SITE DESIGN SYSTEM
    Industrial ink/steel/gold identity, evolved from the approved
    proposal design. Built by Aurex Agency.
    ============================================================ */
@@ -512,4 +512,150 @@ footer{background:var(--ink-2);border-top:1px solid var(--line);padding:64px 0 0
   .brand .txt b{font-size:12.5px;letter-spacing:.08em}
   .brand .txt span{font-size:8px;letter-spacing:.2em}
   .menu-btn{width:42px;height:40px}
+}
+
+/* ============================================================
+   WOW PASS: photos, motion, finder
+   ============================================================ */
+
+/* ---------- scroll progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-hi));
+  box-shadow:0 0 14px rgba(216,165,49,.6)}
+
+/* ---------- gold button shine sweep ---------- */
+.btn-gold::before{content:"";position:absolute;top:0;bottom:0;left:-80%;width:50%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55) 50%,transparent);
+  transform:skewX(-20deg);transition:left .6s var(--ease)}
+.btn-gold:hover::before{left:130%}
+
+/* ---------- sec-head underline draw ---------- */
+.sec-head h2{position:relative;padding-bottom:18px}
+.sec-head h2::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:64px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-hi));transform:scaleX(0);transform-origin:left;
+  transition:transform .8s var(--ease-out) .2s}
+.sec-head.center h2::after{left:50%;margin-left:-32px}
+.sec-head.reveal.in h2::after,.sec-head h2.in::after{transform:scaleX(1)}
+.sec-head:not(.reveal) h2::after{transform:scaleX(1)}
+
+/* ---------- photo frame ---------- */
+.ph-frame{position:relative;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--steel-900);
+  clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)}
+.ph-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.ph-frame:hover img{transform:scale(1.04)}
+.ph-frame .ph-hz{position:absolute;left:0;right:0;bottom:0;height:7px;
+  background:repeating-linear-gradient(-45deg,rgba(10,11,13,.92) 0 16px,var(--gold) 16px 32px);opacity:.85}
+.ph-frame .ph-corner{position:absolute;top:0;right:0;width:26px;height:26px;
+  background:linear-gradient(225deg,transparent 49%,var(--gold) 50%,var(--gold-deep) 100%)}
+.ph-frame.mb{margin-bottom:22px}
+.sec-paper .ph-frame,.sec-paper-2 .ph-frame{border-color:var(--line-lt);box-shadow:0 24px 50px -30px rgba(0,0,0,.5)}
+
+/* ken burns drift */
+@keyframes kenburns{0%{transform:scale(1) translate3d(0,0,0)}100%{transform:scale(1.09) translate3d(1.5%, -1.5%,0)}}
+.ph-frame.kenburns img{animation:kenburns 18s var(--ease) alternate infinite}
+
+/* ---------- page hero with media ---------- */
+.phero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.14;
+  -webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 75%);mask-image:linear-gradient(90deg,transparent 30%,#000 75%)}
+.phero.has-media .phero-in{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(30px,4.5vw,64px);align-items:center}
+.phero-media{position:relative}
+.phero-media .ph-frame{aspect-ratio:4/3;transform:rotate(.6deg);box-shadow:0 44px 90px -40px rgba(0,0,0,.9)}
+.phero-media::before{content:"";position:absolute;inset:18px -14px -14px 18px;border:1px solid rgba(216,165,49,.35);
+  border-radius:6px;pointer-events:none;z-index:-1}
+@media(max-width:960px){
+  .phero.has-media .phero-in{grid-template-columns:1fr}
+  .phero-media .ph-frame{aspect-ratio:16/9}
+  .phero-media::before{display:none}
+}
+
+/* ---------- home hero photo ---------- */
+.hero-photo{position:absolute;inset:-4% 0;width:100%;height:108%;object-fit:cover;opacity:.34;will-change:transform}
+.hero-shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(10,11,13,.97) 22%,rgba(10,11,13,.72) 58%,rgba(10,11,13,.88)),
+  linear-gradient(180deg,rgba(10,11,13,.55),transparent 30%,transparent 62%,var(--ink) 96%)}
+.bolt-float{position:absolute;opacity:.55;will-change:transform;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5));pointer-events:none}
+
+/* path cards with photos */
+.path-card{will-change:transform}
+.path-card.has-photo{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:center;padding:18px 26px 18px 18px;
+  background:linear-gradient(180deg,rgba(15,17,22,.82),rgba(15,17,22,.6));backdrop-filter:blur(6px)}
+.path-card .pc-photo{display:block;border-radius:4px;overflow:hidden;border:1px solid var(--line);
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.path-card .pc-photo img{width:100%;height:132px;object-fit:cover;transition:transform .6s var(--ease)}
+.path-card:hover .pc-photo img{transform:scale(1.07)}
+.path-card .pc-body{display:block;min-width:0}
+@media(max-width:600px){
+  .path-card.has-photo{grid-template-columns:1fr;padding:16px}
+  .path-card .pc-photo img{height:150px}
+}
+
+/* ---------- shop floor strip ---------- */
+.sf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sf-item{margin:0}
+.sf-item .ph-frame{aspect-ratio:4/3}
+.sf-item figcaption{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--silver-2);margin-top:10px;display:flex;align-items:center;gap:8px}
+.sf-item figcaption::before{content:"";width:14px;height:2px;background:var(--gold);flex:none}
+@media(max-width:960px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.sf-grid{grid-template-columns:1fr}}
+
+/* ---------- dark section texture ---------- */
+.sec-dark-2::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:repeating-linear-gradient(-45deg,transparent 0 12px,#8c94a1 12px 13px,transparent 13px 26px)}
+.sec-dark-2>.wrap{position:relative}
+
+/* ---------- CTA band photo ---------- */
+.cta-band .cta-photo{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.16;
+  -webkit-mask-image:radial-gradient(90% 100% at 50% 0%,#000,transparent 85%);
+  mask-image:radial-gradient(90% 100% at 50% 0%,#000,transparent 85%)}
+
+/* ---------- machine finder ---------- */
+.finder{max-width:860px;margin:0 auto;border:1px solid var(--line);border-radius:8px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--steel-900),var(--ink-2));box-shadow:0 40px 90px -50px rgba(0,0,0,.9)}
+.finder::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-hi))}
+.fd-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;border-bottom:1px solid var(--line)}
+.fd-title{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.fd-dots{display:flex;gap:8px}
+.fd-dots i{width:26px;height:4px;border-radius:2px;background:var(--steel-700);transition:background .3s}
+.fd-dots i.on{background:var(--gold)}
+.fd-body{padding:30px 28px 34px;min-height:280px}
+.fd-q{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,27px);text-transform:uppercase;color:var(--silver-hi);margin-bottom:22px}
+.fd-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fd-opt{display:flex;align-items:center;gap:14px;text-align:left;padding:17px 18px;border:1px solid var(--line);border-radius:4px;
+  background:rgba(255,255,255,.02);color:var(--silver);cursor:pointer;font-family:'Inter',sans-serif;font-size:14.5px;
+  transition:border-color .25s,background .25s,transform .25s}
+.fd-opt:hover{border-color:var(--gold);background:var(--gold-soft);transform:translateX(4px);color:var(--silver-hi)}
+.fd-opt .fo-ic{width:38px;height:38px;flex:none;border:1px solid var(--gold);border-radius:3px;display:grid;place-items:center;color:var(--gold)}
+.fd-opt .fo-ic svg{width:18px;height:18px}
+.fd-opt b{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--silver-hi)}
+.fd-opt small{color:var(--silver-2);font-size:12.5px}
+.fd-back{margin-top:20px;background:none;border:0;color:var(--silver-2);font-family:'Oswald',sans-serif;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.fd-back:hover{color:var(--gold-hi)}
+.fd-result{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;animation:fdpop .5s var(--ease-out)}
+@keyframes fdpop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.fd-result .fr-kick{font-family:'Oswald',sans-serif;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.fd-result h3{font-size:clamp(22px,3vw,30px);text-transform:uppercase;margin:8px 0 10px}
+.fd-result p{color:var(--silver-2);font-size:14.5px;max-width:52ch}
+.fd-result .fr-note{margin-top:12px;font-size:13px;color:var(--silver-2)}
+.fd-result .fr-note a{color:var(--gold-hi)}
+.fd-result .fr-ctas{display:flex;flex-direction:column;gap:10px}
+@media(max-width:700px){
+  .fd-opts{grid-template-columns:1fr}
+  .fd-result{grid-template-columns:1fr}
+  .fd-result .fr-ctas{flex-direction:row;flex-wrap:wrap}
+}
+
+/* ---------- tilt ---------- */
+[data-tilt]{transform-style:preserve-3d}
+
+@media(max-width:700px){.bolt-float{display:none}}
+
+/* ---------- reduced motion for wow layer ---------- */
+@media(prefers-reduced-motion:reduce){
+  .ph-frame.kenburns img{animation:none}
+  .btn-gold::before{display:none}
+  .hero-photo{transform:none!important}
+  .bolt-float{display:none}
 }

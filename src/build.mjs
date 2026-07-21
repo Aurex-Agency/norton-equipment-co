@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ============================================================
-// Norton Equipment Co. — static site generator (zero deps)
+// Norton Equipment Co. - static site generator (zero deps)
 // Usage:  node src/build.mjs
 // Output: static HTML written to the repository root.
 // ============================================================
@@ -57,6 +57,42 @@ const IC = {
   cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
 };
 
+// ---------------- photos ----------------
+// Real photos pulled from Norton's current site + shop. Keyed by page slug.
+const PAGE_PHOTOS = {
+  'hub:compactors': ['compactor-green', 'Self-contained compactor placed by Norton Equipment'],
+  'self-contained': ['compactor-green', 'Self-contained trash compactor on a customer pad'],
+  'enclosures': ['compactor-enclosure', 'Fabricated compactor enclosure'],
+  'rental': ['rental-baler', 'Reconditioned machine ready for a rental placement'],
+  'hub:balers': ['balers-mp60hd', 'New Max-Pak MP60HD vertical balers on the Norton floor'],
+  'vertical-balers': ['balers-mp60hd', 'New vertical balers staged for delivery'],
+  'horizontal-balers': ['horizontal-baler-shop', 'Horizontal baler in the Norton shop'],
+  'used-vertical-balers': ['used-vertical-baler', 'Bale from a reconditioned vertical baler'],
+  'baling-wire': ['baling-wire', 'Baled cardboard tied with Norton-supplied wire'],
+  'conveyors': ['conveyors', 'Sort-line conveyor in operation'],
+  'used-recycling-equipment': ['recycling-equipment', 'Recycling processing equipment'],
+  'hub:services': ['hero-welding', 'Norton fabrication: welding in the Byhalia shop'],
+  'baler-service': ['baler-service', 'Vertical baler mid-cycle during a service visit'],
+  'preventive-maintenance': ['baler-chamber', 'Inside a baler chamber during inspection'],
+  'welding-fabrication': ['hero-welding', 'Welding in the Norton fabrication shop'],
+  'equipment-refurbishment': ['refurbish', 'Machine under refurbishment in the shop'],
+  'equipment-logistics': ['logistics-yard', 'Forklift moving baled material in the yard'],
+  'waste-stream-consultations': ['bale-stacks', 'Baled cardboard staged for market'],
+  'equipment-evaluations': ['eval-baler', 'Baler under evaluation'],
+  'conveyor-service': ['conveyors', 'Conveyor line under load'],
+  'brand:max-pak': ['balers-mp60hd', 'Max-Pak MP60HD vertical balers, new on the Norton floor'],
+};
+
+function photoFig(name, alt, { eager = false, cls = '' } = {}) {
+  return `<figure class="ph-frame${cls ? ' ' + cls : ''}">
+    <img src="/assets/img/${name}.webp" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}>
+    <span class="ph-hz" aria-hidden="true"></span>
+    <span class="ph-corner" aria-hidden="true"></span>
+  </figure>`;
+}
+
+const BOLT_SVG = '<svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><polygon points="24,3 42,13.5 42,34.5 24,45 6,34.5 6,13.5" fill="rgba(216,165,49,.12)" stroke="#d8a531" stroke-width="1.6"/><circle cx="24" cy="24" r="7" fill="none" stroke="#d8a531" stroke-width="1.4"/></svg>';
+
 // ---------------- JSON-LD ----------------
 function ldLocalBusiness() {
   return {
@@ -67,7 +103,7 @@ function ldLocalBusiness() {
     telephone: '+1-662-838-7900',
     foundingDate: SITE.founded,
     slogan: SITE.tagline,
-    description: 'Norton Equipment Company sells, services, rents, and refurbishes commercial trash compactors, cardboard balers, and recycling equipment across the Mid-South — any brand, any model — since 1997.',
+    description: 'Norton Equipment Company sells, services, rents, and refurbishes commercial trash compactors, cardboard balers, and recycling equipment across the Mid-South (any brand, any model) since 1997.',
     address: { '@type': 'PostalAddress', streetAddress: SITE.address.street, addressLocality: SITE.address.city, addressRegion: SITE.address.state, postalCode: SITE.address.zip, addressCountry: 'US' },
     geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng },
     openingHours: SITE.hoursSchema,
@@ -75,7 +111,7 @@ function ldLocalBusiness() {
       { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 35.1495, longitude: -90.049 }, geoRadius: '160934' },
       ...STATES.map((s) => ({ '@type': 'State', name: s.name })),
     ],
-    logo: SITE.baseUrl + '/assets/nec-badge.svg',
+    logo: SITE.baseUrl + '/assets/img/logo-full.webp',
   };
 }
 
@@ -167,8 +203,8 @@ function headerHtml(activePath) {
 </div>
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="/" class="brand" aria-label="Norton Equipment Company — home">
-      <img src="/assets/nec-badge.svg" alt="" width="46" height="36">
+    <a href="/" class="brand" aria-label="Norton Equipment Company home page">
+      <img src="/assets/img/logo-badge.webp" alt="" width="58" height="31">
       <span class="txt"><b>Norton Equipment</b><span>Compactors · Balers · Service</span></span>
     </a>
     <nav aria-label="Primary">
@@ -193,9 +229,10 @@ function headerHtml(activePath) {
 
 function ctaBand(opts = {}) {
   const h = opts.heading || `Let’s put the right <span class="gold">machine</span> on your pad.`;
-  const p = opts.text || `Free waste stream evaluations across the Mid-South. Talk to a real person who has been doing this since 1997 — no pressure, no hauling strings attached.`;
+  const p = opts.text || `Free waste stream evaluations across the Mid-South. Talk to a real person who has been doing this since 1997, no pressure, no hauling strings attached.`;
   return `
 <section class="sec cta-band">
+  <div class="cta-photo" aria-hidden="true" style="background-image:url(/assets/img/bales-closeup.webp)"></div>
   <div class="grid-lines" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="reveal">${h}</h2>
@@ -226,10 +263,10 @@ function footerHtml() {
   <div class="wrap foot-grid">
     <div class="foot-about">
       <div class="foot-brand">
-        <img src="/assets/nec-badge.svg" alt="Norton Equipment Company emblem" width="52" height="40" loading="lazy">
+        <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="64" height="34" loading="lazy">
         <div><b>Norton Equipment Company</b><span>Est. ${SITE.founded} · Byhalia, MS</span></div>
       </div>
-      <p>Compactors, balers, and recycling equipment — sold, serviced, rented, and rebuilt across the Mid-South. Any brand. Any model. ${esc(SITE.tagline)}</p>
+      <p>Compactors, balers, and recycling equipment: sold, serviced, rented, and rebuilt across the Mid-South. Any brand. Any model. ${esc(SITE.tagline)}</p>
       <div class="foot-nap">
         <span>${IC.pin}<span>${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}</span></span>
         <a href="${SITE.phoneHref}">${IC.phone}<span>${esc(SITE.phone)}</span></a>
@@ -251,7 +288,7 @@ function footerHtml() {
 }
 
 // ---------------- page shell ----------------
-function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts, noCta = false }) {
+function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts, noCta = false, ogImage = '/assets/img/logo-full.webp', preloadImg = null }) {
   const canonical = SITE.baseUrl + path;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [ldLocalBusiness(), ...ld] };
   return `<!DOCTYPE html>
@@ -269,8 +306,12 @@ ${DRAFT ? '<meta name="robots" content="noindex,nofollow"><!-- DRAFT MODE: remov
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${canonical}">
 <meta name="twitter:card" content="summary">
+<meta property="og:image" content="${SITE.baseUrl}${ogImage}">
 <meta name="theme-color" content="#0a0b0d">
-<link rel="icon" href="/assets/nec-badge.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+${preloadImg ? `<link rel="preload" href="${preloadImg}" as="image" fetchpriority="high">` : ''}
 <link rel="preload" href="/assets/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/oswald-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +319,7 @@ ${DRAFT ? '<meta name="robots" content="noindex,nofollow"><!-- DRAFT MODE: remov
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
 ${headerHtml(path)}
 <main id="main">
 ${body}
@@ -295,20 +337,28 @@ function crumbsHtml(crumbs) {
     .join('')}</nav>`;
 }
 
-function pageHero({ crumbs, kicker, h1, sub, chips = [], ctas = true }) {
+function pageHero({ crumbs, kicker, h1, sub, chips = [], ctas = true, photo = null }) {
+  const media = photo ? `
+    <div class="phero-media">
+      ${photoFig(photo[0], photo[1], { eager: true, cls: 'kenburns' })}
+    </div>` : '';
   return `
-<div class="phero">
+<div class="phero${photo ? ' has-media' : ''}">
   <div class="grid-lines" aria-hidden="true"></div>
+  ${photo ? `<div class="phero-bg" aria-hidden="true" style="background-image:url(/assets/img/${photo[0]}.webp)"></div>` : ''}
   <div class="wrap phero-in">
-    ${crumbsHtml(crumbs)}
-    ${kicker ? `<span class="kick">${esc(kicker)}</span>` : ''}
-    <h1>${h1}</h1>
-    ${sub ? `<p class="sub">${sub}</p>` : ''}
-    ${chips.length ? `<div class="chips">${chips.map((c) => `<span class="chip"><span class="dot"></span>${esc(c)}</span>`).join('')}</div>` : ''}
-    ${ctas ? `<div class="hero-cta">
-      <a href="/request-a-quote/" class="btn btn-gold">Request a Quote <span class="arw">→</span></a>
-      <a href="${SITE.phoneHref}" class="btn btn-ghost">Call ${esc(SITE.phone)}</a>
-    </div>` : ''}
+    <div class="phero-txt">
+      ${crumbsHtml(crumbs)}
+      ${kicker ? `<span class="kick">${esc(kicker)}</span>` : ''}
+      <h1>${h1}</h1>
+      ${sub ? `<p class="sub">${sub}</p>` : ''}
+      ${chips.length ? `<div class="chips">${chips.map((c) => `<span class="chip"><span class="dot"></span>${esc(c)}</span>`).join('')}</div>` : ''}
+      ${ctas ? `<div class="hero-cta">
+        <a href="/request-a-quote/" class="btn btn-gold" data-magnetic>Request a Quote <span class="arw">→</span></a>
+        <a href="${SITE.phoneHref}" class="btn btn-ghost" data-magnetic>Call ${esc(SITE.phone)}</a>
+      </div>` : ''}
+    </div>
+    ${media}
   </div>
 </div>
 <div class="hazard" aria-hidden="true"></div>`;
@@ -335,6 +385,23 @@ function faqSection(faqs, { dark = false } = {}) {
 }
 
 const checkLi = (t) => `<li>${IC.check}<span>${t}</span></li>`;
+
+// Interactive machine finder (logic lives in assets/js/site.js)
+function finderSection({ dark = true } = {}) {
+  return `
+<section class="sec ${dark ? 'sec-dark finder-dark' : 'sec-paper-2'}" id="machine-finder">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">60-Second Machine Finder</span>
+      <h2>Three questions. The right machine.</h2>
+      <p>No forms, no email gate. Answer honestly and we will point you at the exact equipment page, the same way we would on the phone.</p>
+    </div>
+    <div class="finder reveal" data-d="1" data-finder>
+      <noscript><p class="center">The finder needs JavaScript. No problem: browse <a href="/trash-compactors/">all compactors</a> or call ${esc(SITE.phone)}.</p></noscript>
+    </div>
+  </div>
+</section>`;
+}
 
 // ============================================================
 // HOME PAGE
@@ -406,9 +473,15 @@ function buildHome() {
   const body = `
 <section class="hero" id="top">
   <div class="hero-bg">
+    <img class="hero-photo" src="/assets/img/hero-warehouse.webp" alt="" fetchpriority="high" data-parallax-bg>
+    <div class="hero-shade" aria-hidden="true"></div>
     <div class="grid-lines" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="scan" aria-hidden="true"></div>
+    <span class="bolt-float" style="top:16%;left:5%;width:52px" data-depth="26">${BOLT_SVG}</span>
+    <span class="bolt-float" style="top:62%;left:12%;width:30px" data-depth="44">${BOLT_SVG}</span>
+    <span class="bolt-float" style="top:24%;right:10%;width:42px" data-depth="32">${BOLT_SVG}</span>
+    <span class="bolt-float" style="bottom:18%;right:20%;width:26px" data-depth="54">${BOLT_SVG}</span>
   </div>
   <div class="wrap hero-in">
     <div class="hero-tag">
@@ -420,23 +493,29 @@ function buildHome() {
       <span class="ln"><span>Built for the work</span></span>
       <span class="ln"><span class="gold">behind the waste.</span></span>
     </h1>
-    <p class="hero-sub">Commercial trash compactors and cardboard balers — sold, installed, serviced, rented, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
+    <p class="hero-sub">Commercial trash compactors and cardboard balers: sold, installed, serviced, rented, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
     <div class="hero-cta">
-      <a href="/request-a-quote/" class="btn btn-gold btn-lg">Request a Quote <span class="arw">→</span></a>
-      <a href="${SITE.phoneHref}" class="btn btn-ghost btn-lg">Call ${esc(SITE.phone)}</a>
+      <a href="/request-a-quote/" class="btn btn-gold btn-lg" data-magnetic>Request a Quote <span class="arw">→</span></a>
+      <a href="${SITE.phoneHref}" class="btn btn-ghost btn-lg" data-magnetic>Call ${esc(SITE.phone)}</a>
     </div>
     <div class="hero-paths">
-      <a class="path-card" href="/trash-compactors/">
-        <span class="pc-kick">Shop &amp; Service</span>
-        <h2>Trash Compactors</h2>
-        <p>Self-contained, stationary, vertical, pre-crusher, auger — plus rental, used, and repair for every brand.</p>
-        <span class="pc-go">Explore Compactors ${IC.arrow}</span>
+      <a class="path-card has-photo" href="/trash-compactors/" data-tilt>
+        <span class="pc-photo"><img src="/assets/img/compactor-green.webp" alt="" loading="lazy" width="600" height="450"></span>
+        <span class="pc-body">
+          <span class="pc-kick">Shop &amp; Service</span>
+          <h2>Trash Compactors</h2>
+          <p>Self-contained, stationary, vertical, pre-crusher, auger, plus rental, used, and repair for every brand.</p>
+          <span class="pc-go">Explore Compactors ${IC.arrow}</span>
+        </span>
       </a>
-      <a class="path-card" href="/balers-recycling/">
-        <span class="pc-kick">Shop &amp; Service</span>
-        <h2>Balers &amp; Recycling</h2>
-        <p>Vertical and horizontal balers, shredders, conveyors, and baling wire — the business Norton was built on.</p>
-        <span class="pc-go">Explore Balers ${IC.arrow}</span>
+      <a class="path-card has-photo" href="/balers-recycling/" data-tilt>
+        <span class="pc-photo"><img src="/assets/img/balers-mp60hd.webp" alt="" loading="lazy" width="600" height="450"></span>
+        <span class="pc-body">
+          <span class="pc-kick">Shop &amp; Service</span>
+          <h2>Balers &amp; Recycling</h2>
+          <p>Vertical and horizontal balers, shredders, conveyors, and baling wire. The business Norton was built on.</p>
+          <span class="pc-go">Explore Balers ${IC.arrow}</span>
+        </span>
       </a>
     </div>
   </div>
@@ -463,10 +542,10 @@ function buildHome() {
       </div>
       <div class="reveal" data-d="1">
         <p style="color:var(--silver-hi);font-size:17.5px;margin-bottom:18px">Norton Equipment started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for waste and recycling equipment. Independent is the key word.</p>
-        <p style="margin-bottom:24px;font-size:15.5px">National haulers lock equipment into hauling contracts. Single-brand dealers sell whatever the factory ships. We sell, service, rent, and rebuild <b style="color:var(--silver-hi)">every major brand</b> — so the machine on your pad is the right one, and your hauling contract stays yours to bid.</p>
+        <p style="margin-bottom:24px;font-size:15.5px">National haulers lock equipment into hauling contracts. Single-brand dealers sell whatever the factory ships. We sell, service, rent, and rebuild <b style="color:var(--silver-hi)">every major brand</b>, so the machine on your pad is the right one, and your hauling contract stays yours to bid.</p>
         <ul class="checks">
-          ${checkLi('Our own service techs — not subcontractors')}
-          ${checkLi('In-house welding &amp; fabrication shop — an edge almost no competitor has')}
+          ${checkLi('Our own service techs, not subcontractors')}
+          ${checkLi('In-house welding &amp; fabrication shop, an edge almost no competitor has')}
           ${checkLi('New, reconditioned, and rental options quoted side by side')}
           ${checkLi('Free on-site waste stream evaluations with honest math')}
         </ul>
@@ -474,6 +553,12 @@ function buildHome() {
           <a href="/about/" class="btn btn-ghost">Our Story Since 1997 <span class="arw">→</span></a>
         </div>
       </div>
+    </div>
+    <div class="sf-grid reveal" data-d="2" style="margin-top:56px">
+      <figure class="sf-item">${photoFig('balers-mp60hd', 'New vertical balers on the Norton floor')}<figcaption>New machines, staged in Byhalia</figcaption></figure>
+      <figure class="sf-item">${photoFig('hero-welding', 'Welding in the Norton fabrication shop')}<figcaption>The in-house fabrication shop</figcaption></figure>
+      <figure class="sf-item">${photoFig('horizontal-baler-shop', 'Horizontal baler in the Norton shop')}<figcaption>Reconditioning in progress</figcaption></figure>
+      <figure class="sf-item">${photoFig('logistics-yard', 'Forklift moving baled material')}<figcaption>Logistics, delivery &amp; install</figcaption></figure>
     </div>
   </div>
 </section>
@@ -485,19 +570,21 @@ function buildHome() {
     <div class="sec-head reveal">
       <span class="eyebrow">Trash Compactors</span>
       <h2>The full compactor lineup.</h2>
-      <p>Every type, every brand, every way to get one — buy new, buy reconditioned, or rent monthly. Start with your waste type; we’ll handle the rest.</p>
+      <p>Every type, every brand, every way to get one: buy new, buy reconditioned, or rent monthly. Start with your waste type; we’ll handle the rest.</p>
     </div>
     <div class="grid-3">${compactorCards}</div>
     <p class="mt-3 center"><a class="btn btn-dark" href="/trash-compactors/">All Compactors <span class="arw">→</span></a></p>
   </div>
 </section>
 
+${finderSection()}
+
 <section class="sec sec-paper-2">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Balers &amp; Recycling</span>
       <h2>The machines Norton was built on.</h2>
-      <p>Balers, shredders, conveyors, and the wire that ties it all — turning your cardboard from a hauling cost into a commodity since 1997.</p>
+      <p>Balers, shredders, conveyors, and the wire that ties it all, turning your cardboard from a hauling cost into a commodity since 1997.</p>
     </div>
     <div class="grid-3">${balerCards}</div>
     <p class="mt-3 center"><a class="btn btn-dark" href="/balers-recycling/">All Balers &amp; Recycling <span class="arw">→</span></a></p>
@@ -510,7 +597,7 @@ function buildHome() {
     <div class="sec-head reveal">
       <span class="eyebrow">Services</span>
       <h2>Sold by some. Serviced by Norton.</h2>
-      <p>Repair, maintenance, refurbishment, fabrication, logistics, and consultations — for any machine, no matter who sold it or whose name is on it.</p>
+      <p>Repair, maintenance, refurbishment, fabrication, logistics, and consultations: for any machine, no matter who sold it or whose name is on it.</p>
     </div>
     <div class="grid-3">${svcCards}</div>
   </div>
@@ -521,7 +608,7 @@ function buildHome() {
     <div class="sec-head reveal">
       <span class="eyebrow">Brands</span>
       <h2>Shop by brand. Serviced regardless.</h2>
-      <p>We know the major lines deeply and service all of them — plus the dozens of other makes already working across the Mid-South.</p>
+      <p>We know the major lines deeply and service all of them, plus the dozens of other makes already working across the Mid-South.</p>
     </div>
     <div class="grid-4">${brandCards}</div>
   </div>
@@ -552,7 +639,7 @@ function buildHome() {
       <span class="eyebrow">Word Around the Region</span>
       <h2>Trusted where it counts.</h2>
     </div>
-    ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout — final site will feature Norton’s verified customer reviews.</div>` : ''}
+    ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout. Final site will feature Norton’s verified customer reviews.</div>` : ''}
     <div class="grid-3">${quotes}</div>
     <p class="mt-3 center"><a class="btn btn-dark" href="/testimonials/">More Testimonials <span class="arw">→</span></a></p>
   </div>
@@ -570,9 +657,11 @@ function buildHome() {
 </section>`;
 
   out('index.html', layout({
+    preloadImg: '/assets/img/hero-warehouse.webp',
+    ogImage: '/assets/img/hero-warehouse.webp',
     path: '/',
-    title: 'Norton Equipment Co. | Trash Compactors & Balers — Sales, Service & Rental | Memphis & Mid-South',
-    desc: 'Commercial trash compactors, cardboard balers, and recycling equipment — sold, serviced, rented, and rebuilt across West Tennessee, North Mississippi, and East Arkansas since 1997. Any brand, any model. Call (662) 838-7900.',
+    title: 'Norton Equipment Co. | Trash Compactors & Balers: Sales, Service & Rental | Memphis & Mid-South',
+    desc: 'Commercial trash compactors, cardboard balers, and recycling equipment: sold, serviced, rented, and rebuilt across West Tennessee, North Mississippi, and East Arkansas since 1997. Any brand, any model. Call (662) 838-7900.',
     body,
     ld: [],
   }));
@@ -605,7 +694,8 @@ ${pageHero({
     kicker: item.kicker,
     h1: esc(item.name),
     sub: esc(item.short),
-    chips: ['Sales', 'Installation', 'Service — Any Brand', 'Mid-South Delivery'],
+    chips: ['Sales', 'Installation', 'Service · Any Brand', 'Mid-South Delivery'],
+    photo: PAGE_PHOTOS[item.slug] || null,
   })}
 
 <section class="sec sec-paper">
@@ -620,7 +710,7 @@ ${pageHero({
           <ul class="checks mt-2">
             ${item.bestFor.map((b) => checkLi(esc(b))).join('')}
           </ul>
-          <div class="form-alt">Not sure it fits your operation? <a href="/services/waste-stream-consultations/">Get a free waste stream consultation</a> — we’ll size it from your real volume.</div>
+          <div class="form-alt">Not sure it fits your operation? <a href="/services/waste-stream-consultations/">Get a free waste stream consultation</a>. We’ll size it from your real volume.</div>
         </div>
       </div>
     </div>
@@ -670,7 +760,7 @@ ${related ? `
   }));
 }
 
-function equipmentHub(basePath, overview, items, extraCards = '') {
+function equipmentHub(basePath, overview, items, extraCards = '', photoKey = null) {
   const crumbs = [{ label: 'Home', href: '/' }, { label: overview.name, href: basePath }];
   const cards = overview.types.map((t, i) => {
     const it = items.find((x) => x.slug === t.slug);
@@ -690,6 +780,7 @@ ${pageHero({
     h1: esc(overview.h1),
     sub: esc(overview.sub),
     chips: ['Since 1997', 'Any Brand · Any Model', 'TN · MS · AR'],
+    photo: photoKey ? PAGE_PHOTOS[photoKey] : null,
   })}
 
 <section class="sec sec-paper">
@@ -710,6 +801,8 @@ ${pageHero({
   </div>
 </section>
 
+${basePath === '/trash-compactors/' ? finderSection() : ''}
+
 ${faqSection(overview.faqs, { dark: false })}`;
 
   out(`${basePath.slice(1)}index.html`, layout({
@@ -726,20 +819,20 @@ function buildEquipment() {
     <a class="tcard reveal" href="/services/compactor-repair/">
       <div class="kick">All Brands · Fast Response</div>
       <h3>Compactor Repair &amp; Service</h3>
-      <p>Down machine? Hydraulics, controls, doors, and structural repair — dispatched across the Mid-South.</p>
+      <p>Down machine? Hydraulics, controls, doors, and structural repair, dispatched across the Mid-South.</p>
       <span class="go">Get It Fixed ${IC.arrow}</span>
     </a>`;
-  equipmentHub('/trash-compactors/', COMPACTOR_OVERVIEW, COMPACTORS, repairCard);
+  equipmentHub('/trash-compactors/', COMPACTOR_OVERVIEW, COMPACTORS, repairCard, 'hub:compactors');
   COMPACTORS.forEach((c) => equipmentDetail('/trash-compactors/', 'Trash Compactors', c, COMPACTORS));
 
   const balerSvcCard = `
     <a class="tcard reveal" href="/services/baler-service/">
       <div class="kick">All Brands · Since 1997</div>
       <h3>Baler Service &amp; Repair</h3>
-      <p>The original Norton trade — hydraulics, doors, controls, and structural repair for every baler brand.</p>
+      <p>The original Norton trade: hydraulics, doors, controls, and structural repair for every baler brand.</p>
       <span class="go">Get It Fixed ${IC.arrow}</span>
     </a>`;
-  equipmentHub('/balers-recycling/', BALER_OVERVIEW, BALERS, balerSvcCard);
+  equipmentHub('/balers-recycling/', BALER_OVERVIEW, BALERS, balerSvcCard, 'hub:balers');
   BALERS.forEach((b) => equipmentDetail('/balers-recycling/', 'Balers & Recycling', b, BALERS));
 }
 
@@ -763,6 +856,7 @@ ${pageHero({
     h1: esc(SERVICES_OVERVIEW.h1),
     sub: esc(SERVICES_OVERVIEW.sub),
     chips: ['Our Own Techs', 'In-House Fabrication', '100-Mile Radius'],
+    photo: PAGE_PHOTOS['hub:services'],
   })}
 <section class="sec sec-paper">
   <div class="wrap">
@@ -778,7 +872,7 @@ ${pageHero({
       </div>
       <div class="reveal" data-d="1">
         <ul class="checks">
-          ${checkLi('Every major make and model — Marathon, Cram-A-Lot, Max-Pak, Harris, PTR, Wastequip, and more')}
+          ${checkLi('Every major make and model: Marathon, Cram-A-Lot, Max-Pak, Harris, PTR, Wastequip, and more')}
           ${checkLi('In-house welding &amp; fabrication for structural repairs others can only replace')}
           ${checkLi('Preventive maintenance programs with written condition reports')}
           ${checkLi('Honest repair-vs-replace advice, with reconditioned and rental alternatives quoted')}
@@ -818,6 +912,7 @@ ${pageHero({
       h1: esc(s.name),
       sub: esc(s.short),
       chips: ['Any Brand · Any Model', 'Our Own Techs', 'TN · MS · AR'],
+      photo: PAGE_PHOTOS[s.slug] || null,
     })}
 <section class="sec sec-paper">
   <div class="wrap">
@@ -900,7 +995,7 @@ ${pageHero({
     <div class="sec-head reveal">
       <span class="eyebrow">Also Serviced in the Field</span>
       <h2>If it compacts or bales, we work on it.</h2>
-      <p>These lines (and plenty more) are already on our service routes. Brand pages for them can be added anytime — the service exists today.</p>
+      <p>These lines (and plenty more) are already on our service routes. Brand pages for them can be added anytime. The service exists today.</p>
     </div>
     <div class="cities reveal" data-d="1">${also}</div>
   </div>
@@ -924,6 +1019,7 @@ ${pageHero({
       h1: `${esc(b.name)} <span style="-webkit-text-stroke:1.5px var(--gold);color:transparent">Sales &amp; Service</span>`,
       sub: esc(b.short),
       chips: ['We Sell It', 'We Service It', 'We Stock Parts For It'],
+      photo: PAGE_PHOTOS['brand:' + b.slug] || null,
     })}
 <section class="sec sec-paper">
   <div class="wrap">
@@ -989,7 +1085,7 @@ ${pageHero({
     crumbs,
     kicker: 'Local Service · Real Coverage',
     h1: 'Serving 100 Miles Around Memphis',
-    sub: 'Thirty cities across West Tennessee, North Mississippi, and East Arkansas — with equipment sales, service routes, and delivery running through every one of them. Home base: Byhalia, MS.',
+    sub: 'Thirty cities across West Tennessee, North Mississippi, and East Arkansas, with equipment sales, service routes, and delivery running through every one of them. Home base: Byhalia, MS.',
     chips: ['TN · MS · AR', 'Since 1997', 'Any Brand · Any Model'],
   })}
 <section class="sec sec-dark">
@@ -997,7 +1093,7 @@ ${pageHero({
     <div class="sec-head reveal">
       <span class="eyebrow">Pick Your City</span>
       <h2>Find Norton near you.</h2>
-      <p>Every city below is inside our confirmed service radius. Farther out? Call anyway — sales and project work often travel beyond the routine service ring.</p>
+      <p>Every city below is inside our confirmed service radius. Farther out? Call anyway, sales and project work often travel beyond the routine service ring.</p>
     </div>
     ${stateBlocks}
   </div>
@@ -1006,7 +1102,7 @@ ${pageHero({
   out('locations/index.html', layout({
     path: '/locations/',
     title: 'Service Area & Locations | Memphis, North MS, West TN, East AR | Norton Equipment',
-    desc: 'Norton Equipment serves 30 cities within 100 miles of Memphis — compactor and baler sales, service, rental, and delivery across West Tennessee, North Mississippi, and East Arkansas. Find your city.',
+    desc: 'Norton Equipment serves 30 cities within 100 miles of Memphis: compactor and baler sales, service, rental, and delivery across West Tennessee, North Mississippi, and East Arkansas. Find your city.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1039,15 +1135,15 @@ ${pageHero({
     const faqs = [
       {
         q: `Do you charge extra for service calls in ${c.city}?`,
-        a: `${c.city} is inside our standard 100-mile service area, so it is covered by our normal dispatch — no long-distance premiums. Call ${SITE.phone} for scheduling and current response times.`,
+        a: `${c.city} is inside our standard 100-mile service area, so it is covered by our normal dispatch, no long-distance premiums. Call ${SITE.phone} for scheduling and current response times.`,
       },
       {
         q: `Can you deliver and install equipment in ${c.city}, ${c.abbr}?`,
-        a: `Yes — our own <a href="/services/equipment-logistics/">equipment logistics crew</a> handles delivery, rigging, installation, and old-machine removal throughout the ${c.city} area.`,
+        a: `Yes. Our own <a href="/services/equipment-logistics/">equipment logistics crew</a> handles delivery, rigging, installation, and old-machine removal throughout the ${c.city} area.`,
       },
       {
         q: `Which brands do you service in ${c.city}?`,
-        a: `All of them — Marathon, Cram-A-Lot, Max-Pak, Harris/Selco, PTR, Wastequip, and every other major make. If it compacts or bales, we work on it.`,
+        a: `All of them: Marathon, Cram-A-Lot, Max-Pak, Harris/Selco, PTR, Wastequip, and every other major make. If it compacts or bales, we work on it.`,
       },
     ];
 
@@ -1056,7 +1152,7 @@ ${pageHero({
       crumbs: crumbs2,
       kicker: `${c.city} · ${c.state}`,
       h1: `Compactors, Balers &amp; Equipment Service in <span style="color:var(--gold)">${esc(c.city)}, ${c.abbr}</span>`,
-      sub: `Sales, repair, rental, and preventive maintenance for commercial trash compactors, cardboard balers, and recycling equipment — serving ${esc(c.city)} from Byhalia, MS since 1997.`,
+      sub: `Sales, repair, rental, and preventive maintenance for commercial trash compactors, cardboard balers, and recycling equipment: serving ${esc(c.city)} from Byhalia, MS since 1997.`,
       chips: [dist, 'Any Brand · Any Model', 'Free On-Site Evaluations'],
     })}
 <section class="sec sec-paper">
@@ -1068,7 +1164,7 @@ ${pageHero({
         <ul>
           ${c.industries.map((ind) => `<li>${esc(ind)}</li>`).join('')}
         </ul>
-        <p>Not on the list? If your ${esc(c.city)} operation generates waste or recyclables, the conversation is worth thirty minutes — our <a href="/services/waste-stream-consultations/">waste stream consultation</a> is free and comes with real numbers.</p>
+        <p>Not on the list? If your ${esc(c.city)} operation generates waste or recyclables, the conversation is worth thirty minutes. Our <a href="/services/waste-stream-consultations/">waste stream consultation</a> is free and comes with real numbers.</p>
       </div>
       <div class="reveal" data-d="1">
         <div class="form-card">
@@ -1099,7 +1195,7 @@ ${faqSection(faqs)}
     out(`locations/${c.slug}/index.html`, layout({
       path,
       title: `Trash Compactors & Baler Service in ${c.city}, ${c.abbr} | Norton Equipment`,
-      desc: `Commercial trash compactor and cardboard baler sales, repair, rental, and maintenance in ${c.city}, ${c.state}. Any brand, any model — serving ${c.city} from Byhalia, MS since 1997. Call (662) 838-7900.`,
+      desc: `Commercial trash compactor and cardboard baler sales, repair, rental, and maintenance in ${c.city}, ${c.state}. Any brand, any model: serving ${c.city} from Byhalia, MS since 1997. Call (662) 838-7900.`,
       body: body2,
       ld: [
         ldBreadcrumbs(crumbs2),
@@ -1121,35 +1217,37 @@ ${pageHero({
     crumbs,
     kicker: 'Est. 1997 · Byhalia, Mississippi',
     h1: 'From Compressor Shop to <span style="color:var(--gold)">Mid-South Mainstay</span>',
-    sub: 'Most visitors have never heard the Norton story. It is a trust builder — so here it is, straight.',
+    sub: 'Most visitors have never heard the Norton story. It is a trust builder, so here it is, straight.',
     chips: ['Independent Since Day One', 'In-House Fabrication', 'Any Brand · Any Model'],
   })}
 <section class="sec sec-paper">
   <div class="wrap">
     <div class="split">
       <div class="prose reveal">
-        <p class="lead">Norton Equipment Company started in 1997 as Norton Compressor Service — a hands-on shop built around one idea: fix it right, show up when you say you will, and the work will speak for itself.</p>
-        <p>The Mid-South agreed. Compressor work led to hydraulics, hydraulics led to balers, and balers led to the whole world of waste and recycling equipment. As the region's grocery chains, warehouses, and manufacturers asked for more, the company grew into what it is today: the independent specialist for selling, servicing, renting, and rebuilding the machines behind the Mid-South's waste and recycling — compactors, balers, shredders, and conveyors of every make.</p>
-        <p>Two things set that growth apart. First, independence: Norton never became a captive dealer or a hauler's equipment arm, so every recommendation is built on what fits the customer — not what is on the truck. Second, the fabrication shop: a full in-house welding and metal fabrication operation that turns "that can't be fixed" into "picked it up Tuesday, back Thursday." Almost nobody else in this market can rebuild the steel itself.</p>
-        <p>Today the business leads with the fastest-growing side of the industry — commercial trash compactors — while staying every bit as strong in the balers and recycling equipment it was built on. The service radius runs 100 miles out from the Memphis metro, covering West Tennessee, North Mississippi, and East Arkansas from the shop in Byhalia.</p>
+        <p class="lead">Norton Equipment Company started in 1997 as Norton Compressor Service, a hands-on shop built around one idea: fix it right, show up when you say you will, and the work will speak for itself.</p>
+        <p>The Mid-South agreed. Compressor work led to hydraulics, hydraulics led to balers, and balers led to the whole world of waste and recycling equipment. As the region's grocery chains, warehouses, and manufacturers asked for more, the company grew into what it is today: the independent specialist for selling, servicing, renting, and rebuilding the machines behind the Mid-South's waste and recycling: compactors, balers, shredders, and conveyors of every make.</p>
+        <p>Two things set that growth apart. First, independence: Norton never became a captive dealer or a hauler's equipment arm, so every recommendation is built on what fits the customer, not what is on the truck. Second, the fabrication shop: a full in-house welding and metal fabrication operation that turns "that can't be fixed" into "picked it up Tuesday, back Thursday." Almost nobody else in this market can rebuild the steel itself.</p>
+        <p>Today the business leads with the fastest-growing side of the industry (commercial trash compactors) while staying every bit as strong in the balers and recycling equipment it was built on. The service radius runs 100 miles out from the Memphis metro, covering West Tennessee, North Mississippi, and East Arkansas from the shop in Byhalia.</p>
         <h2>What we believe</h2>
         <ul>
-          <li><strong>Sell the right machine, not the nearest one.</strong> New, reconditioned, or rental — quoted side by side, with the math shown.</li>
+          <li><strong>Sell the right machine, not the nearest one.</strong> New, reconditioned, or rental: quoted side by side, with the math shown.</li>
           <li><strong>Service is the product.</strong> The machine is steel and hydraulics; what you are really buying is the years after the install.</li>
           <li><strong>Independence is customer leverage.</strong> Our equipment never locks your hauling contract. Ever.</li>
           <li><strong>If it's steel, it's fixable.</strong> The fabrication shop is the difference between a quote for a new machine and a repair that costs a fraction of it.</li>
         </ul>
       </div>
       <div class="reveal" data-d="1">
+        ${photoFig('hero-welding', 'Welding in the Norton fabrication shop, Byhalia MS', { cls: 'mb' })}
         <div class="form-card">
+          <img src="/assets/img/logo-full.webp" alt="Norton Equipment Company: built for the work behind the waste" width="320" style="margin:0 auto 22px" loading="lazy">
           <span class="eyebrow">Norton at a Glance</span>
           <ul class="checks mt-2">
             ${checkLi('<strong>Founded:</strong> 1997, as Norton Compressor Service')}
             ${checkLi('<strong>Home:</strong> 60 Amy Ln, Byhalia, MS 38611')}
-            ${checkLi('<strong>Territory:</strong> ~100 miles around Memphis — TN, MS, AR')}
+            ${checkLi('<strong>Territory:</strong> ~100 miles around Memphis: TN, MS, AR')}
             ${checkLi('<strong>Trades:</strong> Compactors, balers, shredders, conveyors, wire')}
             ${checkLi('<strong>Capabilities:</strong> Sales · Service · Rental · Refurb · Fabrication · Logistics')}
-            ${checkLi('<strong>Brands:</strong> All of them — sold and serviced independently')}
+            ${checkLi('<strong>Brands:</strong> All of them, sold and serviced independently')}
           </ul>
           <div class="form-alt">Want the customer's-eye view? <a href="/testimonials/">Read the testimonials</a>, or just <a href="${SITE.phoneHref}">call ${esc(SITE.phone)}</a> and judge us by the conversation.</div>
         </div>
@@ -1161,7 +1259,7 @@ ${pageHero({
   out('about/index.html', layout({
     path: '/about/',
     title: 'About Norton Equipment | Since 1997 | Byhalia, MS',
-    desc: 'Norton Equipment Company started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for compactors, balers, and recycling equipment — with its own techs and in-house fabrication shop.',
+    desc: 'Norton Equipment Company started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for compactors, balers, and recycling equipment: with its own techs and in-house fabrication shop.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1181,18 +1279,18 @@ ${pageHero({
     crumbs,
     kicker: 'Word Around the Region',
     h1: 'Trusted Where It Counts',
-    sub: 'Reviews tagged by industry and city — because “great service” means more when it comes from an operation like yours, in a town like yours.',
+    sub: 'Reviews tagged by industry and city, because “great service” means more when it comes from an operation like yours, in a town like yours.',
   })}
 <section class="sec sec-paper">
   <div class="wrap">
-    ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout review only. The launch version of this page will feature Norton’s real, verified customer reviews — cleaned up and tagged by industry and city per the site plan.</div>` : ''}
+    ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout review only. The launch version of this page will feature Norton’s real, verified customer reviews, cleaned up and tagged by industry and city per the site plan.</div>` : ''}
     <div class="grid-3">${quotes}</div>
   </div>
 </section>`;
   out('testimonials/index.html', layout({
     path: '/testimonials/',
     title: 'Customer Testimonials | Norton Equipment',
-    desc: 'What Mid-South businesses say about Norton Equipment’s compactor and baler sales, service, and support — reviews tagged by industry and city.',
+    desc: 'What Mid-South businesses say about Norton Equipment’s compactor and baler sales, service, and support: reviews tagged by industry and city.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1210,11 +1308,11 @@ function formHtml({ subject, service = false }) {
   <div class="field"><label for="f-city">City / State</label><input id="f-city" name="City" placeholder="e.g. Olive Branch, MS"></div>
   <div class="field"><label for="f-interest">I’m interested in</label>
     <select id="f-interest" name="Interest">
-      <option>Trash compactor — purchase</option>
-      <option>Trash compactor — rental</option>
+      <option>Trash compactor - purchase</option>
+      <option>Trash compactor - rental</option>
       <option>Cardboard baler</option>
       <option>Used / reconditioned equipment</option>
-      <option>${service ? 'Service or repair — down machine' : 'Service or repair'}</option>
+      <option>${service ? 'Service or repair - down machine' : 'Service or repair'}</option>
       <option>Preventive maintenance program</option>
       <option>Baling wire</option>
       <option>Welding / fabrication</option>
@@ -1223,10 +1321,10 @@ function formHtml({ subject, service = false }) {
       <option>Something else</option>
     </select>
   </div>
-  <div class="field full"><label for="f-msg">Tell us about your operation</label><textarea id="f-msg" name="Message" placeholder="Waste type &amp; weekly volume, current setup, brand/model if it’s a repair — whatever you know."></textarea></div>
+  <div class="field full"><label for="f-msg">Tell us about your operation</label><textarea id="f-msg" name="Message" placeholder="Waste type &amp; weekly volume, current setup, brand/model if it’s a repair, whatever you know."></textarea></div>
   <div class="full">
     <button type="submit" class="btn btn-gold btn-lg" style="width:100%">Send Request <span class="arw">→</span></button>
-    <p class="form-note">We respond within one business day — usually much faster. Down machine? Skip the form and call <a href="${SITE.phoneHref}" style="color:var(--gold-deep);font-weight:700">${esc(SITE.phone)}</a>.</p>
+    <p class="form-note">We respond within one business day, usually much faster. Down machine? Skip the form and call <a href="${SITE.phoneHref}" style="color:var(--gold-deep);font-weight:700">${esc(SITE.phone)}</a>.</p>
   </div>
 </form>`;
 }
@@ -1238,21 +1336,21 @@ ${pageHero({
     crumbs,
     kicker: 'No Pressure · No Hauling Strings',
     h1: 'Request a Quote',
-    sub: 'Tell us what you’re dealing with and we’ll come back with real options — new, reconditioned, and rental, quoted side by side with honest math.',
+    sub: 'Tell us what you’re dealing with and we’ll come back with real options: new, reconditioned, and rental, quoted side by side with honest math.',
     ctas: false,
   })}
 <section class="sec sec-paper">
   <div class="wrap">
     <div class="split">
       <div class="reveal">
-        <div class="form-card">${formHtml({ subject: 'Quote Request — Norton Equipment Website' })}</div>
+        <div class="form-card">${formHtml({ subject: 'Quote Request - Norton Equipment Website' })}</div>
       </div>
       <div class="reveal" data-d="1">
         <div class="sec-head"><span class="eyebrow">What Happens Next</span><h2>Three steps, zero runaround.</h2></div>
         <div class="flist">
-          <div class="fitem"><div class="idx">01</div><div><h3>We call you back</h3><p>Within one business day, a real person who knows the equipment — not a call center — follows up on your request.</p></div></div>
+          <div class="fitem"><div class="idx">01</div><div><h3>We call you back</h3><p>Within one business day, a real person who knows the equipment (not a call center) follows up on your request.</p></div></div>
           <div class="fitem"><div class="idx">02</div><div><h3>We look at the real situation</h3><p>For most requests we’ll do a free on-site walk-through: your waste, your dock, your invoices. Sizing from reality beats sizing from a form.</p></div></div>
-          <div class="fitem"><div class="idx">03</div><div><h3>You get options with math</h3><p>New, used, and rental quoted side by side, with payback math from your actual hauling costs. Then it’s your call — no chasing, no lock-ins.</p></div></div>
+          <div class="fitem"><div class="idx">03</div><div><h3>You get options with math</h3><p>New, used, and rental quoted side by side, with payback math from your actual hauling costs. Then it’s your call, no chasing, no lock-ins.</p></div></div>
         </div>
         <div class="info-tile mt-2">
           <div class="ic">${IC.phone}</div>
@@ -1280,13 +1378,13 @@ ${pageHero({
     crumbs,
     kicker: 'Byhalia, Mississippi · Since 1997',
     h1: 'Talk to a Real Person',
-    sub: 'Quotes, service calls, parts, wire, or just an honest opinion about a machine — one number covers it all.',
+    sub: 'Quotes, service calls, parts, wire, or just an honest opinion about a machine. One number covers it all.',
     ctas: false,
   })}
 <section class="sec sec-paper">
   <div class="wrap">
     <div class="grid-2" style="margin-bottom:22px">
-      <div class="info-tile reveal"><div class="ic">${IC.phone}</div><div><b>Phone</b><p><a href="${SITE.phoneHref}">${esc(SITE.phone)}</a> — fastest for down machines</p></div></div>
+      <div class="info-tile reveal"><div class="ic">${IC.phone}</div><div><b>Phone</b><p><a href="${SITE.phoneHref}">${esc(SITE.phone)}</a>, fastest for down machines</p></div></div>
       <div class="info-tile reveal" data-d="1"><div class="ic">${IC.mail}</div><div><b>Email</b><p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p></div></div>
       <div class="info-tile reveal" data-d="2"><div class="ic">${IC.pin}</div><div><b>Shop &amp; Office</b><p>${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}<br><a href="${mapsUrl}" rel="noopener" target="_blank">Get directions →</a></p></div></div>
       <div class="info-tile reveal" data-d="3"><div class="ic">${IC.clock}</div><div><b>Hours</b><p>${esc(SITE.hours)}<br>Service dispatch throughout the region</p></div></div>
@@ -1294,16 +1392,16 @@ ${pageHero({
     <div class="split">
       <div class="reveal">
         <div class="sec-head"><span class="eyebrow">Send a Message</span><h2>Quote or service request.</h2></div>
-        <div class="form-card">${formHtml({ subject: 'Contact — Norton Equipment Website', service: true })}</div>
+        <div class="form-card">${formHtml({ subject: 'Contact - Norton Equipment Website', service: true })}</div>
       </div>
       <div class="reveal" data-d="1">
         <div class="sec-head"><span class="eyebrow">Coverage</span><h2>Where we run.</h2></div>
-        <p style="margin-bottom:18px">${esc(SITE.serviceAreaBlurb)} Regular routes cover 30 cities — see the full <a href="/locations/" style="color:var(--gold-deep);font-weight:700">service area</a>.</p>
+        <p style="margin-bottom:18px">${esc(SITE.serviceAreaBlurb)} Regular routes cover 30 cities, see the full <a href="/locations/" style="color:var(--gold-deep);font-weight:700">service area</a>.</p>
         <ul class="checks">
           ${checkLi('Sales, delivery &amp; installation region-wide')}
           ${checkLi('Service dispatch across the full 100-mile radius')}
           ${checkLi('Baling wire delivery on scheduled routes')}
-          ${checkLi('Project &amp; logistics work quoted beyond the ring — just ask')}
+          ${checkLi('Project &amp; logistics work quoted beyond the ring, just ask')}
         </ul>
       </div>
     </div>
@@ -1312,7 +1410,7 @@ ${pageHero({
   out('contact/index.html', layout({
     path: '/contact/',
     title: 'Contact Norton Equipment | Byhalia, MS | (662) 838-7900',
-    desc: 'Contact Norton Equipment — 60 Amy Ln, Byhalia, MS 38611. Call (662) 838-7900 for compactor and baler sales, service, rental, parts, and baling wire across the Mid-South.',
+    desc: 'Contact Norton Equipment: 60 Amy Ln, Byhalia, MS 38611. Call (662) 838-7900 for compactor and baler sales, service, rental, parts, and baling wire across the Mid-South.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
     noCta: true,
@@ -1329,8 +1427,8 @@ ${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Privacy Policy', sub: '', ct
       <p class="lead">Norton Equipment Company respects your privacy. This policy explains what we collect on this website and what we do with it. Short version: we collect what you send us, we use it to respond to you, and we don’t sell it.</p>
       <h2>Information we collect</h2>
       <ul>
-        <li><strong>Information you submit</strong> — name, company, phone, email, and message contents when you use our quote or contact forms, call, or email us.</li>
-        <li><strong>Usage information</strong> — standard analytics data such as pages visited, approximate location, device type, and referring site, collected via our analytics provider to understand how the site is used.</li>
+        <li><strong>Information you submit</strong>: name, company, phone, email, and message contents when you use our quote or contact forms, call, or email us.</li>
+        <li><strong>Usage information</strong>: standard analytics data such as pages visited, approximate location, device type, and referring site, collected via our analytics provider to understand how the site is used.</li>
       </ul>
       <h2>How we use it</h2>
       <ul>
@@ -1344,7 +1442,7 @@ ${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Privacy Policy', sub: '', ct
       <p>We keep submitted information as long as needed for the business purpose it was provided for. To ask what we hold about you or request deletion, contact us at <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a> or ${esc(SITE.phone)}.</p>
       <h2>Contact</h2>
       <p>${esc(SITE.legalName)} · ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)} · ${esc(SITE.phone)}</p>
-      <p><em>Last updated: ${BUILD_DATE}. This is a draft policy for review — final language should be confirmed before launch.</em></p>
+      <p><em>Last updated: ${BUILD_DATE}. This is a draft policy for review, final language should be confirmed before launch.</em></p>
     </div>
   </div>
 </section>`;
@@ -1364,7 +1462,7 @@ function build404() {
   <div class="wrap center">
     <span class="eyebrow" style="justify-content:center">Error 404</span>
     <h1 style="font-size:clamp(40px,8vw,90px);text-transform:uppercase;margin:18px 0">Page not <span style="color:var(--gold)">found.</span></h1>
-    <p style="max-width:520px;margin:0 auto 34px;color:var(--silver)">Looks like this page got hauled off. Try the equipment lineup, the service list, or just call us — a human beats a 404 every time.</p>
+    <p style="max-width:520px;margin:0 auto 34px;color:var(--silver)">Looks like this page got hauled off. Try the equipment lineup, the service list, or just call us, a human beats a 404 every time.</p>
     <div class="close-cta" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
       <a href="/" class="btn btn-gold">Back to Home <span class="arw">→</span></a>
       <a href="${SITE.phoneHref}" class="btn btn-ghost">Call ${esc(SITE.phone)}</a>
@@ -1396,7 +1494,7 @@ ${pageHero({
     crumbs,
     kicker: 'Guides · Straight Talk · No Fluff',
     h1: 'The Norton Blog',
-    sub: 'Buying guides and honest math for the people who deal with the waste — weighted toward compactors, because that’s where the questions are.',
+    sub: 'Buying guides and honest math for the people who deal with the waste: weighted toward compactors, because that’s where the questions are.',
     ctas: false,
   })}
 <section class="sec sec-paper">
@@ -1409,7 +1507,7 @@ ${pageHero({
   out('blog/index.html', layout({
     path: '/blog/',
     title: 'Blog | Compactor & Baler Guides | Norton Equipment',
-    desc: 'Buying guides and straight talk on commercial trash compactors, balers, and waste costs from Norton Equipment — Mid-South waste equipment specialists since 1997.',
+    desc: 'Buying guides and straight talk on commercial trash compactors, balers, and waste costs from Norton Equipment: Mid-South waste equipment specialists since 1997.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1488,7 +1586,7 @@ function buildMeta() {
     .join('\n');
   writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFileSync(join(ROOT, 'robots.txt'), DRAFT
-    ? `# DRAFT SITE — blocked until launch. Update via src/build.mjs (DRAFT flag).\nUser-agent: *\nDisallow: /\n`
+    ? `# DRAFT SITE, blocked until launch. Update via src/build.mjs (DRAFT flag).\nUser-agent: *\nDisallow: /\n`
     : `User-agent: *\nAllow: /\n\nSitemap: ${SITE.baseUrl}/sitemap.xml\n`);
   writeFileSync(join(ROOT, '.nojekyll'), '');
 }
