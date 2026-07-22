@@ -224,14 +224,14 @@ function headerHtml(activePath) {
     </nav>
     <div class="nav-actions">
       <a href="${SITE.phoneHref}" class="nav-call" aria-label="Call Norton Equipment at ${esc(SITE.phone)}">${IC.phone}<span>${esc(SITE.phone)}</span></a>
-      <a href="/request-a-quote/" class="btn btn-gold nav-cta">Request a Quote <span class="arw">→</span></a>
+      <a href="/request-a-quote/" class="nav-cta" aria-label="Request a quote">Request a Quote <span class="arw">→</span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="mobile-bar" role="navigation" aria-label="Quick actions">
-  <a href="${SITE.phoneHref}" class="mb-call">${IC.phone}<span>Call Now</span></a>
-  <a href="/request-a-quote/" class="mb-quote">Request a Quote <span class="arw">→</span></a>
+  <a href="${SITE.phoneHref}" class="mb-call">${IC.phone}<span>Call ${esc(SITE.phone)}</span></a>
+  <a href="/request-a-quote/" class="mb-quote">Quote <span class="arw">→</span></a>
 </div>`;
 }
 
@@ -246,8 +246,8 @@ function ctaBand(opts = {}) {
     <h2 class="reveal">${h}</h2>
     <p class="reveal" data-d="1">${p}</p>
     <div class="close-cta reveal" data-d="2">
-      <a href="/request-a-quote/" class="btn btn-gold btn-lg">Request a Quote <span class="arw">→</span></a>
-      <a href="${SITE.phoneHref}" class="btn btn-ghost btn-lg">Call ${esc(SITE.phone)}</a>
+      <a href="${SITE.phoneHref}" class="btn btn-gold btn-lg">${IC.phone}Call ${esc(SITE.phone)}</a>
+      <a href="/request-a-quote/" class="btn btn-ghost btn-lg">Request a Quote <span class="arw">→</span></a>
     </div>
     <p class="sub-call reveal" data-d="3">Prefer email? <a href="/contact/">Contact us here</a></p>
   </div>
@@ -363,8 +363,8 @@ function pageHero({ crumbs, kicker, h1, sub, chips = [], ctas = true, photo = nu
       ${sub ? `<p class="sub">${sub}</p>` : ''}
       ${chips.length ? `<div class="chips">${chips.map((c) => `<span class="chip"><span class="dot"></span>${esc(c)}</span>`).join('')}</div>` : ''}
       ${ctas ? `<div class="hero-cta">
-        <a href="/request-a-quote/" class="btn btn-gold" data-magnetic>Request a Quote <span class="arw">→</span></a>
-        <a href="${SITE.phoneHref}" class="btn btn-ghost" data-magnetic>Call ${esc(SITE.phone)}</a>
+        <a href="${SITE.phoneHref}" class="btn btn-gold" data-magnetic>${IC.phone}Call ${esc(SITE.phone)}</a>
+        <a href="/request-a-quote/" class="btn btn-ghost" data-magnetic>Request a Quote <span class="arw">→</span></a>
       </div>` : ''}
     </div>
     ${media}
@@ -439,61 +439,15 @@ function finderSection({ dark = true } = {}) {
 // HOME PAGE
 // ============================================================
 function buildHome() {
-  const compactorCards = COMPACTOR_OVERVIEW.types.map((t, i) => {
-    const c = COMPACTORS.find((x) => x.slug === t.slug);
-    return `
-    <a class="tcard reveal" data-d="${(i % 3) + 1}" href="/trash-compactors/${t.slug}/">
-      <div class="kick">${esc(c.kicker)}</div>
-      <h3>${esc(c.cardTitle)}</h3>
-      <p>${esc(t.blurb)}</p>
-      <span class="go">View Details ${IC.arrow}</span>
-    </a>`;
-  }).join('');
-
-  const balerCards = BALER_OVERVIEW.types.map((t, i) => {
-    const b = BALERS.find((x) => x.slug === t.slug);
-    return `
-    <a class="tcard reveal" data-d="${(i % 3) + 1}" href="/balers-recycling/${t.slug}/">
-      <div class="kick">${esc(b.kicker)}</div>
-      <h3>${esc(b.cardTitle)}</h3>
-      <p>${esc(t.blurb)}</p>
-      <span class="go">View Details ${IC.arrow}</span>
-    </a>`;
-  }).join('');
-
-  const svcCards = SERVICES.map((s, i) => `
-    <a class="dcard reveal" data-d="${(i % 3) + 1}" href="/services/${s.slug}/">
-      <div class="idx">${String(i + 1).padStart(2, '0')}</div>
-      <h3>${esc(s.cardTitle)}</h3>
-      <p>${esc(s.short)}</p>
-      <span class="go">Learn More ${IC.arrow}</span>
-    </a>`).join('');
-
-  const brandCards = BRANDS.map((b, i) => `
-    <a class="tcard reveal" data-d="${i + 1}" href="/brands/${b.slug}/">
-      <div class="kick">${esc(b.kicker)}</div>
-      <h3>${esc(b.name)}</h3>
-      <p>${esc(b.short)}</p>
-      <span class="go">Brand Page ${IC.arrow}</span>
-    </a>`).join('');
-
   const marqueeNames = [...BRANDS.map((b) => b.name), ...BRANDS_OVERVIEW.alsoService.slice(0, 5)];
   const track = marqueeNames.map((n) => `<span class="brand-t">${esc(n)}</span>`).join('');
 
   const cityChips = (abbr) => CITIES.filter((c) => c.abbr === abbr)
     .map((c) => `<a class="city" href="/locations/${c.slug}/">${IC.pin}${esc(c.city)}, ${c.abbr}</a>`).join('');
 
-  const quotes = TESTIMONIALS.slice(0, 3).map((t, i) => `
-    <div class="quote-card reveal" data-d="${i + 1}">
-      <span class="qmark" aria-hidden="true">“</span>
-      <p>${esc(t.quote)}</p>
-      <div class="who"><b>${esc(t.name)}</b><span>${esc(t.role)}</span></div>
-      <span class="qtag">${esc(t.tag)}</span>
-    </div>`).join('');
-
   const postCards = POSTS.slice(0, 3).map((p, i) => `
     <a class="post-card reveal" data-d="${i + 1}" href="/blog/${p.slug}/">
-      <div class="pc-top" aria-hidden="true"></div>
+      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp" alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
       <div class="pc-body">
         <div class="meta"><span>${p.date}</span><span>${p.readMins} min read</span></div>
         <h3>${esc(p.title)}</h3>
@@ -509,11 +463,8 @@ function buildHome() {
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="grid-lines" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
-    <div class="scan" aria-hidden="true"></div>
-    <span class="bolt-float" style="top:16%;left:5%;width:52px" data-depth="26">${BOLT_SVG}</span>
-    <span class="bolt-float" style="top:62%;left:12%;width:30px" data-depth="44">${BOLT_SVG}</span>
-    <span class="bolt-float" style="top:24%;right:10%;width:42px" data-depth="32">${BOLT_SVG}</span>
-    <span class="bolt-float" style="bottom:18%;right:20%;width:26px" data-depth="54">${BOLT_SVG}</span>
+    <span class="bolt-float" style="top:18%;right:11%;width:44px" data-depth="30">${BOLT_SVG}</span>
+    <span class="bolt-float" style="bottom:20%;right:23%;width:26px" data-depth="50">${BOLT_SVG}</span>
   </div>
   <div class="wrap hero-in">
     <div class="hero-tag">
@@ -528,9 +479,10 @@ function buildHome() {
     <p class="script-line">Real people. Real steel. Byhalia, Mississippi.</p>
     <p class="hero-sub">Commercial trash compactors and cardboard balers: sold, installed, serviced, rented, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
     <div class="hero-cta">
-      <a href="/request-a-quote/" class="btn btn-gold btn-lg" data-magnetic>Request a Quote <span class="arw">→</span></a>
-      <a href="${SITE.phoneHref}" class="btn btn-ghost btn-lg" data-magnetic>Call ${esc(SITE.phone)}</a>
+      <a href="${SITE.phoneHref}" class="btn btn-gold btn-lg" data-magnetic>${IC.phone}Call ${esc(SITE.phone)}</a>
+      <a href="/request-a-quote/" class="btn btn-ghost btn-lg" data-magnetic>Request a Quote <span class="arw">→</span></a>
     </div>
+    <p class="hero-service">Machine down? We prioritize service calls across the Mid-South. <a href="/services/compactor-repair/">Emergency repair &rsaquo;</a></p>
     <div class="hero-paths">
       <a class="path-card has-photo" href="/trash-compactors/" data-tilt>
         <span class="pc-photo"><img src="/assets/img/compactor-green.webp" alt="" loading="lazy" width="600" height="450"></span>
@@ -567,7 +519,6 @@ function buildHome() {
 </div>
 
 <section class="sec sec-dark-2">
-  <span class="ghostnum" style="top:-30px;right:-10px" aria-hidden="true">97</span>
   <div class="wrap">
     <div class="split">
       <div class="reveal">
@@ -599,19 +550,34 @@ function buildHome() {
 
 <div class="hazard" aria-hidden="true"></div>
 
-<section class="sec sec-paper">
+<section class="sec sec-paper" id="find-compactor">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Trash Compactors</span>
-      <h2>The full compactor lineup.</h2>
-      <p>Every type, every brand, every way to get one: buy new, buy reconditioned, or rent monthly. Start with your waste type; we’ll handle the rest.</p>
+      <h2>Start with your waste. We'll name the machine.</h2>
+      <p>Not sure which compactor fits? Answer three questions, the same ones we'd ask on the phone, and land on the exact machine for your operation.</p>
     </div>
-    <div class="grid-3">${compactorCards}</div>
-    <p class="mt-3 center"><a class="btn btn-dark" href="/trash-compactors/">All Compactors <span class="arw">→</span></a></p>
+    <div class="finder reveal" data-d="1" data-finder>
+      <noscript><p class="center">The finder needs JavaScript. No problem: browse <a href="/trash-compactors/">all compactors</a> or call ${esc(SITE.phone)}.</p></noscript>
+    </div>
+    <div class="branch-row reveal" data-d="2">
+      <span class="branch-lead">Already know your stream?</span>
+      <a class="branch" href="/trash-compactors/self-contained/">
+        <span class="branch-tag">Wet waste</span>
+        <b>Self-Contained</b>
+        <span class="branch-sub">Grocery, food service, hospitals. Sealed and leak-tight.</span>
+        <span class="branch-go">See the machine ${IC.arrow}</span>
+      </a>
+      <a class="branch" href="/trash-compactors/stationary/">
+        <span class="branch-tag">Dry waste</span>
+        <b>Stationary</b>
+        <span class="branch-sub">Warehouses, DCs, retail. High volume, low cost per haul.</span>
+        <span class="branch-go">See the machine ${IC.arrow}</span>
+      </a>
+    </div>
+    <p class="type-list reveal" data-d="3"><span class="tl-lbl">Full lineup:</span> ${COMPACTORS.filter((c) => !['self-contained', 'stationary'].includes(c.slug)).map((c) => `<a href="/trash-compactors/${c.slug}/">${esc(c.cardTitle)}</a>`).join('<i aria-hidden="true">·</i>')}</p>
   </div>
 </section>
-
-${finderSection()}
 
 <section class="sec sec-paper-2">
   <div class="wrap">
@@ -620,20 +586,45 @@ ${finderSection()}
       <h2>The machines Norton was built on.</h2>
       <p>Balers, shredders, conveyors, and the wire that ties it all, turning your cardboard from a hauling cost into a commodity since 1997.</p>
     </div>
-    <div class="grid-3">${balerCards}</div>
-    <p class="mt-3 center"><a class="btn btn-dark" href="/balers-recycling/">All Balers &amp; Recycling <span class="arw">→</span></a></p>
+    <div class="feature-split reveal">
+      <a class="feature-main" href="/balers-recycling/vertical-balers/">
+        ${photoFig('balers-mp60hd', 'New Max-Pak vertical balers on the Norton floor')}
+        <span class="fm-body">
+          <span class="fm-tag">Flagship line</span>
+          <b>Vertical Balers</b>
+          <span class="fm-sub">The back-room workhorse for retail, grocery, and warehouses. We stock every size, install it, train your crew, and keep the wire coming.</span>
+          <span class="go">Explore vertical balers ${IC.arrow}</span>
+        </span>
+      </a>
+      <ul class="feature-list reveal" data-d="1">
+        ${BALERS.filter((b) => b.slug !== 'vertical-balers').map((b) => `<li><a href="/balers-recycling/${b.slug}/"><b>${esc(b.cardTitle)}</b><span>${esc(b.short)}</span>${IC.arrow}</a></li>`).join('')}
+      </ul>
+    </div>
   </div>
 </section>
 
 <section class="sec sec-dark">
-  <span class="ghostnum" style="top:10px;left:-16px" aria-hidden="true">SVC</span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Services</span>
       <h2>Sold by some. Serviced by Norton.</h2>
       <p>Repair, maintenance, refurbishment, fabrication, logistics, and consultations: for any machine, no matter who sold it or whose name is on it.</p>
     </div>
-    <div class="grid-3">${svcCards}</div>
+    <div class="svc-flagships reveal">
+      ${[['compactor-repair', IC.wrench], ['baler-service', IC.box], ['welding-fabrication', IC.flame]].map(([slug, ic]) => { const s = SERVICES.find((x) => x.slug === slug); return `
+      <a class="svc-flag" href="/services/${s.slug}/">
+        <span class="svc-flag-ic">${ic}</span>
+        <b>${esc(s.cardTitle)}</b>
+        <span>${esc(s.short)}</span>
+        <span class="go">Learn more ${IC.arrow}</span>
+      </a>`; }).join('')}
+    </div>
+    <div class="svc-more reveal" data-d="1">
+      <span class="svc-more-lbl">The rest of the shop</span>
+      <ul class="link-cols">
+        ${SERVICES.filter((s) => !['compactor-repair', 'baler-service', 'welding-fabrication'].includes(s.slug)).map((s) => `<li><a href="/services/${s.slug}/">${IC.check}${esc(s.cardTitle)}</a></li>`).join('')}
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -642,9 +633,16 @@ ${finderSection()}
     <div class="sec-head reveal">
       <span class="eyebrow">Brands</span>
       <h2>Shop by brand. Serviced regardless.</h2>
-      <p>We know the major lines deeply and service all of them, plus the dozens of other makes already working across the Mid-South.</p>
+      <p>People search by name. When someone types "Marathon compactor" or "Max-Pak baler," Norton is who shows up, whether we're placing a new machine or fixing one already in the field.</p>
     </div>
-    <div class="grid-4">${brandCards}</div>
+    <div class="marquee-wrap reveal" style="margin-bottom:34px">
+      <div class="marquee-lbl">Sold &amp; serviced across the region</div>
+      <div class="marquee"><div class="track">${track}${track}</div></div>
+    </div>
+    <dl class="brand-lines reveal" data-d="1">
+      ${BRANDS.map((b) => `<div class="brand-line"><dt><a href="/brands/${b.slug}/">${esc(b.name)}</a></dt><dd>${esc(b.short)}</dd><a class="bl-go" href="/brands/${b.slug}/" aria-label="${esc(b.name)} page">${IC.arrow}</a></div>`).join('')}
+    </dl>
+    <p class="mt-2"><a class="btn btn-dark" href="/brands/">All Brands <span class="arw">→</span></a></p>
   </div>
 </section>
 
@@ -655,15 +653,9 @@ ${finderSection()}
       <h2>100 miles of coverage, three states deep.</h2>
       <p>${esc(SITE.serviceAreaBlurb)} If your city is on this map, our trucks are already nearby.</p>
     </div>
-    <div class="reveal">
-      <div class="marquee-wrap" style="margin-bottom:34px">
-        <div class="marquee-lbl">Brands sold &amp; serviced across the region</div>
-        <div class="marquee"><div class="track">${track}${track}</div></div>
-      </div>
-    </div>
-    <div class="reveal" data-d="1"><div class="state-h">Tennessee</div><div class="cities">${cityChips('TN')}</div></div>
-    <div class="reveal" data-d="2"><div class="state-h">Mississippi</div><div class="cities">${cityChips('MS')}</div></div>
-    <div class="reveal" data-d="3"><div class="state-h">Arkansas</div><div class="cities">${cityChips('AR')}</div></div>
+    <div class="reveal"><div class="state-h">Tennessee</div><div class="cities">${cityChips('TN')}</div></div>
+    <div class="reveal" data-d="1"><div class="state-h">Mississippi</div><div class="cities">${cityChips('MS')}</div></div>
+    <div class="reveal" data-d="2"><div class="state-h">Arkansas</div><div class="cities">${cityChips('AR')}</div></div>
   </div>
 </section>
 
@@ -671,11 +663,22 @@ ${finderSection()}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">In Their Own Words</span>
-      <h2>Don't take ours for it.</h2>
+      <h2>Don't take our word for it.</h2>
       <p>Real reviews from the operations that depend on Norton, from national retailers to Memphis logistics floors.</p>
     </div>
     ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout. Final site will feature Norton’s verified customer reviews.</div>` : ''}
-    <div class="grid-3">${quotes}</div>
+    <figure class="quote-feature reveal">
+      <blockquote>${esc(TESTIMONIALS[0].quote)}</blockquote>
+      <figcaption><b>${esc(TESTIMONIALS[0].name)}</b><span>${esc(TESTIMONIALS[0].role)}</span></figcaption>
+    </figure>
+    <div class="quote-row">
+      ${TESTIMONIALS.slice(1, 3).map((t, i) => `
+      <figure class="quote-card reveal" data-d="${i + 1}">
+        <span class="qmark" aria-hidden="true">“</span>
+        <blockquote>${esc(t.quote)}</blockquote>
+        <figcaption class="who"><b>${esc(t.name)}</b><span>${esc(t.role)}</span></figcaption>
+      </figure>`).join('')}
+    </div>
     <p class="mt-3 center"><a class="btn btn-dark" href="/testimonials/">More Testimonials <span class="arw">→</span></a></p>
   </div>
 </section>
@@ -761,7 +764,7 @@ ${pageHero({
     <div class="flist">
       ${item.features.map((f, i) => `
       <div class="fitem reveal" data-d="${i % 4}">
-        <div class="idx">${String(i + 1).padStart(2, '0')}</div>
+        <div class="fmark" aria-hidden="true"></div>
         <div><h3>${esc(f.h)}</h3><p>${f.p}</p></div>
       </div>`).join('')}
     </div>
@@ -967,7 +970,7 @@ ${pageHero({
     <div class="flist">
       ${s.features.map((f, i) => `
       <div class="fitem reveal" data-d="${i % 4}">
-        <div class="idx">${String(i + 1).padStart(2, '0')}</div>
+        <div class="fmark" aria-hidden="true"></div>
         <div><h3>${esc(f.h)}</h3><p>${f.p}</p></div>
       </div>`).join('')}
     </div>
@@ -1078,7 +1081,7 @@ ${pageHero({
         <div class="flist">
           ${b.knownFor.map((f, i) => `
           <div class="fitem reveal" data-d="${i}">
-            <div class="idx">${String(i + 1).padStart(2, '0')}</div>
+            <div class="fmark" aria-hidden="true"></div>
             <div><h3>${esc(f.h)}</h3><p>${f.p}</p></div>
           </div>`).join('')}
         </div>
@@ -1354,8 +1357,9 @@ function formHtml({ subject, service = false }) {
   <div class="field"><label for="f-phone">Phone <span class="req">*</span></label><input id="f-phone" name="Phone" type="tel" required autocomplete="tel"></div>
   <div class="field"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" autocomplete="email"></div>
   <div class="field"><label for="f-city">City / State</label><input id="f-city" name="City" placeholder="e.g. Olive Branch, MS"></div>
-  <div class="field"><label for="f-interest">I’m interested in</label>
-    <select id="f-interest" name="Interest">
+  <div class="field"><label for="f-interest">I’m interested in ${service ? '' : ''}</label>
+    <select id="f-interest" name="Interest" required>
+      <option value="" selected disabled>Choose one…</option>
       <option>Trash compactor - purchase</option>
       <option>Trash compactor - rental</option>
       <option>Cardboard baler</option>
@@ -1372,7 +1376,8 @@ function formHtml({ subject, service = false }) {
   <div class="field full"><label for="f-msg">Tell us about your operation</label><textarea id="f-msg" name="Message" placeholder="Waste type &amp; weekly volume, current setup, brand/model if it’s a repair, whatever you know."></textarea></div>
   <div class="full">
     <button type="submit" class="btn btn-gold btn-lg" style="width:100%">Send Request <span class="arw">→</span></button>
-    <p class="form-note">We respond within one business day, usually much faster. Down machine? Skip the form and call <a href="${SITE.phoneHref}" style="color:var(--gold-deep);font-weight:700">${esc(SITE.phone)}</a>.</p>
+    <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+    <p class="form-note">We respond within one business day, usually much faster. Down machine? Skip the form and call <a href="${SITE.phoneHref}" class="fn-call">${esc(SITE.phone)}</a>.</p>
   </div>
 </form>`;
 }

@@ -7,6 +7,7 @@
 export const POSTS = [
   {
     slug: 'commercial-trash-compactor-buying-guide',
+    img: 'bale-stacks',
     title: 'The Commercial Trash Compactor Buying Guide: Types, Sizing, and Cost',
     date: '2026-07-14',
     readMins: 9,
@@ -67,6 +68,7 @@ export const POSTS = [
   },
   {
     slug: 'self-contained-vs-stationary-compactors',
+    img: 'compactor-green',
     title: 'Self-Contained vs. Stationary Compactors: Which One Do You Need?',
     date: '2026-07-07',
     readMins: 6,
@@ -112,6 +114,7 @@ export const POSTS = [
   },
   {
     slug: 'rent-or-buy-commercial-trash-compactor',
+    img: 'rental-baler',
     title: 'Should You Rent or Buy a Commercial Trash Compactor?',
     date: '2026-06-30',
     readMins: 7,
@@ -155,6 +158,7 @@ export const POSTS = [
   },
   {
     slug: 'how-a-trash-compactor-cuts-your-hauling-bill',
+    img: 'logistics-yard',
     title: 'How a Trash Compactor Cuts Your Hauling Bill (The Business Case)',
     date: '2026-06-23',
     readMins: 6,
@@ -198,6 +202,7 @@ export const POSTS = [
   },
   {
     slug: 'apartment-high-rise-compactors-property-managers-guide',
+    img: 'compactor-enclosure',
     title: 'Apartment & High-Rise Compactors: A Property Manager’s Guide',
     date: '2026-06-16',
     readMins: 8,

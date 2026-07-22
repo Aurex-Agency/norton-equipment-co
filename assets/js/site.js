@@ -80,19 +80,56 @@
     nums.forEach(function (el) { nio.observe(el); });
   }
 
-  // quote form: mailto fallback until a form backend / Netlify is wired up.
-  // Forms carry data-netlify attributes so they work automatically on Netlify.
+  // Quote form. Transport seam:
+  //   - data-endpoint present  -> POST JSON, show real success/error states (wire at launch)
+  //   - otherwise               -> mailto transport, but NEVER silent: the status region
+  //                                always tells the user what happened + the phone fallback
   document.querySelectorAll('form[data-quote-form]').forEach(function (form) {
+    var statusEl = form.querySelector('[data-form-status]');
+    var btn = form.querySelector('button[type="submit"]');
+    var phone = form.getAttribute('data-phone') || '(662) 838-7900';
+
+    function setStatus(kind, html) {
+      if (!statusEl) return;
+      statusEl.hidden = false;
+      statusEl.className = 'form-status is-' + kind;
+      statusEl.innerHTML = html;
+    }
+
     form.addEventListener('submit', function (e) {
-      var isNetlify = /netlify/.test(document.documentElement.getAttribute('data-host') || '');
-      if (isNetlify) return; // let Netlify handle it
       e.preventDefault();
+      if (!form.reportValidity()) return;
+
       var d = new FormData(form);
+      var name = (d.get('Name') || '').toString().trim().split(' ')[0];
+      var endpoint = form.getAttribute('data-endpoint');
+
+      if (endpoint) {
+        // Real backend path (enabled at launch).
+        if (btn) { btn.disabled = true; }
+        setStatus('pending', 'Sending your request…');
+        var payload = {};
+        d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field') payload[k] = v; });
+        fetch(endpoint, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+        }).then(function (r) {
+          if (!r.ok) throw new Error('bad status');
+          form.reset();
+          setStatus('ok', '<b>Got it' + (name ? ', ' + name : '') + '.</b> A real person will call you back within one business day. Need us sooner? Call <a href="tel:+16628387900">' + phone + '</a>.');
+        }).catch(function () {
+          setStatus('err', 'Something went wrong on our end. Please call <a href="tel:+16628387900">' + phone + '</a> or email us directly, we don’t want to miss you.');
+        }).finally(function () { if (btn) { btn.disabled = false; } });
+        return;
+      }
+
+      // Interim transport: open the visitor's email app, and say so plainly.
       var lines = [];
-      d.forEach(function (v, k) { if (k !== 'form-name' && v) lines.push(k + ': ' + v); });
+      d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field' && v) lines.push(k + ': ' + v); });
       var subject = encodeURIComponent(form.getAttribute('data-subject') || 'Quote Request - Norton Equipment Website');
       var body = encodeURIComponent(lines.join('\n'));
-      window.location.href = 'mailto:' + (form.getAttribute('data-mailto') || 'info@nortonequipmentco.com') + '?subject=' + subject + '&body=' + body;
+      var mailto = 'mailto:' + (form.getAttribute('data-mailto') || 'info@nortonequipmentco.com') + '?subject=' + subject + '&body=' + body;
+      setStatus('ok', '<b>Opening your email app…</b> Send the draft and we’ll reply within one business day. If nothing opened, call <a href="tel:+16628387900">' + phone + '</a>.');
+      window.location.href = mailto;
     });
   });
 })();
