@@ -522,7 +522,6 @@ function buildHome() {
   <div class="wrap">
     <div class="split">
       <div class="reveal">
-        <span class="eyebrow">The Norton Difference</span>
         <p class="pullquote mt-2">Equipment <em>built to last</em>, backed by people who <em>actually show up</em>.</p>
       </div>
       <div class="reveal" data-d="1">
@@ -582,7 +581,6 @@ function buildHome() {
 <section class="sec sec-paper-2">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Balers &amp; Recycling</span>
       <h2>The machines Norton was built on.</h2>
       <p>Balers, shredders, conveyors, and the wire that ties it all, turning your cardboard from a hauling cost into a commodity since 1997.</p>
     </div>
@@ -631,7 +629,6 @@ function buildHome() {
 <section class="sec sec-paper">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Brands</span>
       <h2>Shop by brand. Serviced regardless.</h2>
       <p>People search by name. When someone types "Marathon compactor" or "Max-Pak baler," Norton is who shows up, whether we're placing a new machine or fixing one already in the field.</p>
     </div>
@@ -649,7 +646,6 @@ function buildHome() {
 <section class="sec sec-dark-2">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Service Area</span>
       <h2>100 miles of coverage, three states deep.</h2>
       <p>${esc(SITE.serviceAreaBlurb)} If your city is on this map, our trucks are already nearby.</p>
     </div>
@@ -662,7 +658,6 @@ function buildHome() {
 <section class="sec sec-paper">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">In Their Own Words</span>
       <h2>Don't take our word for it.</h2>
       <p>Real reviews from the operations that depend on Norton, from national retailers to Memphis logistics floors.</p>
     </div>
@@ -686,7 +681,6 @@ function buildHome() {
 <section class="sec sec-paper-2">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">From the Blog</span>
       <h2>Straight talk on waste equipment.</h2>
     </div>
     <div class="grid-3">${postCards}</div>

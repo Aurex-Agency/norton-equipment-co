@@ -128,7 +128,7 @@
       var subject = encodeURIComponent(form.getAttribute('data-subject') || 'Quote Request - Norton Equipment Website');
       var body = encodeURIComponent(lines.join('\n'));
       var mailto = 'mailto:' + (form.getAttribute('data-mailto') || 'info@nortonequipmentco.com') + '?subject=' + subject + '&body=' + body;
-      setStatus('ok', '<b>Opening your email app…</b> Send the draft and we’ll reply within one business day. If nothing opened, call <a href="tel:+16628387900">' + phone + '</a>.');
+      setStatus('pending', '<b>Opening your email app…</b> Send the draft and we’ll reply within one business day. If nothing opened, call <a href="tel:+16628387900">' + phone + '</a>.');
       window.location.href = mailto;
     });
   });
