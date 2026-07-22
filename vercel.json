@@ -3,5 +3,42 @@
   "framework": null,
   "buildCommand": "node src/build.mjs",
   "outputDirectory": ".",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/equipment", "destination": "/trash-compactors/", "permanent": true },
+    { "source": "/equipment/compactors", "destination": "/trash-compactors/", "permanent": true },
+    { "source": "/equipment/compactor-enclosures", "destination": "/trash-compactors/enclosures/", "permanent": true },
+    { "source": "/equipment/rental-equipment", "destination": "/trash-compactors/rental/", "permanent": true },
+    { "source": "/equipment/cardboard-balers", "destination": "/balers-recycling/", "permanent": true },
+    { "source": "/equipment/cardboard-balers/used-vertical-balers", "destination": "/balers-recycling/used-vertical-balers/", "permanent": true },
+    { "source": "/equipment/cardboard-balers/used-horizontal-balers", "destination": "/balers-recycling/horizontal-balers/", "permanent": true },
+    { "source": "/equipment/shredders", "destination": "/balers-recycling/shredders/", "permanent": true },
+    { "source": "/equipment/conveyors", "destination": "/balers-recycling/conveyors/", "permanent": true },
+    { "source": "/equipment/mp60hd", "destination": "/brands/max-pak/", "permanent": true },
+    { "source": "/used-recycling-equipment-for-sale", "destination": "/balers-recycling/used-recycling-equipment/", "permanent": true },
+    { "source": "/service-types", "destination": "/services/", "permanent": true },
+    { "source": "/service-types/preventative-maintenance", "destination": "/services/preventive-maintenance/", "permanent": true },
+    { "source": "/service-types/cardboard-baling-wire", "destination": "/balers-recycling/baling-wire/", "permanent": true },
+    { "source": "/service-types/conveyor-service", "destination": "/services/conveyor-service/", "permanent": true },
+    { "source": "/service-types/baler-service-memphis", "destination": "/services/baler-service/", "permanent": true },
+    { "source": "/service-types/refurbish-existing-equipment", "destination": "/services/equipment-refurbishment/", "permanent": true },
+    { "source": "/service-types/equipment-evaluations", "destination": "/services/equipment-evaluations/", "permanent": true },
+    { "source": "/service-types/equipment-logistics", "destination": "/services/equipment-logistics/", "permanent": true },
+    { "source": "/service-types/waste-stream-consultations", "destination": "/services/waste-stream-consultations/", "permanent": true },
+    { "source": "/service-types/welding-and-metal-fabrication", "destination": "/services/welding-fabrication/", "permanent": true },
+    { "source": "/recycling-equipment-in-tennessee", "destination": "/locations/", "permanent": true },
+    { "source": "/recycling-equipment-in-mississippi", "destination": "/locations/", "permanent": true },
+    { "source": "/recycling-equipment-in-arkansas", "destination": "/locations/", "permanent": true },
+    { "source": "/cardboard-baling-wire-tennessee", "destination": "/balers-recycling/baling-wire/", "permanent": true },
+    { "source": "/cardboard-baling-wire-mississippi", "destination": "/balers-recycling/baling-wire/", "permanent": true },
+    { "source": "/cardboard-baling-wire-arkansas", "destination": "/balers-recycling/baling-wire/", "permanent": true },
+    { "source": "/about-norton-equipment", "destination": "/about/", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
 }
