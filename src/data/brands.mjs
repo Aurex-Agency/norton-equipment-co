@@ -142,7 +142,7 @@ export const BRANDS = [
       'PTR baler and compactor sales, service, repair, and parts across the Mid-South. Norton Equipment sells and services PTR equipment for warehouses, retail, and industry, independent since 1997.',
     intro: [
       'PTR builds balers and compactors with a reputation for heavy, hard-working machines, and it is one of the lines Norton Equipment most wants to be known for placing and servicing across the Mid-South. From stationary and self-contained compactors to balers for volume operations, PTR equipment shows up on the docks Norton serves every week.',
-      'Norton sells, installs, services, repairs, and sources parts for PTR machines throughout our territory. As an independent dealer, we will put a PTR quote next to Marathon, Cram-A-Lot, or BACE and help you pick the right machine, then back it with our own technicians and our repair shop for the structural work.',
+      'Norton sells, installs, services, repairs, and sources parts for PTR machines throughout our territory. As an independent dealer, we will put a PTR quote next to Marathon, Cram-A-Lot, or BACE and help you pick the right machine, then back it with our own technicians and our fabrication shop for the structural work.',
     ],
     knownFor: [
       { h: 'Heavy-duty compactors', p: 'Stationary and self-contained compaction equipment built for demanding, high-volume sites.' },
@@ -157,7 +157,7 @@ export const BRANDS = [
       'Refurbishment and structural rebuilds',
       'Installation, relocation, and removal',
     ],
-    faq: { q: 'Do you stock parts for PTR machines?', a: 'We stock common wear and electrical parts and source the rest quickly, and our repair shop handles the structural repairs many older machines eventually need.' },
+    faq: { q: 'Do you stock parts for PTR machines?', a: 'We stock common wear and electrical parts and source the rest quickly, and our fabrication shop handles the structural repairs many older machines eventually need.' },
   },
   {
     slug: 'bace',

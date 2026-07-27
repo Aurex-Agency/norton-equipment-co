@@ -83,7 +83,7 @@ export const CITIES = [
     slug: 'covington-tn', city: 'Covington', state: 'Tennessee', abbr: 'TN', miles: 75,
     angle: [
       'Covington is Tipton County’s industrial center, with a manufacturing base (automotive components, consumer products, and food processing among them) that is heavy for a town its size. Plants like these run real waste streams: production scrap, corrugated, and packaging that justify serious compaction and baling equipment.',
-      'Norton Equipment covers Covington with plant-grade machines, preventive maintenance, and the chutes, hoppers, and guards that production environments always end up needing. We are about 80 minutes out, and worth the drive. Ask the plants we already serve up Highway 51.',
+      'Norton Equipment covers Covington with plant-grade machines, preventive maintenance, and our fabrication shop for the chutes, hoppers, and guards that production environments always end up needing. We are about 80 minutes out, and worth the drive. Ask the plants we already serve up Highway 51.',
     ],
     industries: ['Automotive & component manufacturing', 'Consumer products', 'Food processing', 'Distribution', 'Retail & grocery', 'Municipal'],
     nearby: ['millington-tn', 'brownsville-tn', 'memphis-tn', 'dyersburg-tn'],
@@ -120,7 +120,7 @@ export const CITIES = [
   {
     slug: 'byhalia-ms', city: 'Byhalia', state: 'Mississippi', abbr: 'MS', miles: 0,
     angle: [
-      'Byhalia is home. Norton Equipment has operated from here since 1997, and our shop at 60 Amy Ln (service bays, repair shop, and reconditioned equipment inventory) sits right in the middle of one of the most explosive industrial corridors in the South. The Chickasaw Trails industrial area and the Highway 78/I-22 corridor have filled with million-square-foot distribution centers, and Marshall County keeps recruiting more.',
+      'Byhalia is home. Norton Equipment has operated from here since 1997, and our shop at 60 Amy Ln (service bays, fabrication floor, and reconditioned equipment inventory) sits right in the middle of one of the most explosive industrial corridors in the South. The Chickasaw Trails industrial area and the Highway 78/I-22 corridor have filled with million-square-foot distribution centers, and Marshall County keeps recruiting more.',
       'For Byhalia and Marshall County operations, working with us means the shop is minutes away: same-day eyes on a down machine, wire off the shelf, and techs who drive past your dock on the way to work. If your building is on the corridor, you are our closest neighbor. Call us first.',
     ],
     industries: ['Mega-distribution & fulfillment', 'Logistics & trucking', 'Manufacturing', 'Building products', 'Agriculture', 'Local retail & schools'],
@@ -148,7 +148,7 @@ export const CITIES = [
     slug: 'olive-branch-ms', city: 'Olive Branch', state: 'Mississippi', abbr: 'MS', miles: 18,
     angle: [
       'Olive Branch is one of the premier distribution addresses in the entire Memphis metro, the corridor from the DeSoto County line through the Metro industrial parks holds some of the largest warehouse and fulfillment footprints in the region, moving everything from pharmaceuticals to power tools. Every one of those buildings lives and dies by dock throughput, and waste equipment is part of that math.',
-      'This is prime Norton territory: our Byhalia shop is roughly 20 minutes away, and Olive Branch DCs are the single most common address on our service tickets. Stationary compactors, auger machines, horizontal baler lines, enclosures, and PM programs: specced, installed, and serviced from next door.',
+      'This is prime Norton territory: our Byhalia shop is roughly 20 minutes away, and Olive Branch DCs are the single most common address on our service tickets. Stationary compactors, auger machines, horizontal baler lines, enclosures, and PM programs: specced, installed, fabricated, and serviced from next door.',
     ],
     industries: ['Mega-distribution & fulfillment', '3PL & logistics', 'Light manufacturing', 'Aviation & industrial', 'Retail & grocery', 'Multi-family'],
     nearby: ['byhalia-ms', 'southaven-ms', 'collierville-tn', 'germantown-tn'],
@@ -211,7 +211,7 @@ export const CITIES = [
     slug: 'corinth-ms', city: 'Corinth', state: 'Mississippi', abbr: 'MS', miles: 90,
     angle: [
       'Corinth’s crossroads heritage is industrial fact, not just Civil War history: the city carries one of northeast Mississippi’s strongest manufacturing rosters, from machinery and metal products to consumer goods, with rail access that keeps plants competitive. Metalworking and machinery plants generate scrap streams that reward smart equipment: dense loads are money in this town.',
-      'We support Corinth at the eastern edge of our ring with plant-grade compactors and balers, all-brand repair, refurbishment projects, and preventive maintenance routes. For a manufacturing city, our in-house repair capability travels well.',
+      'We support Corinth at the eastern edge of our ring with plant-grade compactors and balers, all-brand repair, refurbishment projects, and preventive maintenance routes. For a manufacturing city, our in-house fabrication capability travels well.',
     ],
     industries: ['Machinery & metal products', 'Consumer goods manufacturing', 'Rail-served industry', 'Healthcare', 'Retail & grocery', 'Distribution'],
     nearby: ['new-albany-ms', 'jackson-tn', 'oxford-ms', 'byhalia-ms'],
@@ -258,7 +258,7 @@ export const CITIES = [
     slug: 'osceola-ar', city: 'Osceola', state: 'Arkansas', abbr: 'AR', miles: 90,
     angle: [
       'Osceola is at the center of northeast Arkansas’s steel boom: the Mississippi County river corridor has become one of the largest steel-producing regions in America, and the mills have pulled a wave of suppliers, processors, and logistics operations into town with them. Steel-adjacent industry produces punishing waste streams: banding, dunnage, pallets, drums, and bulky scrap that eats ordinary equipment.',
-      'That is pre-crusher and heavy-stationary territory, backed by our own shop for the wear repairs industrial machines accumulate. We cover Osceola and the river corridor at the edge of our ring, and we build project schedules around mill-country realities.',
+      'That is pre-crusher and heavy-stationary territory, backed by our fabrication shop for the wear repairs industrial machines accumulate. We cover Osceola and the river corridor at the edge of our ring, and we build project schedules around mill-country realities.',
     ],
     industries: ['Steel mills & processors', 'Industrial suppliers', 'River & rail logistics', 'Agriculture', 'Retail & grocery', 'Municipal'],
     nearby: ['blytheville-ar', 'marion-ar', 'dyersburg-tn', 'jonesboro-ar'],

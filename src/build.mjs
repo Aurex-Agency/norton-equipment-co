@@ -476,7 +476,7 @@ function buildHome() {
       <span class="ln"><span class="gold">behind the waste.</span></span>
     </h1>
     <p class="script-line">Real people. Real steel. Byhalia, Mississippi.</p>
-    <p class="hero-sub">Commercial trash compactors and balers: sold, installed, serviced, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a real repair shop behind every machine.</p>
+    <p class="hero-sub">Commercial trash compactors and balers: sold, installed, serviced, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
     <div class="hero-cta">
       <a href="${SITE.phoneHref}" class="btn btn-gold btn-lg" data-magnetic>${IC.phone}Call ${esc(SITE.phone)}</a>
       <a href="/request-a-quote/" class="btn btn-ghost btn-lg" data-magnetic>Request a Quote <span class="arw">→</span></a>
@@ -528,7 +528,7 @@ function buildHome() {
         <p style="margin-bottom:24px;font-size:15.5px">National haulers lock equipment into hauling contracts. Single-brand dealers sell whatever the factory ships. We sell, service, and rebuild <b style="color:var(--silver-hi)">every major brand</b>, so the machine on your pad is the right one, and your hauling contract stays yours to bid.</p>
         <ul class="checks">
           ${checkLi('Our own service techs, not subcontractors')}
-          ${checkLi('An in-house repair bench that rebuilds machines others only replace')}
+          ${checkLi('An in-house fabrication shop that rebuilds machines others only replace')}
           ${checkLi('New and reconditioned options quoted side by side')}
           ${checkLi('Free on-site waste stream evaluations with honest math')}
         </ul>
@@ -605,7 +605,7 @@ function buildHome() {
     <div class="sec-head reveal">
       <span class="eyebrow">Services</span>
       <h2>Sold by some. Serviced by Norton.</h2>
-      <p>Repair, maintenance, refurbishment, logistics, and consultations: for any machine, no matter who sold it or whose name is on it.</p>
+      <p>Repair, maintenance, refurbishment, fabrication, logistics, and consultations: for any machine, no matter who sold it or whose name is on it.</p>
     </div>
     <div class="svc-flagships reveal">
       ${[['compactor-repair', IC.wrench], ['baler-service', IC.box], ['preventive-maintenance', IC.gauge]].map(([slug, ic]) => { const s = SERVICES.find((x) => x.slug === slug); return `
@@ -888,7 +888,7 @@ ${pageHero({
     kicker: SERVICES_OVERVIEW.kicker,
     h1: esc(SERVICES_OVERVIEW.h1),
     sub: esc(SERVICES_OVERVIEW.sub),
-    chips: ['Our Own Techs', 'All Makes & Models', '100-Mile Radius'],
+    chips: ['Our Own Techs', 'In-House Fabrication', '100-Mile Radius'],
     photo: PAGE_PHOTOS['hub:services'],
   })}
 <section class="sec sec-paper">
@@ -906,7 +906,7 @@ ${pageHero({
       <div class="reveal" data-d="1">
         <ul class="checks">
           ${checkLi('Every major make and model: Marathon, Cram-A-Lot, Max-Pak, Harris, PTR, Wastequip, and more')}
-          ${checkLi('An in-house repair bench that rebuilds machines others can only replace')}
+          ${checkLi('An in-house fabrication shop that rebuilds machines others can only replace')}
           ${checkLi('Preventive maintenance programs with written condition reports')}
           ${checkLi('Honest repair-vs-replace advice, with reconditioned alternatives quoted')}
         </ul>
@@ -921,7 +921,7 @@ ${pageHero({
     desc: SERVICES_OVERVIEW.metaDesc,
     body,
     ld: [ldBreadcrumbs(crumbs)],
-    ctaOpts: { heading: 'Down machine? <span class="gold">Call now.</span>', text: `One number covers repair, maintenance, and logistics across the Mid-South: ${SITE.phone}.` },
+    ctaOpts: { heading: 'Down machine? <span class="gold">Call now.</span>', text: `One number covers repair, maintenance, fabrication, and logistics across the Mid-South: ${SITE.phone}.` },
   }));
 
   SERVICES.forEach((s) => {
@@ -1256,7 +1256,7 @@ ${pageHero({
     kicker: 'Est. 1997 · Byhalia, Mississippi',
     h1: 'From Compressor Shop to <span style="color:var(--gold)">Mid-South Mainstay</span>',
     sub: 'Most visitors have never heard the Norton story. It is a trust builder, so here it is, straight.',
-    chips: ['Independent Since Day One', 'OSHA-Trained Techs', 'Any Brand · Any Model'],
+    chips: ['Independent Since Day One', 'In-House Fabrication', 'Any Brand · Any Model'],
   })}
 <section class="sec sec-paper">
   <div class="wrap">
@@ -1269,7 +1269,7 @@ ${pageHero({
           <div class="tl-item reveal" data-d="2"><div class="tl-node"></div><div><span class="tl-year">Today</span><h3>The Mid-South's Independent Specialist</h3><p>Sales, service, parts, and refurbishment for commercial trash compactors, balers, and recycling equipment, with a service department carrying over 80 years of combined experience, and equipment installed for national chains far beyond the home territory.</p></div></div>
         </div>
         <p>The Mid-South noticed. Compressor work led to hydraulics, hydraulics led to balers, and balers led to the whole world of waste and recycling equipment. Today national names like Williams-Sonoma and Waste Connections keep Norton on speed dial, and the same techs who handle their installs answer the phone for a single grocery store baler in Holly Springs.</p>
-        <p>Two things set that growth apart. First, independence: Norton never became a captive dealer or a hauler's equipment arm, so every recommendation is built on what fits the customer, not what is on the truck. Second, the depth of the repair bench: because the team can rebuild the steel and hydraulics on a machine in-house, "that can't be fixed" becomes "picked it up Tuesday, back Thursday." Almost nobody else in this market can bring a machine back that far.</p>
+        <p>Two things set that growth apart. First, independence: Norton never became a captive dealer or a hauler's equipment arm, so every recommendation is built on what fits the customer, not what is on the truck. Second, the in-house fabrication shop: because the team can build and rebuild the steel and hydraulics on a machine themselves, "that can't be fixed" becomes "picked it up Tuesday, back Thursday." Almost nobody else in this market can bring a machine back that far.</p>
         <p>Today the business leads with the fastest-growing side of the industry (commercial trash compactors) while staying every bit as strong in the balers and recycling equipment it was built on. The service radius runs 100 miles out from the Memphis metro, covering West Tennessee, North Mississippi, and East Arkansas from the shop in Byhalia.</p>
         <h2>What we believe</h2>
         <ul>
@@ -1277,7 +1277,7 @@ ${pageHero({
           <li><strong>Service is the product.</strong> The machine is steel and hydraulics; what you are really buying is the years after the install.</li>
           <li><strong>Independence is customer leverage.</strong> Our equipment never locks your hauling contract. Ever.</li>
           <li><strong>Safety is not a line item.</strong> Every tech is OSHA-trained, equipment and factory certified, and carries multiple safety certifications. In decades of installs and service calls, an impeccable safety record.</li>
-          <li><strong>If it's steel, it's fixable.</strong> Being able to rebuild a machine in-house is the difference between a quote for a new one and a repair that costs a fraction of it.</li>
+          <li><strong>If it's steel, it's fixable.</strong> The in-house fabrication shop is the difference between a quote for a new machine and a repair that costs a fraction of it.</li>
         </ul>
       </div>
       <div class="reveal" data-d="1">
@@ -1292,7 +1292,7 @@ ${pageHero({
             ${checkLi('<strong>Trades:</strong> Compactors, balers, baling wire')}
             ${checkLi('<strong>Service bench:</strong> 80+ years combined experience')}
             ${checkLi('<strong>Certifications:</strong> OSHA-trained, factory &amp; machine certified')}
-            ${checkLi('<strong>Capabilities:</strong> Sales · Service · Parts · Refurbishment · Logistics')}
+            ${checkLi('<strong>Capabilities:</strong> Sales · Service · Parts · Refurbishment · Fabrication · Logistics')}
             ${checkLi('<strong>Brands:</strong> All of them, sold and serviced independently')}
           </ul>
           <div class="form-alt">Want the customer's-eye view? <a href="/testimonials/">Read the testimonials</a>, or just <a href="${SITE.phoneHref}">call ${esc(SITE.phone)}</a> and judge us by the conversation.</div>
@@ -1305,7 +1305,7 @@ ${pageHero({
   out('about/index.html', layout({
     path: '/about/',
     title: 'About Norton Equipment | Since 1997 | Byhalia, MS',
-    desc: 'Norton Equipment Company started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for compactors, balers, and recycling equipment: with its own techs and in-house repair shop.',
+    desc: 'Norton Equipment Company started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for compactors, balers, and recycling equipment: with its own techs and in-house fabrication shop.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));

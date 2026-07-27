@@ -8,7 +8,7 @@ export const SERVICES_OVERVIEW = {
     'Factory-quality service for compactors, balers, and recycling equipment: any brand, any model. Repair, preventive maintenance, refurbishment, and equipment logistics across the Mid-South since 1997.',
   h1: 'Service That Keeps the Mid-South Running',
   kicker: 'Any Brand · Any Model · Since 1997',
-  sub: 'Norton Equipment started as a service company in 1997, and service is still the backbone. Our techs and in-house repair shop maintain, rebuild, and relocate waste and recycling equipment across a 100-mile radius of Memphis, no matter whose name is on the machine.',
+  sub: 'Norton Equipment started as a service company in 1997, and service is still the backbone. Our techs and in-house fabrication shop repair, maintain, rebuild, and relocate waste and recycling equipment across a 100-mile radius of Memphis, no matter whose name is on the machine.',
 };
 
 // Welding & Metal Fabrication removed (client 7/26): Norton fabricates for its
@@ -26,12 +26,12 @@ export const SERVICES = [
       'Commercial trash compactor repair near Memphis: hydraulics, controls, doors, rams, and structural repair on all brands. Emergency service available at emergency rates across North Mississippi and the Memphis area. Call (662) 838-7900.',
     intro: [
       'A down compactor backs up a whole operation fast: waste piles on the dock, the hauler cannot pull a jammed container, and suddenly the least glamorous machine on the property is the most urgent. Compactor repair is one of the most common calls we run, and one we have been answering across the Mid-South since 1997.',
-      'Our techs troubleshoot and repair every major brand: Marathon, Cram-A-Lot, PTR, BACE, and more. All makes, all models. Hydraulic cylinders and power units, valves and hoses, limit switches and photo eyes, control panels, door latches and hinges, rams and ram shoes, and when the problem is structural, our own shop rebuilds floors, guides, and wear surfaces that other service companies can only quote replacements for.',
+      'Our techs troubleshoot and repair every major brand: Marathon, Cram-A-Lot, PTR, BACE, and more. All makes, all models. Hydraulic cylinders and power units, valves and hoses, limit switches and photo eyes, control panels, door latches and hinges, rams and ram shoes, and when the problem is structural, our fabrication shop rebuilds floors, guides, and wear surfaces that other service companies can only quote replacements for.',
     ],
     features: [
       { h: 'All makes. All models.', p: 'The brand on the panel does not matter. If it compacts trash, we work on it, and have for decades.' },
       { h: 'Hydraulics & controls', p: 'Cylinders resealed or replaced, power units rebuilt, valves, hoses, relays, PLCs, photo eyes, and interlocks diagnosed and fixed right.' },
-      { h: 'Structural repair in-house', p: 'Cracked floors, worn ram shoes, bent doors, worn wear surfaces. Our own shop repairs the steel, not just the symptoms.' },
+      { h: 'Structural repair in-house', p: 'Cracked floors, worn ram shoes, bent doors, worn wear surfaces. Our fabrication shop repairs the steel, not just the symptoms.' },
       { h: 'Straight talk on repair vs. replace', p: 'When a machine is not worth fixing, we say so, and show you reconditioned options that beat a new-machine quote.' },
       { h: 'Emergency service, honestly promised', p: 'Machine down? We will make every effort to rearrange our schedule and get you back up and running as quickly as possible. Emergency service is available at emergency rates, with response based on urgency and technician availability.' },
     ],
@@ -59,7 +59,7 @@ export const SERVICES = [
     features: [
       { h: 'Vertical, horizontal & two-ram expertise', p: 'From back-room 60-inch verticals to auto-tie horizontal and two-ram lines: one call covers the whole machine population.' },
       { h: 'Hydraulic & electrical repair', p: 'Cylinders, pumps, valves, hoses, motors, starters, relays, and safety circuits: diagnosed on site, repaired to spec.' },
-      { h: 'Structural & door repair', p: 'Sprung doors, cracked welds, worn platens, and chamber damage repaired in-house in our own shop.' },
+      { h: 'Structural & door repair', p: 'Sprung doors, cracked welds, worn platens, and chamber damage repaired in-house in our fabrication shop.' },
       { h: 'Operator retraining', p: 'Half of baler damage is operator-inflicted. We retrain crews during service visits at no drama and no lecture.' },
     ],
     faqs: [
@@ -132,7 +132,7 @@ export const SERVICES = [
       'Full refurbishment of balers, compactors, and recycling equipment: hydraulics, structure, controls, and paint. Rebuild your existing machine for a fraction of replacement cost. Norton Equipment, Byhalia MS.',
     intro: [
       'When a good machine gets old, you have three options: live with the breakdowns, buy new, or refurbish. Refurbishment is the option most owners never get offered, because most dealers would rather sell you a machine than rebuild yours. We do both, so you get the honest comparison.',
-      'A Norton refurbishment is a real rebuild, in our shop or on your site: hydraulic system resealed or replaced, cylinders rebuilt, structural steel repaired by our own shop (floors, platens, ram shoes, doors, wear surfaces) electrical controls updated, safety systems brought to current standards, and a repaint that makes the machine look like it runs, because now it does. Typical cost lands at 30-50% of new, for a machine that is good for many more years of duty.',
+      'A Norton refurbishment is a real rebuild, in our shop or on your site: hydraulic system resealed or replaced, cylinders rebuilt, structural steel repaired by our fabrication shop (floors, platens, ram shoes, doors, wear surfaces) electrical controls updated, safety systems brought to current standards, and a repaint that makes the machine look like it runs, because now it does. Typical cost lands at 30-50% of new, for a machine that is good for many more years of duty.',
     ],
     features: [
       { h: 'Hydraulic system rebuilds', p: 'Cylinders resealed or re-barreled, pumps and valves replaced or rebuilt, hoses re-run, fluid systems flushed and set to spec.' },
@@ -158,7 +158,7 @@ export const SERVICES = [
       'Turnkey waste equipment logistics: delivery, rigging, installation, plant relocations, and old equipment removal across the Mid-South. Norton Equipment moves balers, compactors, and recycling equipment safely.',
     intro: [
       'A ten-thousand-pound baler does not deliver itself. Getting waste and recycling equipment onto a site, through the building, onto the pad, powered, tested, and running (and getting the old machine out) is its own trade, and it is one of ours.',
-      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, moving lines during plant rearrangements, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our crews bring the trucks, trailers, forklifts, and rigging know-how, and we make the odd bracket, chute, or dock plate in-house when a real-world install needs one.',
+      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, moving lines during plant rearrangements, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our crews bring the trucks, trailers, forklifts, and rigging know-how, and our fabrication shop builds the odd bracket, chute, or dock plate that every real-world install eventually needs.',
     ],
     features: [
       { h: 'Delivery & rigging', p: 'Trucking, offloading, and precision placement of balers, compactors, and heavy recycling equipment: including tight-clearance back-room sets.' },

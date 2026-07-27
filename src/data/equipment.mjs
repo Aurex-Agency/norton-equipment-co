@@ -138,7 +138,7 @@ export const COMPACTORS = [
     ],
     faqs: [
       { q: 'Will a vertical compactor work with my current hauler?', a: 'Yes: vertical units compact into standard front-load containers, so your existing route service continues unchanged. You just need far fewer lifts.' },
-      { q: 'Can you service the compactor at the bottom of our trash chute?', a: 'That is one of the most common calls we run. We service chute-fed apartment and high-rise compactors across the metro, all brands, and make replacement parts in-house when manufacturers are slow.' },
+      { q: 'Can you service the compactor at the bottom of our trash chute?', a: 'That is one of the most common calls we run. We service chute-fed apartment and high-rise compactors across the metro, all brands, and fabricate replacement parts in-house when manufacturers are slow.' },
       { q: 'What about recycling at multi-family properties?', a: 'We can pair a compactor with a baler or additional containers for a clean dual-stream setup, and our waste stream consultation will tell you if the numbers work.' },
     ],
     related: ['front-load-rear-load', 'enclosures', 'used'],
@@ -267,7 +267,7 @@ export const COMPACTORS = [
       'Used and reconditioned commercial trash compactors from Norton Equipment: sourced and rebuilt to your spec on a short turnaround, inspected, cycle-tested, and warrantied. Serving the Mid-South.',
     intro: [
       'A commercial compactor is a steel box with hydraulics, which means a properly reconditioned machine can run for another decade at a fraction of new cost. The difference between a bargain and a headache is who did the reconditioning.',
-      'We build reconditioned compactors to order rather than holding a big lot: tell us what you need and we source the right core, then it goes through our own shop, hydraulics tested and resealed, cylinders and packing serviced, floors and wear surfaces gone through, controls checked, and the machine cycle-tested under load before it ships. Turnaround is usually short, and we stand behind it because we are also the ones who will service it in the field.',
+      'We build reconditioned compactors to order rather than holding a big lot: tell us what you need and we source the right core, then it goes through our fabrication shop, hydraulics tested and resealed, cylinders and packing serviced, floors and wear surfaces gone through, controls checked, and the machine cycle-tested under load before it ships. Turnaround is usually short, and we stand behind it because we are also the ones who will service it in the field.',
     ],
     bestFor: ['Budget-conscious operations', 'Backup & secondary machines', 'Seasonal facilities', 'Startups & expansions', 'Replacing a failed unit fast', 'Fleet standardization on a budget'],
     features: [
@@ -315,7 +315,7 @@ export const BALER_OVERVIEW = {
   faqs: [
     { q: 'What does a baler cost?', a: 'New vertical balers generally run from about $6,000 to $20,000 depending on size and features; horizontal and two-ram systems start around $30,000 and scale with automation. Reconditioned verticals cost far less. We quote exact numbers after a quick conversation about your volume.' },
     { q: 'Can I sell my baled cardboard?', a: 'Yes, mill-size bales of clean OCC (old corrugated cardboard) are a traded commodity. Depending on market prices and your volume, bales can offset hauling costs or become a genuine revenue line. Our waste stream consultation covers the current market and local buyers.' },
-    { q: 'Do you repair balers you didn’t sell?', a: 'Every day. We service all major makes and models across the Mid-South, stock common parts, and make what we can’t buy.' },
+    { q: 'Do you repair balers you didn’t sell?', a: 'Every day. We service all major makes and models across the Mid-South, stock common parts, and fabricate what we can’t buy.' },
   ],
 };
 
@@ -364,7 +364,7 @@ export const BALERS = [
     features: [
       { h: 'Continuous automatic operation', p: 'Photo-eye start, automatic cycling, and auto-tie options mean the baler works while your people do something else.' },
       { h: 'Mill-spec bales', p: 'Dense, uniform export/mill bales maximize the price per ton your material brings and the payload per truck.' },
-      { h: 'Built and installed to your building', p: 'Feed works, tippers, and setup built and configured to your site so the line runs as one machine.' },
+      { h: 'Built and installed to your building', p: 'Feed works, tippers, and setup fabricated and configured to your site so the line runs as one machine.' },
       { h: 'Multi-material capability', p: 'OCC, shrink film, PET, aluminum, non-ferrous: one machine, multiple commodity streams with the right options.' },
     ],
     faqs: [
