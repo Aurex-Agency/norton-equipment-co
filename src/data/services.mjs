@@ -39,7 +39,7 @@ export const SERVICES = [
       { q: 'How fast can you get to a down compactor?', a: 'Tell us the machine is down when you call (662) 838-7900 and we will make every effort to rearrange our schedule and get you back up and running as quickly as possible. Emergency service is available at emergency rates, with response based on urgency and technician availability.' },
       { q: 'Do you offer emergency service?', a: 'Yes. When you need us now, we will make every effort to rearrange the schedule and fit you in, at emergency rates. Response is based on urgency and technician availability, so call and tell us what is down.' },
       { q: 'My compactor came from a hauler. Can you work on it?', a: 'If the hauler owns the machine, service is contractually theirs. If you own it (or lease it from anyone other than the hauler), we can work on it. Not sure? We can help you read the contract, and show you what owning your own equipment saves.' },
-      { q: 'Do you stock compactor parts?', a: 'We stock common wear and electrical parts and have overnight relationships for the rest. Our own shop covers the structural side same-week in most cases.' },
+      { q: 'Do you stock compactor parts?', a: 'Yes. We stock many of the most commonly needed wear, hydraulic, and electrical components. If we don’t have it on the shelf, our supplier network can often have it here in 1-2 business days. Our in-house fabrication shop also builds and repairs structural components to minimize downtime.' },
     ],
     related: ['preventive-maintenance', 'equipment-refurbishment', 'baler-service'],
   },
