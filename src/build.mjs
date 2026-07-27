@@ -513,7 +513,6 @@ function buildHome() {
       <div class="stat reveal" data-d="2"><div class="num" data-count="3">0</div><div class="lab">States Covered<br>TN · MS · AR</div></div>
       <div class="stat reveal" data-d="3"><div class="num" data-count="30">0<span class="u">+</span></div><div class="lab">Cities Served<br>Across the Region</div></div>
     </div>
-    ${trustedBy()}
   </div>
 </div>
 
