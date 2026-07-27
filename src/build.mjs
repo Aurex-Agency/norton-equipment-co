@@ -1310,12 +1310,25 @@ ${pageHero({
   }));
 }
 
+function quoteBody(t) {
+  const lead = Array.isArray(t.quote) ? t.quote : [t.quote];
+  let html = lead.map((p) => `<p>${esc(p)}</p>`).join('');
+  if (t.list && t.list.length) {
+    html += `<ul class="q-list">${t.list.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`;
+  }
+  if (t.after) {
+    const after = Array.isArray(t.after) ? t.after : [t.after];
+    html += after.map((p) => `<p>${esc(p)}</p>`).join('');
+  }
+  return html;
+}
+
 function buildTestimonials() {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Testimonials', href: '/testimonials/' }];
   const quotes = TESTIMONIALS.map((t, i) => `
-    <div class="quote-card reveal" data-d="${(i % 3) + 1}">
+    <div class="quote-card${t.wide ? ' wide' : ''} reveal" data-d="${(i % 3) + 1}">
       <span class="qmark" aria-hidden="true">“</span>
-      <p>${esc(t.quote)}</p>
+      <div class="q-body">${quoteBody(t)}</div>
       <div class="who"><b>${esc(t.name)}</b><span>${esc(t.role)}</span></div>
       <span class="qtag">${esc(t.tag)}</span>
     </div>`).join('');

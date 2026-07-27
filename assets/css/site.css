@@ -865,6 +865,17 @@ h1.hero-h{letter-spacing:0}
 .quote-card figcaption{display:flex;flex-direction:column;gap:1px}
 @media(max-width:720px){.quote-row{grid-template-columns:1fr}}
 
+/* ---- multi-paragraph + list testimonials ---- */
+.quote-card .q-body{flex:1;display:flex;flex-direction:column;gap:12px}
+.quote-card .q-body p{flex:none;font-family:'Lora',Georgia,serif;font-style:italic;font-weight:500;font-size:15px;line-height:1.7;color:var(--body-on-paper)}
+.q-list{list-style:none;display:grid;gap:8px;margin:2px 0}
+.q-list li{position:relative;padding-left:22px;font-family:'Source Sans 3',sans-serif;font-style:normal;font-size:14.5px;color:var(--body-on-paper);line-height:1.5}
+.q-list li::before{content:"";position:absolute;left:2px;top:7px;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.quote-card.wide{grid-column:1/-1}
+.quote-card.wide .q-body{gap:15px}
+.quote-card.wide .q-body p{font-size:16px}
+@media(min-width:721px){.quote-card.wide .q-list{grid-template-columns:1fr 1fr;column-gap:28px}}
+
 /* ---- form status states (harden) ---- */
 .form-status{margin-top:14px;padding:14px 16px;border-radius:4px;font-size:14.5px;line-height:1.5}
 .form-status.is-ok{background:rgba(58,140,74,.1);border:1px solid rgba(58,140,74,.4);color:#245c30}
