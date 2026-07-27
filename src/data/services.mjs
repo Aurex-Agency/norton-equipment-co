@@ -23,7 +23,7 @@ export const SERVICES = [
     short: 'Repair and emergency service for every compactor make and model.',
     metaTitle: 'Compactor Repair & Service | All Brands | Memphis & Mid-South | Norton Equipment',
     metaDesc:
-      'Commercial trash compactor repair near Memphis: hydraulics, controls, doors, rams, and structural repair on all brands. Emergency service and a 24-hour service response goal across North Mississippi and the Memphis area. Call (662) 838-7900.',
+      'Commercial trash compactor repair near Memphis: hydraulics, controls, doors, rams, and structural repair on all brands. Emergency service available at emergency rates across North Mississippi and the Memphis area. Call (662) 838-7900.',
     intro: [
       'A down compactor backs up a whole operation fast: waste piles on the dock, the hauler cannot pull a jammed container, and suddenly the least glamorous machine on the property is the most urgent. Compactor repair is one of the most common calls we run, and one we have been answering across the Mid-South since 1997.',
       'Our techs troubleshoot and repair every major brand: Marathon, Cram-A-Lot, PTR, BACE, and more. All makes, all models. Hydraulic cylinders and power units, valves and hoses, limit switches and photo eyes, control panels, door latches and hinges, rams and ram shoes, and when the problem is structural, our own shop rebuilds floors, guides, and wear surfaces that other service companies can only quote replacements for.',
@@ -33,13 +33,13 @@ export const SERVICES = [
       { h: 'Hydraulics & controls', p: 'Cylinders resealed or replaced, power units rebuilt, valves, hoses, relays, PLCs, photo eyes, and interlocks diagnosed and fixed right.' },
       { h: 'Structural repair in-house', p: 'Cracked floors, worn ram shoes, bent doors, worn wear surfaces. Our own shop repairs the steel, not just the symptoms.' },
       { h: 'Straight talk on repair vs. replace', p: 'When a machine is not worth fixing, we say so, and show you reconditioned options that beat a new-machine quote.' },
-      { h: 'Emergency service, honestly scoped', p: 'Machine down? We will rearrange the day to fit you in at emergency rates. We run Saturdays when needed, but not Sundays or the middle of the night.' },
+      { h: 'Emergency service, honestly promised', p: 'Machine down? We will make every effort to rearrange our schedule and get you back up and running as quickly as possible. Emergency service is available at emergency rates, with response based on urgency and technician availability.' },
     ],
     faqs: [
-      { q: 'How fast can you get to a down compactor?', a: 'Our goal is to respond to service requests within 24 hours across the North Mississippi and Memphis area. If a machine is down, tell us when you call (662) 838-7900 and we will work it into the schedule; we also offer emergency service at emergency rates when you need us to rearrange the day.' },
-      { q: 'Do you offer emergency or weekend service?', a: 'Yes, on emergency terms: when you need us now, we rearrange the schedule to fit you in at emergency rates. We run Saturdays when needed. We do not go out on Sundays or in the middle of the night.' },
+      { q: 'How fast can you get to a down compactor?', a: 'Tell us the machine is down when you call (662) 838-7900 and we will make every effort to rearrange our schedule and get you back up and running as quickly as possible. Emergency service is available at emergency rates, with response based on urgency and technician availability.' },
+      { q: 'Do you offer emergency service?', a: 'Yes. When you need us now, we will make every effort to rearrange the schedule and fit you in, at emergency rates. Response is based on urgency and technician availability, so call and tell us what is down.' },
       { q: 'My compactor came from a hauler. Can you work on it?', a: 'If the hauler owns the machine, service is contractually theirs. If you own it (or lease it from anyone other than the hauler), we can work on it. Not sure? We can help you read the contract, and show you what owning your own equipment saves.' },
-      { q: 'Do you stock compactor parts?', a: 'We stock common wear and electrical parts and have overnight relationships for the rest. Our fab shop covers the structural side same-week in most cases.' },
+      { q: 'Do you stock compactor parts?', a: 'We stock common wear and electrical parts and have overnight relationships for the rest. Our own shop covers the structural side same-week in most cases.' },
     ],
     related: ['preventive-maintenance', 'equipment-refurbishment', 'baler-service'],
   },
@@ -158,7 +158,7 @@ export const SERVICES = [
       'Turnkey waste equipment logistics: delivery, rigging, installation, plant relocations, and old equipment removal across the Mid-South. Norton Equipment moves balers, compactors, and recycling equipment safely.',
     intro: [
       'A ten-thousand-pound baler does not deliver itself. Getting waste and recycling equipment onto a site, through the building, onto the pad, powered, tested, and running (and getting the old machine out) is its own trade, and it is one of ours.',
-      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, moving lines during plant rearrangements, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our crews bring the trucks, trailers, forklifts, and rigging know-how; our fab shop builds the odd bracket, chute, or dock plate that every real-world install eventually needs.',
+      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, moving lines during plant rearrangements, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our crews bring the trucks, trailers, forklifts, and rigging know-how, and we make the odd bracket, chute, or dock plate in-house when a real-world install needs one.',
     ],
     features: [
       { h: 'Delivery & rigging', p: 'Trucking, offloading, and precision placement of balers, compactors, and heavy recycling equipment: including tight-clearance back-room sets.' },
