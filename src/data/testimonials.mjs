@@ -1,12 +1,15 @@
 // ============================================================
-// Testimonials - REAL customer reviews migrated verbatim from
-// nortonequipmentco.com/testimonials/ (the client's own site).
-// Tagged by company; industries/cities per the site plan.
+// Testimonials - REAL customer reviews from nortonequipmentco.com.
+// Client update 7/26: removed Jabil, Pratt Industries, and Katt
+// Worldwide Logistics (no longer active accounts, per client). A
+// refreshed "trusted by" / testimonial list is coming from the
+// client; swap in when it arrives.
 // ============================================================
 
 export const TESTIMONIALS_ARE_PLACEHOLDERS = false;
 
-export const TRUSTED_BY = ['Williams-Sonoma', 'Jabil', 'Pratt Industries', 'Waste Connections', 'Katt Worldwide Logistics'];
+// Client-confirmed names still active. New list pending from client (7/26).
+export const TRUSTED_BY = ['Williams-Sonoma', 'Waste Connections'];
 
 export const TESTIMONIALS = [
   {
@@ -14,18 +17,6 @@ export const TESTIMONIALS = [
     name: 'David Dygert',
     role: 'Williams-Sonoma',
     tag: 'National Retail',
-  },
-  {
-    quote: 'Norton Equipment has been a reliable vendor for JGS Memphis for over 4 years. They have sold and maintained two horizontal auto-tie balers for us during this time frame. They have consistently been responsive to our needs. JW and his crew have the expertise to quickly repair this equipment and are excellent to work with.',
-    name: 'Bob White',
-    role: 'Jabil',
-    tag: 'Manufacturing · Memphis',
-  },
-  {
-    quote: 'Norton Equipment has been a wonderful service to Pratt Industries. They are an honest and reliable company that is only a phone call away. I would recommend Norton Equipment to anyone looking for a company with integrity.',
-    name: 'John Dunlap',
-    role: 'Pratt Industries',
-    tag: 'Recycling & Packaging',
   },
   {
     quote: 'Norton Equipment excels in service by providing high quality service technicians that do quality service work and equipment installation. They have provided excellent equipment knowledge in selection and installation. They adapt to our needs and schedules and truly know what dependability is. I consider Norton Equipment a valued business partner. They offer the greatest value of all, "Integrity" in business.',
@@ -38,11 +29,5 @@ export const TESTIMONIALS = [
     name: 'Eric Marsiglia',
     role: 'Williams-Sonoma',
     tag: 'Distribution',
-  },
-  {
-    quote: 'The service I have received from Norton Equipment over the last several years has been impeccable. The response time Norton has provided us with has been incredible. We depend on our equipment to be up and running to provide a smooth operation for us. Norton shares the same concerns and strives to ensure that any down time that we may come across is held to the utmost minimum. It has been a pleasure to have Norton as a vendor that will partnership with us to ensure success.',
-    name: 'David Shelton',
-    role: 'Katt Worldwide Logistics',
-    tag: 'Logistics · Memphis',
   },
 ];

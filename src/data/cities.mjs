@@ -11,7 +11,7 @@ export const CITIES = [
     slug: 'memphis-tn', city: 'Memphis', state: 'Tennessee', abbr: 'TN', miles: 35,
     angle: [
       'Memphis is one of the largest distribution and logistics hubs in North America, a city where freight is the hometown industry and millions of square feet of warehouse space turn over cardboard, stretch wrap, and packaging waste around the clock. Every one of those docks needs compaction or baling that keeps pace, and every hauling contract in town rewards the operation that ships dense loads instead of air.',
-      'Norton Equipment has served Memphis businesses from just across the state line in Byhalia since 1997, about 35 minutes from downtown. From distribution centers along Lamar Avenue and the airport corridor to groceries, hospitals, hotels, and multi-family towers, we sell, install, service, and rent the compactors and balers that keep the city’s waste moving: any brand, any model.',
+      'Norton Equipment has served Memphis businesses from just across the state line in Byhalia since 1997, about 35 minutes from downtown. From distribution centers along Lamar Avenue and the airport corridor to groceries, hospitals, hotels, and multi-family towers, we sell, install, and service the compactors and balers that keep the city’s waste moving: any brand, any model.',
     ],
     industries: ['Distribution & logistics', 'Warehousing & fulfillment', 'Grocery & retail', 'Hospitals & medical', 'Hotels & hospitality', 'Multi-family & high-rise'],
     nearby: ['bartlett-tn', 'germantown-tn', 'west-memphis-ar', 'southaven-ms'],
@@ -65,7 +65,7 @@ export const CITIES = [
     slug: 'arlington-tn', city: 'Arlington', state: 'Tennessee', abbr: 'TN', miles: 48,
     angle: [
       'Arlington is one of the fastest-growing towns in Shelby County, and its industrial side is growing with it: the I-40 corridor position has pulled in medical manufacturing, distribution, and contractor operations alongside new retail serving the housing boom.',
-      'Growing operations are exactly who should get equipment sized with headroom. We help Arlington businesses spec compactors and balers for the volume they will have in three years, not just today, with rental programs that let equipment scale as the town does. Byhalia is about 50 minutes south.',
+      'Growing operations are exactly who should get equipment sized with headroom. We help Arlington businesses spec compactors and balers for the volume they will have in three years, not just today, with sizing that lets you add capacity as the town grows. Byhalia is about 50 minutes south.',
     ],
     industries: ['Medical & device manufacturing', 'Distribution & logistics', 'Contractors & trades', 'New retail & grocery', 'Schools & municipal', 'Restaurants'],
     nearby: ['lakeland-tn', 'bartlett-tn', 'millington-tn', 'memphis-tn'],
@@ -83,7 +83,7 @@ export const CITIES = [
     slug: 'covington-tn', city: 'Covington', state: 'Tennessee', abbr: 'TN', miles: 75,
     angle: [
       'Covington is Tipton County’s industrial center, with a manufacturing base (automotive components, consumer products, and food processing among them) that is heavy for a town its size. Plants like these run real waste streams: production scrap, corrugated, and packaging that justify serious compaction and baling equipment.',
-      'Norton Equipment covers Covington with plant-grade machines, preventive maintenance, and our fabrication shop for the chutes, hoppers, and guards that production environments always end up needing. We are about 80 minutes out, and worth the drive. Ask the plants we already serve up Highway 51.',
+      'Norton Equipment covers Covington with plant-grade machines, preventive maintenance, and the chutes, hoppers, and guards that production environments always end up needing. We are about 80 minutes out, and worth the drive. Ask the plants we already serve up Highway 51.',
     ],
     industries: ['Automotive & component manufacturing', 'Consumer products', 'Food processing', 'Distribution', 'Retail & grocery', 'Municipal'],
     nearby: ['millington-tn', 'brownsville-tn', 'memphis-tn', 'dyersburg-tn'],
@@ -120,7 +120,7 @@ export const CITIES = [
   {
     slug: 'byhalia-ms', city: 'Byhalia', state: 'Mississippi', abbr: 'MS', miles: 0,
     angle: [
-      'Byhalia is home. Norton Equipment has operated from here since 1997, and our shop at 60 Amy Ln (service bays, fabrication floor, and reconditioned equipment inventory) sits right in the middle of one of the most explosive industrial corridors in the South. The Chickasaw Trails industrial area and the Highway 78/I-22 corridor have filled with million-square-foot distribution centers, and Marshall County keeps recruiting more.',
+      'Byhalia is home. Norton Equipment has operated from here since 1997, and our shop at 60 Amy Ln (service bays, repair shop, and reconditioned equipment inventory) sits right in the middle of one of the most explosive industrial corridors in the South. The Chickasaw Trails industrial area and the Highway 78/I-22 corridor have filled with million-square-foot distribution centers, and Marshall County keeps recruiting more.',
       'For Byhalia and Marshall County operations, working with us means the shop is minutes away: same-day eyes on a down machine, wire off the shelf, and techs who drive past your dock on the way to work. If your building is on the corridor, you are our closest neighbor. Call us first.',
     ],
     industries: ['Mega-distribution & fulfillment', 'Logistics & trucking', 'Manufacturing', 'Building products', 'Agriculture', 'Local retail & schools'],
@@ -130,7 +130,7 @@ export const CITIES = [
     slug: 'southaven-ms', city: 'Southaven', state: 'Mississippi', abbr: 'MS', miles: 30,
     angle: [
       'Southaven is Mississippi’s front porch on Memphis and one of the state’s largest cities: a retail powerhouse around Southaven Towne Center and Goodman Road, plus serious warehouse and distribution space stacked along Stateline and Airways. Cardboard is practically a municipal export here.',
-      'We equip Southaven’s stores, restaurants, DCs, and apartment communities with vertical balers, compactors, and rental programs, backed by service routes that run DeSoto County constantly. Our Byhalia shop is barely half an hour east. "Compactor repair near me" in Southaven should ring our phone: (662) 838-7900.',
+      'We equip Southaven’s stores, restaurants, DCs, and apartment communities with vertical balers, compactors, and reconditioned options, backed by service routes that run DeSoto County constantly. Our Byhalia shop is barely half an hour east. "Compactor repair near me" in Southaven should ring our phone: (662) 838-7900.',
     ],
     industries: ['Big-box retail & malls', 'Warehousing & distribution', 'Restaurants & entertainment', 'Grocery', 'Multi-family', 'Medical'],
     nearby: ['horn-lake-ms', 'olive-branch-ms', 'hernando-ms', 'memphis-tn'],
@@ -148,7 +148,7 @@ export const CITIES = [
     slug: 'olive-branch-ms', city: 'Olive Branch', state: 'Mississippi', abbr: 'MS', miles: 18,
     angle: [
       'Olive Branch is one of the premier distribution addresses in the entire Memphis metro, the corridor from the DeSoto County line through the Metro industrial parks holds some of the largest warehouse and fulfillment footprints in the region, moving everything from pharmaceuticals to power tools. Every one of those buildings lives and dies by dock throughput, and waste equipment is part of that math.',
-      'This is prime Norton territory: our Byhalia shop is roughly 20 minutes away, and Olive Branch DCs are the single most common address on our service tickets. Stationary compactors, auger machines, horizontal baler lines, enclosures, and PM programs: specced, installed, fabricated, and serviced from next door.',
+      'This is prime Norton territory: our Byhalia shop is roughly 20 minutes away, and Olive Branch DCs are the single most common address on our service tickets. Stationary compactors, auger machines, horizontal baler lines, enclosures, and PM programs: specced, installed, and serviced from next door.',
     ],
     industries: ['Mega-distribution & fulfillment', '3PL & logistics', 'Light manufacturing', 'Aviation & industrial', 'Retail & grocery', 'Multi-family'],
     nearby: ['byhalia-ms', 'southaven-ms', 'collierville-tn', 'germantown-tn'],
@@ -157,7 +157,7 @@ export const CITIES = [
     slug: 'hernando-ms', city: 'Hernando', state: 'Mississippi', abbr: 'MS', miles: 35,
     angle: [
       'Hernando is DeSoto County’s seat and its fastest-charming downtown, but around the square, the town runs a real commercial economy: I-55 corridor businesses, medical and professional offices, groceries, schools, and contractors serving the county’s residential boom.',
-      'Hernando businesses typically need right-sized equipment (a 60-inch vertical baler, a front-load compactor, a rental unit) rather than industrial giants, and honest sizing is the difference between a machine that pays for itself and one that just takes up pad space. That honest sizing conversation is free, and we are about 35 minutes away.',
+      'Hernando businesses typically need right-sized equipment (a 60-inch vertical baler, a front-load container, a reconditioned compactor) rather than industrial giants, and honest sizing is the difference between a machine that pays for itself and one that just takes up pad space. That honest sizing conversation is free, and we are about 35 minutes away.',
     ],
     industries: ['Grocery & retail', 'Medical & professional offices', 'Restaurants', 'Schools & municipal', 'Contractors', 'Agriculture'],
     nearby: ['southaven-ms', 'horn-lake-ms', 'byhalia-ms', 'batesville-ms'],
@@ -184,7 +184,7 @@ export const CITIES = [
     slug: 'oxford-ms', city: 'Oxford', state: 'Mississippi', abbr: 'MS', miles: 50,
     angle: [
       'Oxford runs on the University of Mississippi and everything that orbits it: a hospitality and restaurant scene that outperforms cities three times its size, game-day retail surges, student housing by the thousands of beds, and a growing medical and professional base. Waste volume here swings hard with the calendar, which makes flexible equipment strategy matter.',
-      'We help Oxford operations handle the swing: right-sized compactors for student housing and hotels, balers for grocery and campus-area retail, rentals for seasonal surges, and service programs timed around the academic year. Byhalia is about an hour north.',
+      'We help Oxford operations handle the swing: right-sized compactors for student housing and hotels, balers for grocery and campus-area retail, flexible sizing for seasonal surges, and service programs timed around the academic year. Byhalia is about an hour north.',
     ],
     industries: ['University & campus facilities', 'Restaurants & hospitality', 'Student housing & multi-family', 'Grocery & retail', 'Medical', 'Construction'],
     nearby: ['batesville-ms', 'holly-springs-ms', 'new-albany-ms', 'byhalia-ms'],
@@ -202,7 +202,7 @@ export const CITIES = [
     slug: 'new-albany-ms', city: 'New Albany', state: 'Mississippi', abbr: 'MS', miles: 50,
     angle: [
       'New Albany sits at the center of north Mississippi’s furniture manufacturing belt, with upholstered furniture plants and their suppliers spread through Union County and its neighbors. Furniture production creates one of the toughest waste profiles in industry (bulky frames and trim, mountains of cardboard, foam, and film) that ordinary dumpster service simply cannot digest economically.',
-      'That profile is a Norton specialty: pre-crushers for bulky scrap, balers for corrugated and film, shredders where destruction or volume reduction pays, and the fabrication shop for feed chutes that fit production lines. We are about an hour away on I-22 and already deep in the furniture corridor.',
+      'That profile is a Norton specialty: pre-crushers for bulky scrap, balers for corrugated and film, and right-sized compaction for the high-volume trash a furniture line throws off. We are about an hour away on I-22 and already deep in the furniture corridor.',
     ],
     industries: ['Furniture manufacturing', 'Suppliers & components', 'Distribution', 'Healthcare', 'Retail & grocery', 'Agriculture'],
     nearby: ['holly-springs-ms', 'oxford-ms', 'corinth-ms', 'byhalia-ms'],
@@ -211,7 +211,7 @@ export const CITIES = [
     slug: 'corinth-ms', city: 'Corinth', state: 'Mississippi', abbr: 'MS', miles: 90,
     angle: [
       'Corinth’s crossroads heritage is industrial fact, not just Civil War history: the city carries one of northeast Mississippi’s strongest manufacturing rosters, from machinery and metal products to consumer goods, with rail access that keeps plants competitive. Metalworking and machinery plants generate scrap streams that reward smart equipment: dense loads are money in this town.',
-      'We support Corinth at the eastern edge of our ring with plant-grade compactors and balers, all-brand repair, refurbishment projects, and preventive maintenance routes. For a manufacturing city, our in-house fabrication capability travels well.',
+      'We support Corinth at the eastern edge of our ring with plant-grade compactors and balers, all-brand repair, refurbishment projects, and preventive maintenance routes. For a manufacturing city, our in-house repair capability travels well.',
     ],
     industries: ['Machinery & metal products', 'Consumer goods manufacturing', 'Rail-served industry', 'Healthcare', 'Retail & grocery', 'Distribution'],
     nearby: ['new-albany-ms', 'jackson-tn', 'oxford-ms', 'byhalia-ms'],
@@ -231,7 +231,7 @@ export const CITIES = [
     slug: 'west-memphis-ar', city: 'West Memphis', state: 'Arkansas', abbr: 'AR', miles: 45,
     angle: [
       'West Memphis is the trucking crossroads of America: I-40 and I-55 meet here, and the city has built its economy on the freight that never stops rolling through: truck stops and travel plazas, terminals and cross-docks, warehouses, and the steel and industrial operations along the river. High-traffic sites generate high-volume waste, and downtime is measured in blocked docks.',
-      'We serve West Memphis and Crittenden County with stationary compactors, balers, rentals, and fast all-brand repair: about 50 minutes from the Byhalia shop, straight across the metro. It is one of the first markets our new location pages were built to win, because the searches are there and the service always has been.',
+      'We serve West Memphis and Crittenden County with stationary compactors, balers, reconditioned options, and fast all-brand repair: about 50 minutes from the Byhalia shop, straight across the metro. It is one of the first markets our new location pages were built to win, because the searches are there and the service always has been.',
     ],
     industries: ['Trucking & terminals', 'Travel plazas & fuel', 'Warehousing & cross-dock', 'Steel & river industry', 'Retail & grocery', 'Municipal'],
     nearby: ['marion-ar', 'memphis-tn', 'forrest-city-ar', 'southaven-ms'],
@@ -258,7 +258,7 @@ export const CITIES = [
     slug: 'osceola-ar', city: 'Osceola', state: 'Arkansas', abbr: 'AR', miles: 90,
     angle: [
       'Osceola is at the center of northeast Arkansas’s steel boom: the Mississippi County river corridor has become one of the largest steel-producing regions in America, and the mills have pulled a wave of suppliers, processors, and logistics operations into town with them. Steel-adjacent industry produces punishing waste streams: banding, dunnage, pallets, drums, and bulky scrap that eats ordinary equipment.',
-      'That is pre-crusher and heavy-stationary territory, backed by our fabrication shop for the wear repairs industrial machines accumulate. We cover Osceola and the river corridor at the edge of our ring, and we build project schedules around mill-country realities.',
+      'That is pre-crusher and heavy-stationary territory, backed by our own shop for the wear repairs industrial machines accumulate. We cover Osceola and the river corridor at the edge of our ring, and we build project schedules around mill-country realities.',
     ],
     industries: ['Steel mills & processors', 'Industrial suppliers', 'River & rail logistics', 'Agriculture', 'Retail & grocery', 'Municipal'],
     nearby: ['blytheville-ar', 'marion-ar', 'dyersburg-tn', 'jonesboro-ar'],

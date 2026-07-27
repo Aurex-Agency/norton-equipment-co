@@ -225,15 +225,15 @@
       q: 'How much room do you have?',
       opts: [
         { b: 'Tight or indoors', s: 'Trash room, parking deck, small pad', next: 'r_vert' },
-        { b: 'Standard pad or dock', s: 'Room for a container outside', next: 'r_front' }
+        { b: 'Standard pad or dock', s: 'Room for a container outside', next: 'r_stat_pad' }
       ]
     },
     r_self: { kick: 'Our recommendation', h: 'Self-Contained Compactor', p: 'Wet waste needs a sealed, leak-tight machine. Compactor and container are one welded body, so nothing drips, smells, or draws pests.', url: '/trash-compactors/self-contained/', note: 'High volume? Ask us about self-contained auger units.' },
-    r_pre: { kick: 'Our recommendation', h: 'Pre-Crusher Compactor', p: 'Bulky items bridge and jam standard machines. A pre-crusher flattens pallets, drums, and furniture against a hardened hook before compacting.', url: '/trash-compactors/pre-crusher/', note: 'Mostly wood or product destruction? A <a href="/balers-recycling/shredders/">shredder</a> may pair well.' },
+    r_pre: { kick: 'Our recommendation', h: 'Pre-Crusher Compactor', p: 'Bulky items bridge and jam standard machines. A pre-crusher flattens pallets, drums, and furniture against a hardened hook before compacting.', url: '/trash-compactors/pre-crusher/', note: 'Lots of oversized loads? We will spec the charge box to your biggest items.' },
     r_stat: { kick: 'Our recommendation', h: 'Stationary Compactor', p: 'The workhorse for high-volume dry waste. It stays bolted to your pad and packs a detachable receiver container your hauler swaps out.', url: '/trash-compactors/stationary/', note: 'Heavy on cardboard? A <a href="/balers-recycling/vertical-balers/">baler</a> can turn part of that stream into revenue.' },
     r_auger: { kick: 'Our recommendation', h: 'Auger Compactor', p: 'Continuous screw compaction with no cycle time and the heaviest container payloads in the industry. Built for waste that never stops.', url: '/trash-compactors/auger/', note: 'We will confirm the math against a stationary unit on site.' },
     r_vert: { kick: 'Our recommendation', h: 'Vertical / Apartment Compactor', p: 'Real compaction in a footprint a few feet square, feeding standard front-load containers your hauler already lifts.', url: '/trash-compactors/vertical-apartment/', note: 'Chute-fed high-rise? We service and install those systems too.' },
-    r_front: { kick: 'Our recommendation', h: 'Front-Load Compactor', p: 'Compactor economics without roll-off logistics: it packs into the containers your current route trucks already pick up.', url: '/trash-compactors/front-load-rear-load/', note: 'Not sure about owning? <a href="/trash-compactors/rental/">Rental programs</a> start with zero capital.' }
+    r_stat_pad: { kick: 'Our recommendation', h: 'Stationary Compactor', p: 'With room on the pad for a receiver container, a right-sized stationary compactor gives you real compaction and the lowest cost per haul, even at modest volume.', url: '/trash-compactors/stationary/', note: 'Just need the right hauler container instead? We supply <a href="/trash-compactors/front-load-rear-load/">front-load and rear-load containers</a> too.' }
   };
 
   document.querySelectorAll('[data-finder]').forEach(function (root) {

@@ -14,7 +14,7 @@ export const POSTS = [
     excerpt:
       'Everything a first-time compactor buyer needs in one place: the machine types, how sizing actually works, what compactors cost in 2026, and the questions that separate a smart purchase from an expensive mistake.',
     metaDesc:
-      'Commercial trash compactor buying guide: compactor types explained, sizing rules of thumb, 2026 price ranges, rent-vs-buy math, and the questions to ask before you purchase. From Norton Equipment, Mid-South compactor specialists since 1997.',
+      'Commercial trash compactor buying guide: compactor types explained, sizing rules of thumb, 2026 price ranges, new-vs-reconditioned math, and the questions to ask before you purchase. From Norton Equipment, Mid-South compactor specialists since 1997.',
     body: `
 <p>If you are reading a compactor buying guide, you probably already suspect what your hauling invoices have been telling you: you are paying, month after month, to haul away air. A commercial trash compactor fixes that, but only if you buy the right type, at the right size, from someone who will still answer the phone after the install. This guide covers all three.</p>
 
@@ -28,7 +28,7 @@ export const POSTS = [
 <li><strong><a href="/trash-compactors/vertical-apartment/">Vertical and apartment compactors</a></strong> pack waste into standard front-load containers in a footprint a few feet square. The answer for apartment buildings, high-rises, and any site where space is the constraint.</li>
 <li><strong><a href="/trash-compactors/pre-crusher/">Pre-crushers</a></strong> flatten pallets, drums, crates, and furniture against a hardened hook before compacting. If bulky items are daily reality, nothing else survives long.</li>
 <li><strong><a href="/trash-compactors/auger/">Auger compactors</a></strong> replace the ram with a continuously turning screw, no cycle time, maximum container density, built for operations where waste never stops.</li>
-<li><strong><a href="/trash-compactors/front-load-rear-load/">Front-load and rear-load compactors</a></strong> compact into the containers your hauler's route trucks already lift, compactor economics without roll-off logistics.</li>
+<li><strong><a href="/trash-compactors/front-load-rear-load/">Front-load and rear-load containers</a></strong> are the hauler-compatible boxes your route trucks already lift, supplied and serviced to keep your everyday collection running (no compaction, just the right container).</li>
 </ul>
 
 <h2>Sizing: the 4-to-1 rule and the container question</h2>
@@ -47,8 +47,7 @@ export const POSTS = [
 <li><strong>Stationary compactors:</strong> roughly $15,000-$35,000 plus receiver container</li>
 <li><strong>Self-contained compactors:</strong> roughly $20,000-$45,000</li>
 <li><strong>Pre-crushers and augers:</strong> roughly $30,000-$60,000+</li>
-<li><strong>Reconditioned equipment:</strong> commonly 30-60% off new, see <a href="/trash-compactors/used/">used compactors</a></li>
-<li><strong>Rental programs:</strong> flat monthly fee, maintenance included, see <a href="/trash-compactors/rental/">compactor rental</a></li>
+<li><strong>Reconditioned equipment:</strong> commonly 30-60% off new, built to order, see <a href="/trash-compactors/used/">used compactors</a></li>
 </ul>
 <p>Then set those numbers against the savings. A site paying $1,800/month for frequent dumpster service that drops to $700/month of compactor hauling saves $13,200 a year: a three-to-four-year payback on a mid-range machine, faster with a reconditioned unit. This is why compactors are one of the few capital purchases that facilities managers rarely regret.</p>
 
@@ -56,13 +55,13 @@ export const POSTS = [
 <ol>
 <li><strong>Who services the machine, and how fast?</strong> A compactor is a promise of uptime. Ask who actually turns the wrenches and where they dispatch from.</li>
 <li><strong>Does this deal tie my hauling?</strong> Hauler-supplied compactors lock the machine to their contract. Independently owned equipment keeps your hauling biddable, that leverage is worth real money every renewal.</li>
-<li><strong>New, used, or rental: will you show me all three?</strong> A vendor with only one answer is selling inventory, not solving your problem.</li>
+<li><strong>New or reconditioned: will you show me both?</strong> A vendor with only one answer is selling inventory, not solving your problem.</li>
 <li><strong>What does installation include?</strong> Pad, power, chutes, enclosures, training: get the whole scope in the quote, not discovered afterward.</li>
 <li><strong>Can you show me the math?</strong> Any serious vendor should model your payback from your actual hauling invoices. (Ours is free: a <a href="/services/waste-stream-consultations/">waste stream consultation</a>.)</li>
 </ol>
 
 <h2>The short version</h2>
-<p>Wet waste: self-contained. Dry volume: stationary. Tight space: vertical. Bulky scrap: pre-crusher. Relentless volume: auger. Route service: front-load. Size from your real volume with a 4:1 ratio, insist on independent equipment, and make the vendor prove the payback before you sign.</p>
+<p>Wet waste: self-contained. Dry volume: stationary. Tight space: vertical. Bulky scrap: pre-crusher. Relentless volume: auger. Everyday collection: the right front-load or rear-load container. Size from your real volume with a 4:1 ratio, insist on independent equipment, and make the vendor prove the payback before you sign.</p>
 <p>Or skip straight to the shortcut: Norton Equipment has been sizing compactors across the Mid-South since 1997, and the evaluation costs nothing. Call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>.</p>
 `,
   },
@@ -104,7 +103,7 @@ export const POSTS = [
 <li><strong>Hospitals & care facilities:</strong> Self-contained for general waste streams with food service.</li>
 <li><strong>Warehouses & DCs:</strong> Stationary, almost always: the waste is packaging, and volume is king.</li>
 <li><strong>Manufacturers:</strong> Stationary for dry scrap; pre-crusher if bulky items dominate; self-contained only for wet process waste.</li>
-<li><strong>Retail:</strong> Stationary or front-load compactors, with balers taking the cardboard.</li>
+<li><strong>Retail:</strong> Stationary compactors, with balers taking the cardboard.</li>
 </ul>
 
 <h2>The mixed-stream trap</h2>
@@ -113,47 +112,45 @@ export const POSTS = [
 `,
   },
   {
-    slug: 'rent-or-buy-commercial-trash-compactor',
-    img: 'rental-baler',
-    title: 'Should You Rent or Buy a Commercial Trash Compactor?',
+    slug: 'buy-new-used-or-hauler-compactor',
+    img: 'refurbish',
+    title: 'Buy New, Buy Reconditioned, or Take the Hauler’s “Free” Compactor?',
     date: '2026-06-30',
     readMins: 7,
     excerpt:
-      'Straight talk on the monthly-fee model versus owning: the real math, the hidden factors (maintenance risk, hauling leverage, capital cost), and a simple framework for deciding.',
+      'Straight talk on the three ways to put a compactor on your pad: new, reconditioned, or the hauler’s “free” machine. The real math, the hidden factors, and a simple framework for deciding.',
     metaDesc:
-      'Rent or buy a commercial trash compactor? Real cost math, maintenance risk, hauling contract leverage, and a decision framework: from Norton Equipment, which offers both and profits either way.',
+      'Buy a new, reconditioned, or hauler-supplied commercial trash compactor? Real cost math, maintenance risk, hauling contract leverage, and a decision framework from Norton Equipment: independent since 1997.',
     body: `
-<p>Here is a question where you should be suspicious of anyone with a confident one-word answer: should you rent your compactor or buy it? Companies that only sell machines say buy. Companies that only rent say rent. Norton Equipment does both. <a href="/trash-compactors/rental/">rental programs</a> and <a href="/trash-compactors/">sales</a>, so we can afford to give you the actual answer, which is: it depends on four things you can evaluate in an afternoon.</p>
+<p>Here is a question where you should be suspicious of anyone with a confident one-word answer: how should you put a compactor on your pad? There are really three routes, new, reconditioned, or the "free" machine your hauler offers, and each one has a very different cost once you follow the money. Norton Equipment sells new and reconditioned and profits either way, so we can afford to give you the honest comparison, which comes down to a few things you can evaluate in an afternoon.</p>
 
 <h2>The basic math</h2>
-<p>Take a mid-size stationary compactor: roughly $25,000 installed, or in the neighborhood of $500-$800/month on a full-service rental. Over ten years, ownership costs the purchase plus maintenance. Call it $35,000-$40,000 all-in. Rental over the same decade runs $60,000-$96,000.</p>
-<p>Case closed for buying? Not so fast. That comparison ignores what the rental fee actually buys, and what ownership actually risks.</p>
+<p>Take a mid-size stationary compactor: roughly $25,000 installed new, or often 30-60% less <a href="/trash-compactors/used/">reconditioned</a>. Over ten years, ownership costs the purchase plus maintenance, call it $35,000-$40,000 all-in for a new machine, meaningfully less for a sound reconditioned one. The hauler's "free" machine looks like $0 up front. Hold that thought; it is the most expensive option on the page.</p>
 
 <h2>Factor 1: Who eats the breakdowns?</h2>
-<p>A full-service rental includes maintenance and repairs. When the power unit dies on a Friday, that is the vendor's phone ringing, the vendor's parts bill, and the vendor's problem, for the same flat fee. As an owner, a major hydraulic failure is a four-figure surprise, and an aging machine can deliver several.</p>
-<p>Ownership math looks best with a young machine and a <a href="/services/preventive-maintenance/">preventive maintenance program</a> smoothing the risk. Rental math looks best when you would otherwise be running old iron with no maintenance budget.</p>
+<p>An owned machine puts repairs on you, so the smart move is to take that risk off the table before it bites: a <a href="/services/preventive-maintenance/">preventive maintenance program</a> turns four-figure Friday surprises into scheduled, budgeted visits. A well-maintained compactor is one of the most predictable pieces of equipment a facility runs. The math looks best with a young or properly reconditioned machine and a PM plan smoothing the curve; it looks worst when you run old iron with no maintenance budget and wait for the power unit to die.</p>
 
 <h2>Factor 2: What does your capital cost?</h2>
-<p>$25,000 spent on a compactor is $25,000 not spent on inventory, equipment, or expansion. A growing business earning strong returns on its capital should think hard before parking cash in waste equipment when a monthly fee preserves it. A stable operation with idle cash reads this factor the other way. (Financing splits the difference and often makes ownership accessible without the capital hit.)</p>
+<p>$25,000 spent on a compactor is $25,000 not spent on inventory, equipment, or expansion. A growing business earning strong returns on its capital should think hard before parking cash in waste equipment; a stable operation with idle cash reads it the other way. This is exactly where a <a href="/trash-compactors/used/">reconditioned machine</a> earns its keep: the same job, most of the service life, a fraction of the capital. Financing splits the difference again and often makes a new machine accessible without the full cash hit.</p>
 
 <h2>Factor 3: How predictable is your future?</h2>
 <ul>
-<li><strong>Volume might change:</strong> rentals swap machines when you outgrow them; owners sell and rebuy.</li>
-<li><strong>You might move:</strong> moving an owned compactor is a real (though very solvable, see <a href="/services/equipment-logistics/">equipment logistics</a>) project; ending or transferring a rental is paperwork.</li>
-<li><strong>Site is long-term stable:</strong> ownership's economics compound with every year the machine stays put.</li>
+<li><strong>Volume might change:</strong> owners size up by selling and rebuying, and this market is liquid, so a right-sized machine holds its value.</li>
+<li><strong>You might move:</strong> moving an owned compactor is a real (though very solvable, see <a href="/services/equipment-logistics/">equipment logistics</a>) project, not a reason to hand control to your hauler.</li>
+<li><strong>Site is long-term stable:</strong> ownership's economics compound with every year the machine stays put, and a reconditioned unit makes year one cheap.</li>
 </ul>
 
 <h2>Factor 4: The hauler trap (read this one twice)</h2>
-<p>There is a third option we have not mentioned: the "free" or cheap compactor your waste hauler offers. Understand what it costs. Hauler-supplied equipment is bound to the hauling contract: as long as their machine sits on your pad, your hauling never goes out to bid, and the margin they lose on the machine comes back through years of unbid hauling rates, with a contract that auto-renews and equipment-removal friction if you try to leave.</p>
-<p>Whether you rent or buy, <em>independent</em> equipment keeps your hauling contract competitive. That leverage is routinely worth more per year than the entire rent-vs-buy difference.</p>
+<p>Now the "free" machine. Understand what it costs. Hauler-supplied equipment is bound to the hauling contract: as long as their machine sits on your pad, your hauling never goes out to bid, and the margin they lose on the machine comes back through years of unbid hauling rates, with a contract that auto-renews and equipment-removal friction if you try to leave.</p>
+<p>Whether you buy new or reconditioned, <em>independent</em> equipment keeps your hauling contract competitive. That leverage is routinely worth more per year than the entire new-vs-reconditioned difference.</p>
 
 <h2>A simple framework</h2>
-<p><strong>Rent when:</strong> capital is precious, volume or location may change, you want one predictable number with maintenance included, or you need a machine now while deciding long-term.</p>
-<p><strong>Buy when:</strong> the site is stable for 5+ years, volume is steady, you will fund preventive maintenance, and the capital is genuinely available. Consider a <a href="/trash-compactors/used/">reconditioned machine</a>. 30-60% off new turns most buy-math strongly in your favor.</p>
+<p><strong>Buy new when:</strong> the site is stable for 5+ years, volume is steady, uptime is critical enough to want full warranty, and the capital is genuinely available.</p>
+<p><strong>Buy reconditioned when:</strong> capital is precious or the machine's duty cycle is moderate. A sound <a href="/trash-compactors/used/">reconditioned machine</a> at 30-60% off new turns most buy-math strongly in your favor, especially paired with a PM plan.</p>
 <p><strong>Never:</strong> take equipment from your hauler without pricing what the contract lock-in costs you at every renewal.</p>
 
 <h2>Run your numbers, not ours</h2>
-<p>Every example above is generic; your volumes, rates, and site are not. We will model rent, buy-new, and buy-reconditioned side by side from your actual hauling invoices, free, as part of a <a href="/services/waste-stream-consultations/">waste stream consultation</a>. Call <a href="tel:+16628387900">(662) 838-7900</a>: whichever column wins, we are the vendor either way, which is exactly why you will get the honest math.</p>
+<p>Every example above is generic; your volumes, rates, and site are not. We will model buy-new and buy-reconditioned side by side from your actual hauling invoices, free, as part of a <a href="/services/waste-stream-consultations/">waste stream consultation</a>. Call <a href="tel:+16628387900">(662) 838-7900</a>: whichever column wins, we are the vendor either way, which is exactly why you will get the honest math.</p>
 `,
   },
   {
@@ -182,8 +179,8 @@ export const POSTS = [
 
 <h2>A worked example</h2>
 <p>A distribution operation in the Memphis metro runs two 8-yard dumpsters, each pulled five times weekly at $95 per pull with surcharges: roughly <strong>$4,100/month</strong>.</p>
-<p>Install a 30-yard stationary compactor (~$28,000 with site work, or rentable). The same volume compacts into roughly one pull weekly at ~$450 per roll-off pull plus disposal: about <strong>$2,300/month</strong> including container rent.</p>
-<p><strong>Savings: ~$1,800/month. $21,600/year.</strong> The purchased machine pays back in about 16 months; the rented one is cash-positive from month one. And the example is conservative: it ignores a cardboard fraction that a <a href="/balers-recycling/vertical-balers/">baler</a> could turn from a disposal cost into a commodity check.</p>
+<p>Install a 30-yard stationary compactor (~$28,000 with site work, or less reconditioned). The same volume compacts into roughly one pull weekly at ~$450 per roll-off pull plus disposal: about <strong>$2,300/month</strong> including container rent.</p>
+<p><strong>Savings: ~$1,800/month. $21,600/year.</strong> A new machine pays back in about 16 months; a <a href="/trash-compactors/used/">reconditioned</a> one pays back faster still. And the example is conservative: it ignores a cardboard fraction that a <a href="/balers-recycling/vertical-balers/">baler</a> could turn from a disposal cost into a commodity check.</p>
 
 <h2>The second-order savings</h2>
 <ul>
@@ -194,7 +191,7 @@ export const POSTS = [
 </ul>
 
 <h2>What the skeptical CFO should ask</h2>
-<p>Fair questions, fast answers: <em>What about maintenance?</em> Budget a few hundred dollars a year on a <a href="/services/preventive-maintenance/">PM program</a>; it is in the worked math above. <em>What if volume changes?</em> Rentals swap sizes; owned machines resell. This market is liquid. <em>What if the machine goes down?</em> With a service partner dispatching from inside your region, downtime is measured in hours; ask about response before you buy, not after.</p>
+<p>Fair questions, fast answers: <em>What about maintenance?</em> Budget a few hundred dollars a year on a <a href="/services/preventive-maintenance/">PM program</a>; it is in the worked math above. <em>What if volume changes?</em> Owned machines resell and this market is liquid, so a right-sized unit holds its value. <em>What if the machine goes down?</em> With a service partner dispatching from inside your region, downtime is measured in hours; ask about response before you buy, not after.</p>
 
 <h2>Get your numbers</h2>
 <p>The example above is illustrative; your invoice is real. Send us two or three months of hauling bills and we will model your actual payback (free, on site, no obligation) through a <a href="/services/waste-stream-consultations/">waste stream consultation</a>. Call <a href="tel:+16628387900">(662) 838-7900</a>. If the math says keep your dumpsters, we will say so; it costs us nothing to be honest and everything not to be.</p>
@@ -220,7 +217,7 @@ export const POSTS = [
 <p>Sprawling properties usually run scattered dumpster corrals, and pay for it in overflow complaints, extra pickups, and pest control. Two upgrades change the math:</p>
 <ul>
 <li><strong>Centralized vertical compaction.</strong> A <a href="/trash-compactors/vertical-apartment/">vertical compactor</a> at a central waste point packs into standard front-load containers your hauler already lifts, typically cutting lifts by two-thirds while keeping ordinary route service. Lids stay closed; corrals stay presentable.</li>
-<li><strong>Enclosures that actually work.</strong> Locking gates and screens (<a href="/trash-compactors/enclosures/">we fabricate them in-house</a>) stop the after-hours dumping from outside the property, a bigger cost than most managers realize until they gate it.</li>
+<li><strong>Enclosures that actually work.</strong> Locking gates and screens (<a href="/trash-compactors/enclosures/">we supply and install them</a>) stop the after-hours dumping from outside the property, a bigger cost than most managers realize until they gate it.</li>
 </ul>
 
 <h2>High-rises: the chute system</h2>
@@ -241,7 +238,7 @@ export const POSTS = [
 </ul>
 
 <h2>The money: what compaction saves a property</h2>
-<p>A 250-unit garden property running six 8-yard dumpsters on three-times-weekly pickup pays for 18 lifts a week. Centralized vertical compaction typically cuts that to 5-6 lifts. At Mid-South route rates, that is commonly <strong>$800-$1,500 a month back</strong>, before counting fewer extra pickups, less pest control, and fewer make-ready hours spent policing corrals. A <a href="/trash-compactors/rental/">rental program</a> gets there with no capital request to ownership, one flat line item with maintenance included.</p>
+<p>A 250-unit garden property running six 8-yard dumpsters on three-times-weekly pickup pays for 18 lifts a week. Centralized vertical compaction typically cuts that to 5-6 lifts. At Mid-South route rates, that is commonly <strong>$800-$1,500 a month back</strong>, before counting fewer extra pickups, less pest control, and fewer make-ready hours spent policing corrals. A <a href="/trash-compactors/used/">reconditioned machine</a> gets a property there with a much smaller capital request to ownership.</p>
 
 <h2>Spec questions for any vendor</h2>
 <ol>
@@ -249,9 +246,9 @@ export const POSTS = [
 <li>What interlocks and guarding are included, and who documents them?</li>
 <li>What is the service response time, and who actually employs the techs?</li>
 <li>Can you handle the chute system too, or just the machine at the bottom?</li>
-<li>Rental, purchase, and reconditioned, will you quote all three?</li>
+<li>New or reconditioned, will you quote both?</li>
 </ol>
-<p>Norton Equipment has serviced multi-family compactors and chute systems across Memphis and the Mid-South since 1997: all brands, with our own techs and fabrication shop. If your property's waste system is a recurring line in the complaint log, call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>; the site assessment is free.</p>
+<p>Norton Equipment has serviced multi-family compactors and chute systems across Memphis and the Mid-South since 1997: all brands, with our own techs and in-house repair shop. If your property's waste system is a recurring line in the complaint log, call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>; the site assessment is free.</p>
 `,
   },
 ];
