@@ -392,6 +392,13 @@ a.city:hover{border-color:var(--gold);color:var(--gold-hi);transform:translateY(
 .glance-card .checks svg{color:var(--gold)}
 .glance-card .form-alt{color:var(--silver);border-top-color:rgba(255,255,255,.14)}
 .glance-card .form-alt a{color:var(--gold)}
+.glance-photo{margin:0 0 26px;border:1px solid rgba(216,165,49,.28);border-radius:5px;overflow:hidden;background:#000}
+.glance-photo img{display:block;width:100%;height:auto}
+.glance-photo figcaption{padding:9px 12px;font-family:'Lora',Georgia,serif;font-style:italic;font-size:13px;color:var(--silver);text-align:center;background:rgba(255,255,255,.03)}
+.founder-fig{float:right;width:270px;max-width:42%;margin:4px 0 16px 28px;border:1px solid var(--line-lt);border-radius:6px;overflow:hidden;background:var(--card);box-shadow:0 18px 44px -30px rgba(0,0,0,.42)}
+.founder-fig img{display:block;width:100%;height:auto}
+.founder-fig figcaption{padding:10px 12px;font-family:'Lora',Georgia,serif;font-style:italic;font-size:13px;color:var(--muted-on-paper);text-align:center}
+@media(max-width:640px){.founder-fig{float:none;width:auto;max-width:100%;margin:0 0 18px}}
 .auth-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;padding:8px 14px;border:1px solid var(--gold-text);border-radius:3px;
   background:rgba(216,165,49,.08);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold-text)}
 .auth-badge svg{width:16px;height:16px;flex:none;color:var(--gold-text)}
