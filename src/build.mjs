@@ -273,8 +273,7 @@ function footerHtml() {
         <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="64" height="34" loading="lazy">
         <div><b>Norton Equipment Company</b><span>Est. March ${SITE.founded} · Byhalia, MS</span></div>
       </div>
-      <p class="foot-tagline">“Built for the work behind the waste.”</p>
-      <p>Built on service. Backed by experience.</p>
+      <p class="foot-tagline">Built on service. Backed by experience.</p>
       <div class="foot-nap">
         <span>${IC.pin}<span>${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}</span></span>
         <a href="${SITE.phoneHref}">${IC.phone}<span>${esc(SITE.phone)}</span></a>
