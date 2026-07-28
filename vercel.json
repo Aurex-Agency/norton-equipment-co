@@ -40,7 +40,8 @@
     { "source": "/services/welding-fabrication", "destination": "/services/equipment-refurbishment/", "permanent": true },
     { "source": "/services/conveyor-service", "destination": "/services/", "permanent": true },
     { "source": "/brands/harris-selco", "destination": "/brands/", "permanent": true },
-    { "source": "/blog/rent-or-buy-commercial-trash-compactor", "destination": "/blog/buy-new-used-or-hauler-compactor/", "permanent": true }
+    { "source": "/blog/rent-or-buy-commercial-trash-compactor", "destination": "/blog/buy-new-used-or-hauler-compactor/", "permanent": true },
+    { "source": "/norton-equipment-company-welcomes-bretany-hannigan", "destination": "/blog/", "permanent": true }
   ],
   "headers": [
     {

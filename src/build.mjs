@@ -475,7 +475,7 @@ function buildHome() {
       <span class="ln"><span>Built for the work</span></span>
       <span class="ln"><span class="gold">behind the waste.</span></span>
     </h1>
-    <p class="script-line">Real people. Real steel. Byhalia, Mississippi.</p>
+    <p class="script-line">Built on service. Backed by experience. Byhalia, Mississippi.</p>
     <p class="hero-sub">Commercial trash compactors and balers: sold, installed, serviced, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
     <div class="hero-cta">
       <a href="${SITE.phoneHref}" class="btn btn-gold btn-lg" data-magnetic>${IC.phone}Call ${esc(SITE.phone)}</a>
@@ -1254,7 +1254,7 @@ ${pageHero({
     crumbs,
     kicker: 'Est. 1997 · Byhalia, Mississippi',
     h1: 'From Compressor Shop to <span style="color:var(--gold)">Mid-South Mainstay</span>',
-    sub: 'Most visitors have never heard the Norton story. It is a trust builder, so here it is, straight.',
+    sub: 'Built from the ground up through hard work, trusted service, and decades of experience... here’s how we got here.',
     chips: ['Independent Since Day One', 'In-House Fabrication', 'Any Brand · Any Model'],
   })}
 <section class="sec sec-paper">
@@ -1275,14 +1275,14 @@ ${pageHero({
           <li><strong>Sell the right machine, not the nearest one.</strong> New or reconditioned, quoted side by side, with the math shown.</li>
           <li><strong>Service is the product.</strong> The machine is steel and hydraulics; what you are really buying is the years after the install.</li>
           <li><strong>Independence is customer leverage.</strong> Our equipment never locks your hauling contract. Ever.</li>
-          <li><strong>Safety is not a line item.</strong> Every tech is OSHA-trained, equipment and factory certified, and carries multiple safety certifications. In decades of installs and service calls, an impeccable safety record.</li>
+          <li><strong>Safety is not a line item, it is built into every job.</strong> Every technician is OSHA-trained, equipment- and factory-certified, and carries multiple safety credentials. That commitment has helped us maintain an impeccable safety record across decades of installations and service calls.</li>
           <li><strong>If it's steel, it's fixable.</strong> The in-house fabrication shop is the difference between a quote for a new machine and a repair that costs a fraction of it.</li>
         </ul>
       </div>
       <div class="reveal" data-d="1">
-        ${photoFig('refurbish', 'A machine under refurbishment in the Norton shop, Byhalia MS', { cls: 'mb' })}
-        <div class="form-card">
-          <img src="/assets/img/logo-full.webp" alt="Norton Equipment Company: built for the work behind the waste" width="320" style="margin:0 auto 22px" loading="lazy">
+        <div class="form-card glance-card">
+          <img class="glance-badge" src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="150" height="79" loading="lazy">
+          <!-- FAMILY PHOTO: JT's parents + JT + owner goes here once the client emails it (replace this comment with a photoFig call). -->
           <span class="eyebrow">Norton at a Glance</span>
           <ul class="checks mt-2">
             ${checkLi('<strong>Founded:</strong> March 1997, as Norton Compressor Service')}
@@ -1341,7 +1341,10 @@ ${pageHero({
   })}
 <section class="sec sec-paper">
   <div class="wrap">
-    ${trustedBy({ dark: false })}
+    <div class="sec-head reveal">
+      <span class="eyebrow">What Our Customers Say</span>
+      <h2>Straight from the people who rely on us in the field.</h2>
+    </div>
     ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout review only. The launch version of this page will feature Norton’s real, verified customer reviews, cleaned up and tagged by industry and city per the site plan.</div>` : ''}
     <div class="grid-3">${quotes}</div>
   </div>

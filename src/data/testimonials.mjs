@@ -49,13 +49,6 @@ export const TESTIMONIALS = [
     tag: 'National Retail',
   },
   {
-    quote:
-      'Norton Equipment is #1 in service and equipment in the mid-south area and beyond, providing quality service, support, and equipment for Williams-Sonoma for 10 years.',
-    name: 'Eric Marsiglia',
-    role: 'Williams-Sonoma',
-    tag: 'Distribution',
-  },
-  {
     wide: true,
     quote: [
       'Norton Equipment has consistently proven to be a reliable and responsive partner for all our repair needs. When equipment issues arise, their team responds quickly to minimize downtime and keep operations running smoothly.',
