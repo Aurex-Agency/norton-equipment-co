@@ -274,7 +274,7 @@ function footerHtml() {
         <div><b>Norton Equipment Company</b><span>Est. March ${SITE.founded} · Byhalia, MS</span></div>
       </div>
       <p class="foot-tagline">“Built for the work behind the waste.”</p>
-      <p>Compactors, balers, and recycling equipment: sold, serviced, and rebuilt across the Mid-South. Any brand. Any model. ${esc(SITE.tagline)}</p>
+      <p>Built on service. Backed by experience.</p>
       <div class="foot-nap">
         <span>${IC.pin}<span>${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}</span></span>
         <a href="${SITE.phoneHref}">${IC.phone}<span>${esc(SITE.phone)}</span></a>
