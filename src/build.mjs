@@ -289,6 +289,7 @@ function footerHtml() {
     <div class="wrap">
       <span>© ${new Date().getFullYear()} ${esc(SITE.legalName)}. All rights reserved.</span>
       <span><a href="/privacy-policy/">Privacy Policy</a></span>
+      <span><a href="/terms/">Terms of Use</a></span>
       <span class="aurex">Site by <a href="mailto:kalob@aurexagency.com">Aurex Agency</a></span>
     </div>
   </div>
@@ -1393,6 +1394,7 @@ function formHtml({ subject, service = false }) {
   <div class="full">
     <button type="submit" class="btn btn-gold btn-lg" style="width:100%">Send Request <span class="arw">→</span></button>
     <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
+    <p class="form-consent">By clicking “Submit,” you agree to Norton Equipment Co.'s <a href="/terms/">Terms of Use</a> and <a href="/privacy-policy/">Privacy Policy</a>. You consent to receive phone calls and SMS messages from Norton Equipment Co. to provide updates on your order and/or for marketing purposes. Message frequency depends on your activity. You may opt-out by texting “STOP.” Message and data rates may apply.</p>
     <p class="form-note">We respond within one business day, usually much faster. Down machine? Skip the form and call <a href="${SITE.phoneHref}" class="fn-call">${esc(SITE.phone)}</a>.</p>
   </div>
 </form>`;
@@ -1492,33 +1494,185 @@ function buildPrivacy() {
 ${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Privacy Policy', sub: '', ctas: false })}
 <section class="sec sec-paper">
   <div class="wrap">
-    <div class="prose reveal">
-      <p class="lead">Norton Equipment Company respects your privacy. This policy explains what we collect on this website and what we do with it. Short version: we collect what you send us, we use it to respond to you, and we don’t sell it.</p>
-      <h2>Information we collect</h2>
+    <div class="prose reveal legal">
+      <p class="lead"><strong>Effective Date:</strong> April 22, 2025</p>
+
+      <h2>1. Introduction</h2>
+      <p>We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your information when you visit our website, use our services, or interact with us, including through SMS communications.</p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We may collect the following types of information:</p>
       <ul>
-        <li><strong>Information you submit</strong>: name, company, phone, email, and message contents when you use our quote or contact forms, call, or email us.</li>
-        <li><strong>Usage information</strong>: standard analytics data such as pages visited, approximate location, device type, and referring site, collected via our analytics provider to understand how the site is used.</li>
+        <li><strong>Personal Information:</strong> Name, email address, phone number, mailing address, and payment information when you register, make a purchase, or contact us.</li>
+        <li><strong>Non-Personal Information:</strong> Browser type, operating system, IP address, and browsing behavior collected through cookies and similar technologies.</li>
       </ul>
-      <h2>How we use it</h2>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use the collected information to:</p>
       <ul>
-        <li>To respond to quote and service requests and conduct normal business with you.</li>
-        <li>To improve this website and our services.</li>
-        <li>We do <strong>not</strong> sell, rent, or trade your personal information.</li>
+        <li>Provide and improve our services.</li>
+        <li>Process transactions and send related information.</li>
+        <li>Respond to inquiries and provide customer support.</li>
+        <li>Send promotional communications, if you have opted in.</li>
+        <li>Analyze website usage to enhance user experience.</li>
       </ul>
-      <h2>Cookies &amp; analytics</h2>
-      <p>This site may use cookies and similar technologies for analytics. You can disable cookies in your browser settings without losing access to the site’s content.</p>
-      <h2>Data retention &amp; your choices</h2>
-      <p>We keep submitted information as long as needed for the business purpose it was provided for. To ask what we hold about you or request deletion, contact us at <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a> or ${esc(SITE.phone)}.</p>
-      <h2>Contact</h2>
-      <p>${esc(SITE.legalName)} · ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)} · ${esc(SITE.phone)}</p>
-      <p><em>Last updated: ${BUILD_DATE}. This is a draft policy for review, final language should be confirmed before launch.</em></p>
+
+      <h2>4. Information Sharing and Disclosure</h2>
+      <p>We do not sell or rent your personal information. We may share information with:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> Trusted third parties who assist in operating our website and conducting our business, provided they agree to keep information confidential.</li>
+        <li><strong>Legal Requirements:</strong> When required by law or to protect our rights, property, or safety.</li>
+      </ul>
+
+      <h2>5. Data Security</h2>
+      <p>We implement appropriate security measures, including SSL encryption, to protect your personal information. However, no method of transmission over the Internet is 100% secure.</p>
+
+      <h2>6. Cookies and Tracking Technologies</h2>
+      <p>We use cookies to enhance your experience, analyze site traffic, and serve targeted advertisements. You can control cookie preferences through your browser settings. Disabling cookies may affect site functionality.</p>
+
+      <h2>7. SMS Campaign Policy</h2>
+      <h3>7.1. Consent and Opt-In</h3>
+      <p>By providing your mobile number and opting into our SMS program, you consent to receive text messages from us. Message frequency may vary. Standard message and data rates may apply.</p>
+      <h3>7.2. Information Collected</h3>
+      <p>When you opt into our SMS program, we may collect:</p>
+      <ul>
+        <li><strong>Mobile Phone Number:</strong> To send you SMS messages.</li>
+        <li><strong>Name and Preferences:</strong> If provided, to personalize messages.</li>
+        <li><strong>Interaction Data:</strong> Details about your interactions with our messages, including delivery status and response times.</li>
+      </ul>
+      <h3>7.3. Use of Information</h3>
+      <p>We use the collected information to:</p>
+      <ul>
+        <li>Send you transactional messages related to your account or purchases.</li>
+        <li>Provide promotional offers, updates, and other marketing communications.</li>
+        <li>Improve our services and customer experience.</li>
+      </ul>
+      <h3>7.4. Opt-Out Instructions</h3>
+      <p>You can opt out of receiving SMS messages at any time by replying “STOP” to any of our messages. After opting out, you will receive a confirmation message, and no further messages will be sent unless you opt in again.</p>
+      <h3>7.5. Data Sharing and Disclosure</h3>
+      <p>We do not sell or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our SMS program, provided they agree to keep your information confidential and use it only for the purposes specified by us.</p>
+      <h3>7.6. Data Security</h3>
+      <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+      <h3>7.7. Data Retention</h3>
+      <p>We retain your personal information only for as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required or permitted by law.</p>
+
+      <h2>8. Credit Card Information Usage</h2>
+      <h3>8.1. Collection and Use</h3>
+      <p>We collect credit card information solely to process authorized transactions, such as purchases or donations. This information includes the cardholder's name, card number, expiration date, and security code. We do not use this information for any other purposes without your explicit consent.</p>
+      <h3>8.2. Secure Processing</h3>
+      <p>All credit card transactions are processed through Payment Card Industry Data Security Standard (PCI DSS) compliant payment gateways. These gateways employ encryption and other security measures to protect your data during transmission.</p>
+      <h3>8.3. Data Storage</h3>
+      <p>We do not store your credit card information on our servers. Any necessary information is securely stored by our payment processors, who are obligated to maintain the confidentiality and security of your data.</p>
+      <h3>8.4. Access Control</h3>
+      <p>Access to credit card information is restricted to authorized personnel who require it to perform their job functions. These individuals are trained in data protection and are bound by confidentiality agreements.</p>
+      <h3>8.5. Disclosure</h3>
+      <p>We do not sell, trade, or rent your credit card information to third parties. We may disclose your information only when required by law or to protect our rights and safety, or that of others.</p>
+      <h3>8.6. Retention</h3>
+      <p>We retain credit card information only for as long as necessary to complete the transaction or as required by law. After this period, the information is securely disposed of to prevent unauthorized access.</p>
+      <h3>8.7. Your Rights</h3>
+      <p>You have the right to access, correct, or delete your credit card information held by us. To exercise these rights, please contact us at <a href="${SITE.phoneHref}">${esc(SITE.phone)}</a>.</p>
+
+      <h2>9. Your Rights and Choices</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access, update, or delete your personal information.</li>
+        <li>Opt out of receiving promotional communications.</li>
+        <li>Disable cookies through your browser settings.</li>
+      </ul>
+
+      <h2>10. Children's Privacy</h2>
+      <p>Our services are not directed to individuals under 13. We do not knowingly collect personal information from children.</p>
+
+      <h2>11. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated effective date. We encourage you to review this policy regularly to stay informed about our information practices.</p>
+
+      <h2>12. Contact Us</h2>
+      <p>If you have questions about this Privacy Policy, you may contact us using the information below.</p>
+      <p>
+        ${esc(SITE.legalName)}<br>
+        ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}<br>
+        <a href="mailto:${esc(SITE.emailCc)}">${esc(SITE.emailCc)}</a><br>
+        <a href="${SITE.phoneHref}">${esc(SITE.phone)}</a>
+      </p>
     </div>
   </div>
 </section>`;
   out('privacy-policy/index.html', layout({
     path: '/privacy-policy/',
     title: 'Privacy Policy | Norton Equipment',
-    desc: 'Privacy policy for the Norton Equipment Company website.',
+    desc: 'Privacy policy for Norton Equipment Co.: how we collect, use, and protect your information, including our SMS communications and opt-out terms.',
+    body,
+    ld: [ldBreadcrumbs(crumbs)],
+    noCta: true,
+  }));
+}
+
+function buildTerms() {
+  const crumbs = [{ label: 'Home', href: '/' }, { label: 'Terms of Use', href: '/terms/' }];
+  const body = `
+${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Terms of Use', sub: '', ctas: false })}
+<section class="sec sec-paper">
+  <div class="wrap">
+    <div class="prose reveal legal">
+      <p class="lead"><strong>Effective Date:</strong> April 22, 2025</p>
+
+      <h2>1. Acceptance of These Terms</h2>
+      <p>These Terms of Use (the “Terms”) govern your access to and use of the website of ${esc(SITE.legalName)} (“Norton Equipment,” “we,” “us,” or “our”), located at ${esc(SITE.baseUrl.replace('https://', ''))}, and any related content, services, and communications (collectively, the “Services”). By accessing or using the Services, you agree to be bound by these Terms and by our <a href="/privacy-policy/">Privacy Policy</a>. If you do not agree, please do not use the Services.</p>
+
+      <h2>2. Who We Are</h2>
+      <p>Norton Equipment Co. sells, services, and refurbishes commercial trash compactors, balers, and recycling equipment across the Mid-South. Information on this website is provided for general informational purposes and does not constitute a binding offer, quote, or warranty unless confirmed by us in writing.</p>
+
+      <h2>3. Use of the Services</h2>
+      <p>You agree to use the Services only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of the Services by, any third party. You agree not to:</p>
+      <ul>
+        <li>Use the Services in violation of any applicable law or regulation.</li>
+        <li>Attempt to gain unauthorized access to any portion of the Services, other accounts, or any systems or networks connected to the Services.</li>
+        <li>Introduce viruses, malware, or other harmful code, or otherwise interfere with the proper working of the Services.</li>
+        <li>Copy, scrape, harvest, or collect information about other users, or use automated means to access the Services without our permission.</li>
+      </ul>
+
+      <h2>4. Quotes, Pricing, and Availability</h2>
+      <p>Product descriptions, specifications, pricing, and availability shown on this website are subject to change without notice and may contain errors. Any quote we provide is an estimate based on the information available to us and is not binding until confirmed in a written agreement or invoice. Equipment sizing and recommendations are guidance, not guarantees, and depend on the accuracy of the information you provide.</p>
+
+      <h2>5. Communications Consent</h2>
+      <p>When you submit a form, call, or text us, you consent to receive communications from us related to your request, including phone calls, email, and SMS text messages, as described in our <a href="/privacy-policy/">Privacy Policy</a>. Message frequency depends on your activity. You may opt out of SMS messages at any time by replying “STOP.” Message and data rates may apply. Consent to marketing messages is not a condition of any purchase.</p>
+
+      <h2>6. Intellectual Property</h2>
+      <p>All content on this website, including text, graphics, logos, images, and the “Norton Equipment Co.” name and marks, is owned by or licensed to us and is protected by applicable intellectual property laws. You may view and print content for your own personal, non-commercial use. You may not otherwise reproduce, distribute, modify, or create derivative works from our content without our prior written permission.</p>
+
+      <h2>7. Third-Party Links</h2>
+      <p>The Services may contain links to third-party websites or resources. We provide these links for convenience only and do not endorse and are not responsible for the content, products, or practices of any third-party sites. Your use of third-party websites is at your own risk and subject to their terms.</p>
+
+      <h2>8. Disclaimer of Warranties</h2>
+      <p>The Services are provided on an “as is” and “as available” basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement, regarding the website and its content. We do not warrant that the Services will be uninterrupted, error-free, or free of harmful components. This section does not affect any separate written warranty we may provide with equipment or services we sell.</p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, Norton Equipment and its owners, employees, and agents will not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, arising out of or relating to your use of, or inability to use, the Services, whether based on warranty, contract, tort, or any other legal theory.</p>
+
+      <h2>10. Indemnification</h2>
+      <p>You agree to indemnify and hold harmless Norton Equipment and its owners, employees, and agents from any claims, damages, liabilities, and expenses (including reasonable attorneys' fees) arising out of your use of the Services or your violation of these Terms.</p>
+
+      <h2>11. Governing Law</h2>
+      <p>These Terms are governed by the laws of the State of Mississippi, without regard to its conflict-of-laws principles. Any dispute arising out of or relating to these Terms or the Services will be subject to the exclusive jurisdiction of the state and federal courts located in Mississippi.</p>
+
+      <h2>12. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Changes will be posted on this page with an updated effective date. Your continued use of the Services after changes are posted constitutes your acceptance of the revised Terms.</p>
+
+      <h2>13. Contact Us</h2>
+      <p>If you have questions about these Terms, you may contact us using the information below.</p>
+      <p>
+        ${esc(SITE.legalName)}<br>
+        ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}<br>
+        <a href="mailto:${esc(SITE.emailCc)}">${esc(SITE.emailCc)}</a><br>
+        <a href="${SITE.phoneHref}">${esc(SITE.phone)}</a>
+      </p>
+    </div>
+  </div>
+</section>`;
+  out('terms/index.html', layout({
+    path: '/terms/',
+    title: 'Terms of Use | Norton Equipment',
+    desc: 'Terms of Use for the Norton Equipment Co. website: acceptable use, communications consent, disclaimers, and limitation of liability.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
     noCta: true,
@@ -1745,7 +1899,7 @@ function buildMeta() {
 // ============================================================
 // RUN
 // ============================================================
-const GENERATED = ['trash-compactors', 'balers-recycling', 'services', 'brands', 'locations', 'about', 'testimonials', 'contact', 'request-a-quote', 'privacy-policy', 'blog', ...LEGACY_POSTS.map((p) => p.slug)];
+const GENERATED = ['trash-compactors', 'balers-recycling', 'services', 'brands', 'locations', 'about', 'testimonials', 'contact', 'request-a-quote', 'privacy-policy', 'terms', 'blog', ...LEGACY_POSTS.map((p) => p.slug)];
 for (const dir of GENERATED) {
   const p = join(ROOT, dir);
   if (existsSync(p)) rmSync(p, { recursive: true });
@@ -1761,6 +1915,7 @@ buildTestimonials();
 buildQuote();
 buildContact();
 buildPrivacy();
+buildTerms();
 buildBlog();
 buildLegacyBlog();
 build404();
