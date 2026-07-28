@@ -190,7 +190,7 @@ function headerHtml(activePath) {
   const item = (href, label, list, wide) => {
     const current = activePath.startsWith(href) && href !== '/';
     return `<li>
-      <a href="${href}"${current ? ' aria-current="true"' : ''}>${label}<span class="caret" aria-hidden="true"></span></a>
+      <a href="${href}"${current ? ' aria-current="true"' : ''} aria-haspopup="true" aria-expanded="false">${label}<span class="caret" aria-hidden="true"></span></a>
       ${ddList(list, wide)}
     </li>`;
   };
@@ -289,6 +289,7 @@ function footerHtml() {
       <span>© ${new Date().getFullYear()} ${esc(SITE.legalName)}. All rights reserved.</span>
       <span><a href="/privacy-policy/">Privacy Policy</a></span>
       <span><a href="/terms/">Terms of Use</a></span>
+      <span><a href="/accessibility/">Accessibility</a></span>
       <span class="aurex">Site by <a href="mailto:kalob@aurexagency.com">Aurex Agency</a></span>
     </div>
   </div>
@@ -1261,6 +1262,7 @@ ${pageHero({
   <div class="wrap">
     <div class="split">
       <div class="prose reveal">
+        <h2 class="sr-only">Our story</h2>
         <p class="lead">Norton Equipment Company started in March 1997 as Norton Compressor Service, a hands-on Byhalia shop built around one idea: fix it right, show up when you say you will, and the work will speak for itself.</p>
         <div class="timeline">
           <div class="tl-item reveal"><div class="tl-node"></div><div><span class="tl-year">March 1997</span><h3>Norton Compressor Service</h3><p>Founded in Byhalia, Mississippi, providing parts, repairs, and maintenance for air compressors throughout the Memphis area.</p></div></div>
@@ -1678,6 +1680,55 @@ ${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Terms of Use', sub: '', ctas
   }));
 }
 
+function buildAccessibility() {
+  const crumbs = [{ label: 'Home', href: '/' }, { label: 'Accessibility', href: '/accessibility/' }];
+  const body = `
+${pageHero({ crumbs, kicker: 'The Fine Print', h1: 'Accessibility Statement', sub: '', ctas: false })}
+<section class="sec sec-paper">
+  <div class="wrap">
+    <div class="prose reveal legal">
+      <p class="lead">${esc(SITE.legalName)} is committed to making its website accessible to everyone, including people with disabilities. We want every visitor to be able to find information about our equipment and services and to reach us easily.</p>
+
+      <h2>Our Standard</h2>
+      <p>We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA, which are the standards referenced by the Americans with Disabilities Act (ADA). These guidelines explain how to make web content more accessible for people with a wide range of disabilities, including visual, hearing, cognitive, and motor impairments.</p>
+
+      <h2>What We Have Done</h2>
+      <p>Steps we have taken on this website include:</p>
+      <ul>
+        <li>Semantic, structured HTML with a “Skip to content” link and clear heading order.</li>
+        <li>Text and interface colors chosen to meet AA contrast ratios.</li>
+        <li>Descriptive alternative text for meaningful images.</li>
+        <li>Labeled forms with clear instructions and status messages.</li>
+        <li>Full keyboard operability, with a visible focus indicator for keyboard users.</li>
+        <li>Support for the operating system's “reduce motion” setting, which pauses non-essential animation.</li>
+        <li>Responsive layouts that work across phones, tablets, and desktops.</li>
+      </ul>
+
+      <h2>Ongoing Effort</h2>
+      <p>Accessibility is an ongoing effort rather than a one-time task. We review new content and features as they are added and work to correct issues we become aware of. Some content provided by third parties may not be fully under our control.</p>
+
+      <h2>Need Help or Found a Problem?</h2>
+      <p>If you have trouble using any part of this website, or if you would like information in a different format, please tell us. We will do our best to help and to fix the issue.</p>
+      <p>
+        ${esc(SITE.legalName)}<br>
+        ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}<br>
+        <a href="mailto:${esc(SITE.emailCc)}">${esc(SITE.emailCc)}</a><br>
+        <a href="${SITE.phoneHref}">${esc(SITE.phone)}</a>
+      </p>
+      <p>When you contact us, please describe the page and the problem so we can respond as quickly as possible.</p>
+    </div>
+  </div>
+</section>`;
+  out('accessibility/index.html', layout({
+    path: '/accessibility/',
+    title: 'Accessibility Statement | Norton Equipment',
+    desc: 'Norton Equipment Co. is committed to WCAG 2.1 AA accessibility. Learn what we have done and how to report an accessibility issue.',
+    body,
+    ld: [ldBreadcrumbs(crumbs)],
+    noCta: true,
+  }));
+}
+
 function build404() {
   const body = `
 <section class="sec sec-dark" style="min-height:60vh;display:flex;align-items:center">
@@ -1898,7 +1949,7 @@ function buildMeta() {
 // ============================================================
 // RUN
 // ============================================================
-const GENERATED = ['trash-compactors', 'balers-recycling', 'services', 'brands', 'locations', 'about', 'testimonials', 'contact', 'request-a-quote', 'privacy-policy', 'terms', 'blog', ...LEGACY_POSTS.map((p) => p.slug)];
+const GENERATED = ['trash-compactors', 'balers-recycling', 'services', 'brands', 'locations', 'about', 'testimonials', 'contact', 'request-a-quote', 'privacy-policy', 'terms', 'accessibility', 'blog', ...LEGACY_POSTS.map((p) => p.slug)];
 for (const dir of GENERATED) {
   const p = join(ROOT, dir);
   if (existsSync(p)) rmSync(p, { recursive: true });
@@ -1915,6 +1966,7 @@ buildQuote();
 buildContact();
 buildPrivacy();
 buildTerms();
+buildAccessibility();
 buildBlog();
 buildLegacyBlog();
 build404();

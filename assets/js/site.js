@@ -19,6 +19,10 @@
 
   // dropdowns: click-to-toggle on touch/mobile, hover handles desktop via CSS
   var mq = window.matchMedia('(max-width: 1260px)');
+  function setExpanded(li, on) {
+    var t = li.querySelector('a');
+    if (t) t.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
   document.querySelectorAll('.nav-links > li').forEach(function (li) {
     var trigger = li.querySelector('a');
     var dd = li.querySelector('.dd');
@@ -27,14 +31,20 @@
       if (mq.matches) {
         e.preventDefault();
         var wasOpen = li.classList.contains('open');
-        li.parentElement.querySelectorAll('li.open').forEach(function (o) { o.classList.remove('open'); });
-        if (!wasOpen) li.classList.add('open');
+        li.parentElement.querySelectorAll('li.open').forEach(function (o) { o.classList.remove('open'); setExpanded(o, false); });
+        if (!wasOpen) { li.classList.add('open'); setExpanded(li, true); }
       }
+    });
+    // keyboard/desktop: reflect the CSS focus-within disclosure in aria-expanded
+    li.addEventListener('focusin', function () { setExpanded(li, true); });
+    li.addEventListener('focusout', function (e) {
+      if (!li.contains(e.relatedTarget)) setExpanded(li, false);
     });
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       document.querySelectorAll('.nav-links li.open').forEach(function (o) { o.classList.remove('open'); });
+      document.querySelectorAll('.nav-links > li > a[aria-expanded="true"]').forEach(function (a) { a.setAttribute('aria-expanded', 'false'); });
       if (header) header.classList.remove('open');
     }
   });
