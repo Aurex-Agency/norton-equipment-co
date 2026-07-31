@@ -37,6 +37,8 @@
     { "source": "/service-types/waste-stream-consultations", "destination": "/services/waste-stream-consultations/", "permanent": true },
     { "source": "/service-types/welding-and-metal-fabrication", "destination": "/services/equipment-refurbishment/", "permanent": true },
     { "source": "/recycling-equipment-in-tennessee", "destination": "/locations/", "permanent": true },
+    { "source": "/locations/clarksdale-ms", "destination": "/locations/", "permanent": true },
+    { "source": "/coronavirus-on-cardboard-plastic-and-steel", "destination": "/blog/", "permanent": true },
     { "source": "/recycling-equipment-in-mississippi", "destination": "/locations/", "permanent": true },
     { "source": "/recycling-equipment-in-arkansas", "destination": "/locations/", "permanent": true },
     { "source": "/cardboard-baling-wire-tennessee", "destination": "/balers-recycling/baling-wire/", "permanent": true },

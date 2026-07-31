@@ -512,7 +512,7 @@ function buildHome() {
       <div class="stat reveal"><div class="num">1997</div><div class="lab">Serving the Mid-South<br>Since</div></div>
       <div class="stat reveal" data-d="1"><div class="num" data-count="100">0</div><div class="lab">Mile Service Radius<br>From Memphis</div></div>
       <div class="stat reveal" data-d="2"><div class="num" data-count="3">0</div><div class="lab">States Covered<br>TN · MS · AR</div></div>
-      <div class="stat reveal" data-d="3"><div class="num" data-count="30">0<span class="u">+</span></div><div class="lab">Cities Served<br>Across the Region</div></div>
+      <div class="stat reveal" data-d="3"><div class="num" data-count="31">0<span class="u">+</span></div><div class="lab">Cities Served<br>Across the Region</div></div>
     </div>
   </div>
 </div>
@@ -1138,7 +1138,7 @@ ${pageHero({
   out('locations/index.html', layout({
     path: '/locations/',
     title: 'Service Area & Locations | Memphis, North MS, West TN, East AR | Norton Equipment',
-    desc: 'Norton Equipment serves 30 cities within 100 miles of Memphis: compactor and baler sales, service, and delivery across West Tennessee, North Mississippi, and East Arkansas. Find your city.',
+    desc: 'Norton Equipment serves 31 cities within 100 miles of Memphis: compactor and baler sales, service, and delivery across West Tennessee, North Mississippi, and East Arkansas. Find your city.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1467,7 +1467,7 @@ ${pageHero({
       </div>
       <div class="reveal" data-d="1">
         <div class="sec-head"><span class="eyebrow">Coverage</span><h2>Where we run.</h2></div>
-        <p style="margin-bottom:18px">${esc(SITE.serviceAreaBlurb)} Regular routes cover 30 cities, see the full <a href="/locations/" style="color:var(--gold-deep);font-weight:700">service area</a>.</p>
+        <p style="margin-bottom:18px">${esc(SITE.serviceAreaBlurb)} Regular routes cover 31 cities, see the full <a href="/locations/" style="color:var(--gold-deep);font-weight:700">service area</a>.</p>
         <ul class="checks">
           ${checkLi('Sales, delivery &amp; installation region-wide')}
           ${checkLi('Service dispatch across the full 100-mile radius')}

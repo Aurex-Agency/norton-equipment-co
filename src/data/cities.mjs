@@ -178,7 +178,7 @@ export const CITIES = [
       'We serve Batesville plants and retailers with the full line: stationary compactors and balers for production waste, service on whatever brands are already on the pads, refurbishment that stretches capital budgets, and PM programs that keep single-machine sites out of trouble. About an hour from the shop, on routes we run weekly.',
     ],
     industries: ['Electrical & industrial manufacturing', 'Food production', 'Distribution', 'Retail & grocery', 'Agriculture', 'Schools & municipal'],
-    nearby: ['oxford-ms', 'hernando-ms', 'clarksdale-ms', 'byhalia-ms'],
+    nearby: ['oxford-ms', 'hernando-ms', 'tunica-ms', 'byhalia-ms'],
   },
   {
     slug: 'oxford-ms', city: 'Oxford', state: 'Mississippi', abbr: 'MS', miles: 50,
@@ -190,15 +190,6 @@ export const CITIES = [
     nearby: ['batesville-ms', 'holly-springs-ms', 'new-albany-ms', 'byhalia-ms'],
   },
   {
-    slug: 'clarksdale-ms', city: 'Clarksdale', state: 'Mississippi', abbr: 'MS', miles: 75,
-    angle: [
-      'Clarksdale is the commercial heart of the upper Delta: agriculture and ag processing, food distribution, healthcare, and a tourism economy built on the blues. Delta operations tend to run equipment hard and long, and they need a service partner who shows up rather than a dealer who only answers for machines under warranty.',
-      'Norton services all brands and vintages, which is precisely what Delta equipment fleets need. We cover Clarksdale and Coahoma County with repair, maintenance programs, reconditioned machines, and wire delivery, about 90 minutes from the shop.',
-    ],
-    industries: ['Agriculture & ag processing', 'Food distribution', 'Healthcare', 'Tourism & hospitality', 'Retail & grocery', 'Municipal'],
-    nearby: ['tunica-ms', 'batesville-ms', 'hernando-ms', 'forrest-city-ar'],
-  },
-  {
     slug: 'new-albany-ms', city: 'New Albany', state: 'Mississippi', abbr: 'MS', miles: 50,
     angle: [
       'New Albany sits at the center of north Mississippi’s furniture manufacturing belt, with upholstered furniture plants and their suppliers spread through Union County and its neighbors. Furniture production creates one of the toughest waste profiles in industry (bulky frames and trim, mountains of cardboard, foam, and film) that ordinary dumpster service simply cannot digest economically.',
@@ -206,6 +197,24 @@ export const CITIES = [
     ],
     industries: ['Furniture manufacturing', 'Suppliers & components', 'Distribution', 'Healthcare', 'Retail & grocery', 'Agriculture'],
     nearby: ['holly-springs-ms', 'oxford-ms', 'corinth-ms', 'byhalia-ms'],
+  },
+  {
+    slug: 'tupelo-ms', city: 'Tupelo', state: 'Mississippi', abbr: 'MS', miles: 80,
+    angle: [
+      'Tupelo anchors northeast Mississippi: the upholstered furniture industry and its supplier base, automotive manufacturing, a regional medical center that draws patients from across the state, and the retail and distribution that follows all of it. Furniture plants in particular throw off exactly the materials our equipment is built for, corrugated by the trailer load plus foam, film, and fabric scrap that most standard machines handle badly.',
+      'We cover Tupelo and Lee County with baler and compactor sales, all-brand service, refurbished machines, and baling wire delivery. It is a straight run down Highway 78 from the Byhalia shop, and specialty material is worth a conversation before you buy: the wrong machine on foam or film costs you twice.',
+    ],
+    industries: ['Furniture & upholstery manufacturing', 'Automotive & suppliers', 'Healthcare & medical', 'Grocery & retail', 'Distribution & warehousing', 'Municipal'],
+    nearby: ['pontotoc-ms', 'new-albany-ms', 'corinth-ms', 'oxford-ms'],
+  },
+  {
+    slug: 'pontotoc-ms', city: 'Pontotoc', state: 'Mississippi', abbr: 'MS', miles: 75,
+    angle: [
+      'Pontotoc County runs on furniture and upholstery plants, agriculture and poultry, and the light manufacturing that feeds the larger Tupelo industrial base. These are working plants with real volume and not much patience for a machine sitting down, which is the kind of customer we are built for.',
+      'Norton sells, installs, and services balers and compactors across Pontotoc, and we service every brand and vintage whether or not it came from us. Refurbished machines, wire delivery, and preventive maintenance all reach here on our regular routes.',
+    ],
+    industries: ['Furniture & upholstery manufacturing', 'Agriculture & poultry', 'Light manufacturing', 'Grocery & retail', 'Warehousing', 'Municipal'],
+    nearby: ['tupelo-ms', 'new-albany-ms', 'oxford-ms', 'byhalia-ms'],
   },
   {
     slug: 'corinth-ms', city: 'Corinth', state: 'Mississippi', abbr: 'MS', miles: 90,
@@ -223,7 +232,7 @@ export const CITIES = [
       'Norton Equipment covers both from about an hour away: sealed compaction for the resorts’ food-heavy streams, balers for their cardboard, and rugged, serviceable machines for the farm and gin side of the county.',
     ],
     industries: ['Casino resorts & hotels', 'Restaurants & entertainment', 'Agriculture & gins', 'Distribution', 'Retail & grocery', 'Municipal'],
-    nearby: ['clarksdale-ms', 'hernando-ms', 'horn-lake-ms', 'west-memphis-ar'],
+    nearby: ['batesville-ms', 'hernando-ms', 'horn-lake-ms', 'west-memphis-ar'],
   },
 
   // ---------------- ARKANSAS ----------------
@@ -252,7 +261,7 @@ export const CITIES = [
       'Out here, equipment support is about reliability at distance: machines specced to run without babysitting, preventive maintenance on a route schedule, and a service company that answers the phone when something breaks. That is exactly how we cover Forrest City, about 90 minutes west of the shop.',
     ],
     industries: ['Food processing', 'Steel & industrial products', 'Agriculture', 'Distribution', 'Retail & grocery', 'Corrections & institutional'],
-    nearby: ['west-memphis-ar', 'marion-ar', 'clarksdale-ms', 'jonesboro-ar'],
+    nearby: ['west-memphis-ar', 'marion-ar', 'memphis-tn', 'jonesboro-ar'],
   },
   {
     slug: 'osceola-ar', city: 'Osceola', state: 'Arkansas', abbr: 'AR', miles: 90,
