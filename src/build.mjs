@@ -208,7 +208,7 @@ function headerHtml(activePath) {
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="/" class="brand" aria-label="Norton Equipment Company home page">
-      <img src="/assets/img/logo-badge.webp" alt="" width="58" height="31">
+      <img src="/assets/img/logo-badge.webp" alt="" width="58" height="32">
       <span class="txt"><b>Norton Equipment</b><span>Compactors · Balers · Service</span></span>
     </a>
     <nav aria-label="Primary">
@@ -270,7 +270,7 @@ function footerHtml() {
   <div class="wrap foot-grid">
     <div class="foot-about">
       <div class="foot-brand">
-        <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="64" height="34" loading="lazy">
+        <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="64" height="35" loading="lazy">
         <div><b>Norton Equipment Company</b><span>Est. March ${SITE.founded} · Byhalia, MS</span></div>
       </div>
       <p class="foot-tagline">Built on service. Backed by experience.</p>
@@ -1283,7 +1283,7 @@ ${pageHero({
       </div>
       <div class="reveal" data-d="1">
         <div class="form-card glance-card">
-          <img class="glance-badge" src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="150" height="79" loading="lazy">
+          <img class="glance-badge" src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="150" height="83" loading="lazy">
           <span class="eyebrow">Norton at a Glance</span>
           <ul class="checks mt-2">
             ${checkLi('<strong>Founded:</strong> March 1997, as Norton Compressor Service')}
@@ -1300,7 +1300,10 @@ ${pageHero({
       </div>
     </div>
     <figure class="family-band reveal">
-      <img src="/assets/img/norton-family-wide.webp" alt="The Norton family: the founders alongside JT and Hillary" width="1120" height="577" loading="lazy">
+      <picture>
+        <source media="(max-width:700px)" srcset="/assets/img/norton-family-stacked.webp" width="860" height="1697">
+        <img src="/assets/img/norton-family-wide.webp" alt="The Norton family: the founders alongside JT and Hillary" width="1120" height="577" loading="lazy">
+      </picture>
       <figcaption>The Norton family.</figcaption>
     </figure>
   </div>
