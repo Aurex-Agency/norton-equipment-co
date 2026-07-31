@@ -23,8 +23,9 @@
 //  - Used Recycling Equipment page removed, absorbed by the two above.
 //  - Specialty balers: Norton sources them, does not build them.
 //  - PENDING CLIENT: photos for stationary, pre-crusher, used
-//    compactors, and steel options; warranty terms on as-is used
-//    balers; whether the plant tear-out customer can be named.
+//    compactors, and steel options; the exact warranty TERM on used
+//    balers (coverage confirmed, duration not stated); whether the
+//    plant tear-out customer can be named.
 // ============================================================
 
 export const COMPACTOR_OVERVIEW = {
@@ -319,7 +320,7 @@ export const BALER_OVERVIEW = {
     { slug: 'two-ram-balers', blurb: 'Multi-material baling for recyclers and high-volume plants.' },
     { slug: 'specialty-balers', blurb: 'Foam, film, and other specialty materials, sourced to order.' },
     { slug: 'refurbished-balers', blurb: 'Rebuilt in our shop, cycle-tested, and warrantied.' },
-    { slug: 'used-balers', blurb: 'Sold as they came in: inspected, described, priced accordingly.' },
+    { slug: 'used-balers', blurb: 'Sold as they came in: inspected, warrantied, priced below refurbished.' },
     { slug: 'baling-wire', blurb: 'Single-loop and double-loop wire, delivered across the Mid-South.' },
   ],
   faqs: [
@@ -450,7 +451,7 @@ export const BALERS = [
     intro: [
       'A baler is a thick steel chamber and a hydraulic cylinder. Rebuilt properly, a ten-year-old machine will bale cardboard for another decade, at roughly half the price of new. That has made refurbished balers one of the smartest purchases in the industry, and one of Norton’s specialties since the beginning.',
       'Refurbished means we actually fix the machine ourselves. It goes through our Byhalia shop: cylinder resealed, hydraulics flushed and tested, chamber and platen inspected, doors and latches trued, controls and safety interlocks verified, then cycle-tested under load. Each one ships with a shop warranty and our service network behind it. If a machine cannot be brought to standard, we scrap it rather than sell it.',
-      'That is the difference between our refurbished machines and our used ones. A used baler is sold the way it came in. A refurbished baler has been through the shop. If you want the lower number and can live with a machine as-is, start with used balers instead.',
+      'That is the difference between our refurbished machines and our used ones. A used baler is sold the way it came in; a refurbished baler has been through the shop. Both carry a warranty and both have our techs behind them. What you are paying the difference for is the rebuild. If you would rather have the lower number and do your own wrenching, start with used balers instead.',
     ],
     bestFor: ['Small & mid-size retail', 'Startups adding recycling', 'Second machines & backups', 'Budget-driven replacements', 'Seasonal operations', 'Franchise rollouts'],
     features: [
@@ -460,7 +461,7 @@ export const BALERS = [
       { h: 'Trade up anytime', p: 'We buy back and trade as you grow: many customers step from a refurbished 60″ to a new 72″ HD with us a few years later.' },
     ],
     faqs: [
-      { q: 'What is the difference between used and refurbished?', a: 'A used baler is sold as it came in. A refurbished baler has been through our Byhalia shop: rebuilt, cycle-tested, and covered by a shop warranty. Refurbished costs more and carries far less risk.' },
+      { q: 'What is the difference between used and refurbished?', a: 'A used baler is sold the way it came in. A refurbished baler has been through our Byhalia shop: rebuilt, cycle-tested under load, and returned to spec. Both carry a warranty. Refurbished costs more because the shop work has already been done.' },
       { q: 'How do I know a refurbished baler is safe?', a: 'Every machine leaves our shop with interlocks, guards, and controls tested against current standards, and we document the reconditioning. If a machine cannot be brought to standard, we scrap it. We will not sell it.' },
       { q: 'Do you have refurbished balers ready now?', a: 'We keep cores and some finished refurbs on hand, and build the rest to order on a short turnaround. Call (662) 838-7900 and we will tell you what is ready and what we can turn around quickly.' },
       { q: 'Will you install a refurbished baler and train my team?', a: 'Delivery, rigging, anchoring, power hookup, testing, and operator training are all part of the deal, exactly as with a new machine.' },
@@ -468,32 +469,33 @@ export const BALERS = [
     related: ['used-balers', 'vertical-balers', 'baling-wire'],
   },
   {
-    // PENDING CLIENT: confirm whether as-is used machines carry any warranty
-    // at all. Written as strictly as-is with no shop warranty until confirmed,
-    // so we do not imply coverage that does not exist.
+    // PENDING CLIENT: warranty confirmed, but the term is not stated anywhere
+    // yet. Add the actual duration here once we have it: it sells harder than
+    // the generic wording currently in use.
     slug: 'used-balers',
     name: 'Used Balers',
     cardTitle: 'Used Balers',
-    kicker: 'Sold As-Is · Inspected & Disclosed',
-    short: 'Machines sold as they came in: inspected, honestly described, priced accordingly.',
-    metaTitle: 'Used Balers | Sold As-Is | Norton Equipment',
+    kicker: 'Not Rebuilt · Inspected · Warrantied',
+    short: 'Machines sold as they came in: inspected, warrantied, and priced below refurbished.',
+    metaTitle: 'Used Balers | Inspected & Warrantied | Norton Equipment',
     metaDesc:
-      'Used vertical and horizontal balers sold as-is by Norton Equipment in Byhalia, MS. Inspected and honestly described, priced below refurbished. Serving Memphis, North Mississippi, West Tennessee, and East Arkansas.',
+      'Used vertical and horizontal balers from Norton Equipment in Byhalia, MS. Inspected, warrantied, and priced below refurbished machines. Serving Memphis, North Mississippi, West Tennessee, and East Arkansas.',
     intro: [
-      'A used baler is exactly that: a working machine we bought, took in on trade, or pulled out of a closing plant, offered the way it came to us. We inspect it and tell you what we found, but we have not rebuilt it, and the price reflects that.',
-      'This is the right buy when you know what you are looking at. Processors with their own maintenance crew, operations that need a spare or a backup, and buyers who would rather put the money into a second machine than into a rebuild all do well here. If you want the machine gone through and warrantied before it lands on your floor, our refurbished balers are the answer instead.',
+      'A used baler is exactly that: a working machine we bought, took in on trade, or pulled out of a closing plant, offered the way it came to us. We inspect it and tell you what we found. We have not put it through a rebuild, and the price reflects that.',
+      'What it is not is a machine you are on your own with. Used balers still carry a warranty and our service network stands behind them, the same techs who would come out to a new machine. The difference from refurbished is the shop work, not the backing.',
+      'This is the right buy when you know what you are looking at. Processors with their own maintenance crew, operations that need a spare or a backup, and buyers who would rather put the money toward a second machine than a rebuild all do well here. If you want it gone through and rebuilt before it lands on your floor, our refurbished balers are the answer instead.',
       'Either way you get the honest version. We will tell you what a machine needs, what it is worth, and when you are better off spending a little more. The Mid-South equipment grapevine runs through our shop, so if we do not have what you want, tell us and we will watch for it.',
     ],
     bestFor: ['Buyers with their own maintenance crew', 'Spare & backup machines', 'Budget-first purchases', 'Plant liquidations (we buy)', 'Specific-machine searches', 'Operations that rebuild in house'],
     features: [
-      { h: 'Sold as-is, described honestly', p: 'We inspect every machine and tell you what we found, including what it will likely need. No surprises after the truck leaves.' },
+      { h: 'Inspected and described honestly', p: 'We go through every machine and tell you what we found, including what it will likely need. No surprises after the truck leaves.' },
+      { h: 'Warrantied and supported', p: 'Used machines come with a warranty and full access to our parts and service network. You are not buying a machine and a shrug.' },
       { h: 'The lowest entry price', p: 'Used machines sit below refurbished pricing because the shop work has not been done. You are buying the steel and the hydraulics, not a rebuild.' },
       { h: 'We buy equipment too', p: 'Closing a plant or upgrading a line? We buy balers and compactors outright, and handle the rigging and removal ourselves.' },
-      { h: 'Locator service', p: 'Hunting a specific model? We search dealer and processor networks across the region and will tell you when one surfaces.' },
     ],
     faqs: [
-      { q: 'What is the difference between used and refurbished?', a: 'Used means the machine is sold as it came in: inspected and described, but not rebuilt. Refurbished means we actually fixed it in our Byhalia shop, cycle-tested it, and backed it with a shop warranty. Used costs less and carries more risk.' },
-      { q: 'Does a used baler come with a warranty?', a: 'Used machines are sold as-is. If you want a machine backed by a shop warranty, look at our refurbished balers, which are rebuilt in house before they ship.' },
+      { q: 'What is the difference between used and refurbished?', a: 'Used means the machine is sold the way it came in: inspected and described, but not rebuilt. Refurbished means we actually fixed it in our Byhalia shop, cycle-tested it under load, and returned it to spec. Both carry a warranty. Refurbished costs more because the shop work has been done for you.' },
+      { q: 'Does a used baler come with a warranty?', a: 'Yes. Used machines carry a warranty and our service network behind them. Call (662) 838-7900 and we will go over the exact terms on the machine you are looking at.' },
       { q: 'Can you deliver and install a used baler?', a: 'Yes. Delivery, rigging, anchoring, and power hookup are available on any machine we sell, and our techs service it afterward whether or not we rebuilt it.' },
       { q: 'Can I have a used machine refurbished before delivery?', a: 'Yes, and many buyers do. Tell us what you want done and we will quote the shop work on top of the machine. At that point it becomes a refurbished baler.' },
     ],
