@@ -7,7 +7,8 @@
   "redirects": [
     { "source": "/equipment", "destination": "/trash-compactors/", "permanent": true },
     { "source": "/equipment/compactors", "destination": "/trash-compactors/", "permanent": true },
-    { "source": "/equipment/compactor-enclosures", "destination": "/trash-compactors/enclosures/", "permanent": true },
+    { "source": "/equipment/compactor-enclosures", "destination": "/trash-compactors/steel-options/", "permanent": true },
+    { "source": "/trash-compactors/enclosures", "destination": "/trash-compactors/steel-options/", "permanent": true },
     { "source": "/equipment/rental-equipment", "destination": "/trash-compactors/used/", "permanent": true },
     { "source": "/equipment/cardboard-balers", "destination": "/balers-recycling/", "permanent": true },
     { "source": "/equipment/cardboard-balers/used-vertical-balers", "destination": "/balers-recycling/refurbished-balers/", "permanent": true },

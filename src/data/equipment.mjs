@@ -13,8 +13,18 @@
 //  - Balers: umbrella term is "Balers" (not "Cardboard Balers");
 //    added Two-Ram and Specialty balers.
 //  - Used/refurbished framed as made-to-order / short turnaround.
-//  - PENDING JT: Compactor Enclosures page ("steel option") and Used
-//    Compactors page need a working session + correct photos.
+//
+// Client revisions applied 7/31:
+//  - Compactor Enclosures reworked into Steel Options: custom steel
+//    built per site (walk-on/drive-on decks, chutes, enclosures,
+//    guards). Moved to /trash-compactors/steel-options/.
+//  - Used and Refurbished balers split into separate pages; the old
+//    "Used Vertical Balers" page was refurbished content throughout.
+//  - Used Recycling Equipment page removed, absorbed by the two above.
+//  - Specialty balers: Norton sources them, does not build them.
+//  - PENDING CLIENT: photos for stationary, pre-crusher, used
+//    compactors, and steel options; warranty terms on as-is used
+//    balers; whether the plant tear-out customer can be named.
 // ============================================================
 
 export const COMPACTOR_OVERVIEW = {
@@ -38,7 +48,7 @@ export const COMPACTOR_OVERVIEW = {
     { slug: 'pre-crusher', blurb: 'Crushes bulky industrial waste before compaction: pallets, drums, furniture.' },
     { slug: 'auger', blurb: 'Screw-driven compaction for high-volume cardboard and wood waste.' },
     { slug: 'front-load-rear-load', blurb: 'Hauler-compatible front-load and rear-load containers (no compaction).' },
-    { slug: 'enclosures', blurb: 'Steel enclosures, guards, and chutes: a steel option, not a compactor type.' },
+    { slug: 'steel-options', blurb: 'Walk-on and drive-on decks, chutes, enclosures, and guards, built per site.' },
     { slug: 'used', blurb: 'Reconditioned compactors, built to order on a short turnaround.' },
   ],
   faqs: [
@@ -141,7 +151,7 @@ export const COMPACTORS = [
       { q: 'Can you service the compactor at the bottom of our trash chute?', a: 'That is one of the most common calls we run. We service chute-fed apartment and high-rise compactors across the metro, all brands, and fabricate replacement parts in-house when manufacturers are slow.' },
       { q: 'What about recycling at multi-family properties?', a: 'We can pair a compactor with a baler or additional containers for a clean dual-stream setup, and our waste stream consultation will tell you if the numbers work.' },
     ],
-    related: ['front-load-rear-load', 'enclosures', 'used'],
+    related: ['front-load-rear-load', 'steel-options', 'used'],
   },
   {
     slug: 'pre-crusher',
@@ -222,35 +232,36 @@ export const COMPACTORS = [
       { q: 'When should I switch from a container to a compactor?', a: 'When you are paying for frequent pickups on containers that leave light, a compactor usually pays for itself. Send us a couple of months of hauling invoices and we will run the comparison.' },
       { q: 'Can you service and replace our existing containers?', a: 'Yes, we handle containers as part of keeping your whole waste setup running, alongside the compactors and balers we service.' },
     ],
-    related: ['vertical-apartment', 'stationary', 'enclosures'],
+    related: ['vertical-apartment', 'stationary', 'steel-options'],
   },
   {
-    // PENDING JT (7/26): rework this whole page with JT; an enclosure is a
-    // steel option, NOT a compactor type. JT wants to feature one of Norton's
-    // own enclosures (photo to come). Framed as a steel option for now.
-    slug: 'enclosures',
-    name: 'Compactor Enclosures',
-    cardTitle: 'Enclosures',
-    kicker: 'A Steel Option · Safety · Security',
-    short: 'Steel enclosures, guards, and chutes around your machine: a steel option, not a compactor type.',
-    metaTitle: 'Compactor Enclosures, Chutes & Guarding | Norton Equipment',
+    // PENDING CLIENT PHOTO: client asked for a different image here. Using a
+    // fabrication shot until they send one of Norton's own steel work.
+    slug: 'steel-options',
+    name: 'Steel Options',
+    cardTitle: 'Steel Options',
+    kicker: 'Built Custom · Per Site · Measured to Fit',
+    short: 'Walk-on decks, drive-on decks, chutes, enclosures, and guards, built custom for your site.',
+    metaTitle: 'Steel Options | Decks, Chutes, Enclosures & Guards | Norton Equipment',
     metaDesc:
-      'Compactor enclosures, safety guarding, feed chutes, gates, and security screens built to fit your machine and pad by Norton Equipment. A steel option to keep your compactor safe, secure, and presentable in the Mid-South.',
+      'Custom steel built per site by Norton Equipment: walk-on decks, drive-on decks, feed chutes, compactor enclosures, safety guards, and more. Measured to fit your machine and building across the Mid-South.',
     intro: [
-      'An enclosure is a steel option that goes around your machine, not a type of compactor. It keeps the equipment safe, secure, and presentable: guarding that satisfies safety audits, gates and screens that stop after-hours dumping, feed chutes and hoppers that make feeding faster and cleaner, and sight screens that keep the machine off the street view.',
-      'Norton builds enclosures, guards, rails, chutes, stairs, and platforms to fit your specific machine and pad, then installs them, the same crew that services the compactor inside them. Because this is steel we build for our own equipment, it is measured and made to fit rather than ordered from a catalog and forced into place.',
+      'Steel options are the parts we build around your machine rather than a type of compactor. Walk-on decks, drive-on decks, feed chutes, compactor enclosures, guards, rails, stairs, hoppers, and platforms. Whatever the site needs to make the equipment safe, reachable, and easy to feed.',
+      'Every one of these is built custom, per site. We measure your machine, your pad, and your building, then fabricate and install to those numbers. Nothing here comes out of a catalog to be forced into place, and because we service the equipment inside it, the crew building the steel already knows how the machine has to be reached.',
+      'That applies whether or not we sold you the compactor. Brand does not matter. If you have a machine that needs a deck, a chute, or guarding around it, we will come measure it.',
     ],
     bestFor: ['Retail & grocery sites', 'Distribution centers', 'Multi-family properties', 'Hospitals & campuses', 'Municipal facilities', 'Any site with safety audits'],
     features: [
-      { h: 'Safety guarding & interlocks', p: 'Access guarding, gates, and interlocked panels that keep hands and forklifts out of the charge chamber, and your safety officer satisfied.' },
-      { h: 'Security enclosures', p: 'Locking gates and screens that end after-hours dumping and scavenging on your pad.' },
-      { h: 'Chutes, hoppers & platforms', p: 'Through-wall chutes, dock-height hoppers, cart tippers, stairs, and platforms built to your building.' },
-      { h: 'Site appearance', p: 'Screening that keeps the waste corner from being the first thing a customer sees.' },
+      { h: 'Walk-on & drive-on decks', p: 'Decks built to your grade and your loading height, rated for foot traffic or for driving onto, so material gets to the machine the way your site actually works.' },
+      { h: 'Chutes, hoppers & platforms', p: 'Through-wall chutes, dock-height hoppers, cart tippers, stairs, and platforms built to your building rather than to a standard drawing.' },
+      { h: 'Compactor enclosures', p: 'Locking gates and screens that end after-hours dumping and scavenging, and keep the waste corner from being the first thing a customer sees.' },
+      { h: 'Guards & safety steel', p: 'Access guarding, rails, gates, and interlocked panels that keep hands and forklifts out of the charge chamber, and your safety officer satisfied.' },
     ],
     faqs: [
-      { q: 'Can you match an enclosure to an existing compactor from another dealer?', a: 'Yes. We measure your machine and pad and build to fit: brand does not matter.' },
-      { q: 'Do enclosures require permits?', a: 'Depends on the municipality and whether the enclosure is structural. We have built them across three states and will flag anything your jurisdiction requires.' },
-      { q: 'Can you repair damaged guarding?', a: 'Yes, we repair or rebuild bent rails, gates, and panels, usually faster and cheaper than replacement.' },
+      { q: 'What steel options can you build?', a: 'Walk-on decks, drive-on decks, chutes, hoppers, enclosures, guards, rails, stairs, and platforms. If it is steel that goes around your equipment, ask. Most of what we build is one-off work for a specific site.' },
+      { q: 'Can you build steel for a machine from another dealer?', a: 'Yes. We measure your machine and pad and build to fit: brand does not matter.' },
+      { q: 'Do these require permits?', a: 'Depends on the municipality and whether the structure is load-bearing. We have built across three states and will flag anything your jurisdiction requires.' },
+      { q: 'Can you repair damaged decks or guarding?', a: 'Yes, we repair or rebuild bent rails, gates, decks, and panels, usually faster and cheaper than replacement.' },
     ],
     related: ['stationary', 'self-contained', 'vertical-apartment'],
   },

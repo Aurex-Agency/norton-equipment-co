@@ -69,7 +69,7 @@ const PAGE_PHOTOS = {
   'self-contained': ['compactor-green', 'Self-contained trash compactor on a customer pad'], // JT: swap for a new photo
   // 'stationary': AWAIT CLIENT PHOTO (graphic hero for now)
   // 'used': AWAIT CLIENT PHOTO + JT page rework (graphic hero for now)
-  'enclosures': ['compactor-enclosure', 'A Norton compactor enclosure'], // JT: feature one of our enclosures
+  'steel-options': ['welding-2', 'Custom steel fabricated in the Norton shop'], // PENDING CLIENT PHOTO
   'hub:balers': ['balers-mp60hd', 'New Max-Pak vertical balers on the Norton floor'],
   'vertical-balers': ['balers-mp60hd', 'New vertical balers staged for delivery'],
   'horizontal-balers': ['horizontal-baler-shop', 'Horizontal baler in the Norton shop'],
