@@ -673,7 +673,7 @@ footer{background:var(--ink-2);border-top:1px solid var(--line);padding:64px 0 0
 .fd-result{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;animation:fdpop .5s var(--ease-out)}
 @keyframes fdpop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .fd-result .fr-kick{font-family:'Barlow Condensed',sans-serif;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-.fd-result h3{font-size:clamp(22px,3vw,30px);text-transform:uppercase;margin:8px 0 10px}
+.fd-result h3{font-size:clamp(22px,3vw,30px);text-transform:uppercase;margin:8px 0 10px;color:var(--silver-hi)}
 .fd-result p{color:var(--silver-2);font-size:14.5px;max-width:52ch}
 .fd-result .fr-note{margin-top:12px;font-size:13px;color:var(--silver-2)}
 .fd-result .fr-note a{color:var(--gold-hi)}
@@ -749,18 +749,20 @@ footer{background:var(--ink-2);border-top:1px solid var(--line);padding:64px 0 0
 .tl-item p{font-size:14.5px;color:var(--body-on-paper);max-width:60ch}
 
 /* mobile action bar (replaces FAB) */
-.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:96;display:none;grid-template-columns:1fr 1.4fr;
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:96;display:none;grid-template-columns:1.45fr 1fr;
   border-top:2px solid var(--gold);background:rgba(10,11,13,.97);backdrop-filter:blur(10px);
   padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px}
-.mobile-bar a{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 10px;border-radius:3px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.1em;text-transform:uppercase}
+.mobile-bar a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 8px;border-radius:3px;white-space:nowrap;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14.5px;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:360px){.mobile-bar a{font-size:13.5px;letter-spacing:.03em}.mobile-bar .mb-call svg{width:15px;height:15px}}
 .mb-call{border:1px solid var(--steel-500);color:var(--silver-hi)}
 .mb-call svg{width:16px;height:16px;color:var(--gold)}
 .mb-quote{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-deep));color:#170f02;
   box-shadow:0 6px 20px -6px rgba(216,165,49,.55)}
 @media(max-width:960px){
   .mobile-bar{display:grid}
-  body{padding-bottom:64px}
+  /* must clear the fixed bar (~70px + safe area) or it covers the footer */
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
   footer{padding-bottom:24px}
 }
 
