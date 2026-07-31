@@ -394,7 +394,7 @@ a.city:hover{border-color:var(--gold);color:var(--gold-hi);transform:translateY(
 /* ---------- forms ---------- */
 .form-card{background:var(--card);border:1px solid var(--line-lt);border-radius:6px;padding:clamp(26px,4vw,42px);box-shadow:0 24px 60px -34px rgba(0,0,0,.4)}
 .glance-card{background:var(--ink);border:1px solid rgba(216,165,49,.22);box-shadow:0 26px 64px -30px rgba(0,0,0,.65)}
-.glance-card .glance-badge{display:block;margin:0 auto 24px;height:auto}
+.glance-card .glance-badge{display:block;width:290px;max-width:82%;margin:0 auto 26px;height:auto}
 .glance-card .eyebrow{color:var(--gold)}
 .glance-card .checks li{color:var(--silver)}
 .glance-card .checks li strong{color:#fff}

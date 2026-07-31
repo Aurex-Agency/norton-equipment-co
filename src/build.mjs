@@ -1283,7 +1283,7 @@ ${pageHero({
       </div>
       <div class="reveal" data-d="1">
         <div class="form-card glance-card">
-          <img class="glance-badge" src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="150" height="83" loading="lazy">
+          <img class="glance-badge" src="/assets/img/logo-full-light.webp" alt="Norton Equipment Co." width="640" height="460" loading="lazy">
           <span class="eyebrow">Norton at a Glance</span>
           <ul class="checks mt-2">
             ${checkLi('<strong>Founded:</strong> March 1997, as Norton Compressor Service')}
