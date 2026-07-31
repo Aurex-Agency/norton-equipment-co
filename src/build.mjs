@@ -73,9 +73,9 @@ const PAGE_PHOTOS = {
   'hub:balers': ['balers-mp60hd', 'New Max-Pak vertical balers on the Norton floor'],
   'vertical-balers': ['balers-mp60hd', 'New vertical balers staged for delivery'],
   'horizontal-balers': ['horizontal-baler-shop', 'Horizontal baler in the Norton shop'],
-  'used-vertical-balers': ['used-vertical-baler', 'Bale from a reconditioned vertical baler'],
+  'refurbished-balers': ['used-vertical-baler', 'Bale from a baler refurbished in the Norton shop'],
+  'used-balers': ['recycling-equipment', 'Used recycling equipment on the Norton yard'],
   'baling-wire': ['baling-wire', 'Baled cardboard tied with Norton-supplied wire'],
-  'used-recycling-equipment': ['recycling-equipment', 'Recycling processing equipment'],
   'hub:services': ['baler-service', 'Norton service across the Mid-South'],
   // 'compactor-repair': AWAIT CLIENT PHOTO (JT: scraped image was a baler)
   'baler-service': ['baler-service', 'Vertical baler mid-cycle during a service visit'],
