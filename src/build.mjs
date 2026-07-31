@@ -82,6 +82,7 @@ const PAGE_PHOTOS = {
   'preventive-maintenance': ['baler-chamber', 'Inside a baler chamber during inspection'],
   'equipment-refurbishment': ['refurbish', 'Machine under refurbishment in the shop'],
   'equipment-logistics': ['logistics-yard', 'Forklift moving baled material in the yard'],
+  'rigging': ['hero-warehouse', 'Heavy machinery staged for a Norton rigging job'], // PENDING CLIENT PHOTO
   'waste-stream-consultations': ['bale-stacks', 'Baled cardboard staged for market'],
   'equipment-evaluations': ['eval-baler', 'Baler under evaluation'],
   'brand:max-pak': ['balers-mp60hd', 'Max-Pak vertical balers, new on the Norton floor'],

@@ -151,27 +151,59 @@ export const SERVICES = [
     slug: 'equipment-logistics',
     name: 'Equipment Logistics',
     cardTitle: 'Equipment Logistics',
-    kicker: 'Delivery · Install · Relocation · Removal',
-    short: 'Heavy equipment moved, installed, and removed: turnkey.',
-    metaTitle: 'Equipment Logistics | Delivery, Installation, Relocation & Removal | Norton Equipment',
+    kicker: 'Delivery · Install · Commissioning',
+    short: 'Waste and recycling equipment delivered, installed, and commissioned.',
+    metaTitle: 'Equipment Logistics | Baler & Compactor Delivery and Installation | Norton Equipment',
     metaDesc:
-      'Turnkey waste equipment logistics: delivery, rigging, installation, plant relocations, and old equipment removal across the Mid-South. Norton Equipment moves balers, compactors, and recycling equipment safely.',
+      'Turnkey baler and compactor logistics: delivery, installation, commissioning, operator training, and old equipment removal across the Mid-South. Norton Equipment gets your machine onto the pad and running.',
     intro: [
       'A ten-thousand-pound baler does not deliver itself. Getting waste and recycling equipment onto a site, through the building, onto the pad, powered, tested, and running (and getting the old machine out) is its own trade, and it is one of ours.',
-      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, moving lines during plant rearrangements, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our crews bring the trucks, trailers, forklifts, and rigging know-how, and our fabrication shop builds the odd bracket, chute, or dock plate that every real-world install eventually needs.',
+      'We deliver and install the equipment we sell, but the service stands on its own too: relocating machines between facilities, extracting dead equipment from tight back rooms, and hauling away machines we buy from closing operations. Our fabrication shop builds the odd bracket, chute, or dock plate that every real-world install eventually needs.',
+      'This page is about waste and recycling equipment specifically. If you need machinery of any other kind moved, set, or torn out, that is our rigging service.',
     ],
     features: [
-      { h: 'Delivery & rigging', p: 'Trucking, offloading, and precision placement of balers, compactors, and heavy recycling equipment: including tight-clearance back-room sets.' },
+      { h: 'Delivery & placement', p: 'Trucking, offloading, and precision placement of balers and compactors, including tight-clearance back-room sets.' },
       { h: 'Turnkey installation', p: 'Anchoring, power coordination, chute and feed hookups, commissioning, and operator training in one scheduled visit.' },
-      { h: 'Plant & line relocations', p: 'Teardown, transport, reinstallation, and recommissioning when equipment moves between buildings: with downtime planned in hours, not weeks.' },
+      { h: 'Machine relocations', p: 'Teardown, transport, reinstallation, and recommissioning when a baler or compactor moves between buildings, with downtime planned in hours, not weeks.' },
       { h: 'Removal & buyback', p: 'Dead machine in the way? We extract and haul it, and if it has value, we will buy it and put that toward its replacement.' },
     ],
     faqs: [
       { q: 'Can you remove a baler from inside a store?', a: 'Yes: extracting vertical balers through retail back rooms and narrow corridors is routine work for our crews, done outside business hours when needed.' },
       { q: 'Do you move equipment you didn’t sell?', a: 'All the time. We relocate and install machines from any source, and we will inspect them during the move so you know what condition they arrived in.' },
+      { q: 'Do you move machinery that isn’t recycling equipment?', a: 'Yes, that is our rigging service. Same crews and same forklifts, but the machine does not have to be a baler or a compactor.' },
       { q: 'How far will you deliver?', a: 'Standard logistics coverage matches our 100-mile service radius from the Memphis area; longer hauls are quoted case by case. Ask.' },
     ],
-    related: ['equipment-evaluations', 'equipment-refurbishment', 'baler-service'],
+    related: ['rigging', 'equipment-evaluations', 'equipment-refurbishment'],
+  },
+  {
+    // PENDING CLIENT: the whole-plant tear-out is referenced generically until
+    // we can confirm whether the customer and industry can be named.
+    slug: 'rigging',
+    name: 'Rigging & Machinery Moving',
+    cardTitle: 'Rigging',
+    kicker: 'Big Forklift · Any Machinery · Plant Tear-Outs',
+    short: 'Heavy machinery moved, set, and torn out. It does not have to be recycling equipment.',
+    metaTitle: 'Rigging & Machinery Moving | Heavy Equipment Relocation | Norton Equipment',
+    metaDesc:
+      'Industrial rigging and machinery moving across the Mid-South: heavy forklift capacity, machine relocation, setting and leveling, and full plant tear-outs. Norton Equipment moves machinery of any kind, not just recycling equipment.',
+    intro: [
+      'Norton runs the forklift capacity and the crews to pick up, move, and set heavy machinery. It started as something we did for our own balers and compactors, and it turned into a service customers ask for on its own.',
+      'The machine does not have to be recycling equipment. If it is heavy, awkward, and has to end up somewhere else, we can move it: production machinery, presses, tanks, generators, shop equipment, whatever is bolted to your floor right now. We have done single-machine moves across a plant floor and we have torn out an entire facility.',
+      'What you get is a crew that does this constantly rather than a general contractor renting equipment for the week. We bring the trucks, trailers, and forklifts, and our fabrication shop makes the skids, brackets, and dock plates that real moves always turn out to need.',
+    ],
+    features: [
+      { h: 'Heavy forklift capacity', p: 'The machines and the operators to pick up loads most shops have to sub out, including tight-clearance work inside buildings.' },
+      { h: 'Any machinery, not just ours', p: 'Production equipment, presses, tanks, shop machinery. If it is heavy and has to move, it is in scope, whether or not it has anything to do with waste.' },
+      { h: 'Full plant tear-outs', p: 'Closing, consolidating, or clearing a building? We have emptied an entire plant, machine by machine, and hauled it out.' },
+      { h: 'Set, level & anchor', p: 'Getting the machine there is half the job. We place it, level it, and anchor it so it runs the way it is supposed to.' },
+    ],
+    faqs: [
+      { q: 'Do you rig machinery that has nothing to do with recycling?', a: 'Yes. That is the point of this service. Production machinery, shop equipment, tanks, and presses are all normal work for our crews.' },
+      { q: 'Can you tear out a whole plant?', a: 'Yes, we have done it. Tell us the building, the timeline, and what is staying versus going, and we will walk it with you before quoting.' },
+      { q: 'Will you buy the equipment you are removing?', a: 'Often, yes. If machines coming out have value we will make an offer and put it against the cost of the job.' },
+      { q: 'How far will you travel for a rigging job?', a: 'Our standard radius is about 100 miles from the Memphis area. Larger jobs are worth a call regardless of distance.' },
+    ],
+    related: ['equipment-logistics', 'equipment-refurbishment', 'equipment-evaluations'],
   },
   {
     slug: 'waste-stream-consultations',
