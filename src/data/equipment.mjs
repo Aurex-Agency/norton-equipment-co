@@ -285,7 +285,7 @@ export const COMPACTORS = [
     short: 'Shop-reconditioned compactors, built to order on a short turnaround.',
     metaTitle: 'Used & Reconditioned Trash Compactors | Norton Equipment',
     metaDesc:
-      'Used and reconditioned commercial trash compactors from Norton Equipment: sourced and rebuilt to your spec on a short turnaround, inspected, cycle-tested, and warrantied. Serving the Mid-South.',
+      'Reconditioned trash compactors rebuilt to your spec: inspected, cycle-tested, and warrantied, on a short turnaround across the Mid-South.',
     intro: [
       'A commercial compactor is a steel box with hydraulics, which means a properly reconditioned machine can run for another decade at a fraction of new cost. The difference between a bargain and a headache is who did the reconditioning.',
       'We build reconditioned compactors to order rather than holding a big lot: tell us what you need and we source the right core, then it goes through our fabrication shop, hydraulics tested and resealed, cylinders and packing serviced, floors and wear surfaces gone through, controls checked, and the machine cycle-tested under load before it ships. Turnaround is usually short, and we stand behind it because we are also the ones who will service it in the field.',
@@ -315,7 +315,7 @@ export const BALER_OVERVIEW = {
   kicker: 'The Business Norton Was Built On',
   metaTitle: 'Balers & Recycling Equipment | Sales & Service | Norton Equipment',
   metaDesc:
-    'Balers and baling wire across the Mid-South since 1997: vertical, horizontal, two-ram, and specialty balers, plus reconditioned equipment and wire delivery. Norton Equipment, Byhalia MS.',
+    'Vertical, horizontal, two-ram, and specialty balers, plus refurbished machines and wire delivery across the Mid-South since 1997.',
   h1: 'Balers & Recycling Equipment',
   sub: 'Balers built Norton Equipment’s reputation. From back-room vertical balers to automatic horizontal and two-ram systems, we sell, service, refurbish, and supply wire for the machines that turn your cardboard from a cost into a revenue line.',
   intro: [
@@ -456,7 +456,7 @@ export const BALERS = [
     short: 'Balers stripped and rebuilt in our Byhalia shop, at roughly half the cost of new.',
     metaTitle: 'Refurbished Balers | Rebuilt In-House & Warrantied | Norton Equipment',
     metaDesc:
-      'Refurbished vertical and horizontal balers rebuilt in Norton Equipment’s Byhalia shop: cylinders resealed, hydraulics flushed, safety systems verified, cycle-tested, and warrantied. Serving Memphis, North Mississippi, West Tennessee, and East Arkansas.',
+      'Vertical and horizontal balers rebuilt in our Byhalia shop: resealed, flushed, safety-verified, cycle-tested, and warrantied. Serving the Mid-South.',
     intro: [
       'A baler is a thick steel chamber and a hydraulic cylinder. Rebuilt properly, a ten-year-old machine will bale cardboard for another decade, at roughly half the price of new. That has made refurbished balers one of the smartest purchases in the industry, and one of Norton’s specialties since the beginning.',
       'Refurbished means we actually fix the machine ourselves. It goes through our Byhalia shop: cylinder resealed, hydraulics flushed and tested, chamber and platen inspected, doors and latches trued, controls and safety interlocks verified, then cycle-tested under load. Each one ships with a shop warranty and our service network behind it. If a machine cannot be brought to standard, we scrap it rather than sell it.',
@@ -517,7 +517,7 @@ export const BALERS = [
     short: 'Single-loop and double-loop bale ties, boxed wire, delivered regionally.',
     metaTitle: 'Baling Wire | Single-Loop & Double-Loop Bale Ties, Delivered | Norton Equipment',
     metaDesc:
-      'Baling wire: single-loop and double-loop bale ties in every standard length and gauge, plus boxed stem wire, delivered across Memphis, North Mississippi, West Tennessee, and East Arkansas by Norton Equipment.',
+      'Single-loop and double-loop bale ties in every standard length and gauge, plus boxed stem wire, delivered across the Mid-South.',
     intro: [
       'Wire is the one consumable every baler needs, and running out stops your recycling program cold. Norton Equipment stocks and delivers baling wire across the Mid-South: single-loop bale ties for standard vertical balers, double-loop ties for fast tying and heavier bales, and boxed stem wire for auto-tie horizontal machines.',
       'Which wire you need depends on your machine and your bales. Single-loop ties thread through the baler’s chamber slots and twist off at a loop, the everyday answer for most vertical balers. Double-loop ties have a preformed loop on each end that hook together, tying faster and holding more expansion force, which matters on high-density machines and springy material like plastics and film. Longer or heavier bales need longer, heavier-gauge ties. If that paragraph raised questions, call us: matching wire to machine is a thirty-second conversation that prevents broken bales and blown budgets.',

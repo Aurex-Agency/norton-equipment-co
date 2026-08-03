@@ -14,7 +14,7 @@ export const POSTS = [
     excerpt:
       'Everything a first-time compactor buyer needs in one place: the machine types, how sizing actually works, what compactors cost in 2026, and the questions that separate a smart purchase from an expensive mistake.',
     metaDesc:
-      'Commercial trash compactor buying guide: compactor types explained, sizing rules of thumb, 2026 price ranges, new-vs-reconditioned math, and the questions to ask before you purchase. From Norton Equipment, Mid-South compactor specialists since 1997.',
+      'Compactor types explained, sizing rules of thumb, 2026 price ranges, and the questions to ask before you buy.',
     body: `
 <p>If you are reading a compactor buying guide, you probably already suspect what your hauling invoices have been telling you: you are paying, month after month, to haul away air. A commercial trash compactor fixes that, but only if you buy the right type, at the right size, from someone who will still answer the phone after the install. This guide covers all three.</p>
 
@@ -162,7 +162,7 @@ export const POSTS = [
     excerpt:
       'For the person who signs the checks: where hauling money actually goes, the three ways compaction claws it back, and a worked example with real Mid-South numbers.',
     metaDesc:
-      'The business case for a commercial trash compactor: how compaction cuts hauling costs 40-70%, a worked ROI example, and the second-order savings in labor, pests, and site damage. Norton Equipment, Mid-South.',
+      'How compaction cuts hauling costs 40-70%, with a worked ROI example and the savings in labor, pests, and site damage.',
     body: `
 <p>This article is not for the dock supervisor. It is for whoever signs the hauling checks and wonders, quarterly, why they keep getting bigger. The short version: most businesses pay to haul air, and a compactor is the machine that stops it. Here is the actual mechanism, with numbers.</p>
 
@@ -206,7 +206,7 @@ export const POSTS = [
     excerpt:
       'Multi-family waste is its own discipline. Chutes, vertical compactors, corral cleanup, resident-proofing, and the service math: a working guide for property managers in the Mid-South.',
     metaDesc:
-      'Apartment and high-rise compactor guide for property managers: chute-fed systems, vertical compactors, resident-proofing, service planning, and cost math for multi-family waste. Norton Equipment, Mid-South.',
+      'A property manager’s guide to chute-fed systems, vertical compactors, resident-proofing, and multi-family waste costs.',
     body: `
 <p>Nobody writes about multi-family waste equipment, which is strange, because almost nothing on a property generates complaints, pest problems, and surprise costs as reliably as the trash system. This guide covers what property managers in the Mid-South actually need to know, garden-style complexes and high-rises both.</p>
 

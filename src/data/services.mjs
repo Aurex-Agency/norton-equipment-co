@@ -51,7 +51,7 @@ export const SERVICES = [
     short: 'Repair, parts, and service for vertical and horizontal balers.',
     metaTitle: 'Baler Service & Repair | Vertical & Horizontal, All Brands | Norton Equipment',
     metaDesc:
-      'Baler repair and service across the Mid-South: hydraulics, doors, chains, controls, and structural repair on all vertical, horizontal, and two-ram baler brands. Norton Equipment, since 1997.',
+      'Baler repair across the Mid-South: hydraulics, doors, chains, controls, and structural repair on every brand of baler. Since 1997.',
     intro: [
       'Balers built this company. We have been repairing them across the Mid-South since 1997, and there is very little a vertical or horizontal baler can do that our techs have not seen: cylinders that drift, doors that will not latch, chains and shear pins, tramp metal in the ram path, controls that mysteriously stop after a storm.',
       'We service every brand (Max-Pak, Harris American, Cram-A-Lot, Marathon, PTR, BACE, International Baler, and more) with stocked common parts, in-house repair of platens, doors, and chambers, and honest advice when a machine has reached the end of economic life. Most service customers eventually put us on a preventive maintenance schedule, because the cheapest repair is the one that never happens.',
@@ -103,7 +103,7 @@ export const SERVICES = [
     short: 'Independent condition assessments for purchases, audits, and budgets.',
     metaTitle: 'Equipment Evaluations & Inspections | Independent Assessments | Norton Equipment',
     metaDesc:
-      'Independent condition evaluations of compactors, balers, and recycling equipment: pre-purchase inspections, safety audits, fleet assessments, and end-of-lease reviews across the Mid-South.',
+      'Independent condition evaluations of compactors and balers: pre-purchase inspections, safety audits, and fleet assessments.',
     intro: [
       'Sometimes you need an expert set of eyes before money moves: a used baler you found online, a compactor conveying with a building purchase, a fleet you inherited in an acquisition, a machine your insurer or safety auditor is asking questions about. Our evaluation service puts a Norton technician in front of the machine and a written, independent assessment in your hands.',
       'We inspect structure, hydraulics, electrical systems, safety interlocks and guarding, and cycle performance under load, then report condition, expected remaining life, needed repairs with real prices, and a straight verdict: buy it, fix it, or walk away. Because we recondition equipment for a living, we know exactly what problems cost to fix, and because the report is what you are paying for, the advice is not bent toward selling you anything.',
@@ -221,7 +221,7 @@ export const SERVICES = [
     short: 'A free on-site audit that finds the money hiding in your waste.',
     metaTitle: 'Waste Stream Consultations | Free On-Site Waste Audits | Norton Equipment',
     metaDesc:
-      'Free on-site waste stream consultations across the Mid-South: hauling cost analysis, recycling revenue opportunities, and equipment recommendations with real numbers. Norton Equipment, since 1997.',
+      'Free on-site waste stream consultations: hauling cost analysis, recycling revenue, and equipment advice with real numbers.',
     intro: [
       'Most businesses treat their waste bill like the weather. It just happens to them. It shouldn’t. Between right-sized equipment, fewer hauls, renegotiated service, and commodities you could be selling instead of paying to dump, a typical operation is leaving real money in the dumpster. A waste stream consultation finds it.',
       'We walk your site, look at what you throw away and how, review your hauling invoices, and produce a straightforward analysis: where the volume comes from, what equipment (if any) pays for itself, what your cardboard or plastics are worth as commodities, and what your hauling schedule should look like. It is free, it takes about an hour of your time, and there is no obligation: if the honest answer is "keep your dumpsters," that is the answer you will get. Norton has been reading Mid-South waste streams since 1997; the audit is how we prove it before you spend a dollar.',

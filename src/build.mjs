@@ -303,7 +303,66 @@ function footerHtml() {
 }
 
 // ---------------- page shell ----------------
+
+// ---------------- SERP fitting ----------------
+// Google renders roughly 60 characters of <title> and 155 of the description
+// before truncating mid-phrase, which reads as sloppy in the results page.
+// These trim on structural boundaries instead: titles shed pipe-separated
+// middle segments (keeping the lead keywords and the brand), descriptions
+// shed middle sentences (keeping the opening and any phone-number CTA).
+const TITLE_MAX = 60;
+const DESC_MAX = 155;
+
+function fitTitle(title) {
+  if (title.length <= TITLE_MAX) return title;
+  const parts = title.split(' | ');
+  if (parts.length > 2) {
+    const first = parts[0], last = parts[parts.length - 1];
+    const middles = parts.slice(1, -1);
+    for (let keep = middles.length - 1; keep >= 0; keep--) {
+      const c = [first, ...middles.slice(0, keep), last].join(' | ');
+      if (c.length <= TITLE_MAX) return c;
+    }
+  }
+  const first = parts[0];
+  for (const suffix of [' | Norton Equipment', ' | Norton', '']) {
+    if ((first + suffix).length <= TITLE_MAX) return first + suffix;
+  }
+  return first;
+}
+
+function fitDesc(desc) {
+  if (desc.length <= DESC_MAX) return desc;
+  // Trim to a word boundary, then shed any dangling connector so the text
+  // does not end on "and" or "with" when the SERP appends its ellipsis.
+  const clamp = (s) => {
+    if (s.length <= DESC_MAX) return s;
+    let c = s.slice(0, DESC_MAX + 1).replace(/\s+\S*$/, '');
+    for (;;) {
+      const trimmed = c.replace(/[\s,;:–-]*\b(and|or|with|plus|for|from|the|a|an|to|of|in|on|at|by)\s*$/i, '');
+      if (trimmed === c) break;
+      c = trimmed;
+    }
+    return c.replace(/[\s,;:–-]+$/, '');
+  };
+  const sentences = desc.match(/[^.!?]+[.!?]+(\s|$)/g)?.map((s) => s.trim()) || [desc];
+  if (sentences.length < 2) return clamp(desc);
+  const last = sentences[sentences.length - 1];
+  const cta = /\(\d{3}\)\s?\d{3}-\d{4}|call /i.test(last) ? last : null;
+  // the opening sentence alone can exceed the budget, so clamp before extending
+  let out = clamp(sentences[0]);
+  if (out !== sentences[0]) return out;
+  for (const s of sentences.slice(1, cta ? -1 : undefined)) {
+    if ((out + ' ' + s + (cta ? ' ' + cta : '')).length <= DESC_MAX) out += ' ' + s;
+    else break;
+  }
+  if (cta && (out + ' ' + cta).length <= DESC_MAX) out += ' ' + cta;
+  return out;
+}
+
 function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts, noCta = false, ogImage = '/assets/img/logo-full.webp', preloadImg = null }) {
+  title = fitTitle(title);
+  desc = fitDesc(desc);
   const canonical = SITE.baseUrl + path;
   const jsonLd = { '@context': 'https://schema.org', '@graph': [ldLocalBusiness(), ...ld] };
   return `<!DOCTYPE html>
@@ -352,6 +411,15 @@ function crumbsHtml(crumbs) {
     .join('')}</nav>`;
 }
 
+
+// Keep <title> inside Google's ~60ch render width: drop to the short brand
+// suffix, then to no suffix, rather than letting it truncate mid-phrase.
+function titleWithBrand(base) {
+  for (const suffix of [' | Norton Equipment', ' | Norton', '']) {
+    if ((base + suffix).length <= 60) return base + suffix;
+  }
+  return base;
+}
 
 function gallerySection(items, eyebrow, heading) {
   if (!items || !items.length) return '';
@@ -717,7 +785,7 @@ function buildHome() {
     ogImage: '/assets/img/n-truck.webp',
     path: '/',
     title: 'Norton Equipment Co. | Trash Compactors & Balers: Sales, Service & Parts | Memphis & Mid-South',
-    desc: 'Commercial trash compactors, balers, and recycling equipment: sold, serviced, and rebuilt across West Tennessee, North Mississippi, and East Arkansas since 1997. Any brand, any model. Call (662) 838-7900.',
+    desc: 'Commercial trash compactors and balers sold, serviced, and rebuilt across the Mid-South since 1997. Any brand, any model. Call (662) 838-7900.',
     body,
     ld: [],
   }));
@@ -1168,7 +1236,7 @@ ${pageHero({
   out('locations/index.html', layout({
     path: '/locations/',
     title: 'Service Area & Locations | Memphis, North MS, West TN, East AR | Norton Equipment',
-    desc: 'Norton Equipment serves 31 cities within 100 miles of Memphis: compactor and baler sales, service, and delivery across West Tennessee, North Mississippi, and East Arkansas. Find your city.',
+    desc: 'Compactor and baler sales, service, and delivery in 31 cities within 100 miles of Memphis. Find your city and what we cover there.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1262,8 +1330,8 @@ ${faqSection(faqs)}
 
     out(`locations/${c.slug}/index.html`, layout({
       path,
-      title: `Trash Compactors & Baler Service in ${c.city}, ${c.abbr} | Norton Equipment`,
-      desc: `Commercial trash compactor and baler sales, repair, and maintenance in ${c.city}, ${c.state}. Any brand, any model: serving ${c.city} from Byhalia, MS since 1997. Call (662) 838-7900.`,
+      title: `Trash Compactors & Balers in ${c.city}, ${c.abbr} | Norton`,
+      desc: `Compactor and baler sales, repair, and service in ${c.city}, ${c.state}. Any brand, any model, since 1997. Call (662) 838-7900.`,
       body: body2,
       ld: [
         ldBreadcrumbs(crumbs2),
@@ -1342,7 +1410,7 @@ ${pageHero({
   out('about/index.html', layout({
     path: '/about/',
     title: 'About Norton Equipment | Since 1997 | Byhalia, MS',
-    desc: 'Norton Equipment Company started in 1997 as Norton Compressor Service and grew into the Mid-South’s independent specialist for compactors, balers, and recycling equipment: with its own techs and in-house fabrication shop.',
+    desc: 'Founded in 1997 as Norton Compressor Service, now the Mid-South’s independent specialist in compactors and balers. Family-run, from Byhalia, MS.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1818,7 +1886,7 @@ ${pageHero({
   out('blog/index.html', layout({
     path: '/blog/',
     title: 'Blog | Compactor & Baler Guides | Norton Equipment',
-    desc: 'Buying guides and straight talk on commercial trash compactors, balers, and waste costs from Norton Equipment: Mid-South waste equipment specialists since 1997.',
+    desc: 'Buying guides and straight talk on commercial trash compactors, balers, and what waste equipment really costs.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1866,7 +1934,7 @@ ${pageHero({
 
     out(`blog/${p.slug}/index.html`, layout({
       path,
-      title: `${p.title} | Norton Equipment`,
+      title: titleWithBrand(p.title),
       desc: p.metaDesc,
       body: body2,
       ogType: 'article',
@@ -1937,7 +2005,7 @@ ${phoneStrip('Liked the straight talk? <em>It sounds exactly like our phone call
 
     out(`${p.slug}/index.html`, layout({
       path,
-      title: `${p.title} | Norton Equipment`,
+      title: titleWithBrand(p.title),
       desc: p.metaDesc,
       body,
       ogType: 'article',

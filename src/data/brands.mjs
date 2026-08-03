@@ -12,7 +12,7 @@
 export const BRANDS_OVERVIEW = {
   metaTitle: 'Brands We Sell & Service | Marathon, Cram-A-Lot, Max-Pak, PTR, BACE & More | Norton Equipment',
   metaDesc:
-    'Norton Equipment sells, services, repairs, and supplies parts for every major compactor and baler brand: Marathon, Cram-A-Lot, Max-Pak, Mac Corp, PTR, BACE, Harris American, and more. Mid-South coverage since 1997.',
+    'We sell, service, and stock parts for every major compactor and baler brand: Marathon, Cram-A-Lot, Max-Pak, Mac Corp, PTR, BACE and more. Mid-South coverage since 1997.',
   h1: 'Every Major Brand. One Phone Number.',
   kicker: 'Sell · Service · Repair · Parts',
   sub: 'Buyers shop by brand, and machines break by brand, but Norton Equipment works on all of them. These are the lines we know deepest, plus the makes we service in the field every week.',
