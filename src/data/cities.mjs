@@ -1,5 +1,5 @@
 // ============================================================
-// Location pages - the confirmed 100-mile ring (30 cities).
+// Location pages - the confirmed 100-mile ring (31 cities).
 // Each page gets a genuinely unique local angle, per the plan:
 // "written specifically for that town, not copied and pasted."
 // The 100-200 mile ring ships after the client sets the radius.

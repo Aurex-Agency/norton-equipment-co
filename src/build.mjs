@@ -1254,7 +1254,7 @@ ${pageHero({
     crumbs,
     kicker: 'Local Service · Real Coverage',
     h1: 'Serving 100 Miles Around Memphis',
-    sub: 'Thirty cities across West Tennessee, North Mississippi, and East Arkansas, with equipment sales, service routes, and delivery running through every one of them. Home base: Byhalia, MS.',
+    sub: 'Thirty-one cities across West Tennessee, North Mississippi, and East Arkansas, with equipment sales, service routes, and delivery running through every one of them. Home base: Byhalia, MS.',
     chips: ['TN · MS · AR', 'Since 1997', 'Any Brand · Any Model'],
   })}
 <section class="sec sec-dark">

@@ -88,6 +88,15 @@
       });
     }, { threshold: 0.5 });
     nums.forEach(function (el) { nio.observe(el); });
+  } else {
+    // Reduced motion (or no IntersectionObserver): skip the count-up but still
+    // show the real figure. Without this the markup's placeholder 0 sticks and
+    // the page reads "0 states covered".
+    nums.forEach(function (el) {
+      var target = el.getAttribute('data-count') || '0';
+      if (el.firstChild && el.firstChild.nodeType === 3) el.firstChild.nodeValue = target;
+      else el.insertBefore(document.createTextNode(target), el.firstChild);
+    });
   }
 
   // Quote form. Transport seam:

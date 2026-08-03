@@ -938,10 +938,18 @@ h1.hero-h{letter-spacing:0}
 .sb-link:hover{border-color:var(--gold-deep);background:rgba(216,165,49,.07);transform:translateY(-2px)}
 .sb-link:hover .arw{transform:translateX(4px)}
 @media(max-width:860px){
-  .sb-in{grid-template-columns:1fr;gap:26px}
+  .sb-in{grid-template-columns:1fr;gap:24px}
   .sb-links{grid-template-columns:1fr 1fr;gap:10px}
 }
-@media(max-width:480px){.sb-links{grid-template-columns:1fr}}
+/* On a phone the full-width cards read as oversized empty bars, so these
+   become compact pills sized to their label and sitting side by side. */
+@media(max-width:640px){
+  .sb-links{display:flex;flex-wrap:wrap;gap:10px}
+  .sb-link{padding:11px 15px;font-size:14px;gap:9px}
+  .sb-link svg{width:17px;height:17px}
+  .sb-link span:first-of-type{flex:0 0 auto}
+  .sb-link .arw{display:none}
+}
 
 /* --- mobile touch & legibility --------------------------------------
    Phone audit at 320px and 390px: the brand link was a 24px tap target,
