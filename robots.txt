@@ -1,3 +1,4 @@
-# DRAFT SITE, blocked until launch. Update via src/build.mjs (DRAFT flag).
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://nortonequipmentco.com/sitemap.xml

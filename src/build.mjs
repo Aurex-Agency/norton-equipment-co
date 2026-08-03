@@ -19,9 +19,9 @@ import { LEGACY_POSTS } from './data/blog-legacy.mjs';
 import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDERS, TRUSTED_BY } from './data/testimonials.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-// Draft mode: keeps the whole site noindex until launch. Flip to false
-// (and set the real domain in src/site.mjs) when the site goes live.
-const DRAFT = true;
+// Draft mode: keeps the whole site noindex. Live as of launch, so this is
+// off; flipping it back to true re-blocks the site from search engines.
+const DRAFT = false;
 
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const pagesWritten = [];
@@ -39,6 +39,11 @@ function out(path, html) {
 }
 
 // ---------------- icons ----------------
+const SOCIAL_IC = {
+  Facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.93 8.44-9.94Z"/></svg>',
+  LinkedIn: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-.95 1.83-1.96 3.76-1.96C21.6 8.68 22 11.1 22 14.24V21h-4v-6c0-1.43-.03-3.28-2-3.28-2 0-2.31 1.56-2.31 3.17V21h-4V9Z"/></svg>',
+};
+
 const IC = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
@@ -122,6 +127,7 @@ function ldLocalBusiness() {
       ...STATES.map((s) => ({ '@type': 'State', name: s.name })),
     ],
     logo: SITE.baseUrl + '/assets/img/logo-full.webp',
+    sameAs: SITE.social.map((s) => s.url),
   };
 }
 
@@ -284,6 +290,9 @@ function footerHtml() {
         <span>${IC.pin}<span>${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)} ${esc(SITE.address.zip)}</span></span>
         <a href="${SITE.phoneHref}">${IC.phone}<span>${esc(SITE.phone)}</span></a>
         <span>${IC.clock}<span>${esc(SITE.hours)}</span></span>
+      </div>
+      <div class="foot-social">
+        ${SITE.social.map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="Norton Equipment on ${esc(s.name)}">${SOCIAL_IC[s.name] || ''}</a>`).join('')}
       </div>
     </div>
     <div><div class="foot-h">Equipment</div><div class="foot-links">${eq}</div></div>
@@ -777,6 +786,21 @@ function buildHome() {
     </div>
     <div class="grid-3">${postCards}</div>
     <p class="mt-3 center"><a class="btn btn-dark" href="/blog/">All Articles <span class="arw">→</span></a></p>
+  </div>
+</section>
+
+<div class="hazard" aria-hidden="true"></div>
+
+<section class="sec social-band">
+  <div class="wrap sb-in reveal">
+    <div class="sb-copy">
+      <span class="eyebrow">Follow Along</span>
+      <h2>See the work as it happens.</h2>
+      <p>New installs, shop rebuilds, and fabrication jobs go up on Facebook and LinkedIn. It is the quickest way to see what a machine looks like on a real pad before you buy one.</p>
+    </div>
+    <div class="sb-links">
+      ${SITE.social.map((s) => `<a class="sb-link" href="${s.url}" target="_blank" rel="noopener">${SOCIAL_IC[s.name] || ''}<span>${esc(s.name)}</span><span class="arw">→</span></a>`).join('')}
+    </div>
   </div>
 </section>`;
 

@@ -1,6 +1,6 @@
 // ============================================================
 // Norton Equipment Co. - site-wide configuration
-// Draft build by Aurex Agency. Update baseUrl before launch.
+// Built by Aurex Agency.
 // ============================================================
 
 export const SITE = {
@@ -22,6 +22,11 @@ export const SITE = {
     zip: '38611',
   },
   geo: { lat: 34.8723, lng: -89.6906 }, // Byhalia, MS
+  // Client-supplied 8/3. Also emitted as schema.org sameAs on every page.
+  social: [
+    { name: 'Facebook', url: 'https://www.facebook.com/nortonequipment/' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/norton-equipment-co/' },
+  ],
   // Office hours client-confirmed 7/26: Mon-Thu 7:30-4:30, Fri 7:30-4:00.
   hours: 'Mon-Thu 7:30 AM to 4:30 PM · Fri 7:30 AM to 4:00 PM',
   hoursSchema: ['Mo-Th 07:30-16:30', 'Fr 07:30-16:00'],
