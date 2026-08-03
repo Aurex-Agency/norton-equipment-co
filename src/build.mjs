@@ -5,7 +5,8 @@
 // Output: static HTML written to the repository root.
 // ============================================================
 
-import { mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -43,6 +44,19 @@ const SOCIAL_IC = {
   Facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.93 8.44-9.94Z"/></svg>',
   LinkedIn: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-.95 1.83-1.96 3.76-1.96C21.6 8.68 22 11.1 22 14.24V21h-4v-6c0-1.43-.03-3.28-2-3.28-2 0-2.31 1.56-2.31 3.17V21h-4V9Z"/></svg>',
 };
+
+// Vercel serves /assets/* with `immutable, max-age=1yr`. Without a version in
+// the URL a returning visitor keeps the old CSS forever, which is how the
+// footer icons rendered unstyled at full size. Hash the file contents so the
+// URL changes whenever the file does.
+function assetHash(relPath) {
+  try {
+    return createHash('sha1').update(readFileSync(join(ROOT, relPath))).digest('hex').slice(0, 8);
+  } catch { return BUILD_DATE.replace(/-/g, ''); }
+}
+const CSS_V = assetHash('assets/css/site.css');
+const JS_V = assetHash('assets/js/site.js');
+
 
 const IC = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>',
@@ -258,11 +272,14 @@ function headerHtml(activePath) {
 }
 
 function ctaBand(opts = {}) {
+  // Default is baled cardboard, which suits balers and general pages. Compactor
+  // pages pass their own so the band shows the machine the page is about.
+  const photo = opts.photo || 'bales-closeup';
   const h = opts.heading || `Let’s put the right <span class="gold">machine</span> on your pad.`;
   const p = opts.text || `Free waste stream evaluations across the Mid-South. Talk to a real person who has been doing this since 1997, no pressure, no hauling strings attached.`;
   return `
 <section class="sec cta-band">
-  <div class="cta-photo" aria-hidden="true" style="background-image:url(/assets/img/bales-closeup.webp)"></div>
+  <div class="cta-photo" aria-hidden="true" style="background-image:url(/assets/img/${photo}.webp)"></div>
   <div class="grid-lines" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="reveal">${h}</h2>
@@ -409,7 +426,7 @@ ${preloadImg ? `<link rel="preload" href="${preloadImg}" as="image" fetchpriorit
 <link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css?v=${CSS_V}">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>
@@ -420,7 +437,7 @@ ${body}
 </main>
 ${noCta ? '' : ctaBand(ctaOpts)}
 ${footerHtml()}
-<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/site.js?v=${JS_V}" defer></script>
 </body>
 </html>`;
 }
@@ -919,7 +936,7 @@ ${related ? `
       ldService(item.name, item.metaDesc, path),
       ldFaq(item.faqs),
     ],
-    ctaOpts: { heading: `Ready to talk <span class="gold">${esc(item.cardTitle.toLowerCase())}</span>?` },
+    ctaOpts: { heading: `Ready to talk <span class="gold">${esc(item.cardTitle.toLowerCase())}</span>?`, photo: basePath === '/trash-compactors/' ? 'n-cta-compactors' : 'n-cta-balers' },
   }));
 }
 
@@ -974,6 +991,7 @@ ${faqSection(overview.faqs, { dark: false })}`;
     desc: overview.metaDesc,
     body,
     ld: [ldBreadcrumbs(crumbs), ldService(overview.name, overview.metaDesc, basePath), ldFaq(overview.faqs)],
+    ctaOpts: { photo: basePath === '/trash-compactors/' ? 'n-cta-compactors' : 'n-cta-balers' },
   }));
 }
 
