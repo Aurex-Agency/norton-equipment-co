@@ -176,8 +176,9 @@ export const SERVICES = [
     related: ['rigging', 'equipment-evaluations', 'equipment-refurbishment'],
   },
   {
-    // PENDING CLIENT: the whole-plant tear-out is referenced generically until
-    // we can confirm whether the customer and industry can be named.
+    // CONFIRMED CLIENT 8/3: the whole-plant tear-out customer is NOT to be
+    // named. Keep every reference generic ("an entire facility"). Do not add
+    // a customer, industry, or location here without checking first.
     slug: 'rigging',
     name: 'Rigging & Machinery Moving',
     cardTitle: 'Rigging',
