@@ -98,9 +98,20 @@ const PAGE_PHOTOS = {
   'brand:max-pak': ['n-vertical-baler-alt', 'A Max-Pak vertical baler installed by Norton'],
 };
 
-function photoFig(name, alt, { eager = false, cls = '' } = {}) {
+
+// Emit srcset only when the 800w variant actually exists on disk, so an
+// image that was already small enough never points at a missing file.
+function srcsetAttr(name, fullW = 1500, sizes = '(max-width:860px) 100vw, 50vw') {
+  if (!existsSync(join(ROOT, 'assets', 'img', `${name}-800.webp`))) return '';
+  return ` srcset="/assets/img/${name}-800.webp 800w, /assets/img/${name}.webp ${fullW}w" sizes="${sizes}"`;
+}
+
+// Photos ship at 1500w for desktop and 800w for phones. The sizes hint
+// defaults to the widest slot a figure occupies (a page hero at ~50vw),
+// so a phone pulls the 800w file instead of a 1500w one it cannot use.
+function photoFig(name, alt, { eager = false, cls = '', sizes = '(max-width:860px) 100vw, 50vw' } = {}) {
   return `<figure class="ph-frame${cls ? ' ' + cls : ''}">
-    <img src="/assets/img/${name}.webp" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}>
+    <img src="/assets/img/${name}.webp"${srcsetAttr(name, 1500, sizes)} alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}>
     <span class="ph-hz" aria-hidden="true"></span>
     <span class="ph-corner" aria-hidden="true"></span>
   </figure>`;
@@ -442,7 +453,7 @@ function gallerySection(items, eyebrow, heading) {
       <h2>${esc(heading)}</h2>
     </div>
     <div class="sf-grid reveal" data-d="1">
-      ${items.map((x) => `<figure class="sf-item">${photoFig(x.img, x.alt)}<figcaption>${esc(x.cap)}</figcaption></figure>`).join('')}
+      ${items.map((x) => `<figure class="sf-item">${photoFig(x.img, x.alt, { sizes: '(max-width:480px) 100vw, (max-width:960px) 50vw, 25vw' })}<figcaption>${esc(x.cap)}</figcaption></figure>`).join('')}
     </div>
   </div>
 </section>`;
@@ -549,7 +560,7 @@ function buildHome() {
 
   const postCards = POSTS.slice(0, 3).map((p, i) => `
     <a class="post-card reveal" data-d="${i + 1}" href="/blog/${p.slug}/">
-      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp" alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
+      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp"${srcsetAttr(p.img, 1500, '(max-width:480px) 100vw, (max-width:960px) 50vw, 33vw')} alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
       <div class="pc-body">
         <div class="meta"><span>${p.date}</span><span>${p.readMins} min read</span></div>
         <h3>${esc(p.title)}</h3>
@@ -561,7 +572,7 @@ function buildHome() {
   const body = `
 <section class="hero" id="top">
   <div class="hero-bg">
-    <img class="hero-photo" src="/assets/img/n-hero-dock.webp" alt="" fetchpriority="high" data-parallax-bg>
+    <img class="hero-photo" src="/assets/img/n-hero-dock.webp"${srcsetAttr('n-hero-dock', 1900, '100vw')} alt="" fetchpriority="high" data-parallax-bg>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="grid-lines" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
@@ -587,7 +598,7 @@ function buildHome() {
     <p class="hero-service">Machine down? We prioritize service calls across the Mid-South. <a href="/services/compactor-repair/">Emergency repair &rsaquo;</a></p>
     <div class="hero-paths">
       <a class="path-card has-photo" href="/trash-compactors/" data-tilt>
-        <span class="pc-photo"><img src="/assets/img/compactor-green.webp" alt="" loading="lazy" width="600" height="450"></span>
+        <span class="pc-photo"><img src="/assets/img/compactor-green.webp"${srcsetAttr('compactor-green', 1400, '(max-width:860px) 100vw, 33vw')} alt="" loading="lazy" width="600" height="450"></span>
         <span class="pc-body">
           <span class="pc-kick">Shop &amp; Service</span>
           <h2>Trash Compactors</h2>
@@ -596,7 +607,7 @@ function buildHome() {
         </span>
       </a>
       <a class="path-card has-photo" href="/balers-recycling/" data-tilt>
-        <span class="pc-photo"><img src="/assets/img/balers-mp60hd.webp" alt="" loading="lazy" width="600" height="450"></span>
+        <span class="pc-photo"><img src="/assets/img/balers-mp60hd.webp"${srcsetAttr('balers-mp60hd', 1400, '(max-width:860px) 100vw, 33vw')} alt="" loading="lazy" width="600" height="450"></span>
         <span class="pc-body">
           <span class="pc-kick">Shop &amp; Service</span>
           <h2>Balers &amp; Recycling</h2>
@@ -640,10 +651,10 @@ function buildHome() {
       </div>
     </div>
     <div class="sf-grid reveal" data-d="2" style="margin-top:56px">
-      <figure class="sf-item">${photoFig('n-vertical-balers', 'A new vertical baler installed by Norton')}<figcaption>New machines, installed and running</figcaption></figure>
-      <figure class="sf-item">${photoFig('n-services-hub', 'Norton crew servicing a baling line')}<figcaption>Service, any brand</figcaption></figure>
-      <figure class="sf-item">${photoFig('n-steel-options', 'A compactor enclosure fabricated by Norton')}<figcaption>Steel built for the site</figcaption></figure>
-      <figure class="sf-item">${photoFig('n-rigging', 'A Norton forklift moving heavy machinery')}<figcaption>Rigging &amp; equipment logistics</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-vertical-balers', 'A new vertical baler installed by Norton', { sizes: '(max-width:480px) 100vw, (max-width:960px) 50vw, 25vw' })}<figcaption>New machines, installed and running</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-services-hub', 'Norton crew servicing a baling line', { sizes: '(max-width:480px) 100vw, (max-width:960px) 50vw, 25vw' })}<figcaption>Service, any brand</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-steel-options', 'A compactor enclosure fabricated by Norton', { sizes: '(max-width:480px) 100vw, (max-width:960px) 50vw, 25vw' })}<figcaption>Steel built for the site</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-rigging', 'A Norton forklift moving heavy machinery', { sizes: '(max-width:480px) 100vw, (max-width:960px) 50vw, 25vw' })}<figcaption>Rigging &amp; equipment logistics</figcaption></figure>
     </div>
   </div>
 </section>
@@ -1874,7 +1885,7 @@ function buildBlog() {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog/' }];
   const card = (p, i, base) => `
     <a class="post-card reveal" data-d="${(i % 3) + 1}" href="${base}${p.slug}/">
-      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp" alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
+      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp"${srcsetAttr(p.img, 1500, '(max-width:480px) 100vw, (max-width:960px) 50vw, 33vw')} alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
       <div class="pc-body">
         <div class="meta"><span>${p.date}</span><span>${p.readMins} min read</span></div>
         <h3>${esc(p.title)}</h3>
