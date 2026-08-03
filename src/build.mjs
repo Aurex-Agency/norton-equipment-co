@@ -60,32 +60,37 @@ const IC = {
 
 // ---------------- photos ----------------
 // Real photos pulled from Norton's current site + shop. Keyed by page slug.
-// AWAIT CLIENT PHOTO (JT 7/26): stationary, used compactors, and compactor
-// repair had topically-wrong scraped images (bales/baler shots), so they now
-// render the graphic hero until Norton sends correct photos. Self-contained
-// keeps a real self-contained unit shot; JT would still like a different one.
+// Client photo set (Drive, 8/3): real Norton installs and fabrication work,
+// colour-graded to the site palette so they sit inside the design rather than
+// on top of it. Remaining graphic heroes are pages with no photo in the set.
+//  - pre-crusher: NO photo supplied. Still awaiting one.
+//  - vertical-apartment: no vertical-compactor shot in the set (baler photos
+//    are a different machine, so they are deliberately not reused here).
 const PAGE_PHOTOS = {
-  'hub:compactors': ['compactor-green', 'Self-contained compactor placed by Norton Equipment'],
-  'self-contained': ['compactor-green', 'Self-contained trash compactor on a customer pad'], // JT: swap for a new photo
-  // 'stationary': AWAIT CLIENT PHOTO (graphic hero for now)
-  // 'used': AWAIT CLIENT PHOTO + JT page rework (graphic hero for now)
-  'steel-options': ['welding-2', 'Custom steel fabricated in the Norton shop'], // PENDING CLIENT PHOTO
-  'hub:balers': ['balers-mp60hd', 'New Max-Pak vertical balers on the Norton floor'],
-  'vertical-balers': ['balers-mp60hd', 'New vertical balers staged for delivery'],
-  'horizontal-balers': ['horizontal-baler-shop', 'Horizontal baler in the Norton shop'],
-  'refurbished-balers': ['used-vertical-baler', 'Bale from a baler refurbished in the Norton shop'],
-  'used-balers': ['recycling-equipment', 'Used recycling equipment on the Norton yard'],
+  'hub:compactors': ['n-compactors-hub', 'A 4-yard stationary compactor under a 14-foot enclosure fabricated by Norton'],
+  'self-contained': ['n-self-contained', 'Self-contained compactor installed on a customer pad'],
+  'stationary': ['n-stationary', 'Stationary compactor set at a dock door'],
+  'auger': ['n-auger', 'Auger compactor with enclosure at a loading dock'],
+  'front-load-rear-load': ['n-front-load', 'Front-load container rebuilt in the Norton fabrication shop'],
+  'used': ['n-used-compactor', 'Reconditioned compactor with a Norton service truck on site'],
+  'steel-options': ['n-steel-options', 'A 14-foot compactor enclosure fabricated and installed by Norton'],
+  'hub:balers': ['n-balers-hub', 'Horizontal baler and fabricated hopper running in a customer plant'],
+  'vertical-balers': ['n-vertical-balers', 'New vertical baler installed and ready to run'],
+  'horizontal-balers': ['n-horizontal-balers', 'Horizontal baler install with a Norton-fabricated infeed hopper'],
+  'two-ram-balers': ['n-two-ram', 'High-volume baling line in a distribution centre'],
+  'refurbished-balers': ['n-refurbished-balers', 'A vertical baler refurbished by Norton, installed on site'],
+  'used-balers': ['n-used-balers', 'A used vertical baler on the floor'],
   'baling-wire': ['baling-wire', 'Baled cardboard tied with Norton-supplied wire'],
-  'hub:services': ['baler-service', 'Norton service across the Mid-South'],
-  // 'compactor-repair': AWAIT CLIENT PHOTO (JT: scraped image was a baler)
+  'hub:services': ['n-services-hub', 'Norton crew servicing a baling line in the field'],
+  'compactor-repair': ['n-repair', 'Compactor guide rails set and aligned during a repair'],
   'baler-service': ['baler-service', 'Vertical baler mid-cycle during a service visit'],
   'preventive-maintenance': ['baler-chamber', 'Inside a baler chamber during inspection'],
-  'equipment-refurbishment': ['refurbish', 'Machine under refurbishment in the shop'],
-  'equipment-logistics': ['logistics-yard', 'Forklift moving baled material in the yard'],
-  'rigging': ['hero-warehouse', 'Heavy machinery staged for a Norton rigging job'], // PENDING CLIENT PHOTO
+  'equipment-refurbishment': ['n-refurbishment', 'A compactor rebuilt and re-enclosed by the Norton shop'],
+  'equipment-logistics': ['n-logistics', 'Compactors loaded for delivery across the Mid-South'],
+  'rigging': ['n-rigging', 'A Norton forklift moving heavy machinery during a plant clear-out'],
   'waste-stream-consultations': ['bale-stacks', 'Baled cardboard staged for market'],
   'equipment-evaluations': ['eval-baler', 'Baler under evaluation'],
-  'brand:max-pak': ['balers-mp60hd', 'Max-Pak vertical balers, new on the Norton floor'],
+  'brand:max-pak': ['n-vertical-baler-alt', 'A Max-Pak vertical baler installed by Norton'],
 };
 
 function photoFig(name, alt, { eager = false, cls = '' } = {}) {
@@ -347,6 +352,25 @@ function crumbsHtml(crumbs) {
     .join('')}</nav>`;
 }
 
+
+function gallerySection(items, eyebrow, heading) {
+  if (!items || !items.length) return '';
+  return `
+<div class="hazard" aria-hidden="true"></div>
+
+<section class="sec sec-paper">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">${esc(eyebrow)}</span>
+      <h2>${esc(heading)}</h2>
+    </div>
+    <div class="sf-grid reveal" data-d="1">
+      ${items.map((x) => `<figure class="sf-item">${photoFig(x.img, x.alt)}<figcaption>${esc(x.cap)}</figcaption></figure>`).join('')}
+    </div>
+  </div>
+</section>`;
+}
+
 function pageHero({ crumbs, kicker, h1, sub, chips = [], ctas = true, photo = null }) {
   const media = photo ? `
     <div class="phero-media">
@@ -460,7 +484,7 @@ function buildHome() {
   const body = `
 <section class="hero" id="top">
   <div class="hero-bg">
-    <img class="hero-photo" src="/assets/img/hero-warehouse.webp" alt="" fetchpriority="high" data-parallax-bg>
+    <img class="hero-photo" src="/assets/img/n-hero-dock.webp" alt="" fetchpriority="high" data-parallax-bg>
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="grid-lines" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
@@ -539,10 +563,10 @@ function buildHome() {
       </div>
     </div>
     <div class="sf-grid reveal" data-d="2" style="margin-top:56px">
-      <figure class="sf-item">${photoFig('balers-mp60hd', 'New vertical balers on the Norton floor')}<figcaption>New machines, staged in Byhalia</figcaption></figure>
-      <figure class="sf-item">${photoFig('baler-service', 'Norton technician servicing a baler')}<figcaption>Service, any brand</figcaption></figure>
-      <figure class="sf-item">${photoFig('horizontal-baler-shop', 'Horizontal baler in the Norton shop')}<figcaption>Reconditioning in progress</figcaption></figure>
-      <figure class="sf-item">${photoFig('logistics-yard', 'Forklift moving baled material')}<figcaption>Logistics, delivery &amp; install</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-vertical-balers', 'A new vertical baler installed by Norton')}<figcaption>New machines, installed and running</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-services-hub', 'Norton crew servicing a baling line')}<figcaption>Service, any brand</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-steel-options', 'A compactor enclosure fabricated by Norton')}<figcaption>Steel built for the site</figcaption></figure>
+      <figure class="sf-item">${photoFig('n-rigging', 'A Norton forklift moving heavy machinery')}<figcaption>Rigging &amp; equipment logistics</figcaption></figure>
     </div>
   </div>
 </section>
@@ -586,7 +610,7 @@ function buildHome() {
     </div>
     <div class="feature-split reveal">
       <a class="feature-main" href="/balers-recycling/vertical-balers/">
-        ${photoFig('balers-mp60hd', 'New Max-Pak vertical balers on the Norton floor')}
+        ${photoFig('n-vertical-baler-alt', 'A Max-Pak vertical baler installed by Norton')}
         <span class="fm-body">
           <span class="fm-tag">Flagship line</span>
           <b>Vertical Balers</b>
@@ -689,8 +713,8 @@ function buildHome() {
 </section>`;
 
   out('index.html', layout({
-    preloadImg: '/assets/img/hero-warehouse.webp',
-    ogImage: '/assets/img/hero-warehouse.webp',
+    preloadImg: '/assets/img/n-hero-dock.webp',
+    ogImage: '/assets/img/n-truck.webp',
     path: '/',
     title: 'Norton Equipment Co. | Trash Compactors & Balers: Sales, Service & Parts | Memphis & Mid-South',
     desc: 'Commercial trash compactors, balers, and recycling equipment: sold, serviced, and rebuilt across West Tennessee, North Mississippi, and East Arkansas since 1997. Any brand, any model. Call (662) 838-7900.',
@@ -764,6 +788,8 @@ ${pageHero({
     </div>
   </div>
 </section>
+
+${gallerySection(item.gallery, item.galleryEyebrow || 'Our Work', item.galleryHeading || 'Built and installed by Norton.')}
 
 ${phoneStrip()}
 
@@ -970,6 +996,9 @@ ${pageHero({
     </div>
   </div>
 </section>
+
+${gallerySection(s.gallery, s.galleryEyebrow || 'Our Work', s.galleryHeading || 'On the job across the Mid-South.')}
+
 ${phoneStrip('Down machine? <em>We prioritize those calls.</em>')}
 
 ${faqSection(s.faqs)}

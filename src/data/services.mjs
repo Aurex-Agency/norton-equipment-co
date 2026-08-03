@@ -197,6 +197,14 @@ export const SERVICES = [
       { h: 'Full plant tear-outs', p: 'Closing, consolidating, or clearing a building? We have emptied an entire plant, machine by machine, and hauled it out.' },
       { h: 'Set, level & anchor', p: 'Getting the machine there is half the job. We place it, level it, and anchor it so it runs the way it is supposed to.' },
     ],
+    galleryEyebrow: 'On The Job',
+    galleryHeading: 'Machines picked up, moved, and set.',
+    gallery: [
+      { img: 'n-rigging-2', alt: 'A Norton forklift carrying machinery through a plant', cap: 'Moving machinery inside a plant' },
+      { img: 'n-plant-load', alt: 'A Norton crew loading machinery onto a flatbed', cap: 'Loading out a facility' },
+      { img: 'n-plant-load-2', alt: 'Machinery strapped to a flatbed trailer for transport', cap: 'Strapped down and ready to roll' },
+      { img: 'n-logistics', alt: 'Compactors loaded on a flatbed for delivery', cap: 'Hauled to the next site' },
+    ],
     faqs: [
       { q: 'Do you rig machinery that has nothing to do with recycling?', a: 'Yes. That is the point of this service. Production machinery, shop equipment, tanks, and presses are all normal work for our crews.' },
       { q: 'Can you tear out a whole plant?', a: 'Yes, we have done it. Tell us the building, the timeline, and what is staying versus going, and we will walk it with you before quoting.' },

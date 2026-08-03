@@ -259,6 +259,14 @@ export const COMPACTORS = [
       { h: 'Compactor enclosures', p: 'Locking gates and screens that end after-hours dumping and scavenging, and keep the waste corner from being the first thing a customer sees.' },
       { h: 'Guards & safety steel', p: 'Access guarding, rails, gates, and interlocked panels that keep hands and forklifts out of the charge chamber, and your safety officer satisfied.' },
     ],
+    galleryEyebrow: 'Recent Steel',
+    galleryHeading: 'Measured, fabricated, installed.',
+    gallery: [
+      { img: 'n-walk-on-deck', alt: 'A walk-on deck with guard rails built by Norton', cap: 'Walk-on deck with guard rails' },
+      { img: 'n-chute', alt: 'A fabricated feed chute and doghouse on a customer wall', cap: 'Feed chute & doghouse' },
+      { img: 'n-thru-wall-door', alt: 'A dual sliding through-wall door fabricated by Norton', cap: 'Through-wall door' },
+      { img: 'n-hopper', alt: 'A rear feed hopper with gate fabricated by Norton', cap: 'Rear feed hopper with gate' },
+    ],
     faqs: [
       { q: 'What steel options can you build?', a: 'Walk-on decks, drive-on decks, chutes, hoppers, enclosures, guards, rails, stairs, and platforms. If it is steel that goes around your equipment, ask. Most of what we build is one-off work for a specific site.' },
       { q: 'Can you build steel for a machine from another dealer?', a: 'Yes. We measure your machine and pad and build to fit: brand does not matter.' },
