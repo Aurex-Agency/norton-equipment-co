@@ -15,9 +15,10 @@ export const SITE = {
   // Displayed contact address on the contact page.
   email: 'service@nortonequipmentco.com',
   emailCc: 'hillary@nortonequipmentco.com',
-  // Client-confirmed 8/4: EVERY website form submission goes to Hillary.
-  // Used by the /api/contact handler and by the mailto fallback.
-  formTo: 'hillary@nortonequipmentco.com',
+  // Client-confirmed 8/4: EVERY website form submission goes to Hillary and
+  // to service@. Used by the mailto fallback; the /api/contact handler keeps
+  // its own copy of this list in FORM_TO so it can be changed without a build.
+  formTo: 'hillary@nortonequipmentco.com,service@nortonequipmentco.com',
   address: {
     street: '60 Amy Ln',
     city: 'Byhalia',

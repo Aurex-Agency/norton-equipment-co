@@ -2,7 +2,9 @@
 // them to the address in FORM_TO. Returns 503 when RESEND_API_KEY is absent,
 // which the client treats as a signal to fall back to the visitor's mail app
 // rather than dead-ending, so a missing key never silently swallows a lead.
-const TO = process.env.FORM_TO || 'hillary@nortonequipmentco.com';
+// Comma-separated list. Every website submission goes to all of these.
+const TO = (process.env.FORM_TO || 'hillary@nortonequipmentco.com,service@nortonequipmentco.com')
+  .split(',').map((s) => s.trim()).filter(Boolean);
 // Must be on a domain verified in Resend. support.nortonequipmentco.com is the
 // verified sender; the apex domain is not, and Resend rejects sends from it.
 // Replies go to the submitter via reply_to, not to this address.
@@ -63,7 +65,7 @@ export default async function handler(req, res) {
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from: FROM,
-        to: [TO],
+        to: TO,
         subject,
         html,
         text,
@@ -81,7 +83,7 @@ export default async function handler(req, res) {
     // a specific send can be traced in the Resend dashboard when a recipient
     // says nothing arrived.
     const out = await r.json().catch(() => ({}));
-    if (out && out.id) console.log('Resend accepted', out.id, '->', TO);
+    if (out && out.id) console.log('Resend accepted', out.id, '->', TO.join(', '));
     return res.status(200).json({ ok: true, id: out && out.id ? out.id : null });
   } catch (err) {
     console.error('Contact handler failed', err);
