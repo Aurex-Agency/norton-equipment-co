@@ -3,7 +3,10 @@
 // build leaves the form on its mailto fallback until then, so a missing key
 // can never silently swallow a lead.
 const TO = process.env.FORM_TO || 'hillary@nortonequipmentco.com';
-const FROM = process.env.FORM_FROM || 'Norton Equipment Website <website@nortonequipmentco.com>';
+// Must be on a domain verified in Resend. support.nortonequipmentco.com is the
+// verified sender; the apex domain is not, and Resend rejects sends from it.
+// Replies go to the submitter via reply_to, not to this address.
+const FROM = process.env.FORM_FROM || 'Norton Equipment Website <website@support.nortonequipmentco.com>';
 
 const esc = (s) =>
   String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
