@@ -407,6 +407,15 @@ function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts,
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+${SITE.analyticsId ? `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${SITE.analyticsId}');
+</script>` : ''}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 ${DRAFT ? '<meta name="robots" content="noindex,nofollow"><!-- DRAFT MODE: remove via src/build.mjs before launch -->' : ''}

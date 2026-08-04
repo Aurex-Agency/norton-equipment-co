@@ -22,6 +22,9 @@ export const SITE = {
     zip: '38611',
   },
   geo: { lat: 34.8723, lng: -89.6906 }, // Byhalia, MS
+  // Google Analytics 4 measurement ID (client-supplied 8/4). Emitted in the
+  // head of every page; set to null to remove analytics site-wide.
+  analyticsId: 'G-MJV5ZSNM0L',
   // Client-supplied 8/3. Also emitted as schema.org sameAs on every page.
   social: [
     { name: 'Facebook', url: 'https://www.facebook.com/nortonequipment/' },
