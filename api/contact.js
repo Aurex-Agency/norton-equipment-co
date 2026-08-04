@@ -1,7 +1,7 @@
 // Vercel serverless function: receives website form submissions and emails
-// them to the address in FORM_TO. Runs only when RESEND_API_KEY is set; the
-// build leaves the form on its mailto fallback until then, so a missing key
-// can never silently swallow a lead.
+// them to the address in FORM_TO. Returns 503 when RESEND_API_KEY is absent,
+// which the client treats as a signal to fall back to the visitor's mail app
+// rather than dead-ending, so a missing key never silently swallows a lead.
 const TO = process.env.FORM_TO || 'hillary@nortonequipmentco.com';
 // Must be on a domain verified in Resend. support.nortonequipmentco.com is the
 // verified sender; the apex domain is not, and Resend rejects sends from it.

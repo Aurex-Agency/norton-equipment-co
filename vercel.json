@@ -6,6 +6,11 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/api/:name*.js",
+      "destination": "/api/contact/",
+      "permanent": false
+    },
+    {
       "source": "/equipment",
       "destination": "/trash-compactors/",
       "permanent": true
