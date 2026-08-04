@@ -48,6 +48,15 @@ export default async function handler(req, res) {
     `<p style="margin:0 0 14px">New submission from the Norton Equipment website.</p>` +
     `<table style="border-collapse:collapse">${rows}</table></div>`;
 
+  // Send multipart. An HTML-only body is a mild spam signal, and plain text is
+  // what shows in notification previews on a phone.
+  const text =
+    'New submission from the Norton Equipment website.\n\n' +
+    Object.entries(body)
+      .filter(([k, v]) => k !== 'bot-field' && k !== 'form-name' && k !== '_subject' && String(v).trim())
+      .map(([k, v]) => `${k}: ${v}`)
+      .join('\n');
+
   try {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -57,6 +66,7 @@ export default async function handler(req, res) {
         to: [TO],
         subject,
         html,
+        text,
         ...(replyTo && /.+@.+\..+/.test(replyTo) ? { reply_to: replyTo } : {}),
       }),
     });
