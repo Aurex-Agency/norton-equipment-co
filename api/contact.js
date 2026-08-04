@@ -67,7 +67,12 @@ export default async function handler(req, res) {
       // difference between "key is wrong" (401) and "domain not verified" (403).
       return res.status(502).json({ error: 'Delivery failed', upstream: r.status });
     }
-    return res.status(200).json({ ok: true });
+    // Resend returns 200 on acceptance, not on delivery. Echo the message id so
+    // a specific send can be traced in the Resend dashboard when a recipient
+    // says nothing arrived.
+    const out = await r.json().catch(() => ({}));
+    if (out && out.id) console.log('Resend accepted', out.id, '->', TO);
+    return res.status(200).json({ ok: true, id: out && out.id ? out.id : null });
   } catch (err) {
     console.error('Contact handler failed', err);
     return res.status(502).json({ error: 'Delivery failed' });
