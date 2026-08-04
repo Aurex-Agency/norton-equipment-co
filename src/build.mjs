@@ -58,6 +58,12 @@ const CSS_V = assetHash('assets/css/site.css');
 const JS_V = assetHash('assets/js/site.js');
 
 
+// Form delivery: /api/contact emails submissions to SITE.formTo, but only once
+// RESEND_API_KEY exists in the Vercel project. Until then the form keeps its
+// mailto fallback, so a missing key never turns into a silently lost lead.
+const FORMS_LIVE = Boolean(process.env.RESEND_API_KEY);
+
+
 const IC = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
@@ -152,6 +158,7 @@ function ldLocalBusiness() {
       ...STATES.map((s) => ({ '@type': 'State', name: s.name })),
     ],
     logo: SITE.baseUrl + '/assets/img/logo-full.webp',
+    image: [SITE.baseUrl + '/assets/img/n-truck.webp', SITE.baseUrl + '/assets/img/n-hero-dock.webp'],
     sameAs: SITE.social.map((s) => s.url),
   };
 }
@@ -407,6 +414,7 @@ function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts,
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+${SITE.searchConsoleToken ? `<meta name="google-site-verification" content="${SITE.searchConsoleToken}">` : ''}
 ${SITE.analyticsId ? `<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}"></script>
 <script>
@@ -1528,7 +1536,7 @@ ${pageHero({
 
 function formHtml({ subject, service = false }) {
   return `
-<form class="form-grid" data-quote-form data-subject="${esc(subject)}" data-mailto="${esc(SITE.email)}${SITE.emailCc ? ',' + SITE.emailCc : ''}" name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<form class="form-grid" data-quote-form data-subject="${esc(subject)}" data-mailto="${esc(SITE.formTo)}"${FORMS_LIVE ? ' data-endpoint="/api/contact"' : ''} name="quote" method="POST">
   <input type="hidden" name="form-name" value="quote">
   <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
   <div class="field"><label for="f-name">Name <span class="req">*</span></label><input id="f-name" name="Name" required autocomplete="name"></div>

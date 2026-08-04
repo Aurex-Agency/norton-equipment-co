@@ -12,9 +12,12 @@ export const SITE = {
   phone: '(662) 838-7900',
   phoneHref: 'tel:+16628387900',
   fax: '(662) 838-7979', // client-confirmed 7/26
-  // Leads route here (client-confirmed 7/26): service@ primary, hillary@ cc.
+  // Displayed contact address on the contact page.
   email: 'service@nortonequipmentco.com',
   emailCc: 'hillary@nortonequipmentco.com',
+  // Client-confirmed 8/4: EVERY website form submission goes to Hillary.
+  // Used by the /api/contact handler and by the mailto fallback.
+  formTo: 'hillary@nortonequipmentco.com',
   address: {
     street: '60 Amy Ln',
     city: 'Byhalia',
@@ -25,6 +28,9 @@ export const SITE = {
   // Google Analytics 4 measurement ID (client-supplied 8/4). Emitted in the
   // head of every page; set to null to remove analytics site-wide.
   analyticsId: 'G-MJV5ZSNM0L',
+  // Google Search Console HTML-tag verification. Paste the content value from
+  // Search Console > Add property > HTML tag. Leave null if verifying by DNS.
+  searchConsoleToken: null,
   // Client-supplied 8/3. Also emitted as schema.org sameAs on every page.
   social: [
     { name: 'Facebook', url: 'https://www.facebook.com/nortonequipment/' },

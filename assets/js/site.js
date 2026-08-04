@@ -129,6 +129,8 @@
         setStatus('pending', 'Sending your request…');
         var payload = {};
         d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field') payload[k] = v; });
+        payload['bot-field'] = d.get('bot-field') || '';
+        payload._subject = form.getAttribute('data-subject') || 'Website Enquiry - Norton Equipment';
         fetch(endpoint, {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
         }).then(function (r) {
