@@ -115,6 +115,20 @@
       statusEl.innerHTML = html;
     }
 
+
+    // Fallback transport: hand the details to the visitor's mail app. Used when
+    // no endpoint is wired, when delivery is unconfigured, and when the request
+    // fails, so the visitor always leaves with a way to reach Norton.
+    function sendByMail(d) {
+      var lines = [];
+      d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field' && v) lines.push(k + ': ' + v); });
+      var subject = encodeURIComponent(form.getAttribute('data-subject') || 'Quote Request - Norton Equipment Website');
+      var body = encodeURIComponent(lines.join('\n'));
+      var mailto = 'mailto:' + (form.getAttribute('data-mailto') || 'hillary@nortonequipmentco.com') + '?subject=' + subject + '&body=' + body;
+      setStatus('pending', '<b>Opening your email app…</b> Send the draft and we’ll reply within one business day. If nothing opened, call <a href="tel:+16628387900">' + phone + '</a>.');
+      window.location.href = mailto;
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -134,23 +148,20 @@
         fetch(endpoint, {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
         }).then(function (r) {
+          // 503 means delivery is not configured yet. Anything else that is not
+          // ok is a real failure. Either way we fall back to the mail app rather
+          // than dead-ending the visitor, because a lost lead is the worst case.
+          if (r.status === 503) { sendByMail(d, 'unconfigured'); return; }
           if (!r.ok) throw new Error('bad status');
           form.reset();
           setStatus('ok', '<b>Got it' + (name ? ', ' + name : '') + '.</b> A real person will call you back within one business day. Need us sooner? Call <a href="tel:+16628387900">' + phone + '</a>.');
         }).catch(function () {
-          setStatus('err', 'Something went wrong on our end. Please call <a href="tel:+16628387900">' + phone + '</a> or email us directly, we don’t want to miss you.');
+          sendByMail(d, 'error');
         }).finally(function () { if (btn) { btn.disabled = false; } });
         return;
       }
 
-      // Interim transport: open the visitor's email app, and say so plainly.
-      var lines = [];
-      d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field' && v) lines.push(k + ': ' + v); });
-      var subject = encodeURIComponent(form.getAttribute('data-subject') || 'Quote Request - Norton Equipment Website');
-      var body = encodeURIComponent(lines.join('\n'));
-      var mailto = 'mailto:' + (form.getAttribute('data-mailto') || 'info@nortonequipmentco.com') + '?subject=' + subject + '&body=' + body;
-      setStatus('pending', '<b>Opening your email app…</b> Send the draft and we’ll reply within one business day. If nothing opened, call <a href="tel:+16628387900">' + phone + '</a>.');
-      window.location.href = mailto;
+      sendByMail(d, 'nofetch');
     });
   });
 })();
