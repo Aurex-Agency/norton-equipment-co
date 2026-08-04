@@ -58,8 +58,11 @@ export default async function handler(req, res) {
       }),
     });
     if (!r.ok) {
-      console.error('Resend error', r.status, await r.text().catch(() => ''));
-      return res.status(502).json({ error: 'Delivery failed' });
+      const detail = await r.text().catch(() => '');
+      console.error('Resend error', r.status, detail);
+      // Surface the upstream status only. It is not sensitive and it is the
+      // difference between "key is wrong" (401) and "domain not verified" (403).
+      return res.status(502).json({ error: 'Delivery failed', upstream: r.status });
     }
     return res.status(200).json({ ok: true });
   } catch (err) {
