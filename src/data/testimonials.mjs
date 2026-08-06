@@ -42,6 +42,18 @@ export const TESTIMONIALS = [
     tag: 'Waste & Hauling',
   },
   {
+    // Client-supplied 8/4. Verbatim apart from one dropped word: the original
+    // read "Have used and Norton since I got into this industry".
+    quote: [
+      'Have been working with Norton Equipment for over 10 years in the compactor industry and have always had a wonderful experience! They go above and beyond to do this with high quality, in a timely manner and communicate every step of the way.',
+      'On the rare occasion there are hiccups JT and Hillary are right there to pick up the phone and talk through things to come up with the best solutions. Have used Norton since I got into this industry and will continue until I get out!',
+    ],
+    name: 'Zach Pavlisick',
+    role: 'Tower Compactor Rentals',
+    tag: 'Compactor Rentals',
+    wide: true,
+  },
+  {
     quote:
       'I have been very pleased with the service Norton Equipment has provided Williams-Sonoma for over 10 years that I have known them. From the sale of new and used equipment, installation in our locations all over the country, repair parts, and fast service when a machine is out of service, I know I can count on Norton!',
     name: 'David Dygert',
