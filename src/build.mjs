@@ -324,6 +324,7 @@ function footerHtml() {
       <div class="foot-social">
         ${SITE.social.map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="Norton Equipment on ${esc(s.name)}">${SOCIAL_IC[s.name] || ''}</a>`).join('')}
       </div>
+      <a class="foot-review" href="${SITE.reviewUrl}" target="_blank" rel="noopener">★ Leave us a Google review</a>
     </div>
     <div><div class="foot-h">Equipment</div><div class="foot-links">${eq}</div></div>
     <div><div class="foot-h">Services</div><div class="foot-links">${svc}</div></div>
@@ -1518,6 +1519,13 @@ ${pageHero({
     </div>
     ${TESTIMONIALS_ARE_PLACEHOLDERS ? `<div class="draft-note reveal"><b>Draft Note</b>Sample quotes shown for layout review only. The launch version of this page will feature Norton’s real, verified customer reviews, cleaned up and tagged by industry and city per the site plan.</div>` : ''}
     <div class="grid-3">${quotes}</div>
+
+    <div class="review-cta reveal" data-d="1">
+      <div class="rc-stars" aria-hidden="true">${'★'.repeat(5)}</div>
+      <h3>Worked with us? Tell the next operator.</h3>
+      <p>Most of our work comes from someone passing our name along. A minute of your time on Google goes a long way for a small independent shop.</p>
+      <a class="btn btn-gold btn-lg" href="${SITE.reviewUrl}" target="_blank" rel="noopener">${IC.star || ''}Leave a Google Review <span class="arw">→</span></a>
+    </div>
   </div>
 </section>`;
   out('testimonials/index.html', layout({

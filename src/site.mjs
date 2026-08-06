@@ -26,6 +26,9 @@ export const SITE = {
     zip: '38611',
   },
   geo: { lat: 34.8723, lng: -89.6906 }, // Byhalia, MS
+  // Google review link (client-supplied 8/4). Used by the "leave a review"
+  // buttons and emitted as the LocalBusiness review action.
+  reviewUrl: 'https://g.page/r/CQVMv7QHAEjAEBM/review',
   // Google Analytics 4 measurement ID (client-supplied 8/4). Emitted in the
   // head of every page; set to null to remove analytics site-wide.
   analyticsId: 'G-MJV5ZSNM0L',
