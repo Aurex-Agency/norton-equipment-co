@@ -1967,7 +1967,10 @@ ${pageHero({
   POSTS.forEach((p) => {
     const path = `/blog/${p.slug}/`;
     const crumbs2 = [{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog/' }, { label: p.title, href: path }];
-    const others = POSTS.filter((x) => x.slug !== p.slug).slice(0, 3).map((o, i) => `
+    // Same rotation as the legacy archive, for the same reason.
+    const pIdx = POSTS.findIndex((x) => x.slug === p.slug);
+    const others = Array.from({ length: 3 }, (_, k) => POSTS[(pIdx + k + 1) % POSTS.length])
+      .filter((o) => o && o.slug !== p.slug).map((o, i) => `
       <a class="post-card reveal" data-d="${i + 1}" href="/blog/${o.slug}/">
         <div class="pc-top" aria-hidden="true"></div>
         <div class="pc-body">
@@ -2034,7 +2037,12 @@ function buildLegacyBlog() {
   LEGACY_POSTS.forEach((p) => {
     const path = `/${p.slug}/`;
     const crumbs = [{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog/' }, { label: p.title, href: path }];
-    const others = [...LEGACY_POSTS.filter((x) => x.slug !== p.slug)].slice(0, 3).map((o, i) => `
+    // Rotate through the archive instead of always taking the first three.
+    // Taking a fixed slice gave three posts ~21 sibling links each and the
+    // other nineteen none, which is why most were never crawled past /blog/.
+    const idx = LEGACY_POSTS.findIndex((x) => x.slug === p.slug);
+    const others = Array.from({ length: 3 }, (_, k) => LEGACY_POSTS[(idx + k + 1) % LEGACY_POSTS.length])
+      .filter((o) => o && o.slug !== p.slug).map((o, i) => `
       <a class="post-card reveal" data-d="${i + 1}" href="/${o.slug}/">
         ${o.img ? `<span class="pc-img"><img src="/assets/img/${o.img}.webp" alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
         <div class="pc-body">
