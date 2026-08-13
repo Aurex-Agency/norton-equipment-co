@@ -202,7 +202,7 @@ h1.hero-h .gold{color:transparent;-webkit-text-stroke:1.5px var(--gold)}
 .loaded h1.hero-h .ln>span{transform:translateY(0)}
 h1.hero-h .ln:nth-child(2)>span{transition-delay:.09s}
 h1.hero-h .ln:nth-child(3)>span{transition-delay:.18s}
-.hero-sub{max-width:660px;font-size:clamp(16px,1.9vw,19px);color:var(--silver);margin:26px 0 36px;opacity:0;transform:translateY(20px);transition:all 1s var(--ease-out) .45s}
+.hero-sub{max-width:660px;font-size:clamp(16px,1.9vw,19px);font-family:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.65;letter-spacing:normal;color:var(--silver);margin:26px 0 36px;opacity:0;transform:translateY(20px);transition:all 1s var(--ease-out) .45s}
 .loaded .hero-sub{opacity:1;transform:none}
 .hero-cta{display:flex;flex-wrap:wrap;gap:16px;opacity:0;transform:translateY(20px);transition:all 1s var(--ease-out) .6s}
 .loaded .hero-cta{opacity:1;transform:none}

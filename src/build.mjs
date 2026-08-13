@@ -620,7 +620,7 @@ function buildHome() {
       <span class="ln"><span class="gold">behind the waste.</span></span>
     </h1>
     <p class="script-line">Built on service. Backed by experience. Byhalia, Mississippi.</p>
-    <p class="hero-sub">Commercial trash compactors and balers: sold, installed, serviced, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</p>
+    <h2 class="hero-sub">Commercial trash compactors and balers: sold, installed, serviced, and rebuilt across <b style="color:var(--silver-hi)">West Tennessee, North Mississippi, and East Arkansas</b>. Independent since 1997, with our own techs and a full fabrication shop behind every machine.</h2>
     <div class="hero-cta">
       <a href="${SITE.phoneHref}" class="btn btn-gold btn-lg" data-magnetic>${IC.phone}Call ${esc(SITE.phone)}</a>
       <a href="/request-a-quote/" class="btn btn-ghost btn-lg" data-magnetic>Request a Quote <span class="arw">→</span></a>
@@ -849,7 +849,7 @@ function buildHome() {
     preloadImg: '/assets/img/n-hero-dock.webp',
     ogImage: '/assets/img/n-truck.webp',
     path: '/',
-    title: 'Norton Equipment Co. | Trash Compactors & Balers: Sales, Service & Parts | Memphis & Mid-South',
+    title: 'Trash Compactors & Balers | Norton Equipment Co.',
     desc: 'Commercial trash compactors and balers sold, serviced, and rebuilt across the Mid-South since 1997. Any brand, any model. Call (662) 838-7900.',
     body,
     ld: [],
