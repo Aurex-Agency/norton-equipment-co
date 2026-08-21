@@ -6,6 +6,119 @@
 
 export const POSTS = [
   {
+    slug: 'how-much-does-a-baler-cost',
+    img: 'n-vertical-balers',
+    title: 'How Much Does a Commercial Baler Cost?',
+    date: '2026-08-04',
+    readMins: 10,
+    excerpt:
+      'Real 2026 price ranges for vertical, horizontal, two-ram, and specialty balers, what actually drives the number up or down, and why refurbished baling equipment is one of the smartest buys in the industry.',
+    metaDesc:
+      'Commercial baler prices for 2026: vertical, horizontal, two-ram, and refurbished. What drives cost up or down, and the questions to ask before you buy.',
+    body: `
+<p>Ask five baler dealers what a baler costs and you will get five different non-answers, because most of them are trying to get you on the phone before they say a number. Here is the number, several of them actually, with the reasoning behind each so you can tell a fair quote from a padded one before you ever pick up the phone.</p>
+
+<h2>The three things that actually set the price</h2>
+<p>Every baler quote comes down to three variables. Get these straight first and every price you see afterward will make sense.</p>
+<ol>
+<li><strong>Chamber size.</strong> A wider, taller charge chamber bales more material per cycle. Small chambers cost less and suit lower volume; large chambers cost more and belong where cardboard or film shows up by the truckload.</li>
+<li><strong>Tie method and automation.</strong> Manual-tie balers need an operator to wrap and knot wire by hand between cycles. Auto-tie balers wrap and knot themselves and run largely unattended. Automation adds cost up front and removes labor forever after.</li>
+<li><strong>Condition: new, refurbished, or used.</strong> The same mechanical baler sold new, rebuilt, or as-is can carry three very different prices for three very different reasons, covered below.</li>
+</ol>
+
+<h2>Baler prices by type: 2026 ranges</h2>
+<p>Installed cost varies with site power and freight, but these are honest starting ranges for new equipment:</p>
+<ul>
+<li><strong><a href="/balers-recycling/vertical-balers/">Vertical balers</a>:</strong> roughly $6,000-$18,000. The back-room workhorse for retail, grocery, and light-industrial cardboard, sized to the volume a small crew can feed by hand.</li>
+<li><strong><a href="/balers-recycling/horizontal-balers/">Horizontal balers</a>:</strong> roughly $35,000-$150,000. Continuous-feed, auto-tie machines built for distribution centers, recyclers, and manufacturers moving cardboard or film by the ton, not the box.</li>
+<li><strong><a href="/balers-recycling/two-ram-balers/">Two-ram balers</a>:</strong> roughly $150,000-$400,000+. Multi-material machines for high-volume recyclers baling mixed paper, plastics, and metals through a single feed.</li>
+<li><strong><a href="/balers-recycling/specialty-balers/">Specialty balers</a>:</strong> priced to the material, foam and film densification equipment in particular runs its own math since it is solving a volume problem, not a weight problem. Ask us for a straight quote against your actual stream.</li>
+</ul>
+
+<h2>Refurbished and used: the value play most buyers never get quoted</h2>
+<p>A baler is a thick steel chamber and a hydraulic cylinder, not a delicate machine. Rebuilt properly, a decade-old baler will run cardboard for another decade, commonly at <a href="/balers-recycling/refurbished-balers/">roughly half the price of new</a>. That single fact makes refurbished equipment one of the best-value purchases in this entire industry, and it is why Norton has built a specialty around it since the beginning.</p>
+<p><a href="/balers-recycling/used-balers/">Used balers</a> sit a step below refurbished on price, sold as they came in: inspected, honestly described, and priced accordingly, with no rebuild work done. The right fit for an operation that wants working equipment fast and does not need warranty coverage on every wear part.</p>
+
+<h2>What pushes a quote higher or lower</h2>
+<ul>
+<li><strong>Auto-tie vs. hand-tie.</strong> Automation is the single biggest line item on most quotes, and the fastest payback if labor is what you are trying to reduce.</li>
+<li><strong>Electrical service.</strong> Larger balers need three-phase power and sometimes a service upgrade. Confirm what your building already has before you fall in love with a machine size.</li>
+<li><strong>In-feed conveyor.</strong> Feeding a horizontal baler by hand versus by conveyor is a real cost difference, and one worth pricing separately so you know what automation you are actually paying for.</li>
+<li><strong>Freight and rigging.</strong> A two-ram baler weighs tens of thousands of pounds. Ask whether the quote includes delivery and setting the machine, or just the machine, before comparing two numbers that are not actually comparable. See <a href="/services/equipment-logistics/">equipment logistics</a> for what a proper install includes.</li>
+<li><strong>Wire vs. strapping.</strong> Ongoing <a href="/balers-recycling/baling-wire/">baling wire</a> cost is small per bale but adds up across a year; ask what gauge your machine needs before you buy a pallet of the wrong wire.</li>
+</ul>
+
+<h2>The other side of the ledger</h2>
+<p>A baler is not just an expense, it turns a disposal cost into a commodity. Loose cardboard costs money to haul away; baled cardboard is a product recyclers pay for, and dense bales mean fewer, heavier pickups either way. Pair that with the labor saved by not hand-flattening boxes all shift, and the payback on a mid-size baler commonly lands inside two to three years, faster on a refurbished machine. (For the compaction side of this same math, see <a href="/blog/how-a-trash-compactor-cuts-your-hauling-bill/">how a trash compactor cuts your hauling bill</a>, the mechanism is nearly identical.)</p>
+
+<h2>Five questions to ask before you buy</h2>
+<ol>
+<li><strong>Will you quote new and refurbished side by side?</strong> A dealer with only one answer is selling inventory, not solving your problem.</li>
+<li><strong>Who services this machine after the sale?</strong> A baler with no local service is a baler you will eventually curse. Ask who turns the wrenches and how fast they show up.</li>
+<li><strong>What is included in the installed price?</strong> Freight, rigging, electrical hookup, and training belong in the quote, not discovered afterward.</li>
+<li><strong>What is the real cycle time and throughput?</strong> Ask for the number that matches your actual volume, not the spec-sheet best case.</li>
+<li><strong>Can I see it running?</strong> A reconditioned machine especially should run for you, loaded, before money changes hands.</li>
+</ol>
+
+<h2>The short version</h2>
+<p>Vertical for a back room, horizontal for volume, two-ram for mixed materials at scale. New if uptime and warranty matter most and the capital is there; refurbished for nearly the same machine life at roughly half the price. Confirm power, freight, and service before you compare quotes, because two numbers that do not include the same scope are not actually the same quote.</p>
+<p>Norton Equipment has sold, rebuilt, and serviced balers across the Mid-South since 1997, and a straight quote against your real volume costs nothing. Call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>.</p>
+`,
+  },
+  {
+    slug: 'trash-compactor-maintenance-checklist',
+    img: 'n-repair',
+    title: 'Trash Compactor Maintenance Checklist',
+    date: '2026-07-28',
+    readMins: 8,
+    excerpt:
+      'What to check daily, what to check monthly, and what belongs to a trained tech, plus the maintenance schedule and warning signs that keep a compactor out of the emergency-repair pile.',
+    metaDesc:
+      'A commercial trash compactor maintenance checklist: daily checks, a quarterly PM schedule, warning signs, and what only a tech should touch.',
+    body: `
+<p>Almost every compactor failure we get called out for falls into one of two piles: the genuine accident, and the slow breakdown that a twenty-minute look would have caught months earlier. The second pile is much bigger than most facility managers assume, and it is entirely avoidable with a routine that takes minutes a day and hours a quarter. This is that routine.</p>
+
+<h2>What an operator can check every day, no tools required</h2>
+<ul>
+<li><strong>Look for leaks.</strong> Fresh hydraulic fluid under the unit is the earliest, cheapest warning sign a compactor gives you. Wipe it up so tomorrow's check is accurate, and note where it came from.</li>
+<li><strong>Listen to the cycle.</strong> A compactor that grinds, strains, or takes noticeably longer to cycle than usual is telling you something before it fails outright.</li>
+<li><strong>Check the door and seals.</strong> A door that will not latch fully, or a self-contained unit with a seal that is no longer sealing, needs a call before it becomes a mess on the pad.</li>
+<li><strong>Clear the charge area.</strong> Debris jammed around the ram path is the single most common cause of a jammed cycle, and the easiest thing on this list to prevent.</li>
+<li><strong>Confirm the e-stop is reachable.</strong> Not blocked by a pallet, not painted over, not forgotten. Everyone who feeds the machine should know exactly where it is.</li>
+</ul>
+
+<h2>What to check monthly</h2>
+<ul>
+<li><strong>Hydraulic fluid level.</strong> Low fluid strains the pump long before it causes an obvious failure.</li>
+<li><strong>Grease points and moving hardware.</strong> Hinges, latches, and guide rails that run dry wear out early and loud.</li>
+<li><strong>Chains, latches, and interlocks.</strong> Confirm interlocks still stop the machine when a door opens. This is a safety check, not a suggestion.</li>
+<li><strong>Cycle time drift.</strong> Compare today's cycle time against what it was when the machine was new or last serviced. A slowing trend is a maintenance call waiting to happen.</li>
+</ul>
+
+<h2>What belongs to a trained technician</h2>
+<p>Past the daily and monthly items, a compactor needs a real inspection on a schedule: hydraulic fluid condition (not just level), cylinder and packing wear, electrical connections and controls, and a structural look at the floor, welds, and ram path where cracks and wear actually start. This is what a <a href="/services/preventive-maintenance/">preventive maintenance program</a> covers, typically quarterly for a single-shift operation and monthly for a hard-running machine like a DC compactor, with a written condition report after every visit so you see problems coming a year out instead of finding them on a Friday afternoon.</p>
+
+<h2>A simple maintenance schedule</h2>
+<table style="width:100%;border-collapse:collapse;margin:20px 0">
+<tr><th style="text-align:left;padding:8px 12px 8px 0;border-bottom:2px solid var(--line)">Frequency</th><th style="text-align:left;padding:8px 0;border-bottom:2px solid var(--line)">What happens</th></tr>
+<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Daily</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Visual leak check, listen to the cycle, clear the charge area, confirm door/seal and e-stop</td></tr>
+<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Monthly</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Fluid level, grease points, interlock function, cycle time comparison</td></tr>
+<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Quarterly</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Full technician PM visit: hydraulics, electrical, structural, documented condition report</td></tr>
+<tr><td style="padding:10px 12px 10px 0"><strong>As needed</strong></td><td style="padding:10px 0">Any repair a daily or monthly check flags, before it becomes a down machine</td></tr>
+</table>
+
+<h2>Warning signs it is time to call, not wait</h2>
+<p>A slowing cycle, a hydraulic leak that keeps coming back, a door that will not seal, unusual noise under load, or a control panel throwing errors are not problems that fix themselves overnight. For the full list of what to watch for and why, see <a href="/trash-compactor-repair-signs/">the clear signs your compactor needs repair</a>. The short version: the machine almost always tells you before it quits. The maintenance routine above is how you hear it in time.</p>
+
+<h2>What skipping maintenance actually costs</h2>
+<p>A quarterly PM visit runs a fraction of one emergency repair call with the downtime that comes with it, and downtime is the real cost: waste piling up on the dock, a hauler that cannot pull a jammed container, and a crew improvising around a machine that should be working. A documented maintenance history also protects the resale value of an owned machine, and gives you the paper trail to plan a replacement on your schedule instead of the compactor's.</p>
+
+<h2>The short version</h2>
+<p>Daily: look, listen, clear the path, check the door. Monthly: fluid, grease, interlocks, cycle time. Quarterly: a real technician visit with a written report. Skip none of it, because the twenty-minute check is always cheaper than the machine it would have saved.</p>
+<p>Norton Equipment runs preventive maintenance programs and emergency repair across the Mid-South, any brand, any model, since 1997. Put your compactor on a schedule before it puts itself on ours: call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/services/preventive-maintenance/">ask about a PM program</a>.</p>
+`,
+  },
+  {
     slug: 'commercial-trash-compactor-buying-guide',
     img: 'bale-stacks',
     title: 'The Commercial Trash Compactor Buying Guide: Types, Sizing, and Cost',
