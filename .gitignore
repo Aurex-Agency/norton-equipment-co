@@ -1,0 +1,7 @@
+# Dependencies (Playwright is installed only for local verification runs)
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

@@ -2010,12 +2010,13 @@ ${pageHero({
 
     out(`blog/${p.slug}/index.html`, layout({
       path,
-      title: titleWithBrand(p.title),
+      title: p.seoTitle || titleWithBrand(p.title),
       desc: p.metaDesc,
       body: body2,
       ogType: 'article',
       ld: [
         ldBreadcrumbs(crumbs2),
+        ...(p.faqs && p.faqs.length ? [ldFaq(p.faqs)] : []),
         {
           '@type': 'BlogPosting',
           headline: p.title,
