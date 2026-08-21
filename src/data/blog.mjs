@@ -6,116 +6,133 @@
 
 export const POSTS = [
   {
-    slug: 'how-much-does-a-baler-cost',
-    img: 'n-vertical-balers',
-    title: 'How Much Does a Commercial Baler Cost?',
-    date: '2026-08-04',
-    readMins: 10,
-    excerpt:
-      'Real 2026 price ranges for vertical, horizontal, two-ram, and specialty balers, what actually drives the number up or down, and why refurbished baling equipment is one of the smartest buys in the industry.',
-    metaDesc:
-      'Commercial baler prices for 2026: vertical, horizontal, two-ram, and refurbished. What drives cost up or down, and the questions to ask before you buy.',
-    body: `
-<p>Ask five baler dealers what a baler costs and you will get five different non-answers, because most of them are trying to get you on the phone before they say a number. Here is the number, several of them actually, with the reasoning behind each so you can tell a fair quote from a padded one before you ever pick up the phone.</p>
-
-<h2>The three things that actually set the price</h2>
-<p>Every baler quote comes down to three variables. Get these straight first and every price you see afterward will make sense.</p>
-<ol>
-<li><strong>Chamber size.</strong> A wider, taller charge chamber bales more material per cycle. Small chambers cost less and suit lower volume; large chambers cost more and belong where cardboard or film shows up by the truckload.</li>
-<li><strong>Tie method and automation.</strong> Manual-tie balers need an operator to wrap and knot wire by hand between cycles. Auto-tie balers wrap and knot themselves and run largely unattended. Automation adds cost up front and removes labor forever after.</li>
-<li><strong>Condition: new, refurbished, or used.</strong> The same mechanical baler sold new, rebuilt, or as-is can carry three very different prices for three very different reasons, covered below.</li>
-</ol>
-
-<h2>Baler prices by type: 2026 ranges</h2>
-<p>Installed cost varies with site power and freight, but these are honest starting ranges for new equipment:</p>
-<ul>
-<li><strong><a href="/balers-recycling/vertical-balers/">Vertical balers</a>:</strong> roughly $6,000-$18,000. The back-room workhorse for retail, grocery, and light-industrial cardboard, sized to the volume a small crew can feed by hand.</li>
-<li><strong><a href="/balers-recycling/horizontal-balers/">Horizontal balers</a>:</strong> roughly $35,000-$150,000. Continuous-feed, auto-tie machines built for distribution centers, recyclers, and manufacturers moving cardboard or film by the ton, not the box.</li>
-<li><strong><a href="/balers-recycling/two-ram-balers/">Two-ram balers</a>:</strong> roughly $150,000-$400,000+. Multi-material machines for high-volume recyclers baling mixed paper, plastics, and metals through a single feed.</li>
-<li><strong><a href="/balers-recycling/specialty-balers/">Specialty balers</a>:</strong> priced to the material, foam and film densification equipment in particular runs its own math since it is solving a volume problem, not a weight problem. Ask us for a straight quote against your actual stream.</li>
-</ul>
-
-<h2>Refurbished and used: the value play most buyers never get quoted</h2>
-<p>A baler is a thick steel chamber and a hydraulic cylinder, not a delicate machine. Rebuilt properly, a decade-old baler will run cardboard for another decade, commonly at <a href="/balers-recycling/refurbished-balers/">roughly half the price of new</a>. That single fact makes refurbished equipment one of the best-value purchases in this entire industry, and it is why Norton has built a specialty around it since the beginning.</p>
-<p><a href="/balers-recycling/used-balers/">Used balers</a> sit a step below refurbished on price, sold as they came in: inspected, honestly described, and priced accordingly, with no rebuild work done. The right fit for an operation that wants working equipment fast and does not need warranty coverage on every wear part.</p>
-
-<h2>What pushes a quote higher or lower</h2>
-<ul>
-<li><strong>Auto-tie vs. hand-tie.</strong> Automation is the single biggest line item on most quotes, and the fastest payback if labor is what you are trying to reduce.</li>
-<li><strong>Electrical service.</strong> Larger balers need three-phase power and sometimes a service upgrade. Confirm what your building already has before you fall in love with a machine size.</li>
-<li><strong>In-feed conveyor.</strong> Feeding a horizontal baler by hand versus by conveyor is a real cost difference, and one worth pricing separately so you know what automation you are actually paying for.</li>
-<li><strong>Freight and rigging.</strong> A two-ram baler weighs tens of thousands of pounds. Ask whether the quote includes delivery and setting the machine, or just the machine, before comparing two numbers that are not actually comparable. See <a href="/services/equipment-logistics/">equipment logistics</a> for what a proper install includes.</li>
-<li><strong>Wire vs. strapping.</strong> Ongoing <a href="/balers-recycling/baling-wire/">baling wire</a> cost is small per bale but adds up across a year; ask what gauge your machine needs before you buy a pallet of the wrong wire.</li>
-</ul>
-
-<h2>The other side of the ledger</h2>
-<p>A baler is not just an expense, it turns a disposal cost into a commodity. Loose cardboard costs money to haul away; baled cardboard is a product recyclers pay for, and dense bales mean fewer, heavier pickups either way. Pair that with the labor saved by not hand-flattening boxes all shift, and the payback on a mid-size baler commonly lands inside two to three years, faster on a refurbished machine. (For the compaction side of this same math, see <a href="/blog/how-a-trash-compactor-cuts-your-hauling-bill/">how a trash compactor cuts your hauling bill</a>, the mechanism is nearly identical.)</p>
-
-<h2>Five questions to ask before you buy</h2>
-<ol>
-<li><strong>Will you quote new and refurbished side by side?</strong> A dealer with only one answer is selling inventory, not solving your problem.</li>
-<li><strong>Who services this machine after the sale?</strong> A baler with no local service is a baler you will eventually curse. Ask who turns the wrenches and how fast they show up.</li>
-<li><strong>What is included in the installed price?</strong> Freight, rigging, electrical hookup, and training belong in the quote, not discovered afterward.</li>
-<li><strong>What is the real cycle time and throughput?</strong> Ask for the number that matches your actual volume, not the spec-sheet best case.</li>
-<li><strong>Can I see it running?</strong> A reconditioned machine especially should run for you, loaded, before money changes hands.</li>
-</ol>
-
-<h2>The short version</h2>
-<p>Vertical for a back room, horizontal for volume, two-ram for mixed materials at scale. New if uptime and warranty matter most and the capital is there; refurbished for nearly the same machine life at roughly half the price. Confirm power, freight, and service before you compare quotes, because two numbers that do not include the same scope are not actually the same quote.</p>
-<p>Norton Equipment has sold, rebuilt, and serviced balers across the Mid-South since 1997, and a straight quote against your real volume costs nothing. Call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>.</p>
-`,
-  },
-  {
     slug: 'trash-compactor-maintenance-checklist',
     img: 'n-repair',
-    title: 'Trash Compactor Maintenance Checklist',
-    date: '2026-07-28',
+    title: 'Commercial Compactor Maintenance Checklist: What to Check and When',
+    seoTitle: 'Commercial Compactor Maintenance Checklist | Norton',
+    date: '2026-08-21',
     readMins: 8,
     excerpt:
-      'What to check daily, what to check monthly, and what belongs to a trained tech, plus the maintenance schedule and warning signs that keep a compactor out of the emergency-repair pile.',
+      'A practical commercial compactor maintenance checklist covering daily operator observations, scheduled technician inspections, service frequency, and warning signs that should not wait.',
     metaDesc:
-      'A commercial trash compactor maintenance checklist: daily checks, a quarterly PM schedule, warning signs, and what only a tech should touch.',
+      'Use this commercial compactor maintenance checklist to spot leaks, slow cycles and wear before downtime. Get Mid-South service from Norton.',
+    faqs: [
+      { q: 'What maintenance does a commercial compactor need?', a: 'Routine maintenance typically includes operator observations for leaks, unusual noises, slower cycles, damaged doors or seals, and blocked controls, plus scheduled professional inspection of hydraulic, electrical, safety, wear, and structural components. Always follow the manufacturer’s instructions for the specific machine.' },
+      { q: 'How often should a commercial trash compactor be serviced?', a: 'The interval depends on cycles, waste type, environment, age, condition, repair history, and manufacturer guidance. Norton commonly recommends quarterly preventive maintenance for many standard applications and more frequent service for high-cycle or demanding environments.' },
+      { q: 'What are common signs that a compactor needs repair?', a: 'Recurring hydraulic leaks, slow cycles, unusual noises, repeated jams, door or latch problems, control-panel faults, damaged seals, and malfunctioning safety devices are common reasons to stop and request service.' },
+      { q: 'Can an operator clear a compactor jam?', a: 'Operators should not reach into a compactor or enter the charge chamber. Jam clearing and internal work require the equipment to be safely de-energized under the facility’s approved lockout/tagout procedure and should be performed only by trained, authorized personnel.' },
+    ],
     body: `
-<p>Almost every compactor failure we get called out for falls into one of two piles: the genuine accident, and the slow breakdown that a twenty-minute look would have caught months earlier. The second pile is much bigger than most facility managers assume, and it is entirely avoidable with a routine that takes minutes a day and hours a quarter. This is that routine.</p>
+<p class="lead">Most commercial compactor failures give some warning. A hydraulic leak, slower cycle, unusual noise, damaged seal, or worn component often appears before the machine stops completely. The challenge is noticing those changes during a busy shift.</p>
+<p>This commercial compactor maintenance checklist separates quick operator observations from work that belongs to trained, authorized service personnel. Used with the manufacturer’s instructions and your facility’s safety procedures, it can help you catch developing problems, reduce unplanned downtime, and plan repairs before waste starts piling up.</p>
 
-<h2>What an operator can check every day, no tools required</h2>
+<div class="safety-note"><b>Safety first</b>Never enter a compactor, reach into the charge chamber, clear a jam, remove a guard, or bypass a safety device. Internal inspection and service require trained, authorized personnel and the facility’s approved lockout/tagout procedure. Always follow the equipment manufacturer’s instructions and site-specific safety program.</div>
+
+<h2>Daily commercial compactor checks for operators</h2>
+<p>Operators do not need to dismantle equipment or perform mechanical work to notice a change in condition. A brief visual and operational check can reveal when the machine needs attention.</p>
+
+<h3>1. Look for hydraulic leaks</h3>
+<p>Check around and beneath the compactor for fresh hydraulic fluid. A leak may begin at a hose, fitting, cylinder, or seal. Even a small leak can lower the fluid level, create a slip hazard, and lead to additional damage if the machine keeps running. Report the leak instead of repeatedly wiping it up.</p>
+
+<h3>2. Listen for changes in sound</h3>
+<p>Grinding, squealing, banging, straining, or a change in hydraulic-system noise deserves attention. Operators who use a machine every day often hear a developing problem before anyone else does.</p>
+
+<h3>3. Watch the cycle time</h3>
+<p>A cycle that takes noticeably longer than normal may point to a hydraulic, electrical, or mechanical issue. Because the change can happen gradually, record it and report it rather than waiting for the compactor to stop.</p>
+
+<h3>4. Check doors, latches, and seals</h3>
+<p>Confirm that doors and access points close and latch normally. On <a href="/trash-compactors/self-contained/">self-contained compactors</a>, look for damaged seals or liquid escaping from the container connection. Do not force a door or defeat an interlock to keep the machine operating.</p>
+
+<h3>5. Keep accessible areas clear</h3>
+<p>Remove loose cardboard, trash, pallets, and other debris from normal walking and operating areas. Do not reach into the machine or attempt to clear material from an internal area while the compactor is capable of operating.</p>
+
+<h3>6. Keep emergency controls accessible</h3>
+<p>Emergency stops and operating controls must remain visible and unobstructed. Operators should know where the emergency stop is located and how to report a problem under the facility’s procedures.</p>
+
+<h2>What trained personnel should inspect on a regular schedule</h2>
+<p>Scheduled inspections go beyond the daily operator check. The exact tasks and intervals should come from the manufacturer’s manual, the machine’s workload, its service history, and the facility’s maintenance program. Depending on the equipment, a qualified inspection may cover:</p>
 <ul>
-<li><strong>Look for leaks.</strong> Fresh hydraulic fluid under the unit is the earliest, cheapest warning sign a compactor gives you. Wipe it up so tomorrow's check is accurate, and note where it came from.</li>
-<li><strong>Listen to the cycle.</strong> A compactor that grinds, strains, or takes noticeably longer to cycle than usual is telling you something before it fails outright.</li>
-<li><strong>Check the door and seals.</strong> A door that will not latch fully, or a self-contained unit with a seal that is no longer sealing, needs a call before it becomes a mess on the pad.</li>
-<li><strong>Clear the charge area.</strong> Debris jammed around the ram path is the single most common cause of a jammed cycle, and the easiest thing on this list to prevent.</li>
-<li><strong>Confirm the e-stop is reachable.</strong> Not blocked by a pallet, not painted over, not forgotten. Everyone who feeds the machine should know exactly where it is.</li>
+<li>Hydraulic fluid level and condition; hoses, fittings, cylinders, valves, and packing</li>
+<li>Lubrication points, bearings, hinges, chains, guides, and other moving or wear components</li>
+<li>Door hardware, container connections, seals, and latches</li>
+<li>Electrical connections, controls, limit switches, photo eyes, and control-panel faults</li>
+<li>Emergency stops, guards, interlocks, and other safety devices</li>
+<li>Structural components, welds, floors, ram shoes, wear surfaces, and the ram path</li>
+<li>Cycle time, operating pressure where applicable, and overall machine performance</li>
+</ul>
+<p>Safety devices should never be bypassed or defeated. Any inspection that requires opening panels, entering a hazardous area, or exposing stored energy belongs to trained and authorized personnel using the correct energy-control procedure.</p>
+
+<h2>How often should a commercial compactor be serviced?</h2>
+<p>There is no single preventive maintenance interval for every commercial trash compactor. A lightly used machine does not experience the same wear as a compactor cycling throughout the day at a grocery store, distribution center, manufacturing plant, hospital, or high-volume facility.</p>
+<p>Norton commonly recommends <strong>quarterly preventive maintenance</strong> for many standard applications, with more frequent inspections for high-cycle or demanding environments. The final schedule should account for:</p>
+<ul>
+<li>Cycles or operating hours</li>
+<li>Type of waste being compacted</li>
+<li>Equipment age and current condition</li>
+<li>Heat, moisture, dust, and other environmental conditions</li>
+<li>Manufacturer recommendations</li>
+<li>Prior leaks, repairs, and recurring faults</li>
+</ul>
+<p>The objective is not to service a compactor simply because a date appears on the calendar. The objective is to inspect it often enough to find wear before wear becomes downtime.</p>
+
+<h2>Why compactor cycle time matters</h2>
+<p>Cycle time is one of the easiest performance changes to overlook. If the compactor once completed a normal cycle but now strains or runs longer, the underlying cause may be hydraulic, electrical, or mechanical. Employees can become accustomed to gradual slowing, which is why documenting performance during scheduled maintenance is useful.</p>
+<p>A technician can compare present operation with earlier service records, investigate the change, and recommend corrective work before a complete failure.</p>
+
+<h2>What a preventive maintenance visit should include</h2>
+<p>A useful <a href="/services/preventive-maintenance/">preventive maintenance</a> visit is more than a walk-around and a checked box. A trained technician should evaluate the compactor’s major hydraulic, electrical, safety, and structural systems; operate the machine; identify active problems and developing wear; and document the findings.</p>
+<p>A clear service report should tell the facility:</p>
+<ul>
+<li>What was inspected</li>
+<li>What needs attention now</li>
+<li>What should be monitored or budgeted for</li>
+<li>Whether a repair, rebuild, or eventual replacement is the more practical path</li>
+</ul>
+<p>That record gives maintenance and operations teams a basis for scheduling work instead of making every decision after the compactor is already down.</p>
+
+<h2>Compactor warning signs that should not wait</h2>
+<p>Call for <a href="/services/compactor-repair/">compactor service</a> when you notice:</p>
+<ul>
+<li>A hydraulic leak that returns or worsens</li>
+<li>A cycle that becomes noticeably slower</li>
+<li>Grinding, banging, squealing, vibration, or other unusual operation</li>
+<li>A door, latch, or container connection that will not operate correctly</li>
+<li>A leaking or damaged seal</li>
+<li>Repeated jams</li>
+<li>Electrical faults or control-panel errors</li>
+<li>Visible damage to hoses, wiring, guards, welds, floors, or other structural components</li>
+<li>An emergency stop, guard, interlock, or other safety device that appears damaged or fails to operate properly</li>
+</ul>
+<p>These conditions rarely improve with continued use. Operating a damaged machine can turn a smaller repair into a larger failure and may expose employees to avoidable risk. Stop and follow your facility’s reporting and shutdown procedures when safe operation is in question.</p>
+
+<h2>Preventive maintenance helps control the cost of downtime</h2>
+<p>The repair invoice is only one part of a compactor breakdown. Waste may accumulate, employees may have to work around it, a full container may not be hauled, and normal operations may be disrupted while the facility waits for a technician or replacement parts.</p>
+<p>Preventive maintenance cannot eliminate every unexpected failure. It can, however, identify many developing problems before they leave a facility without a working compactor. A documented maintenance history also supports budgeting and helps determine when continued repair makes sense and when <a href="/services/equipment-refurbishment/">rebuilding or replacing</a> the equipment is the better investment.</p>
+
+<h2>Commercial compactor maintenance: the short version</h2>
+<ul>
+<li><strong>Daily:</strong> Look for leaks, listen for changes, watch cycle time, check doors and seals, keep accessible areas clear, and make sure emergency controls are unobstructed.</li>
+<li><strong>On schedule:</strong> Have qualified personnel inspect hydraulic, electrical, safety, wear, and structural components according to the manufacturer’s instructions and the machine’s workload.</li>
+<li><strong>When something changes:</strong> Document it and call for service before the machine stops completely.</li>
 </ul>
 
-<h2>What to check monthly</h2>
-<ul>
-<li><strong>Hydraulic fluid level.</strong> Low fluid strains the pump long before it causes an obvious failure.</li>
-<li><strong>Grease points and moving hardware.</strong> Hinges, latches, and guide rails that run dry wear out early and loud.</li>
-<li><strong>Chains, latches, and interlocks.</strong> Confirm interlocks still stop the machine when a door opens. This is a safety check, not a suggestion.</li>
-<li><strong>Cycle time drift.</strong> Compare today's cycle time against what it was when the machine was new or last serviced. A slowing trend is a maintenance call waiting to happen.</li>
-</ul>
+<h2>Commercial compactor maintenance and repair in the Mid-South</h2>
+<p><a href="/about/">Norton Equipment Company</a> has sold, serviced, repaired, and rebuilt <a href="/trash-compactors/">commercial compactors</a> and <a href="/balers-recycling/">balers</a> since 1997. Norton’s own technicians work on major makes and models across West Tennessee, North Mississippi, and East Arkansas, with an in-house fabrication shop for structural repairs and rebuilds.</p>
+<p>Need a preventive maintenance plan for your facility, or is your compactor already showing a warning sign? Call Norton Equipment at <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote online</a>.</p>
 
-<h2>What belongs to a trained technician</h2>
-<p>Past the daily and monthly items, a compactor needs a real inspection on a schedule: hydraulic fluid condition (not just level), cylinder and packing wear, electrical connections and controls, and a structural look at the floor, welds, and ram path where cracks and wear actually start. This is what a <a href="/services/preventive-maintenance/">preventive maintenance program</a> covers, typically quarterly for a single-shift operation and monthly for a hard-running machine like a DC compactor, with a written condition report after every visit so you see problems coming a year out instead of finding them on a Friday afternoon.</p>
+<h2>Frequently asked questions</h2>
 
-<h2>A simple maintenance schedule</h2>
-<table style="width:100%;border-collapse:collapse;margin:20px 0">
-<tr><th style="text-align:left;padding:8px 12px 8px 0;border-bottom:2px solid var(--line)">Frequency</th><th style="text-align:left;padding:8px 0;border-bottom:2px solid var(--line)">What happens</th></tr>
-<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Daily</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Visual leak check, listen to the cycle, clear the charge area, confirm door/seal and e-stop</td></tr>
-<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Monthly</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Fluid level, grease points, interlock function, cycle time comparison</td></tr>
-<tr><td style="padding:10px 12px 10px 0;border-bottom:1px solid var(--line-lt)"><strong>Quarterly</strong></td><td style="padding:10px 0;border-bottom:1px solid var(--line-lt)">Full technician PM visit: hydraulics, electrical, structural, documented condition report</td></tr>
-<tr><td style="padding:10px 12px 10px 0"><strong>As needed</strong></td><td style="padding:10px 0">Any repair a daily or monthly check flags, before it becomes a down machine</td></tr>
-</table>
+<h3>What maintenance does a commercial compactor need?</h3>
+<p>Routine maintenance typically includes operator observations for leaks, unusual noises, slower cycles, damaged doors or seals, and blocked controls, plus scheduled professional inspection of hydraulic, electrical, safety, wear, and structural components. Always follow the manufacturer’s instructions for the specific machine.</p>
 
-<h2>Warning signs it is time to call, not wait</h2>
-<p>A slowing cycle, a hydraulic leak that keeps coming back, a door that will not seal, unusual noise under load, or a control panel throwing errors are not problems that fix themselves overnight. For the full list of what to watch for and why, see <a href="/trash-compactor-repair-signs/">the clear signs your compactor needs repair</a>. The short version: the machine almost always tells you before it quits. The maintenance routine above is how you hear it in time.</p>
+<h3>How often should a commercial trash compactor be serviced?</h3>
+<p>The interval depends on cycles, waste type, environment, age, condition, repair history, and manufacturer guidance. Norton commonly recommends quarterly preventive maintenance for many standard applications and more frequent service for high-cycle or demanding environments.</p>
 
-<h2>What skipping maintenance actually costs</h2>
-<p>A quarterly PM visit runs a fraction of one emergency repair call with the downtime that comes with it, and downtime is the real cost: waste piling up on the dock, a hauler that cannot pull a jammed container, and a crew improvising around a machine that should be working. A documented maintenance history also protects the resale value of an owned machine, and gives you the paper trail to plan a replacement on your schedule instead of the compactor's.</p>
+<h3>What are common signs that a compactor needs repair?</h3>
+<p>Recurring hydraulic leaks, slow cycles, unusual noises, repeated jams, door or latch problems, control-panel faults, damaged seals, and malfunctioning safety devices are common reasons to stop and request service.</p>
 
-<h2>The short version</h2>
-<p>Daily: look, listen, clear the path, check the door. Monthly: fluid, grease, interlocks, cycle time. Quarterly: a real technician visit with a written report. Skip none of it, because the twenty-minute check is always cheaper than the machine it would have saved.</p>
-<p>Norton Equipment runs preventive maintenance programs and emergency repair across the Mid-South, any brand, any model, since 1997. Put your compactor on a schedule before it puts itself on ours: call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/services/preventive-maintenance/">ask about a PM program</a>.</p>
+<h3>Can an operator clear a compactor jam?</h3>
+<p>Operators should not reach into a compactor or enter the charge chamber. Jam clearing and internal work require the equipment to be safely de-energized under the facility’s approved lockout/tagout procedure and should be performed only by trained, authorized personnel.</p>
 `,
   },
   {

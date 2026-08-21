@@ -1,0 +1,11 @@
+# Dependencies. Playwright is installed locally for verification runs only;
+# the site build is plain node with no dependencies, and committing these
+# would make Vercel npm-install Playwright on every deploy.
+node_modules/
+package.json
+package-lock.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

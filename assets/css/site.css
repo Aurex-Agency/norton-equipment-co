@@ -1001,3 +1001,9 @@ h1.hero-h{letter-spacing:0}
   color:var(--gold);font-weight:700;letter-spacing:.02em}
 .foot-review:hover{color:var(--gold-hi)}
 @media(max-width:960px){.foot-review{min-height:44px}}
+
+/* safety callout inside article prose */
+.prose .safety-note{margin:26px 0;padding:18px 20px;border-left:3px solid var(--gold);
+  background:rgba(216,165,49,.07);border-radius:0 5px 5px 0;font-size:15px;line-height:1.65}
+.prose .safety-note b{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;
+  letter-spacing:.14em;font-size:12.5px;color:var(--gold-deep);margin-bottom:7px}
