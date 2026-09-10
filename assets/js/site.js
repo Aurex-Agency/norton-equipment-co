@@ -2,10 +2,10 @@
 (function () {
   'use strict';
 
-  // hero entrance
-  window.addEventListener('load', function () {
-    document.body.classList.add('loaded');
-  });
+  // hero entrance. Runs as soon as this deferred script executes (the DOM is
+  // parsed by then) rather than on window.load, so the headline and CTAs are
+  // not held hostage to every image and third-party script on the page.
+  requestAnimationFrame(function () { document.body.classList.add('loaded'); });
 
   // mobile menu
   var header = document.getElementById('nav');
@@ -197,7 +197,7 @@
     };
     measure();
     window.addEventListener('resize', function () { measure(); onScroll(); }, { passive: true });
-    window.addEventListener('load', function () { measure(); onScroll(); });
+    window.addEventListener('load', function () { requestAnimationFrame(function () { measure(); onScroll(); }); });
     document.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
