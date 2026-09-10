@@ -15,6 +15,7 @@ export const CITIES = [
     ],
     industries: ['Distribution & logistics', 'Warehousing & fulfillment', 'Grocery & retail', 'Hospitals & medical', 'Hotels & hospitality', 'Multi-family & high-rise'],
     nearby: ['bartlett-tn', 'germantown-tn', 'west-memphis-ar', 'southaven-ms'],
+    faq: { q: 'Do you service distribution centers along Lamar Avenue and the airport corridor?', a: 'Yes, that corridor is some of our most frequent Memphis work: dock-fed stationary compactors, auger units, and horizontal baler lines for warehouses moving cardboard and stretch wrap around the clock. We are about 35 minutes from downtown and run Memphis routes every week.' },
   },
   {
     slug: 'bartlett-tn', city: 'Bartlett', state: 'Tennessee', abbr: 'TN', miles: 42,
@@ -24,6 +25,7 @@ export const CITIES = [
     ],
     industries: ['Medical device & precision manufacturing', 'Light industrial & machining', 'Retail centers', 'Grocery', 'Schools & municipal', 'Distribution'],
     nearby: ['memphis-tn', 'lakeland-tn', 'arlington-tn', 'cordova-tn'],
+    faq: { q: 'Can a plant in Bartlett Corporate Park get a preventive maintenance program?', a: 'Yes. Bartlett medical device and machining plants usually run one stationary compactor and one baler, so a single failure stops the whole waste program. Our PM program inspects hydraulics, controls, and safety devices on a schedule and leaves a written condition report after every visit.' },
   },
   {
     slug: 'cordova-tn', city: 'Cordova', state: 'Tennessee', abbr: 'TN', miles: 38,
@@ -33,6 +35,7 @@ export const CITIES = [
     ],
     industries: ['Big-box & strip retail', 'Grocery & supermarkets', 'Restaurants & QSR', 'Apartment communities', 'Offices & medical clinics', 'Fitness & entertainment'],
     nearby: ['bartlett-tn', 'germantown-tn', 'memphis-tn', 'collierville-tn'],
+    faq: { q: 'What fits a Germantown Parkway back room with no space to spare?', a: 'Usually a 60-inch vertical baler for the cardboard and a front-load container or small compactor for the trash. Both fit tight retail back rooms, and we deliver and install around business hours so the store never closes.' },
   },
   {
     slug: 'germantown-tn', city: 'Germantown', state: 'Tennessee', abbr: 'TN', miles: 28,
@@ -42,6 +45,7 @@ export const CITIES = [
     ],
     industries: ['Medical offices & clinics', 'Grocery & specialty retail', 'Restaurants', 'Municipal & schools', 'Churches & campuses', 'Professional offices'],
     nearby: ['collierville-tn', 'cordova-tn', 'memphis-tn', 'olive-branch-ms'],
+    faq: { q: 'Can you keep a Germantown site’s waste corner presentable?', a: 'That is what steel enclosures and sealed self-contained compactors are for: no overflowing dumpster, no stained pad, no odor drifting across the parking lot. We fabricate enclosures in our own shop to fit the site and local appearance requirements.' },
   },
   {
     slug: 'collierville-tn', city: 'Collierville', state: 'Tennessee', abbr: 'TN', miles: 22,
@@ -51,6 +55,7 @@ export const CITIES = [
     ],
     industries: ['Corporate campuses & logistics', 'Distribution centers', 'Retail & restaurants', 'Light manufacturing', 'Medical', 'Schools & municipal'],
     nearby: ['germantown-tn', 'olive-branch-ms', 'byhalia-ms', 'memphis-tn'],
+    faq: { q: 'How fast can you evaluate a new facility in Collierville?', a: 'Collierville is about 25 minutes from the shop, so an on-site waste stream evaluation is usually scheduled within days, not weeks. We walk the dock, read your hauling invoices, and size the compactor or baler from real volume, at no charge.' },
   },
   {
     slug: 'millington-tn', city: 'Millington', state: 'Tennessee', abbr: 'TN', miles: 55,
@@ -60,6 +65,7 @@ export const CITIES = [
     ],
     industries: ['Government & military support', 'Aviation & industrial', 'Retail & grocery', 'Schools & municipal', 'Logistics', 'Multi-family'],
     nearby: ['memphis-tn', 'covington-tn', 'bartlett-tn', 'arlington-tn'],
+    faq: { q: 'Can you document maintenance for an institutional site in Millington?', a: 'Yes. Every preventive maintenance visit closes with a written condition report covering interlocks, guarding, hydraulics, and controls, which is what institutional facilities near Naval Support Activity Mid-South typically need on file.' },
   },
   {
     slug: 'arlington-tn', city: 'Arlington', state: 'Tennessee', abbr: 'TN', miles: 48,
@@ -69,6 +75,7 @@ export const CITIES = [
     ],
     industries: ['Medical & device manufacturing', 'Distribution & logistics', 'Contractors & trades', 'New retail & grocery', 'Schools & municipal', 'Restaurants'],
     nearby: ['lakeland-tn', 'bartlett-tn', 'millington-tn', 'memphis-tn'],
+    faq: { q: 'Should a growing Arlington business size equipment for today or for three years out?', a: 'Size for the volume you will have, not the volume you have this month. We spec compactors and balers with headroom so an Arlington operation growing along the I-40 corridor can add capacity without replacing the machine.' },
   },
   {
     slug: 'lakeland-tn', city: 'Lakeland', state: 'Tennessee', abbr: 'TN', miles: 45,
@@ -78,6 +85,7 @@ export const CITIES = [
     ],
     industries: ['Warehousing & distribution', 'Flex industrial', 'Retail & grocery', 'Restaurants', 'Schools & municipal', 'Multi-family'],
     nearby: ['arlington-tn', 'bartlett-tn', 'cordova-tn', 'memphis-tn'],
+    faq: { q: 'We inherited a compactor from the last tenant in our Lakeland building. Can you service it?', a: 'Yes. Tenant turnover on the I-40 corridor leaves a lot of orphaned equipment behind, and we service every brand regardless of who installed it. We can evaluate the machine, bring it up to standard, or quote a reconditioned replacement if it is past saving.' },
   },
   {
     slug: 'covington-tn', city: 'Covington', state: 'Tennessee', abbr: 'TN', miles: 75,
@@ -87,6 +95,7 @@ export const CITIES = [
     ],
     industries: ['Automotive & component manufacturing', 'Consumer products', 'Food processing', 'Distribution', 'Retail & grocery', 'Municipal'],
     nearby: ['millington-tn', 'brownsville-tn', 'memphis-tn', 'dyersburg-tn'],
+    faq: { q: 'Can you fabricate chutes, hoppers, or guards for a Covington plant?', a: 'Yes. Our in-house fabrication shop builds the chutes, hoppers, guards, and dock plates that production environments need to feed a compactor or baler safely, and installs them on site in Tipton County.' },
   },
   {
     slug: 'brownsville-tn', city: 'Brownsville', state: 'Tennessee', abbr: 'TN', miles: 85,
@@ -96,6 +105,7 @@ export const CITIES = [
     ],
     industries: ['Automotive suppliers & contractors', 'New industrial construction', 'Agriculture & processing', 'Distribution', 'Retail & grocery', 'Municipal'],
     nearby: ['covington-tn', 'jackson-tn', 'dyersburg-tn', 'memphis-tn'],
+    faq: { q: 'We are standing up a new facility near the BlueOval City corridor. When should we call?', a: 'Before the pad is poured. Planning compactor placement, power, and enclosure during fit-out costs far less than retrofitting later. Our free waste stream consultation covers sizing, hauler container compatibility, and site layout for new Haywood County facilities.' },
   },
   {
     slug: 'dyersburg-tn', city: 'Dyersburg', state: 'Tennessee', abbr: 'TN', miles: 110,
@@ -105,6 +115,7 @@ export const CITIES = [
     ],
     industries: ['Steel & wire products', 'Rubber & plastics', 'Food production', 'Agriculture', 'Distribution', 'Retail & grocery'],
     nearby: ['covington-tn', 'brownsville-tn', 'jackson-tn', 'blytheville-ar'],
+    faq: { q: 'Is Dyersburg too far for Norton to service?', a: 'No. Dyersburg sits at the northern edge of our 100-mile ring and is covered by scheduled service routes and plant maintenance programs. For installs and refurbishment projects we mobilize for the job regardless of distance.' },
   },
   {
     slug: 'jackson-tn', city: 'Jackson', state: 'Tennessee', abbr: 'TN', miles: 105,
@@ -114,6 +125,7 @@ export const CITIES = [
     ],
     industries: ['Appliance & automotive manufacturing', 'Food & beverage plants', 'Distribution & logistics', 'Regional retail & grocery', 'Hospitals & medical', 'Higher education'],
     nearby: ['brownsville-tn', 'dyersburg-tn', 'corinth-ms', 'memphis-tn'],
+    faq: { q: 'Can one vendor maintain a Jackson facility’s mixed fleet of compactors and balers?', a: 'Yes. Because we service every brand and vintage, Jackson facility managers can put Marathon, Cram-A-Lot, Max-Pak, PTR, and the rest under one maintenance contract with one phone number instead of juggling dealers.' },
   },
 
   // ---------------- MISSISSIPPI ----------------
@@ -125,6 +137,7 @@ export const CITIES = [
     ],
     industries: ['Mega-distribution & fulfillment', 'Logistics & trucking', 'Manufacturing', 'Building products', 'Agriculture', 'Local retail & schools'],
     nearby: ['olive-branch-ms', 'holly-springs-ms', 'collierville-tn', 'hernando-ms'],
+    faq: { q: 'Which Byhalia-area industrial corridors do you serve?', a: 'The Chickasaw Trails industrial area and the Highway 78/I-22 corridor are minutes from the shop, and the million-square-foot distribution centers there are our closest neighbors. Same-day eyes on a down machine is routine for Marshall County sites.' },
   },
   {
     slug: 'southaven-ms', city: 'Southaven', state: 'Mississippi', abbr: 'MS', miles: 30,
@@ -134,6 +147,7 @@ export const CITIES = [
     ],
     industries: ['Big-box retail & malls', 'Warehousing & distribution', 'Restaurants & entertainment', 'Grocery', 'Multi-family', 'Medical'],
     nearby: ['horn-lake-ms', 'olive-branch-ms', 'hernando-ms', 'memphis-tn'],
+    faq: { q: 'Do you serve retail stores around Southaven Towne Center and Goodman Road?', a: 'Constantly. Big-box stores, grocery anchors, and restaurants on that strip run vertical balers for cardboard and front-load compactors for trash, and our DeSoto County routes pass through Southaven several times a week.' },
   },
   {
     slug: 'horn-lake-ms', city: 'Horn Lake', state: 'Mississippi', abbr: 'MS', miles: 35,
@@ -143,6 +157,7 @@ export const CITIES = [
     ],
     industries: ['Light industrial & flex', 'Trucking & contractor yards', 'Retail & grocery', 'Restaurants', 'Multi-family', 'Schools & municipal'],
     nearby: ['southaven-ms', 'hernando-ms', 'olive-branch-ms', 'west-memphis-ar'],
+    faq: { q: 'What happens when our only compactor goes down in Horn Lake?', a: 'Say it is down when you call and it goes to the front of the line. Horn Lake is on our home-county routes, about 35 minutes from the shop, and a single-machine site with no backup is exactly the call we prioritize.' },
   },
   {
     slug: 'olive-branch-ms', city: 'Olive Branch', state: 'Mississippi', abbr: 'MS', miles: 18,
@@ -152,6 +167,7 @@ export const CITIES = [
     ],
     industries: ['Mega-distribution & fulfillment', '3PL & logistics', 'Light manufacturing', 'Aviation & industrial', 'Retail & grocery', 'Multi-family'],
     nearby: ['byhalia-ms', 'southaven-ms', 'collierville-tn', 'germantown-tn'],
+    faq: { q: 'Do you handle large distribution centers in the Olive Branch industrial parks?', a: 'Olive Branch DCs are the most common address on our service tickets. Stationary and auger compactors, horizontal baler lines, enclosures, and preventive maintenance programs are specced, installed, and serviced from our shop about 20 minutes away.' },
   },
   {
     slug: 'hernando-ms', city: 'Hernando', state: 'Mississippi', abbr: 'MS', miles: 35,
@@ -161,15 +177,17 @@ export const CITIES = [
     ],
     industries: ['Grocery & retail', 'Medical & professional offices', 'Restaurants', 'Schools & municipal', 'Contractors', 'Agriculture'],
     nearby: ['southaven-ms', 'horn-lake-ms', 'byhalia-ms', 'batesville-ms'],
+    faq: { q: 'What size equipment does a typical Hernando business need?', a: 'Usually right-sized rather than industrial: a 60-inch vertical baler, a front-load container, or a reconditioned compactor for a grocery, clinic, or contractor yard. We size it on site for free so the machine pays for itself instead of taking up pad space.' },
   },
   {
     slug: 'holly-springs-ms', city: 'Holly Springs', state: 'Mississippi', abbr: 'MS', miles: 15,
     angle: [
       'Holly Springs is fifteen minutes down the road from our shop. Marshall County neighbors in the most literal sense. The town mixes a historic square economy with real industry: manufacturing and distribution operations in the industrial park, agricultural businesses, and Rust College anchoring the institutional side.',
-      'For Holly Springs operations, Norton is the hometown equipment company: immediate service response, wire and parts off the shelf in Byhalia, and machines (new, reconditioned, or rented) delivered and installed by people you will see at the gas station on Saturday.',
+      'For Holly Springs operations, Norton is the hometown equipment company: immediate service response, wire and parts off the shelf in Byhalia, and machines (new or reconditioned) delivered and installed by people you will see at the gas station on Saturday.',
     ],
     industries: ['Manufacturing & industrial park', 'Agriculture & timber', 'Higher education', 'Grocery & retail', 'Municipal', 'Distribution'],
     nearby: ['byhalia-ms', 'new-albany-ms', 'oxford-ms', 'collierville-tn'],
+    faq: { q: 'How close is Norton to Holly Springs?', a: 'About fifteen minutes. The shop in Byhalia is the next town over, so Holly Springs manufacturers, the industrial park, and Rust College get the fastest response we offer, with wire and parts off the shelf.' },
   },
   {
     slug: 'batesville-ms', city: 'Batesville', state: 'Mississippi', abbr: 'MS', miles: 55,
@@ -179,6 +197,7 @@ export const CITIES = [
     ],
     industries: ['Electrical & industrial manufacturing', 'Food production', 'Distribution', 'Retail & grocery', 'Agriculture', 'Schools & municipal'],
     nearby: ['oxford-ms', 'hernando-ms', 'tunica-ms', 'byhalia-ms'],
+    faq: { q: 'Can you service the manufacturing plants in Batesville’s industrial park?', a: 'Yes. Plant-grade stationary compactors and balers for production waste, repair on whatever brands are already on the pads, and preventive maintenance routes that run through Panola County weekly, about an hour from the shop.' },
   },
   {
     slug: 'oxford-ms', city: 'Oxford', state: 'Mississippi', abbr: 'MS', miles: 50,
@@ -188,6 +207,7 @@ export const CITIES = [
     ],
     industries: ['University & campus facilities', 'Restaurants & hospitality', 'Student housing & multi-family', 'Grocery & retail', 'Medical', 'Construction'],
     nearby: ['batesville-ms', 'holly-springs-ms', 'new-albany-ms', 'byhalia-ms'],
+    faq: { q: 'How do you handle Oxford’s seasonal swings in waste volume?', a: 'We size for the peak and plan service around the academic calendar. Student housing, hotels, and campus-area retail see volume spike on game days and move-in weeks, so we spec machines with headroom and schedule maintenance during the quiet stretches.' },
   },
   {
     slug: 'new-albany-ms', city: 'New Albany', state: 'Mississippi', abbr: 'MS', miles: 50,
@@ -197,6 +217,7 @@ export const CITIES = [
     ],
     industries: ['Furniture manufacturing', 'Suppliers & components', 'Distribution', 'Healthcare', 'Retail & grocery', 'Agriculture'],
     nearby: ['holly-springs-ms', 'oxford-ms', 'corinth-ms', 'byhalia-ms'],
+    faq: { q: 'What equipment handles furniture plant waste in New Albany?', a: 'Usually a pre-crusher for bulky frames and trim, a baler for corrugated and film, and a compactor sized for high-volume line trash. Ordinary dumpster service cannot digest that mix economically, and we are already deep in the Union County furniture corridor.' },
   },
   {
     slug: 'tupelo-ms', city: 'Tupelo', state: 'Mississippi', abbr: 'MS', miles: 80,
@@ -206,6 +227,7 @@ export const CITIES = [
     ],
     industries: ['Furniture & upholstery manufacturing', 'Automotive & suppliers', 'Healthcare & medical', 'Grocery & retail', 'Distribution & warehousing', 'Municipal'],
     nearby: ['pontotoc-ms', 'new-albany-ms', 'corinth-ms', 'oxford-ms'],
+    faq: { q: 'Can you bale foam, film, and fabric scrap from a Tupelo upholstery plant?', a: 'Specialty materials need the right machine; the wrong baler on foam or film costs you twice. We spec specialty and horizontal balers for Tupelo furniture plants and deliver baling wire on the same Highway 78 route.' },
   },
   {
     slug: 'pontotoc-ms', city: 'Pontotoc', state: 'Mississippi', abbr: 'MS', miles: 75,
@@ -215,6 +237,7 @@ export const CITIES = [
     ],
     industries: ['Furniture & upholstery manufacturing', 'Agriculture & poultry', 'Light manufacturing', 'Grocery & retail', 'Warehousing', 'Municipal'],
     nearby: ['tupelo-ms', 'new-albany-ms', 'oxford-ms', 'byhalia-ms'],
+    faq: { q: 'Do you service balers in Pontotoc that another dealer installed?', a: 'Yes, every brand and vintage, whether or not it came from us. Pontotoc’s furniture, poultry, and light manufacturing plants cannot afford a machine sitting down, so repair, refurbishment, and wire delivery all reach here on regular routes.' },
   },
   {
     slug: 'corinth-ms', city: 'Corinth', state: 'Mississippi', abbr: 'MS', miles: 90,
@@ -224,6 +247,7 @@ export const CITIES = [
     ],
     industries: ['Machinery & metal products', 'Consumer goods manufacturing', 'Rail-served industry', 'Healthcare', 'Retail & grocery', 'Distribution'],
     nearby: ['new-albany-ms', 'jackson-tn', 'oxford-ms', 'byhalia-ms'],
+    faq: { q: 'Can you handle metal scrap streams at a Corinth manufacturing plant?', a: 'Yes. Machinery and metal products plants reward dense loads, and we spec plant-grade compactors and balers for scrap, banding, and packaging, backed by our fabrication shop for the wear repairs industrial machines accumulate.' },
   },
   {
     slug: 'tunica-ms', city: 'Tunica', state: 'Mississippi', abbr: 'MS', miles: 50,
@@ -233,6 +257,7 @@ export const CITIES = [
     ],
     industries: ['Casino resorts & hotels', 'Restaurants & entertainment', 'Agriculture & gins', 'Distribution', 'Retail & grocery', 'Municipal'],
     nearby: ['batesville-ms', 'hernando-ms', 'horn-lake-ms', 'west-memphis-ar'],
+    faq: { q: 'What compactor works for a casino resort’s food-heavy waste in Tunica?', a: 'A sealed self-contained compactor. Hotels, restaurants, and entertainment venues generate wet waste at scale, and a leak-tight unit controls odor, pests, and pad staining. Balers handle the cardboard side, and we service both from about an hour away.' },
   },
 
   // ---------------- ARKANSAS ----------------
@@ -244,6 +269,7 @@ export const CITIES = [
     ],
     industries: ['Trucking & terminals', 'Travel plazas & fuel', 'Warehousing & cross-dock', 'Steel & river industry', 'Retail & grocery', 'Municipal'],
     nearby: ['marion-ar', 'memphis-tn', 'forrest-city-ar', 'southaven-ms'],
+    faq: { q: 'Do you service truck stops and cross-dock terminals in West Memphis?', a: 'Yes. High-traffic sites at the I-40/I-55 crossroads run stationary compactors and balers hard, and downtime means blocked docks. We are about 50 minutes from the shop and dispatch all-brand repair across Crittenden County.' },
   },
   {
     slug: 'marion-ar', city: 'Marion', state: 'Arkansas', abbr: 'AR', miles: 50,
@@ -253,6 +279,7 @@ export const CITIES = [
     ],
     industries: ['Distribution & logistics', 'Industrial park operations', 'Retail & grocery', 'Schools & municipal', 'Contractors', 'Agriculture'],
     nearby: ['west-memphis-ar', 'memphis-tn', 'osceola-ar', 'forrest-city-ar'],
+    faq: { q: 'Can you plan equipment into a new Marion distribution building during fit-out?', a: 'Yes, and it is the best time to do it. We help spec dock compactors, baler rooms, power, and enclosures while the building is still on paper, then back the install with maintenance routes that already run the I-55 corridor weekly.' },
   },
   {
     slug: 'forrest-city-ar', city: 'Forrest City', state: 'Arkansas', abbr: 'AR', miles: 85,
@@ -262,6 +289,7 @@ export const CITIES = [
     ],
     industries: ['Food processing', 'Steel & industrial products', 'Agriculture', 'Distribution', 'Retail & grocery', 'Corrections & institutional'],
     nearby: ['west-memphis-ar', 'marion-ar', 'memphis-tn', 'jonesboro-ar'],
+    faq: { q: 'How do you support equipment 90 minutes from the shop in Forrest City?', a: 'With machines specced to run without babysitting, preventive maintenance on a route schedule, and a phone that gets answered. Catching wear on a scheduled visit is how we keep St. Francis County plants from needing an emergency call.' },
   },
   {
     slug: 'osceola-ar', city: 'Osceola', state: 'Arkansas', abbr: 'AR', miles: 90,
@@ -271,6 +299,7 @@ export const CITIES = [
     ],
     industries: ['Steel mills & processors', 'Industrial suppliers', 'River & rail logistics', 'Agriculture', 'Retail & grocery', 'Municipal'],
     nearby: ['blytheville-ar', 'marion-ar', 'dyersburg-tn', 'jonesboro-ar'],
+    faq: { q: 'What equipment survives steel-mill supplier waste in Osceola?', a: 'Pre-crushers and heavy stationary compactors. Banding, dunnage, pallets, and drums eat ordinary machines, so we spec heavy-duty units and back them with our fabrication shop for the wear repairs mill-country equipment accumulates.' },
   },
   {
     slug: 'blytheville-ar', city: 'Blytheville', state: 'Arkansas', abbr: 'AR', miles: 105,
@@ -280,6 +309,7 @@ export const CITIES = [
     ],
     industries: ['Steel & metals', 'Industrial suppliers', 'Aviation & aerospace park', 'Agriculture', 'Distribution', 'Retail & grocery'],
     nearby: ['osceola-ar', 'jonesboro-ar', 'dyersburg-tn', 'marion-ar'],
+    faq: { q: 'Is Blytheville inside Norton’s service area?', a: 'Yes, at the northwest corner of our confirmed ring. Mill-country sites get heavy-duty machines specced honestly, all-brand repair, refurbishment, and scheduled maintenance that respects the distance by preventing the emergency.' },
   },
   {
     slug: 'jonesboro-ar', city: 'Jonesboro', state: 'Arkansas', abbr: 'AR', miles: 110,
@@ -289,6 +319,7 @@ export const CITIES = [
     ],
     industries: ['Food manufacturing & processing', 'Higher education', 'Hospitals & medical', 'Distribution', 'Big-box retail & grocery', 'Agriculture'],
     nearby: ['blytheville-ar', 'osceola-ar', 'forrest-city-ar', 'west-memphis-ar'],
+    faq: { q: 'Can you service compactors at Jonesboro food processing plants?', a: 'Yes. Food plants run wet, heavy, hygiene-critical streams, which is self-contained compactor territory, with balers on the packaging side. Norton covers Jonesboro with all-brand repair, PM programs, and project installs at the western edge of our ring.' },
   },
 ];
 
@@ -297,3 +328,6 @@ export const STATES = [
   { name: 'Mississippi', abbr: 'MS' },
   { name: 'Arkansas', abbr: 'AR' },
 ];
+
+// Bumped when city copy or FAQs change; feeds sitemap <lastmod>.
+export const UPDATED = '2026-09-10';

@@ -29,6 +29,15 @@ export const SITE = {
   // Google review link (client-supplied 8/4). Used by the "leave a review"
   // buttons and emitted as the LocalBusiness review action.
   reviewUrl: 'https://g.page/r/CQVMv7QHAEjAEBM/review',
+  // The same Google Business Profile, without the /review action. Emitted as a
+  // schema.org sameAs entity link so search engines tie the site to the listing.
+  businessProfileUrl: 'https://g.page/r/CQVMv7QHAEjAEBM',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Norton%20Equipment%20Co.%2C%2060%20Amy%20Ln%2C%20Byhalia%2C%20MS%2038611',
+  // Google Maps embed (no API key required) shown on the contact page.
+  mapsEmbedUrl: 'https://www.google.com/maps?q=60%20Amy%20Ln%2C%20Byhalia%2C%20MS%2038611&output=embed',
+  // IndexNow key. The build hosts it at /<key>.txt; scripts/indexnow.mjs pings
+  // Bing/Yandex/Naver with changed URLs after a deploy.
+  indexNowKey: 'f3a9c1d7e2b84f60a5c9d1e7b3f2a8c4',
   // Google Analytics 4 measurement ID (client-supplied 8/4). Emitted in the
   // head of every page; set to null to remove analytics site-wide.
   analyticsId: 'G-MJV5ZSNM0L',

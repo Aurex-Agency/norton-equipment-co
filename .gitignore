@@ -9,3 +9,12 @@ package-lock.json
 .DS_Store
 Thumbs.db
 *.swp
+
+# SEO audit workspace. Vercel serves the repo root, so anything committed here
+# goes live; keep the audit out of the deploy.
+nortonequipmentco.com-audit/
+
+# Finder duplicate artifacts ("index 2.html", "memphis-tn 2/")
+* 2.html
+* 2/
+* 3/

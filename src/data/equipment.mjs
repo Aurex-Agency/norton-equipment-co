@@ -537,3 +537,6 @@ export const BALERS = [
     related: ['vertical-balers', 'horizontal-balers', 'refurbished-balers'],
   },
 ];
+
+// Bumped when page content in this module changes; feeds sitemap <lastmod>.
+export const UPDATED = '2026-09-10';

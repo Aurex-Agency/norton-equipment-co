@@ -41,8 +41,9 @@ Generated output (do not hand-edit; re-run the build instead): `index.html`,
 ## Site map (76 pages)
 
 - **Home** - compactors + balers dual path, trust strip, full lineups
-- **Trash Compactors (10)** - hub + self-contained, stationary, vertical/apartment,
-  pre-crusher, auger, front/rear-load, enclosures, used, rental
+- **Trash Compactors (9)** - hub + self-contained, stationary, vertical/apartment,
+  pre-crusher, auger, front/rear-load containers, steel options, used
+  (rental is deliberately not advertised; see `equipment.mjs`)
 - **Balers & Recycling (8)** - hub + vertical, horizontal, used vertical,
   shredders, conveyors, baling wire, used recycling equipment
 - **Services (10)** - hub + compactor repair, baler service, preventive
@@ -89,6 +90,27 @@ everywhere (mobile FAB included).
 (`/equipment/*`, `/service-types/*`, state pages, `/about-norton-equipment/`,
 `/contact-us/`). Blog posts kept their exact original URLs, so they need no
 redirects at all. When the domain moves, nothing 404s and link equity carries.
+
+## SEO plumbing
+
+- **Sitemap dates are real.** `<lastmod>` is the later of `TEMPLATE_UPDATED`
+  (`src/build.mjs`, bump when shared chrome/schema changes) and the page's own
+  content date: `UPDATED` in each `src/data/*.mjs` module, or `updated` on a
+  blog post. Bump those when you change content; never fake them.
+- **Blog posts** carry `faqs` (rendered visibly and as FAQPage schema) and
+  `related` (the "where to go next" links back into product/service pages).
+  `RELATED_GUIDES` in `build.mjs` maps pillar/service/brand pages to the
+  guides they surface.
+- **Location pages** get a unique `faq` per city in `cities.mjs`; the three
+  standard questions rotate phrasing so the 31 pages never read as one template.
+- **Images**: photos ship as `name.webp` (1500w), `name-800.webp`, and
+  `name-400.webp`; `srcsetAttr()` and the hero preload pick the same candidate.
+- **Generated files**: `sitemap.xml`, `robots.txt`, `llms.txt`, and the
+  IndexNow key file. After a production deploy, `node scripts/indexnow.mjs`
+  pings Bing/Yandex/Naver with the sitemap URLs.
+- **Security headers** live in `vercel.json` (`/(.*)` block). The CSP only sets
+  `frame-ancestors`/`base-uri`/`form-action`; tighten it only after checking
+  the GA tag and inline scripts.
 
 ## Deploy
 
