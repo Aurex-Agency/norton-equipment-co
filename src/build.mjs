@@ -60,7 +60,17 @@ function assetHash(relPath) {
     return createHash('sha1').update(readFileSync(join(ROOT, relPath))).digest('hex').slice(0, 8);
   } catch { return BUILD_DATE.replace(/-/g, ''); }
 }
-const CSS_V = assetHash('assets/css/site.css');
+// site.css stays readable; the page links a minified copy written at build time.
+function minifyCss(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/ ?([{};,>]) ?/g, '$1')
+    .replace(/;}/g, '}')
+    .trim();
+}
+writeFileSync(join(ROOT, 'assets', 'css', 'site.min.css'), minifyCss(readFileSync(join(ROOT, 'assets', 'css', 'site.css'), 'utf8')));
+const CSS_V = assetHash('assets/css/site.min.css');
 const JS_V = assetHash('assets/js/site.js');
 
 
@@ -402,7 +412,7 @@ function ctaBand(opts = {}) {
   const p = opts.text || `Free waste stream evaluations across the Mid-South. Talk to a real person who has been doing this since 1997, no pressure, no hauling strings attached.`;
   return `
 <section class="sec cta-band">
-  <div class="cta-photo" aria-hidden="true" style="background-image:url(/assets/img/${photo}.webp)"></div>
+  <img class="cta-photo" src="/assets/img/${photo}-800.webp"${srcsetAttr(photo, 1500, '100vw')} alt="" loading="lazy" decoding="async" aria-hidden="true">
   <div class="grid-lines" aria-hidden="true"></div>
   <div class="wrap">
     <h2 class="reveal">${h}</h2>
@@ -533,14 +543,18 @@ function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts,
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.className+=' js'</script>
 ${SITE.searchConsoleToken ? `<meta name="google-site-verification" content="${SITE.searchConsoleToken}">` : ''}
-${SITE.analyticsId ? `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}"></script>
+${SITE.analyticsId ? `<!-- Google tag (gtag.js). Queued now, library fetched after the page has
+     loaded and the browser is idle, so 170 KB of analytics never competes
+     with the hero for bandwidth on a phone. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', '${SITE.analyticsId}');
+  window.addEventListener('load', function () {
+    var go = function () { var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}'; document.head.appendChild(s); };
+    if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 2000 }); else setTimeout(go, 1200);
+  });
 </script>` : ''}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -561,7 +575,7 @@ ${preloadImg ? preloadLink(preloadImg) : ''}
 <link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=${CSS_V}">
+<link rel="stylesheet" href="/assets/css/site.min.css?v=${CSS_V}">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>

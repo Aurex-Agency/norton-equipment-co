@@ -5,14 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.className+=' js'</script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJV5ZSNM0L"></script>
+<!-- Google tag (gtag.js). Queued now, library fetched after the page has
+     loaded and the browser is idle, so 170 KB of analytics never competes
+     with the hero for bandwidth on a phone. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-MJV5ZSNM0L');
+  window.addEventListener('load', function () {
+    var go = function () { var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MJV5ZSNM0L'; document.head.appendChild(s); };
+    if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 2000 }); else setTimeout(go, 1200);
+  });
 </script>
 <title>Terms of Use | Norton Equipment</title>
 <meta name="description" content="Terms of Use for the Norton Equipment Co. website: acceptable use, communications consent, disclaimers, and limitation of liability.">
@@ -33,7 +37,7 @@
 <link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=8d07bde3">
+<link rel="stylesheet" href="/assets/css/site.min.css?v=fead896a">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://nortonequipmentco.com/#business","name":"Norton Equipment Co.","url":"https://nortonequipmentco.com/","telephone":"+1-662-838-7900","foundingDate":"1997","slogan":"Built for the work behind the waste.","description":"Norton Equipment Company sells, services, and refurbishes commercial trash compactors, balers, and recycling equipment across the Mid-South (any brand, any model) since 1997.","address":{"@type":"PostalAddress","streetAddress":"60 Amy Ln","addressLocality":"Byhalia","addressRegion":"MS","postalCode":"38611","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":34.8723,"longitude":-89.6906},"openingHours":["Mo-Th 07:30-16:30","Fr 07:30-16:00"],"areaServed":[{"@type":"GeoCircle","geoMidpoint":{"@type":"GeoCoordinates","latitude":35.1495,"longitude":-90.049},"geoRadius":"160934"},{"@type":"State","name":"Tennessee"},{"@type":"State","name":"Mississippi"},{"@type":"State","name":"Arkansas"}],"priceRange":"$$$","hasMap":"https://www.google.com/maps/search/?api=1&query=Norton%20Equipment%20Co.%2C%2060%20Amy%20Ln%2C%20Byhalia%2C%20MS%2038611","logo":{"@type":"ImageObject","url":"https://nortonequipmentco.com/assets/img/logo-full.webp","width":1100,"height":790},"image":["https://nortonequipmentco.com/assets/img/n-truck.webp","https://nortonequipmentco.com/assets/img/n-hero-dock.webp"],"sameAs":["https://www.facebook.com/nortonequipment/","https://www.linkedin.com/company/norton-equipment-co/","https://g.page/r/CQVMv7QHAEjAEBM"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nortonequipmentco.com/"},{"@type":"ListItem","position":2,"name":"Terms of Use","item":"https://nortonequipmentco.com/terms/"}]}]}</script>
 </head>
 <body>
@@ -206,6 +210,6 @@
     </div>
   </div>
 </footer>
-<script src="/assets/js/site.js?v=bac08190" defer></script>
+<script src="/assets/js/site.js?v=a9d0af8c" defer></script>
 </body>
 </html>
