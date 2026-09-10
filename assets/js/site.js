@@ -50,17 +50,25 @@
   });
 
   // scroll reveal
+  // Any intersection counts (threshold 0) and the root extends below the
+  // viewport, so sections start fading in before they scroll into view and a
+  // tall block never has to reach a percentage it cannot hit on a phone.
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var reveals = document.querySelectorAll('.reveal');
+  function revealAll() { reveals.forEach(function (el) { el.classList.add('in'); }); }
   if (reduced || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('in'); });
+    revealAll();
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 20% 0px' });
     reveals.forEach(function (el) { io.observe(el); });
+    // Belt and braces: whatever is still hidden a few seconds after load
+    // (an observer that never fired, a restored scroll position) shows anyway.
+    window.addEventListener('load', function () { setTimeout(revealAll, 2500); });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) revealAll(); });
   }
 
   // count-up stats
@@ -174,14 +182,22 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(pointer: fine)').matches;
 
-  // scroll progress bar
+  // scroll progress bar. Layout reads happen once per resize and the write is
+  // batched into a frame, so scrolling never forces a synchronous reflow.
   var bar = document.getElementById('progress');
   if (bar) {
-    var onScroll = function () {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    var h = document.documentElement, max = 0, ticking = false;
+    var measure = function () { max = h.scrollHeight - h.clientHeight; };
+    var paint = function () {
+      ticking = false;
+      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
     };
+    var onScroll = function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+    };
+    measure();
+    window.addEventListener('resize', function () { measure(); onScroll(); }, { passive: true });
+    window.addEventListener('load', function () { measure(); onScroll(); });
     document.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
@@ -215,9 +231,15 @@
   // hero parallax: photo drifts on scroll, bolts follow the mouse
   var heroPhoto = document.querySelector('[data-parallax-bg]');
   if (heroPhoto && !reduced) {
+    var pTick = false;
     document.addEventListener('scroll', function () {
-      var y = Math.min(window.scrollY, 900);
-      heroPhoto.style.transform = 'translateY(' + y * 0.18 + 'px)';
+      if (pTick) return;
+      pTick = true;
+      requestAnimationFrame(function () {
+        pTick = false;
+        var y = Math.min(window.scrollY, 900);
+        heroPhoto.style.transform = 'translateY(' + y * 0.18 + 'px)';
+      });
     }, { passive: true });
   }
   var bolts = document.querySelectorAll('.bolt-float');

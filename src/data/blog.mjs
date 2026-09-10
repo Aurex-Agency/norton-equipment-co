@@ -347,7 +347,7 @@ export const POSTS = [
 <p>Sprawling properties usually run scattered dumpster corrals, and pay for it in overflow complaints, extra pickups, and pest control. Two upgrades change the math:</p>
 <ul>
 <li><strong>Centralized vertical compaction.</strong> A <a href="/trash-compactors/vertical-apartment/">vertical compactor</a> at a central waste point packs into standard front-load containers your hauler already lifts, typically cutting lifts by two-thirds while keeping ordinary route service. Lids stay closed; corrals stay presentable.</li>
-<li><strong>Enclosures that actually work.</strong> Locking gates and screens (<a href="/trash-compactors/enclosures/">we fabricate them in-house</a>) stop the after-hours dumping from outside the property, a bigger cost than most managers realize until they gate it.</li>
+<li><strong>Enclosures that actually work.</strong> Locking gates and screens (<a href="/trash-compactors/steel-options/">we fabricate them in-house</a>) stop the after-hours dumping from outside the property, a bigger cost than most managers realize until they gate it.</li>
 </ul>
 
 <h2>High-rises: the chute system</h2>

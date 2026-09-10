@@ -259,9 +259,39 @@
       "source": "/norton-equipment-company-welcomes-bretany-hannigan/",
       "destination": "/blog/",
       "permanent": true
+    },
+    {
+      "source": "/what-not-to-put-in-your-compactor/",
+      "destination": "/what-you-should-never-put-into-a-commercial-compactor/",
+      "permanent": true
     }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'; upgrade-insecure-requests"
+        }
+      ]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [

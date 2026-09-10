@@ -187,3 +187,6 @@ export const BRANDS = [
     faq: { q: 'Can you service a BACE machine that didn’t come from Norton?', a: 'Yes. We service every major make and model across the Mid-South, no matter where the machine originally came from.' },
   },
 ];
+
+// Bumped when page content in this module changes; feeds sitemap <lastmod>.
+export const UPDATED = '2026-09-10';

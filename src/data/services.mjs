@@ -241,3 +241,6 @@ export const SERVICES = [
     related: ['equipment-evaluations', 'compactor-repair', 'preventive-maintenance'],
   },
 ];
+
+// Bumped when page content in this module changes; feeds sitemap <lastmod>.
+export const UPDATED = '2026-09-10';

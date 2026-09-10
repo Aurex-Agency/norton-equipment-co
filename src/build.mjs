@@ -11,10 +11,10 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { SITE } from './site.mjs';
-import { COMPACTOR_OVERVIEW, COMPACTORS, BALER_OVERVIEW, BALERS } from './data/equipment.mjs';
-import { SERVICES_OVERVIEW, SERVICES } from './data/services.mjs';
-import { BRANDS_OVERVIEW, BRANDS } from './data/brands.mjs';
-import { CITIES, STATES } from './data/cities.mjs';
+import { COMPACTOR_OVERVIEW, COMPACTORS, BALER_OVERVIEW, BALERS, UPDATED as EQUIPMENT_UPDATED } from './data/equipment.mjs';
+import { SERVICES_OVERVIEW, SERVICES, UPDATED as SERVICES_UPDATED } from './data/services.mjs';
+import { BRANDS_OVERVIEW, BRANDS, UPDATED as BRANDS_UPDATED } from './data/brands.mjs';
+import { CITIES, STATES, UPDATED as CITIES_UPDATED } from './data/cities.mjs';
 import { POSTS } from './data/blog.mjs';
 import { LEGACY_POSTS } from './data/blog-legacy.mjs';
 import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDERS, TRUSTED_BY } from './data/testimonials.mjs';
@@ -25,17 +25,23 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DRAFT = false;
 
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
+// Bump when the shared chrome or templates change in a way that alters every
+// page (header, footer, schema). Sitemap <lastmod> for a page is the later of
+// this date and the page's own content date, so it reflects real changes
+// instead of the deploy date.
+const TEMPLATE_UPDATED = '2026-09-10';
 const pagesWritten = [];
 
 // ---------------- helpers ----------------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const latest = (...dates) => dates.filter(Boolean).sort().pop() || TEMPLATE_UPDATED;
 
-function out(path, html) {
+function out(path, html, lastmod = TEMPLATE_UPDATED) {
   const file = join(ROOT, path);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
   if (path.endsWith('index.html')) {
-    pagesWritten.push('/' + path.replace(/index\.html$/, ''));
+    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod) });
   }
 }
 
@@ -116,9 +122,29 @@ const PAGE_PHOTOS = {
 
 // Emit srcset only when the 800w variant actually exists on disk, so an
 // image that was already small enough never points at a missing file.
-function srcsetAttr(name, fullW = 1500, sizes = '(max-width:860px) 100vw, 50vw') {
+// 400w variants exist for grid thumbnails so a 260px slot does not pull an 800px file.
+function srcsetList(name, fullW = 1500) {
   if (!existsSync(join(ROOT, 'assets', 'img', `${name}-800.webp`))) return '';
-  return ` srcset="/assets/img/${name}-800.webp 800w, /assets/img/${name}.webp ${fullW}w" sizes="${sizes}"`;
+  const small = existsSync(join(ROOT, 'assets', 'img', `${name}-400.webp`)) ? `/assets/img/${name}-400.webp 400w, ` : '';
+  return `${small}/assets/img/${name}-800.webp 800w, /assets/img/${name}.webp ${fullW}w`;
+}
+
+function srcsetAttr(name, fullW = 1500, sizes = '(max-width:860px) 100vw, 50vw') {
+  const list = srcsetList(name, fullW);
+  return list ? ` srcset="${list}" sizes="${sizes}"` : '';
+}
+
+// Hero preload that picks the same candidate the <img> will, so a phone never
+// downloads the 1500w file on top of the 800w one it actually renders.
+const HERO_SIZES = '(max-width:860px) 100vw, 50vw';
+function preloadLink(p) {
+  if (typeof p === 'string') return `<link rel="preload" href="${p}" as="image" fetchpriority="high">`;
+  const { name, fullW = 1500, sizes = HERO_SIZES } = p;
+  const list = srcsetList(name, fullW);
+  const href = `/assets/img/${name}.webp`;
+  return list
+    ? `<link rel="preload" href="${href}" as="image" fetchpriority="high" imagesrcset="${list}" imagesizes="${sizes}">`
+    : `<link rel="preload" href="${href}" as="image" fetchpriority="high">`;
 }
 
 // Photos ship at 1500w for desktop and 800w for phones. The sizes hint
@@ -152,10 +178,105 @@ function ldLocalBusiness() {
       { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 35.1495, longitude: -90.049 }, geoRadius: '160934' },
       ...STATES.map((s) => ({ '@type': 'State', name: s.name })),
     ],
-    logo: SITE.baseUrl + '/assets/img/logo-full.webp',
+    priceRange: '$$$',
+    hasMap: SITE.mapsUrl,
+    logo: { '@type': 'ImageObject', url: SITE.baseUrl + '/assets/img/logo-full.webp', width: 1100, height: 790 },
     image: [SITE.baseUrl + '/assets/img/n-truck.webp', SITE.baseUrl + '/assets/img/n-hero-dock.webp'],
-    sameAs: SITE.social.map((s) => s.url),
+    sameAs: [...SITE.social.map((s) => s.url), SITE.businessProfileUrl],
   };
+}
+
+function ldWebSite() {
+  return {
+    '@type': 'WebSite',
+    '@id': SITE.baseUrl + '/#website',
+    url: SITE.baseUrl + '/',
+    name: SITE.name,
+    publisher: { '@id': SITE.baseUrl + '/#business' },
+    inLanguage: 'en-US',
+  };
+}
+
+// Blog posts carry Organization authorship plus a visible "reviewed by" line
+// tied to the service bench. Swap in a named Person here once the client
+// confirms who signs the technical content.
+function ldAuthor() {
+  return { '@type': 'Organization', name: SITE.name, url: SITE.baseUrl + '/about/' };
+}
+
+function reviewedByHtml() {
+  return `<p class="byline">${IC.shield}<span>Reviewed by the Norton Equipment service team: OSHA-trained, factory-certified technicians with 80+ years of combined bench experience. <a href="/about/">About the team</a></span></p>`;
+}
+
+// ---------------- related guides ----------------
+// Pillar, service, and brand pages link down to the guides that answer the
+// questions buyers on that page actually have. Slugs resolve against both the
+// new /blog/ posts and the legacy root-level archive.
+const RELATED_GUIDES = {
+  '/trash-compactors/': ['commercial-trash-compactor-buying-guide', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/self-contained/': ['self-contained-vs-stationary-compactors', 'what-you-should-never-put-into-a-commercial-compactor', 'compactors-for-hotels'],
+  '/trash-compactors/stationary/': ['self-contained-vs-stationary-compactors', 'how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide'],
+  '/trash-compactors/vertical-apartment/': ['apartment-high-rise-compactors-property-managers-guide', 'compactors-for-hotels', 'what-you-should-never-put-into-a-commercial-compactor'],
+  '/trash-compactors/pre-crusher/': ['commercial-trash-compactor-buying-guide', 'what-you-should-never-put-into-a-commercial-compactor', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/auger/': ['commercial-trash-compactor-buying-guide', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/front-load-rear-load/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide', 'why-you-need-a-cardboard-baler'],
+  '/trash-compactors/steel-options/': ['apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs'],
+  '/trash-compactors/used/': ['buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs', 'commercial-trash-compactor-buying-guide'],
+  '/balers-recycling/': ['how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'why-you-need-a-cardboard-baler'],
+  '/balers-recycling/vertical-balers/': ['vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'the-safest-way-to-use-a-baler'],
+  '/balers-recycling/horizontal-balers/': ['vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/two-ram-balers/': ['vertical-baler-or-horizontal-baler', 'how-to-choose-the-right-baler', 'differences-single-loop-double-loop-bale-wire'],
+  '/balers-recycling/specialty-balers/': ['how-to-choose-the-right-baler', 'why-you-need-a-cardboard-baler', 'how-to-start-a-recycling-program'],
+  '/balers-recycling/refurbished-balers/': ['4-benefits-to-buying-a-refurbished-baler', 'benefits-of-having-regular-service-for-your-baler', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/used-balers/': ['4-benefits-to-buying-a-refurbished-baler', 'warning-signs-your-equipment-needs-servicing', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/baling-wire/': ['differences-single-loop-double-loop-bale-wire', 'cardboard-bale-weight', '5-simple-ways-keep-baler-running-smoothly'],
+  '/services/': ['trash-compactor-maintenance-checklist', 'warning-signs-your-equipment-needs-servicing', 'trash-compactor-repair-signs'],
+  '/services/compactor-repair/': ['trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist', 'what-you-should-never-put-into-a-commercial-compactor'],
+  '/services/baler-service/': ['benefits-of-having-regular-service-for-your-baler', '5-simple-ways-keep-baler-running-smoothly', 'the-safest-way-to-use-a-baler'],
+  '/services/preventive-maintenance/': ['trash-compactor-maintenance-checklist', 'benefits-of-having-regular-service-for-your-baler', 'warning-signs-your-equipment-needs-servicing'],
+  '/services/equipment-evaluations/': ['warning-signs-your-equipment-needs-servicing', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs'],
+  '/services/equipment-refurbishment/': ['4-benefits-to-buying-a-refurbished-baler', 'buy-new-used-or-hauler-compactor', 'service-spotlight-may-2018-equipment-refurbishers'],
+  '/services/equipment-logistics/': ['commercial-trash-compactor-buying-guide', 'vertical-baler-or-horizontal-baler', '4-benefits-to-buying-a-refurbished-baler'],
+  '/services/rigging/': ['commercial-trash-compactor-buying-guide', 'apartment-high-rise-compactors-property-managers-guide', 'vertical-baler-or-horizontal-baler'],
+  '/services/waste-stream-consultations/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'how-to-start-a-recycling-program', 'top-10-reasons-to-recycle'],
+  '/brands/': ['commercial-trash-compactor-buying-guide', 'how-to-choose-the-right-baler', 'buy-new-used-or-hauler-compactor'],
+  'brand:compactors': ['commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist'],
+  'brand:balers': ['how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'benefits-of-having-regular-service-for-your-baler'],
+};
+
+function findPost(slug) {
+  const p = POSTS.find((x) => x.slug === slug);
+  if (p) return { ...p, href: `/blog/${p.slug}/` };
+  const l = LEGACY_POSTS.find((x) => x.slug === slug);
+  return l ? { ...l, href: `/${l.slug}/` } : null;
+}
+
+function postCard(p, i) {
+  return `
+    <a class="post-card reveal" data-d="${(i % 3) + 1}" href="${p.href}">
+      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp"${srcsetAttr(p.img, 1500, '(max-width:480px) 100vw, (max-width:960px) 50vw, 33vw')} alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
+      <div class="pc-body">
+        <div class="meta"><span>${p.updated || p.date}</span><span>${p.readMins} min read</span></div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.excerpt)}</p>
+        <span class="go">Read Article ${IC.arrow}</span>
+      </div>
+    </a>`;
+}
+
+function relatedGuides(key, { dark = false, heading = 'Read before you buy.' } = {}) {
+  const posts = (RELATED_GUIDES[key] || []).map(findPost).filter(Boolean);
+  if (!posts.length) return '';
+  return `
+<section class="sec ${dark ? 'sec-dark' : 'sec-paper-2'}">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Related Guides</span>
+      <h2>${heading}</h2>
+    </div>
+    <div class="grid-3">${posts.map(postCard).join('')}</div>
+  </div>
+</section>`;
 }
 
 function ldBreadcrumbs(crumbs) {
@@ -246,7 +367,7 @@ function headerHtml(activePath) {
 </div>
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a href="/" class="brand" aria-label="Norton Equipment Company home page">
+    <a href="/" class="brand">
       <img src="/assets/img/logo-badge.webp" alt="" width="58" height="32">
       <span class="txt"><b>Norton Equipment</b><span>Compactors · Balers · Service</span></span>
     </a>
@@ -312,7 +433,7 @@ function footerHtml() {
   <div class="wrap foot-grid">
     <div class="foot-about">
       <div class="foot-brand">
-        <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="64" height="35" loading="lazy">
+        <img src="/assets/img/logo-badge.webp" alt="Norton Equipment Company emblem" width="52" height="29" loading="lazy">
         <div><b>Norton Equipment Company</b><span>Est. March ${SITE.founded} · Byhalia, MS</span></div>
       </div>
       <p class="foot-tagline">Built on service. Backed by experience.</p>
@@ -332,7 +453,7 @@ function footerHtml() {
   </div>
   <div class="foot-bottom">
     <div class="wrap">
-      <span>© ${new Date().getFullYear()} ${esc(SITE.legalName)}. All rights reserved.</span>
+      <span>© ${new Date().getFullYear()} ${esc(SITE.legalName.replace(/\.$/, ''))}. All rights reserved.</span>
       <span><a href="/privacy-policy/">Privacy Policy</a></span>
       <span><a href="/terms/">Terms of Use</a></span>
       <span><a href="/accessibility/">Accessibility</a></span>
@@ -410,6 +531,7 @@ function layout({ path, title, desc, body, ld = [], ogType = 'website', ctaOpts,
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className+=' js'</script>
 ${SITE.searchConsoleToken ? `<meta name="google-site-verification" content="${SITE.searchConsoleToken}">` : ''}
 ${SITE.analyticsId ? `<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.analyticsId}"></script>
@@ -435,7 +557,7 @@ ${DRAFT ? '<meta name="robots" content="noindex,nofollow"><!-- DRAFT MODE: remov
 <link rel="icon" href="/assets/img/favicon-48.png" type="image/png" sizes="48x48">
 <link rel="icon" href="/assets/img/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-${preloadImg ? `<link rel="preload" href="${preloadImg}" as="image" fetchpriority="high">` : ''}
+${preloadImg ? preloadLink(preloadImg) : ''}
 <link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -588,16 +710,8 @@ function buildHome() {
   const cityChips = (abbr) => CITIES.filter((c) => c.abbr === abbr)
     .map((c) => `<a class="city" href="/locations/${c.slug}/">${IC.pin}${esc(c.city)}, ${c.abbr}</a>`).join('');
 
-  const postCards = POSTS.slice(0, 3).map((p, i) => `
-    <a class="post-card reveal" data-d="${i + 1}" href="/blog/${p.slug}/">
-      ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp"${srcsetAttr(p.img, 1500, '(max-width:480px) 100vw, (max-width:960px) 50vw, 33vw')} alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
-      <div class="pc-body">
-        <div class="meta"><span>${p.date}</span><span>${p.readMins} min read</span></div>
-        <h3>${esc(p.title)}</h3>
-        <p>${esc(p.excerpt)}</p>
-        <span class="go">Read Article ${IC.arrow}</span>
-      </div>
-    </a>`).join('');
+  // Every current guide gets a link from the highest-authority page on the site.
+  const postCards = POSTS.map((p, i) => postCard({ ...p, href: `/blog/${p.slug}/` }, i)).join('');
 
   const body = `
 <section class="hero" id="top">
@@ -778,9 +892,9 @@ function buildHome() {
       <div class="marquee-lbl">Sold &amp; serviced across the region</div>
       <div class="marquee"><div class="track">${track}${track}</div></div>
     </div>
-    <dl class="brand-lines reveal" data-d="1">
-      ${BRANDS.map((b) => `<div class="brand-line"><dt><a href="/brands/${b.slug}/">${esc(b.name)}</a></dt><dd>${esc(b.short)}</dd><a class="bl-go" href="/brands/${b.slug}/" aria-label="${esc(b.name)} page">${IC.arrow}</a></div>`).join('')}
-    </dl>
+    <div class="brand-lines reveal" data-d="1">
+      ${BRANDS.map((b) => `<div class="brand-line"><span class="bl-name"><a href="/brands/${b.slug}/">${esc(b.name)}</a></span><span class="bl-desc">${esc(b.short)}</span><a class="bl-go" href="/brands/${b.slug}/" aria-label="${esc(b.name)} page">${IC.arrow}</a></div>`).join('')}
+    </div>
     <p class="mt-2"><a class="btn btn-dark" href="/brands/">All Brands <span class="arw">→</span></a></p>
   </div>
 </section>
@@ -846,14 +960,14 @@ function buildHome() {
 </section>`;
 
   out('index.html', layout({
-    preloadImg: '/assets/img/n-hero-dock.webp',
+    preloadImg: { name: 'n-hero-dock', fullW: 1900, sizes: '100vw' },
     ogImage: '/assets/img/n-truck.webp',
     path: '/',
     title: 'Trash Compactors & Balers | Norton Equipment Co.',
     desc: 'Commercial trash compactors and balers sold, serviced, and rebuilt across the Mid-South since 1997. Any brand, any model. Call (662) 838-7900.',
     body,
-    ld: [],
-  }));
+    ld: [ldWebSite()],
+  }), latest(...POSTS.map((p) => p.updated || p.date)));
 }
 
 // ============================================================
@@ -928,6 +1042,8 @@ ${phoneStrip()}
 
 ${faqSection(item.faqs)}
 
+${relatedGuides(path)}
+
 ${related ? `
 <section class="sec sec-paper">
   <div class="wrap">
@@ -939,18 +1055,21 @@ ${related ? `
   </div>
 </section>` : ''}`;
 
+  const photo = PAGE_PHOTOS[item.slug] || null;
   out(`${path.slice(1)}index.html`, layout({
     path,
     title: item.metaTitle,
     desc: item.metaDesc,
     body,
+    preloadImg: photo ? { name: photo[0] } : null,
+    ogImage: photo ? `/assets/img/${photo[0]}.webp` : undefined,
     ld: [
       ldBreadcrumbs(crumbs),
       ldService(item.name, item.metaDesc, path),
       ldFaq(item.faqs),
     ],
     ctaOpts: { heading: `Ready to talk <span class="gold">${esc(item.cardTitle.toLowerCase())}</span>?`, photo: basePath === '/trash-compactors/' ? 'n-cta-compactors' : 'n-cta-balers' },
-  }));
+  }), EQUIPMENT_UPDATED);
 }
 
 function equipmentHub(basePath, overview, items, extraCards = '', photoKey = null) {
@@ -996,16 +1115,21 @@ ${pageHero({
 
 ${basePath === '/trash-compactors/' ? finderSection() : ''}
 
-${faqSection(overview.faqs, { dark: false })}`;
+${faqSection(overview.faqs, { dark: false })}
 
+${relatedGuides(basePath, { dark: basePath === '/balers-recycling/' })}`;
+
+  const photo = photoKey ? PAGE_PHOTOS[photoKey] : null;
   out(`${basePath.slice(1)}index.html`, layout({
     path: basePath,
     title: overview.metaTitle,
     desc: overview.metaDesc,
     body,
+    preloadImg: photo ? { name: photo[0] } : null,
+    ogImage: photo ? `/assets/img/${photo[0]}.webp` : undefined,
     ld: [ldBreadcrumbs(crumbs), ldService(overview.name, overview.metaDesc, basePath), ldFaq(overview.faqs)],
     ctaOpts: { photo: basePath === '/trash-compactors/' ? 'n-cta-compactors' : 'n-cta-balers' },
-  }));
+  }), EQUIPMENT_UPDATED);
 }
 
 function buildEquipment() {
@@ -1080,10 +1204,12 @@ ${pageHero({
     path: '/services/',
     title: SERVICES_OVERVIEW.metaTitle,
     desc: SERVICES_OVERVIEW.metaDesc,
-    body,
+    body: body + relatedGuides('/services/', { heading: 'Know the warning signs.' }),
+    preloadImg: { name: PAGE_PHOTOS['hub:services'][0] },
+    ogImage: `/assets/img/${PAGE_PHOTOS['hub:services'][0]}.webp`,
     ld: [ldBreadcrumbs(crumbs)],
     ctaOpts: { heading: 'Down machine? <span class="gold">Call now.</span>', text: `One number covers repair, maintenance, fabrication, and logistics across the Mid-South: ${SITE.phone}.` },
-  }));
+  }), SERVICES_UPDATED);
 
   SERVICES.forEach((s) => {
     const path = `/services/${s.slug}/`;
@@ -1136,6 +1262,7 @@ ${gallerySection(s.gallery, s.galleryEyebrow || 'Our Work', s.galleryHeading || 
 ${phoneStrip('Down machine? <em>We prioritize those calls.</em>')}
 
 ${faqSection(s.faqs)}
+${relatedGuides(path, { dark: true, heading: 'Straight talk from the shop.' })}
 ${related ? `
 <section class="sec sec-paper">
   <div class="wrap">
@@ -1147,20 +1274,30 @@ ${related ? `
   </div>
 </section>` : ''}`;
 
+    const photo = PAGE_PHOTOS[s.slug] || null;
     out(`services/${s.slug}/index.html`, layout({
       path,
       title: s.metaTitle,
       desc: s.metaDesc,
       body: body2,
+      preloadImg: photo ? { name: photo[0] } : null,
+      ogImage: photo ? `/assets/img/${photo[0]}.webp` : undefined,
       ld: [ldBreadcrumbs(crumbs2), ldService(s.name, s.metaDesc, path), ldFaq(s.faqs)],
       ctaOpts: { heading: `Need <span class="gold">${esc(s.cardTitle.toLowerCase())}</span>? We’re close.` },
-    }));
+    }), SERVICES_UPDATED);
   });
 }
 
 // ============================================================
 // BRANDS
 // ============================================================
+// A brand whose kicker leads with balers gets baler guides; the rest get compactor guides.
+function balerLed(b) {
+  const k = b.kicker.toLowerCase();
+  const bi = k.indexOf('baler'), ci = k.indexOf('compactor');
+  return bi >= 0 && (ci < 0 || bi < ci);
+}
+
 function buildBrands() {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Brands', href: '/brands/' }];
   const cards = BRANDS.map((b, i) => `
@@ -1204,9 +1341,9 @@ ${pageHero({
     path: '/brands/',
     title: BRANDS_OVERVIEW.metaTitle,
     desc: BRANDS_OVERVIEW.metaDesc,
-    body,
+    body: body + relatedGuides('/brands/', { heading: 'Pick the machine, then the badge.' }),
     ld: [ldBreadcrumbs(crumbs)],
-  }));
+  }), BRANDS_UPDATED);
 
   BRANDS.forEach((b) => {
     const path = `/brands/${b.slug}/`;
@@ -1256,16 +1393,20 @@ ${pageHero({
     </div>
   </div>
 </section>
-${faqSection([b.faq])}`;
+${faqSection([b.faq])}
+${relatedGuides(balerLed(b) ? 'brand:balers' : 'brand:compactors', { dark: true, heading: `Buying or fixing a ${esc(b.name)}? Start here.` })}`;
 
+    const photo = PAGE_PHOTOS['brand:' + b.slug] || null;
     out(`brands/${b.slug}/index.html`, layout({
       path,
       title: b.metaTitle,
       desc: b.metaDesc,
       body: body2,
+      preloadImg: photo ? { name: photo[0] } : null,
+      ogImage: photo ? `/assets/img/${photo[0]}.webp` : undefined,
       ld: [ldBreadcrumbs(crumbs2), ldService(`${b.name} equipment sales & service`, b.metaDesc, path), ldFaq([b.faq])],
       ctaOpts: { heading: `${esc(b.name)} on your pad? <span class="gold">We’ve got it.</span>` },
-    }));
+    }), BRANDS_UPDATED);
   });
 }
 
@@ -1305,9 +1446,76 @@ ${pageHero({
     desc: 'Compactor and baler sales, service, and delivery in 31 cities within 100 miles of Memphis. Find your city and what we cover there.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
-  }));
+  }), CITIES_UPDATED);
 
-  CITIES.forEach((c) => {
+  // Rotating phrasings keep the three standard questions from reading as one
+  // template stamped 31 times; each city also supplies its own question.
+  const faqFor = (c, idx) => {
+    const ind = c.industries.map((s) => s.toLowerCase());
+    const first = (i) => c.industries[i] ? c.industries[i].toLowerCase() : 'local businesses';
+    const wet = ind.some((s) => /grocery|food|hospital|medical|restaurant|hotel|casino|hospitality/.test(s));
+    const dry = ind.some((s) => /distribution|warehous|logistics|manufactur|fulfillment|industrial|plant/.test(s));
+    const multi = ind.some((s) => /multi-family|apartment|high-rise|residential/.test(s));
+    const gear = [
+      wet ? 'a sealed <a href="/trash-compactors/self-contained/">self-contained compactor</a> for the wet stream' : '',
+      dry ? 'a <a href="/trash-compactors/stationary/">stationary compactor</a> at the dock with a <a href="/balers-recycling/vertical-balers/">vertical baler</a> pulling cardboard out of it' : '',
+      multi ? 'a <a href="/trash-compactors/vertical-apartment/">vertical or chute-fed compactor</a> for the trash room' : '',
+    ].filter(Boolean);
+    const gearTxt = gear.length ? gear.slice(0, 2).join(', plus ') : 'a right-sized compactor and a <a href="/balers-recycling/vertical-balers/">vertical baler</a> for the cardboard';
+    const miles = c.miles;
+    const q1 = miles === 0 ? {
+      q: 'Is Norton actually based in Byhalia?',
+      a: `Yes. The shop and office are at ${SITE.address.street} in Byhalia, so local customers get the shortest response times we have and can pick up baling wire and parts in person. Call ${SITE.phone} to check stock before you drive over.`,
+    } : [
+      { q: `Do you charge extra for service calls in ${c.city}?`, a: `No. ${c.city} is inside our standard 100-mile service area, so it is covered by normal dispatch with no long-distance premium. Call ${SITE.phone} for scheduling and current response times.` },
+      { q: `Is ${c.city} inside Norton’s regular service area?`, a: `Yes. ${c.city} sits about ${miles} miles from our Byhalia shop, well inside the 100-mile ring our trucks run every week, so service calls are dispatched at standard rates with no travel surcharge.` },
+      { q: `How quickly can a technician reach ${c.city}, ${c.abbr}?`, a: `Our goal is a response within 24 hours across the service ring. ${c.city} is about ${miles} miles from the shop, so a down machine there usually sees a truck the same or next business day. Say it is down when you call ${SITE.phone} and we move it to the front of the line.` },
+      { q: `What does a service call to ${c.city} cost?`, a: `The same as anywhere in our 100-mile ring: standard dispatch, no mileage premium, and a written estimate before repair work starts. ${c.city} is roughly ${miles} miles from Byhalia. Call ${SITE.phone} to schedule.` },
+    ][idx % 4];
+    const q2 = [
+      { q: `Can you deliver and install equipment in ${c.city}, ${c.abbr}?`, a: `Yes. Our own <a href="/services/equipment-logistics/">equipment logistics crew</a> handles delivery, rigging, installation, and old-machine removal throughout the ${c.city} area.` },
+      { q: `Who handles delivery and installation in ${c.city}?`, a: `Our own crew, not a freight carrier. Norton’s <a href="/services/equipment-logistics/">equipment logistics team</a> brings the trucks, trailers, and forklifts, sets and anchors the machine, wires it, tests it, and hauls the old unit away.` },
+      { q: `Can you install a compactor or baler in ${c.city}, ${c.abbr}?`, a: `Yes. Delivery, <a href="/services/rigging/">rigging</a>, installation, operator training, and old-machine removal are all done by Norton employees, and ${c.city} is on our regular delivery routes.` },
+      { q: `Do you remove the old machine when you deliver a new one in ${c.city}?`, a: `Yes. Our <a href="/services/equipment-logistics/">logistics crew</a> handles the swap in one visit: the old compactor or baler comes out, the new or reconditioned unit goes in, and the old one rides back to Byhalia for evaluation or scrap.` },
+    ][(idx + 1) % 4];
+    const q3 = [
+      { q: `Which brands do you service in ${c.city}?`, a: `All of them: Marathon, Cram-A-Lot, Max-Pak, Harris/Selco, PTR, Wastequip, and every other major make. Around ${c.city} that mostly means ${first(0)} and ${first(1)} sites, and we work on whatever is already on the pad.` },
+      { q: `Do you work on compactors and balers you did not sell in ${c.city}?`, a: `Every day. If it compacts or bales, we repair it: Marathon, Cram-A-Lot, Max-Pak, PTR, BACE, Harris, and the rest. Most ${c.city} calls are for machines another dealer or hauler put in years ago.` },
+      { q: `What equipment do ${c.city} businesses usually need?`, a: `${c.industries[0]} and ${first(1)} make up most of our ${c.city} work, which usually means ${gearTxt}. We size it from your real volume during a free on-site evaluation.` },
+    ][idx % 3];
+    return [q1, c.faq, q2, q3].filter(Boolean);
+  };
+
+  // One real customer voice on every city page, rotated by state so the
+  // Olive Branch review lands on Mississippi pages and the multi-site
+  // national accounts on Tennessee and Arkansas pages.
+  const byName = (n) => TESTIMONIALS.find((t) => t.name === n);
+  const voices = {
+    MS: [byName('Dave'), byName('Cheri'), byName('Zach Pavlisick')],
+    TN: [byName('Lisa R.'), byName('Michael Gaugh'), byName('David Dygert')],
+    AR: [byName('David Dygert'), byName('Michael Gaugh'), byName('Lisa R.')],
+  };
+  const voiceFor = (c, idx) => {
+    const t = (voices[c.abbr] || voices.TN).filter(Boolean)[idx % 3];
+    if (!t) return '';
+    const quote = Array.isArray(t.quote) ? t.quote[0] : t.quote;
+    return `
+<section class="sec sec-paper">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Word From the Field</span>
+      <h2>What operators say about Norton.</h2>
+    </div>
+    <figure class="quote-feature reveal" data-d="1">
+      <blockquote>${esc(quote)}</blockquote>
+      <figcaption><b>${esc(t.name)}</b><span>${esc(t.role)} · ${esc(t.tag)}</span></figcaption>
+    </figure>
+    <p class="mt-2"><a class="btn btn-dark" href="/testimonials/">More Testimonials <span class="arw">→</span></a></p>
+  </div>
+</section>`;
+  };
+
+  CITIES.forEach((c, cityIdx) => {
     const path = `/locations/${c.slug}/`;
     const crumbs2 = [{ label: 'Home', href: '/' }, { label: 'Locations', href: '/locations/' }, { label: `${c.city}, ${c.abbr}`, href: path }];
     const nearby = (c.nearby || [])
@@ -1332,20 +1540,7 @@ ${pageHero({
       { href: '/services/waste-stream-consultations/', label: 'Free Waste Stream Consultation' },
     ];
     const dist = c.miles === 0 ? 'Home base' : `~${c.miles} miles from our shop`;
-    const faqs = [
-      {
-        q: `Do you charge extra for service calls in ${c.city}?`,
-        a: `${c.city} is inside our standard 100-mile service area, so it is covered by our normal dispatch, no long-distance premiums. Call ${SITE.phone} for scheduling and current response times.`,
-      },
-      {
-        q: `Can you deliver and install equipment in ${c.city}, ${c.abbr}?`,
-        a: `Yes. Our own <a href="/services/equipment-logistics/">equipment logistics crew</a> handles delivery, rigging, installation, and old-machine removal throughout the ${c.city} area.`,
-      },
-      {
-        q: `Which brands do you service in ${c.city}?`,
-        a: `All of them: Marathon, Cram-A-Lot, Max-Pak, Harris/Selco, PTR, Wastequip, and every other major make. If it compacts or bales, we work on it.`,
-      },
-    ];
+    const faqs = faqFor(c, cityIdx);
 
     const body2 = `
 ${pageHero({
@@ -1384,6 +1579,7 @@ ${pageHero({
 ${phoneStrip(`In or near ${esc(c.city)}? <em>Our trucks already run this way.</em>`)}
 
 ${faqSection(faqs)}
+${voiceFor(c, cityIdx)}
 <section class="sec sec-dark">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -1405,7 +1601,7 @@ ${faqSection(faqs)}
         ldFaq(faqs.map((f) => ({ q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
       ],
       ctaOpts: { heading: `${esc(c.city)}, let’s talk <span class="gold">equipment.</span>` },
-    }));
+    }), CITIES_UPDATED);
   });
 }
 
@@ -1531,7 +1727,7 @@ ${pageHero({
   out('testimonials/index.html', layout({
     path: '/testimonials/',
     title: 'Customer Testimonials | Norton Equipment',
-    desc: 'What Mid-South businesses say about Norton Equipment’s compactor and baler sales, service, and support: reviews tagged by industry and city.',
+    desc: 'What Mid-South businesses say about Norton Equipment’s compactor and baler sales, service, and support: real reviews from WM, Waste Connections, Williams-Sonoma, and more.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
   }));
@@ -1645,6 +1841,9 @@ ${pageHero({
           ${checkLi('Baling wire delivery on scheduled routes')}
           ${checkLi('Project &amp; logistics work quoted beyond the ring, just ask')}
         </ul>
+        <div class="map-embed">
+          <iframe src="${SITE.mapsEmbedUrl}" title="Map to Norton Equipment Co., ${esc(SITE.address.street)}, ${esc(SITE.address.city)}, ${esc(SITE.address.state)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -1962,7 +2161,7 @@ ${pageHero({
     desc: 'Buying guides and straight talk on commercial trash compactors, balers, and what waste equipment really costs.',
     body,
     ld: [ldBreadcrumbs(crumbs)],
-  }));
+  }), latest(...POSTS.map((p) => p.updated || p.date), ...LEGACY_POSTS.map((p) => p.updated || p.date)));
 
   POSTS.forEach((p) => {
     const path = `/blog/${p.slug}/`;
@@ -1989,7 +2188,7 @@ ${pageHero({
     <span class="kick">From the Norton Blog</span>
     <h1 style="font-size:clamp(28px,4.4vw,50px);text-transform:none;letter-spacing:0;line-height:1.12;max-width:880px">${esc(p.title)}</h1>
     <div class="post-hero-meta">
-      <span>${IC.cal}${p.date}</span>
+      <span>${IC.cal}${p.updated && p.updated !== p.date ? `Updated ${p.updated}` : p.date}</span>
       <span>${IC.clock}${p.readMins} min read</span>
       <span>${IC.doc}Norton Equipment</span>
     </div>
@@ -1998,7 +2197,7 @@ ${pageHero({
 <div class="hazard" aria-hidden="true"></div>
 <article class="sec sec-paper">
   <div class="wrap">
-    <div class="prose reveal">${p.body}</div>
+    <div class="prose reveal">${p.body}${reviewedByHtml()}</div>
   </div>
 </article>
 <section class="sec sec-paper-2">
@@ -2014,6 +2213,7 @@ ${pageHero({
       desc: p.metaDesc,
       body: body2,
       ogType: 'article',
+      ogImage: p.img ? `/assets/img/${p.img}.webp` : undefined,
       ld: [
         ldBreadcrumbs(crumbs2),
         ...(p.faqs && p.faqs.length ? [ldFaq(p.faqs)] : []),
@@ -2022,14 +2222,15 @@ ${pageHero({
           headline: p.title,
           description: p.metaDesc,
           datePublished: p.date,
-          dateModified: p.date,
+          dateModified: p.updated || p.date,
           url: SITE.baseUrl + path,
-          author: { '@type': 'Organization', name: SITE.name },
+          ...(p.img ? { image: [SITE.baseUrl + `/assets/img/${p.img}.webp`] } : {}),
+          author: ldAuthor(),
           publisher: { '@id': SITE.baseUrl + '/#business' },
           mainEntityOfPage: SITE.baseUrl + path,
         },
       ],
-    }));
+    }), p.updated || p.date);
   });
 }
 
@@ -2063,7 +2264,7 @@ function buildLegacyBlog() {
       <span class="kick">From the Norton Blog</span>
       <h1 style="font-size:clamp(28px,4.4vw,48px);text-transform:none;letter-spacing:0;line-height:1.12;max-width:880px">${esc(p.title)}</h1>
       <div class="post-hero-meta">
-        <span>${IC.cal}${p.date}</span>
+        <span>${IC.cal}${p.updated && p.updated !== p.date ? `Updated ${p.updated}` : p.date}</span>
         <span>${IC.clock}${p.readMins} min read</span>
         <span>${IC.doc}Norton Equipment</span>
       </div>
@@ -2074,10 +2275,12 @@ function buildLegacyBlog() {
 <div class="hazard" aria-hidden="true"></div>
 <article class="sec sec-paper">
   <div class="wrap">
-    <div class="prose reveal">${p.body}</div>
+    <div class="prose reveal">${p.body}${reviewedByHtml()}</div>
+    ${nextSteps(p.related)}
   </div>
 </article>
 ${phoneStrip('Liked the straight talk? <em>It sounds exactly like our phone calls.</em>')}
+${faqSection(p.faqs)}
 <section class="sec sec-paper-2">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Keep Reading</span><h2>More from the blog.</h2></div>
@@ -2092,23 +2295,39 @@ ${phoneStrip('Liked the straight talk? <em>It sounds exactly like our phone call
       body,
       ogType: 'article',
       ogImage: p.img ? `/assets/img/${p.img}.webp` : undefined,
+      preloadImg: p.img ? { name: p.img } : null,
       ld: [
         ldBreadcrumbs(crumbs),
+        ...(p.faqs && p.faqs.length ? [ldFaq(p.faqs.map((f) => ({ q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))] : []),
         {
           '@type': 'BlogPosting',
           headline: p.title,
           description: p.metaDesc,
           datePublished: p.date,
-          dateModified: p.date,
+          dateModified: p.updated || p.date,
           url: SITE.baseUrl + path,
-          ...(p.img ? { image: SITE.baseUrl + `/assets/img/${p.img}.webp` } : {}),
-          author: { '@type': 'Organization', name: SITE.name },
+          ...(p.img ? { image: [SITE.baseUrl + `/assets/img/${p.img}.webp`] } : {}),
+          author: ldAuthor(),
           publisher: { '@id': SITE.baseUrl + '/#business' },
           mainEntityOfPage: SITE.baseUrl + path,
         },
       ],
-    }));
+    }), p.updated || p.date);
   });
+}
+
+// Legacy posts were migrated as an isolated archive: they linked to each
+// other and nowhere else. This box ties each one back into the equipment and
+// service pages it is actually about.
+function nextSteps(links) {
+  if (!links || !links.length) return '';
+  return `
+    <aside class="next-steps reveal" aria-label="Related equipment and services">
+      <span class="eyebrow">Where to go next</span>
+      <ul>
+        ${links.map((l) => `<li><a href="${l.href}">${esc(l.label)} ${IC.arrow}</a></li>`).join('')}
+      </ul>
+    </aside>`;
 }
 
 // ============================================================
@@ -2116,13 +2335,56 @@ ${phoneStrip('Liked the straight talk? <em>It sounds exactly like our phone call
 // ============================================================
 function buildMeta() {
   const urls = pagesWritten
-    .map((p) => `  <url><loc>${SITE.baseUrl}${p}</loc><lastmod>${BUILD_DATE}</lastmod></url>`)
+    .map((p) => `  <url><loc>${SITE.baseUrl}${p.path}</loc><lastmod>${p.lastmod}</lastmod></url>`)
     .join('\n');
   writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
   writeFileSync(join(ROOT, 'robots.txt'), DRAFT
     ? `# DRAFT SITE, blocked until launch. Update via src/build.mjs (DRAFT flag).\nUser-agent: *\nDisallow: /\n`
     : `User-agent: *\nAllow: /\n\nSitemap: ${SITE.baseUrl}/sitemap.xml\n`);
   writeFileSync(join(ROOT, '.nojekyll'), '');
+  // IndexNow key file (Bing, Yandex, Naver). scripts/indexnow.mjs submits URLs.
+  if (SITE.indexNowKey) writeFileSync(join(ROOT, `${SITE.indexNowKey}.txt`), SITE.indexNowKey);
+  writeFileSync(join(ROOT, 'llms.txt'), llmsTxt());
+}
+
+// A plain-text map of the site for AI crawlers that look for one. Google
+// ignores it; a few answer engines read it. Generated so it never goes stale.
+function llmsTxt() {
+  const line = (path, title, desc) => `- [${title}](${SITE.baseUrl}${path}): ${desc}`;
+  const strip = (s) => String(s).replace(/<[^>]+>/g, '');
+  return `# ${SITE.name}
+
+> ${SITE.legalName} sells, services, and rebuilds commercial trash compactors, balers, and recycling equipment for businesses within roughly 100 miles of Memphis (West Tennessee, North Mississippi, East Arkansas). Independent since ${SITE.founded}, based at ${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.zip}. Phone ${SITE.phone}. Any brand, any model; own service technicians and an in-house fabrication shop.
+
+## Trash Compactors
+${line('/trash-compactors/', 'Commercial Trash Compactors', strip(COMPACTOR_OVERVIEW.metaDesc))}
+${COMPACTORS.map((c) => line(`/trash-compactors/${c.slug}/`, c.name, strip(c.short))).join('\n')}
+
+## Balers & Recycling
+${line('/balers-recycling/', 'Balers & Recycling Equipment', strip(BALER_OVERVIEW.metaDesc))}
+${BALERS.map((b) => line(`/balers-recycling/${b.slug}/`, b.name, strip(b.short))).join('\n')}
+
+## Services
+${line('/services/', 'Equipment Service & Repair', strip(SERVICES_OVERVIEW.metaDesc))}
+${SERVICES.map((s) => line(`/services/${s.slug}/`, s.name, strip(s.short))).join('\n')}
+
+## Brands
+${BRANDS.map((b) => line(`/brands/${b.slug}/`, `${b.name} sales & service`, strip(b.short))).join('\n')}
+
+## Service Area
+${line('/locations/', 'Service Area', 'Thirty-one cities within 100 miles of Memphis across TN, MS, and AR.')}
+${CITIES.map((c) => line(`/locations/${c.slug}/`, `${c.city}, ${c.abbr}`, `Compactor and baler sales, service, and delivery in ${c.city}, ${c.state}.`)).join('\n')}
+
+## Guides
+${POSTS.map((p) => line(`/blog/${p.slug}/`, p.title, strip(p.metaDesc))).join('\n')}
+${LEGACY_POSTS.map((p) => line(`/${p.slug}/`, p.title, strip(p.metaDesc))).join('\n')}
+
+## Company
+${line('/about/', 'About Norton Equipment', 'Founded in 1997 as Norton Compressor Service; family-run from Byhalia, MS.')}
+${line('/testimonials/', 'Customer Testimonials', 'Reviews from WM, Waste Connections, Williams-Sonoma, Amazon, Wastequip, and Mid-South recyclers.')}
+${line('/contact/', 'Contact', `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.state} ${SITE.address.zip}. ${SITE.phone}. ${SITE.hours}.`)}
+${line('/request-a-quote/', 'Request a Quote', 'Two required fields; a real person calls back within one business day.')}
+`;
 }
 
 // ============================================================
