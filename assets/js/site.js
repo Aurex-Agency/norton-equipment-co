@@ -2,6 +2,60 @@
 (function () {
   'use strict';
 
+  // Only static page paths and allowlisted categories enter analytics. Never
+  // send form values, names, email addresses, phone numbers, or message text.
+  var pagePath = window.location.pathname;
+  var acquisition = { landing_page: pagePath, traffic_source: 'direct' };
+  try {
+    var source = new URLSearchParams(window.location.search).get('utm_source');
+    var referrer = document.referrer ? new URL(document.referrer) : null;
+    var host = referrer ? referrer.hostname.toLowerCase() : '';
+    if (source) {
+      source = source.toLowerCase();
+      acquisition.traffic_source = /^(google|bing|chatgpt|perplexity|claude|gemini|copilot)$/.test(source) ? source : 'campaign_other';
+    } else if (host && host !== window.location.hostname) {
+      var sources = { 'chatgpt.com': 'chatgpt', 'chat.openai.com': 'chatgpt', 'perplexity.ai': 'perplexity', 'claude.ai': 'claude', 'gemini.google.com': 'gemini', 'copilot.microsoft.com': 'copilot', 'bing.com': 'bing', 'google.com': 'google' };
+      acquisition.traffic_source = 'referral';
+      Object.keys(sources).some(function (domain) {
+        if (host === domain || host.endsWith('.' + domain)) { acquisition.traffic_source = sources[domain]; return true; }
+        return false;
+      });
+    }
+    var saved = JSON.parse(sessionStorage.getItem('norton_acquisition') || 'null');
+    // Internal navigation retains the entry page; a new external/campaign
+    // visit starts fresh. Discard old context after 30 minutes of inactivity.
+    if (!source && (!host || host === window.location.hostname) && saved && Date.now() - saved.at < 1800000) {
+      acquisition = saved.context;
+    }
+    sessionStorage.setItem('norton_acquisition', JSON.stringify({ at: Date.now(), context: acquisition }));
+  } catch (_) { /* Storage can be disabled; the form must still work. */ }
+
+  function track(name, properties) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ page_path: pagePath }, acquisition, properties || {}));
+    } catch (_) { /* Analytics must never interrupt a call or submission. */ }
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    var placement = link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : link.closest('article') ? 'article' : 'page';
+    if (href.indexOf('tel:') === 0) track('phone_click', { placement: placement });
+    else if (href.indexOf('/request-a-quote/') === 0) track('quote_click', { placement: placement });
+  });
+
+  var interests = {
+    repair: 'Service or repair', used: 'Used / reconditioned equipment',
+    installation: 'Compactor installation', evaluation: 'Equipment evaluation',
+    maintenance: 'Preventive maintenance program', baler: 'Baler or recycling equipment',
+    compactor: 'Trash compactor - purchase', wire: 'Baling wire'
+  };
+  function interestType(value) {
+    var key = Object.keys(interests).find(function (k) { return value === interests[k] || (k === 'repair' && value === 'Service or repair - down machine'); });
+    return key || 'other';
+  }
+
   // hero entrance. Runs as soon as this deferred script executes (the DOM is
   // parsed by then) rather than on window.load, so the headline and CTAs are
   // not held hostage to every image and third-party script on the page.
@@ -115,6 +169,17 @@
     var statusEl = form.querySelector('[data-form-status]');
     var btn = form.querySelector('button[type="submit"]');
     var phone = form.getAttribute('data-phone') || '(662) 838-7900';
+    var submitting = false;
+    var select = form.querySelector('[name="Interest"]');
+    var requested = new URLSearchParams(window.location.search).get('interest');
+    if (select && Object.prototype.hasOwnProperty.call(interests, requested)) {
+      var option = Array.from(select.options).find(function (o) { return o.value === interests[requested] || (requested === 'repair' && o.value === 'Service or repair - down machine'); });
+      if (option) select.value = option.value;
+    }
+    var started = false;
+    form.addEventListener('input', function () {
+      if (!started) { started = true; track('lead_form_start', { form_type: pagePath === '/contact/' ? 'contact' : 'quote' }); }
+    });
 
     function setStatus(kind, html) {
       if (!statusEl) return;
@@ -127,7 +192,8 @@
     // Fallback transport: hand the details to the visitor's mail app. Used when
     // no endpoint is wired, when delivery is unconfigured, and when the request
     // fails, so the visitor always leaves with a way to reach Norton.
-    function sendByMail(d) {
+    function sendByMail(d, reason) {
+      track('lead_form_fallback', { form_type: pagePath === '/contact/' ? 'contact' : 'quote', reason: reason || 'unavailable' });
       var lines = [];
       d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field' && v) lines.push(k + ': ' + v); });
       var subject = encodeURIComponent(form.getAttribute('data-subject') || 'Quote Request - Norton Equipment Website');
@@ -139,20 +205,29 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (submitting) return;
       if (!form.reportValidity()) return;
 
       var d = new FormData(form);
-      var name = (d.get('Name') || '').toString().trim().split(' ')[0];
       var endpoint = form.getAttribute('data-endpoint');
+      var formType = pagePath === '/contact/' ? 'contact' : 'quote';
+      var interest = interestType(d.get('Interest'));
+
+      // Ignore honeypot submissions without registering a lead or sending mail.
+      if (d.get('bot-field')) return;
 
       if (endpoint) {
         // Real backend path (enabled at launch).
         if (btn) { btn.disabled = true; }
+        submitting = true;
         setStatus('pending', 'Sending your request…');
         var payload = {};
         d.forEach(function (v, k) { if (k !== 'form-name' && k !== 'bot-field') payload[k] = v; });
         payload['bot-field'] = d.get('bot-field') || '';
         payload._subject = form.getAttribute('data-subject') || 'Website Enquiry - Norton Equipment';
+        payload['Request page'] = pagePath;
+        payload['Landing page'] = acquisition.landing_page;
+        payload['Traffic source'] = acquisition.traffic_source;
         fetch(endpoint, {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
         }).then(function (r) {
@@ -161,11 +236,18 @@
           // than dead-ending the visitor, because a lost lead is the worst case.
           if (r.status === 503) { sendByMail(d, 'unconfigured'); return; }
           if (!r.ok) throw new Error('bad status');
-          form.reset();
-          setStatus('ok', '<b>Got it' + (name ? ', ' + name : '') + '.</b> A real person will call you back within one business day. Need us sooner? Call <a href="tel:+16628387900">' + phone + '</a>.');
+          return r.json().then(function (result) {
+            if (result.ok !== true) throw new Error('Request was not accepted');
+            // Provider acceptance is a submitted lead, not proof of inbox
+            // delivery, a completed call, a qualified opportunity, or a sale.
+            track('generate_lead', { form_type: formType, interest_type: interest });
+            form.reset();
+            started = false;
+            setStatus('ok', '<b>Your request has been received.</b> A real person will call you back within one business day. Need us sooner? Call <a href="tel:+16628387900">' + phone + '</a>.');
+          });
         }).catch(function () {
           sendByMail(d, 'error');
-        }).finally(function () { if (btn) { btn.disabled = false; } });
+        }).finally(function () { submitting = false; if (btn) { btn.disabled = false; } });
         return;
       }
 

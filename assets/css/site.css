@@ -279,6 +279,32 @@ section{position:relative}
 .prose ol li::before{content:counter(li,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Barlow Condensed','Barlow Condensed Fallback',sans-serif;font-weight:700;font-size:14px;color:var(--gold-text)}
 .prose strong{color:var(--ink-on-paper)}
 .prose .lead{font-size:18.5px;color:var(--ink-on-paper)}
+.prose h2[id],.prose h3[id]{scroll-margin-top:120px}
+.article-answer{padding:24px;margin:24px 0;border-left:4px solid var(--gold-deep);background:#fff;border-radius:0 5px 5px 0}
+.article-answer p{margin:12px 0 0;font-size:18px;color:var(--ink-on-paper)}
+.article-toc{margin:24px 0 36px;border:1px solid var(--line-lt);border-radius:4px;padding:16px 20px;background:rgba(255,255,255,.5)}
+.article-toc summary{font-weight:700;cursor:pointer;min-height:28px}
+.article-toc nav{padding-top:18px}
+.article-toc ul{margin-bottom:0}
+.article-table{overflow-x:auto;margin:26px 0;border:1px solid var(--line-lt);border-radius:4px}
+.article-table:focus-visible{outline:3px solid var(--gold-deep);outline-offset:3px}
+.article-table table{width:100%;border-collapse:collapse;min-width:500px;font-size:15px;line-height:1.55}
+.article-table table.comparison-two{min-width:0;table-layout:fixed}
+.article-table caption{text-align:left;padding:16px 18px;font-weight:700;background:#fff;color:var(--ink-on-paper)}
+.article-table th,.article-table td{padding:14px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-lt)}
+.article-table thead th{background:var(--ink-on-paper);color:#fff}
+.article-table tbody th{width:28%;font-weight:600}
+.article-table tbody tr:nth-child(even){background:rgba(255,255,255,.55)}
+.article-cta{padding:28px;margin:38px 0;border:1px solid var(--line-lt);border-top:4px solid var(--gold-deep);background:#fff;border-radius:4px}
+.article-cta h2{margin-top:0}
+.article-cta .btn{text-decoration:none;color:var(--ink-on-paper)}
+.article-cta .btn-dark{color:#fff}
+.article-cta .hero-cta{opacity:1;transform:none;margin:22px 0}
+.article-cta .article-coverage{font-size:14px;margin-bottom:0}
+.article-sources{border-top:1px solid var(--line-lt);margin-top:32px;padding-top:8px;font-size:15px}
+.article-photo{margin:0 0 28px;max-height:390px}
+.article-photo img{width:100%;height:auto;max-height:390px;object-fit:cover}
+@media(max-width:600px){.article-answer,.article-cta{padding:20px}.article-cta .hero-cta{display:grid}.article-cta .btn{justify-content:center}.article-table th,.article-table td{padding:12px}.article-table:not(:has(.comparison-two))::before{content:'Scroll sideways to compare all columns →';display:block;padding:10px 12px;font-size:13px;color:var(--muted-on-paper)}.article-toc{padding:14px}}
 .sec-dark .prose a,.sec-dark-2 .prose a{color:var(--gold-hi)}
 .sec-dark .prose strong{color:var(--silver-hi)}
 
@@ -1033,5 +1059,3 @@ h1.hero-h{letter-spacing:0}
 .prose .safety-note b{display:block;font-family:'Barlow Condensed','Barlow Condensed Fallback',sans-serif;text-transform:uppercase;
   letter-spacing:.14em;font-size:12.5px;color:var(--gold-deep);margin-bottom:7px}/* Off-screen sections are not laid out until they approach the viewport. */
 main>section.sec:not(.hero),main>.phone-strip,footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
-
-
