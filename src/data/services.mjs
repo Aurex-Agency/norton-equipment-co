@@ -25,7 +25,7 @@ export const SERVICES = [
     metaDesc:
       'Commercial trash compactor repair near Memphis: hydraulics, controls, doors, rams, and structural repair on all brands. Emergency service available at emergency rates across North Mississippi and the Memphis area. Call (662) 838-7900.',
     intro: [
-      'A down compactor backs up a whole operation fast: waste piles on the dock, the hauler cannot pull a jammed container, and suddenly the least glamorous machine on the property is the most urgent. Compactor repair is one of the most common calls we run, and one we have been answering across the Mid-South since 1997.',
+      'Norton Equipment provides commercial compactor repair across Memphis, North Mississippi, and the Mid-South from Byhalia. A down compactor backs up a whole operation fast: waste piles on the dock, the hauler cannot pull a jammed container, and suddenly the least glamorous machine on the property is the most urgent. Compactor repair is one of the most common calls we run, and one we have been answering across the Mid-South since 1997.',
       'Our techs troubleshoot and repair every major brand: Marathon, Cram-A-Lot, PTR, BACE, and more. All makes, all models. Hydraulic cylinders and power units, valves and hoses, limit switches and photo eyes, control panels, door latches and hinges, rams and ram shoes, and when the problem is structural, our fabrication shop rebuilds floors, guides, and wear surfaces that other service companies can only quote replacements for.',
     ],
     features: [
@@ -53,17 +53,17 @@ export const SERVICES = [
     metaDesc:
       'Baler repair across the Mid-South: hydraulics, doors, chains, controls, and structural repair on every brand of baler. Since 1997.',
     intro: [
-      'Balers built this company. We have been repairing them across the Mid-South since 1997, and there is very little a vertical or horizontal baler can do that our techs have not seen: cylinders that drift, doors that will not latch, chains and shear pins, tramp metal in the ram path, controls that mysteriously stop after a storm.',
+      'Norton Equipment repairs vertical, horizontal, and two-ram balers across Memphis, North Mississippi, and the Mid-South. We have been repairing balers since 1997, and there is very little a vertical or horizontal baler can do that our techs have not seen: cylinders that drift, doors that will not latch, chains and shear pins, tramp metal in the ram path, controls that mysteriously stop after a storm.',
       'We service every brand (Max-Pak, Harris American, Cram-A-Lot, Marathon, PTR, BACE, International Baler, and more) with stocked common parts, in-house repair of platens, doors, and chambers, and honest advice when a machine has reached the end of economic life. Most service customers eventually put us on a preventive maintenance schedule, because the cheapest repair is the one that never happens.',
     ],
     features: [
       { h: 'Vertical, horizontal & two-ram expertise', p: 'From back-room 60-inch verticals to auto-tie horizontal and two-ram lines: one call covers the whole machine population.' },
       { h: 'Hydraulic & electrical repair', p: 'Cylinders, pumps, valves, hoses, motors, starters, relays, and safety circuits: diagnosed on site, repaired to spec.' },
       { h: 'Structural & door repair', p: 'Sprung doors, cracked welds, worn platens, and chamber damage repaired in-house in our fabrication shop.' },
-      { h: 'Operator retraining', p: 'Half of baler damage is operator-inflicted. We retrain crews during service visits at no drama and no lecture.' },
+      { h: 'Operator retraining', p: 'Loading habits and operator procedures can affect wear and reliability. Ask about operator retraining during a service visit, using the instructions for your specific machine.' },
     ],
     faqs: [
-      { q: 'My baler won’t make a full bale anymore. What’s wrong?', a: 'Usually pressure loss: a worn cylinder, tired pump, or relief valve out of adjustment. Sometimes it is a platen dragging on a damaged chamber. Either way it is diagnosable in one visit, and usually fixable in the same one.' },
+      { q: 'My baler won’t make a full bale anymore. What’s wrong?', a: 'Possible causes include material changes, hydraulic issues, mechanical wear, controls, or tying problems. Record the symptoms and call for diagnosis. Do not adjust pressure or bypass safeguards; repair scope and timing depend on the fault and parts required.' },
       { q: 'Do you sell baler parts without a service call?', a: 'Yes. Call with your make, model, and serial and we will quote parts for your own techs to install, including wire, buttons, switches, and cylinders.' },
       { q: 'Is an old baler worth repairing?', a: 'Often yes. These machines are mostly steel. When repair costs cross about half the price of a reconditioned replacement, we will tell you and show you both numbers.' },
     ],
@@ -243,4 +243,4 @@ export const SERVICES = [
 ];
 
 // Bumped when page content in this module changes; feeds sitemap <lastmod>.
-export const UPDATED = '2026-09-10';
+export const UPDATED = '2026-09-21';

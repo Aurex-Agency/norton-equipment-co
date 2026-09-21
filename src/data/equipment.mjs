@@ -64,7 +64,7 @@ export const COMPACTOR_OVERVIEW = {
     },
     {
       q: 'How fast can you get to a service call?',
-      a: 'Our goal is to respond to service requests within 24 hours across the North Mississippi and Memphis area. If a machine is down, tell us when you call (662) 838-7900 and we will prioritize it.',
+      a: 'Call (662) 838-7900 with your location, equipment details, and symptoms. We prioritize down-machine requests where possible. Response depends on urgency and technician availability; confirm scheduling and charges when you call.',
     },
     {
       q: 'What size compactor do I need?',
@@ -539,4 +539,4 @@ export const BALERS = [
 ];
 
 // Bumped when page content in this module changes; feeds sitemap <lastmod>.
-export const UPDATED = '2026-09-10';
+export const UPDATED = '2026-09-21';

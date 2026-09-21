@@ -1,119 +1,73 @@
-# Norton Equipment Co. - Website
+# Norton Equipment Co. website
 
-The production website for **Norton Equipment Company** (Byhalia, MS), built by
-**Aurex Agency** per the approved *Rebuild + Market Domination* plan. This is the
-**full-site draft**: 100 pages, compactors leading, balers kept strong, city
-pages across the confirmed 100-mile ring, and all 24 legacy blog posts migrated
-1:1 for the domain takeover.
+Production website for Norton Equipment Co. in Byhalia, Mississippi. A zero-dependency Node generator renders 104 indexable pages plus a noindex 404 into plain HTML at the repository root. Vercel runs the build and serves the site; `/api/contact/` handles inquiries through Resend.
 
-## Stack
-
-Zero-dependency static site. A small Node generator (`src/build.mjs`) renders
-every page from content data modules into plain HTML at the repo root - no
-framework, no npm install, no external requests at runtime (fonts self-hosted).
-That's the whole speed story: static HTML + one CSS file + ~2 KB of JS.
+## Build and validation
 
 ```bash
-node src/build.mjs   # regenerate the site (Node 18+)
-python3 -m http.server 8000   # preview locally
+node src/build.mjs
+python3 scripts/check-site.py
+node --test scripts/test-lead-tracking.mjs
+python3 -m http.server 8000
 ```
 
-## Where things live
+Use Node 18+ and Python 3. The static local server previews pages but cannot run the contact API. Tests mock the API and analytics; they never send an email.
 
-| Path | What it is |
+`VERCEL_ENV=preview` or `development` builds include noindex directives, disallow crawling, and omit analytics. Production builds are indexable. The browser also restricts GA4 loading to the production domain. Always rebuild without the preview environment before committing generated HTML.
+
+## Content and templates
+
+| Path | Purpose |
 |---|---|
-| `src/site.mjs` | NAP, phone, hours, **canonical domain**, draft email |
-| `src/data/equipment.mjs` | All compactor + baler/recycling page content |
-| `src/data/services.mjs` | The nine service pages |
-| `src/data/brands.mjs` | Marathon, Cram-A-Lot, Max-Pak, Harris/Selco |
-| `src/data/cities.mjs` | 30 city pages (100-mile ring), unique copy per town |
-| `src/data/blog.mjs` | The five new compactor-weighted articles |
-| `src/data/blog-legacy.mjs` | All 24 posts migrated from the current WP site (slugs preserved at root) |
-| `src/data/testimonials.mjs` | Real customer reviews migrated from the current site |
-| `src/build.mjs` | Templates, JSON-LD schema, sitemap/robots, `DRAFT` flag |
-| `assets/` | CSS design system, JS, self-hosted fonts, NEC badge |
+| `src/site.mjs` | Business identity, contact details, service area, analytics ID |
+| `src/build.mjs` | Templates, shared schema, internal links, sitemap, robots |
+| `src/data/search.mjs` | Authored search snippets and local planning sections |
+| `src/data/equipment.mjs` | Compactor and baler pages |
+| `src/data/services.mjs` | Equipment service pages |
+| `src/data/brands.mjs` | Supported brands and authorized-dealer distinctions |
+| `src/data/cities.mjs` | 31 city pages |
+| `src/data/blog-approved.mjs` | Three approved September 2026 articles |
+| `src/data/blog.mjs` | Existing commercial compactor guides |
+| `src/data/blog-legacy.mjs` | Migrated articles with preserved original URLs |
+| `assets/css/site.css` | Design system and responsive article layouts |
+| `assets/js/site.js` | Navigation, forms, interaction and lead measurement |
+| `api/contact.js` | Inquiry endpoint and delivery configuration |
 
-Generated output (do not hand-edit; re-run the build instead): `index.html`,
-`trash-compactors/`, `balers-recycling/`, `services/`, `brands/`, `locations/`,
-`blog/`, `about/`, `testimonials/`, `contact/`, `request-a-quote/`,
-`privacy-policy/`, `404.html`, `sitemap.xml`, `robots.txt`.
+Edit source modules and rebuild; do not hand-edit generated HTML or minified CSS. Preserve existing URLs and redirects in `vercel.json`. Norton only claims factory authorization for MAX-PAK; used balers are sold as-is, and refurbished balers have a shop warranty subject to written terms. Service scheduling depends on urgency and availability.
 
-## Site map (76 pages)
+## Search and AI discovery
 
-- **Home** - compactors + balers dual path, trust strip, full lineups
-- **Trash Compactors (9)** - hub + self-contained, stationary, vertical/apartment,
-  pre-crusher, auger, front/rear-load containers, steel options, used
-  (rental is deliberately not advertised; see `equipment.mjs`)
-- **Balers & Recycling (8)** - hub + vertical, horizontal, used vertical,
-  shredders, conveyors, baling wire, used recycling equipment
-- **Services (10)** - hub + compactor repair, baler service, preventive
-  maintenance, evaluations, refurbishment, welding & fabrication, conveyor
-  service, logistics, waste stream consultations
-- **Brands (5)** - hub + 4 brand pages (no "authorized dealer" claims - see below)
-- **Locations (31)** - hub + 30 city pages: 12 TN, 12 MS, 6 AR
-- **Blog (30)** - index + 5 new guides + 24 legacy posts at their original
-  root-level URLs (e.g. `/how-to-choose-the-right-baler/`), each with its
-  original image, so rankings and links survive the domain move
-- About, Testimonials, Contact, Request a Quote, Privacy, 404
+The three new guides cover baler troubleshooting, used versus refurbished balers, and compactor installation. Each includes a concise answer, section navigation, relevant service links, FAQs, and a project-specific contact path. Business identity, service areas, authorship, and WebPage/Service/BlogPosting relationships are available in JSON-LD and reflected in visible content.
 
-Every page: canonical + OG tags, LocalBusiness/Service/FAQ/Breadcrumb/BlogPosting
-JSON-LD as appropriate, breadcrumbs, sticky Request-a-Quote CTA, click-to-call
-everywhere (mobile FAB included).
+The production robots policy permits crawling. Search discovery relies on accessible HTML, accurate information, useful content, and internal links. `llms.txt` is an optional navigation aid, not a requirement or a guarantee of AI citations. Structured data likewise does not guarantee rankings or rich results.
 
-## Client decisions still pending (from the companion sheet)
+Sitemap `lastmod` uses the later of the shared template date and the page content date. Update dates when content changes; do not refresh them on every build.
 
-1. **Compactor/baler types they actually carry** - all plan-listed pages were
-   built; delete entries from `equipment.mjs` if the client drops any.
-2. **Brand list + factory-authorized status** - copy currently claims only
-   sell/service/repair/parts (safe). If Norton confirms authorized-dealer status
-   for a brand, strengthen that page's copy (`brands.mjs` has a note).
-3. **Service radius beyond 100 miles** - the 100-200 mile ring (Tupelo, Little
-   Rock, Paducah, etc.) is not built yet; add cities to `cities.mjs` when the
-   radius is set.
-4. **Sales vs. service radius split** - city pages currently assume both.
+`check-site.py` checks every sitemap page for metadata, canonicals, headings, schema identity, visible FAQ consistency, internal links and anchors, local assets, and the new guides' links. It checks production output, not preview output.
 
-## Launch checklist
+## Lead measurement
 
-- [ ] Set the real production domain in `src/site.mjs` (`baseUrl`) and confirm `email`
-- [ ] Flip `DRAFT = false` in `src/build.mjs` → removes `noindex`, opens robots.txt
-- [ ] Wire the forms: they're Netlify-forms-ready out of the box; on other hosts
-      swap in a form backend (until then they fall back to a mailto: draft)
-- [ ] Add real photography (facility, techs, machines) - layout is image-light by
-      design but hero/about slots will take photos well
-- [ ] Google Analytics / Search Console + Google Business Profile work (off-site
-      scope from the plan)
-- [ ] Rebuild (`node src/build.mjs`) and deploy
+The existing GA4 tag receives these events on the production domain:
 
-## SEO for the domain takeover
+| Event | Meaning |
+|---|---|
+| `phone_click` | Click on a telephone link; not a completed phone call |
+| `quote_click` | Click through to the quote page |
+| `lead_form_start` | First input in a form attempt |
+| `generate_lead` | Contact API returns success after provider acceptance |
+| `lead_form_fallback` | Form could not be accepted and opens an email draft |
 
-`vercel.json` carries 301 redirects for every old URL whose structure changed
-(`/equipment/*`, `/service-types/*`, state pages, `/about-norton-equipment/`,
-`/contact-us/`). Blog posts kept their exact original URLs, so they need no
-redirects at all. When the domain moves, nothing 404s and link equity carries.
+A submitted lead is not proof of inbox delivery, a qualified opportunity, or a sale. Invalid forms, honeypot submissions, errors, and mailto fallbacks never fire `generate_lead`. Repeated clicks while sending are ignored.
 
-## SEO plumbing
+Custom event properties use page paths and categorical values. Form names, emails, phone numbers, and message text are not sent as custom analytics properties. Entry page and a coarse traffic-source category persist in session storage for up to 30 minutes of inactivity. Referrers and allowlisted `utm_source` values recognize Google, Bing, ChatGPT, Perplexity, Claude, Gemini, and Copilot; missing referrers can appear as direct. These categories do not distinguish all organic and paid traffic. The same entry-page/source context is included in inquiry emails to help sales qualify results.
 
-- **Sitemap dates are real.** `<lastmod>` is the later of `TEMPLATE_UPDATED`
-  (`src/build.mjs`, bump when shared chrome/schema changes) and the page's own
-  content date: `UPDATED` in each `src/data/*.mjs` module, or `updated` on a
-  blog post. Bump those when you change content; never fake them.
-- **Blog posts** carry `faqs` (rendered visibly and as FAQPage schema) and
-  `related` (the "where to go next" links back into product/service pages).
-  `RELATED_GUIDES` in `build.mjs` maps pillar/service/brand pages to the
-  guides they surface.
-- **Location pages** get a unique `faq` per city in `cities.mjs`; the three
-  standard questions rotate phrasing so the 31 pages never read as one template.
-- **Images**: photos ship as `name.webp` (1500w), `name-800.webp`, and
-  `name-400.webp`; `srcsetAttr()` and the hero preload pick the same candidate.
-- **Generated files**: `sitemap.xml`, `robots.txt`, `llms.txt`, and the
-  IndexNow key file. After a production deploy, `node scripts/indexnow.mjs`
-  pings Bing/Yandex/Naver with the sitemap URLs.
-- **Security headers** live in `vercel.json` (`/(.*)` block). The CSP only sets
-  `frame-ancestors`/`base-uri`/`form-action`; tighten it only after checking
-  the GA tag and inline scripts.
+## Production release and account follow-up
 
-## Deploy
+1. Review and merge the branch, then verify the production deployment, redirects, sitemap, robots, and the three article URLs.
+2. With the business's permission, perform one identified production inquiry and confirm both intended mailboxes receive it. Mock tests cannot verify Resend credentials or final delivery.
+3. In GA4, verify events in DebugView/Realtime and mark `generate_lead` as a key event. Register event-scoped custom dimensions for `traffic_source`, `landing_page`, `interest_type`, and `form_type` if needed for reporting. Keep phone clicks and enhanced-measurement `form_submit` events separate from submitted leads.
+4. In Search Console, submit `/sitemap.xml`, inspect the new URLs, and compare non-brand impressions, clicks, landing pages, and inquiries over 28- and 90-day periods. In Bing Webmaster Tools, verify crawl/index status. Run `node scripts/indexnow.mjs` only after the updated URLs and key file are live.
+5. Confirm Google Business Profile hours, service categories, address, phone, website URL, and real service coverage. Account settings require account access and are not changed by this repository.
+6. Have the sales team track qualified calls/inquiries, quoted opportunities, and won revenue. Evaluate search and AI referrals by those outcomes alongside traffic. AI referral attribution is incomplete when platforms omit referrers.
 
-Any static host. Netlify/Vercel/Cloudflare Pages: point at the repo root, no
-build command needed (or use `node src/build.mjs` as the build command for
-auto-rebuilds). GitHub Pages: serve root (`.nojekyll` included).
+No rankings, AI citations, or customer volume are guaranteed by a code change. Use the measured baseline and actual inquiries to prioritize the next content updates.
