@@ -675,7 +675,7 @@ function faqSection(faqs, { dark = false } = {}) {
       <h2>Frequently Asked Questions</h2>
     </div>
     <div class="faq">
-      ${faqs.map((f, i) => `
+${faqs.map((f, i) => `
       <details class="reveal"${i === 0 ? ' open' : ''}>
         <summary>${esc(f.q)}<span class="pm" aria-hidden="true"></span></summary>
         <div class="ans">${f.a}</div>
