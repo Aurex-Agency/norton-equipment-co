@@ -264,6 +264,16 @@
       "source": "/what-not-to-put-in-your-compactor/",
       "destination": "/what-you-should-never-put-into-a-commercial-compactor/",
       "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/service-types/service-repair-parts/",
+      "destination": "/services/",
+      "permanent": true
     }
   ],
   "headers": [

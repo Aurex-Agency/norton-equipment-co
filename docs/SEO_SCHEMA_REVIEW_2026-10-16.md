@@ -9,3 +9,5 @@ Validation: site generation; scripts/check-site.py; lead tracking tests. The bui
 Remaining dependencies: Verify equipment availability, condition and real project evidence for future buyer content.
 
 This PR is independently reviewable. After release, recrawl production and recheck Search Console; local validation does not guarantee Google indexing or rich-result display.
+
+Also redirect confirmed legacy /about-us/ and /service-types/service-repair-parts/ 404s to /about/ and the current service hub. The source URLs returned 404 in a live check on 2026-10-16; all replacement destinations returned 200.
