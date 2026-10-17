@@ -190,7 +190,6 @@ function ldLocalBusiness() {
       { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 35.1495, longitude: -90.049 }, geoRadius: '160934' },
       ...CITIES.map((c) => ({ '@type': 'City', name: `${c.city}, ${c.abbr}` })),
     ],
-    priceRange: '$$$',
     hasMap: SITE.mapsUrl,
     logo: { '@type': 'ImageObject', url: SITE.baseUrl + '/assets/img/logo-full.webp', width: 1100, height: 790 },
     image: [SITE.baseUrl + '/assets/img/n-truck.webp', SITE.baseUrl + '/assets/img/n-hero-dock.webp'],
