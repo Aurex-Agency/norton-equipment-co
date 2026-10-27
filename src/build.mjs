@@ -32,7 +32,9 @@ const BUILD_DATE = new Date().toISOString().slice(0, 10);
 // page (header, footer, schema). Sitemap <lastmod> for a page is the later of
 // this date and the page's own content date, so it reflects real changes
 // instead of the deploy date.
-const TEMPLATE_UPDATED = '2026-10-27';
+const TEMPLATE_UPDATED = '2026-09-21';
+// Only pages whose visible content or related-guide links changed in this release.
+const OCTOBER_UPDATED_PAGES = new Set(["balers-recycling/index.html", "balers-recycling/vertical-balers/index.html", "blog/apartment-high-rise-compactors-property-managers-guide/index.html", "blog/buy-new-used-or-hauler-compactor/index.html", "blog/commercial-trash-compactor-buying-guide/index.html", "blog/compactor-repair-request-checklist/index.html", "blog/how-a-trash-compactor-cuts-your-hauling-bill/index.html", "blog/index.html", "blog/recycler-requirements-before-buying-baler/index.html", "blog/repair-vs-refurbish-commercial-compactor/index.html", "blog/retail-seasonal-cardboard-plan/index.html", "brands/cram-a-lot/index.html", "brands/index.html", "brands/mac-corp/index.html", "brands/marathon/index.html", "brands/ptr/index.html", "index.html", "services/compactor-repair/index.html", "services/equipment-logistics/index.html", "services/equipment-refurbishment/index.html", "services/rigging/index.html", "trash-compactors/auger/index.html", "trash-compactors/front-load-rear-load/index.html", "trash-compactors/index.html", "trash-compactors/pre-crusher/index.html", "trash-compactors/steel-options/index.html", "trash-compactors/used/index.html"]);
 const pagesWritten = [];
 
 // ---------------- helpers ----------------
@@ -44,7 +46,7 @@ function out(path, html, lastmod = TEMPLATE_UPDATED) {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
   if (path.endsWith('index.html')) {
-    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod) });
+    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null) });
   }
 }
 
