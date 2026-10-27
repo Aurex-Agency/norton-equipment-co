@@ -137,6 +137,9 @@ export const POSTS = [
   },
   {
     slug: 'commercial-trash-compactor-buying-guide',
+    updated: '2026-10-27',
+    cta: { title: 'Compare equipment for your waste stream.', text: 'Share your material, current collection arrangement and site constraints. Norton can discuss equipment and installation options for your facility.', intent: 'compactor' },
+    related: [{ href: '/services/waste-stream-consultations/', label: 'Waste-stream consultation' }, { href: '/blog/compactor-repair-request-checklist/', label: 'Need repair instead? Prepare a service request' }],
     img: 'bale-stacks',
     title: 'The Commercial Trash Compactor Buying Guide: Types, Sizing, and Cost',
     date: '2026-07-14',

@@ -1,0 +1,36 @@
+name: Site checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  static-and-leads:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and verify production output
+        run: |
+          node src/build.mjs
+          python3 scripts/check-site.py
+          git diff --exit-code
+      - name: Verify lead tracking without real delivery
+        run: node --test scripts/test-lead-tracking.mjs
+      - name: Verify preview crawler and analytics protection
+        run: |
+          VERCEL_ENV=preview node src/build.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          assert 'Disallow: /' in Path('robots.txt').read_text()
+          for p in Path('blog').glob('*/index.html'):
+              s=p.read_text()
+              assert 'noindex' in s, p
+              assert 'googletagmanager.com/gtag/js' not in s, p
+          PY

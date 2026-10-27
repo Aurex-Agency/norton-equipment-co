@@ -154,3 +154,13 @@ test('form starts are counted once per attempt', () => {
   f.formEvents.input(); f.formEvents.input();
   assert.equal(f.events.filter((e) => e[1] === 'lead_form_start').length, 1);
 });
+
+test('entering the contact journey does not create an inquiry or lead event', () => {
+  const f = fixture();
+  assert.equal(f.requests.length, 0);
+  assert.equal(f.events.filter(e => e[1] === 'generate_lead').length, 0);
+  const link = { getAttribute: () => '/request-a-quote/?interest=repair', closest: s => s === 'article' ? {} : null };
+  f.documentEvents.click({ target: { closest: () => link } });
+  assert.equal(f.events.at(-1)[1], 'quote_click');
+  assert.equal(f.events.filter(e => e[1] === 'generate_lead').length, 0);
+});
