@@ -25,6 +25,7 @@ export const SERVICES = [
     metaDesc:
       'Commercial trash compactor repair near Memphis: hydraulics, controls, doors, rams, and structural repair on all brands. Emergency service available at emergency rates across North Mississippi and the Memphis area. Call (662) 838-7900.',
     intro: [
+      'Requesting service? Bring the make, model, location and symptoms you can observe safely. <a href="/blog/compactor-repair-request-checklist/">Use the compactor repair request checklist</a> to prepare your call. Do not open panels or enter the machine to collect information.',
       'Norton Equipment provides commercial compactor repair across Memphis, North Mississippi, and the Mid-South from Byhalia. A down compactor backs up a whole operation fast: waste piles on the dock, the hauler cannot pull a jammed container, and suddenly the least glamorous machine on the property is the most urgent. Compactor repair is one of the most common calls we run, and one we have been answering across the Mid-South since 1997.',
       'Our techs troubleshoot and repair every major brand: Marathon, Cram-A-Lot, PTR, BACE, and more. All makes, all models. Hydraulic cylinders and power units, valves and hoses, limit switches and photo eyes, control panels, door latches and hinges, rams and ram shoes, and when the problem is structural, our fabrication shop rebuilds floors, guides, and wear surfaces that other service companies can only quote replacements for.',
     ],

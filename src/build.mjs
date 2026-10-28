@@ -17,8 +17,9 @@ import { BRANDS_OVERVIEW, BRANDS, UPDATED as BRANDS_UPDATED } from './data/brand
 import { CITIES, STATES, UPDATED as CITIES_UPDATED } from './data/cities.mjs';
 import { POSTS as EXISTING_POSTS } from './data/blog.mjs';
 import { APPROVED_POSTS } from './data/blog-approved.mjs';
+import { OCTOBER_POSTS } from './data/blog-october.mjs';
 import { SEARCH_META, LOCAL_PLANNING } from './data/search.mjs';
-const POSTS = [...APPROVED_POSTS, ...EXISTING_POSTS];
+const POSTS = [...OCTOBER_POSTS, ...APPROVED_POSTS, ...EXISTING_POSTS];
 import { LEGACY_POSTS } from './data/blog-legacy.mjs';
 import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDERS, TRUSTED_BY } from './data/testimonials.mjs';
 
@@ -32,6 +33,8 @@ const BUILD_DATE = new Date().toISOString().slice(0, 10);
 // this date and the page's own content date, so it reflects real changes
 // instead of the deploy date.
 const TEMPLATE_UPDATED = '2026-09-21';
+// Only pages whose visible content or related-guide links changed in this release.
+const OCTOBER_UPDATED_PAGES = new Set(["balers-recycling/index.html", "balers-recycling/vertical-balers/index.html", "blog/apartment-high-rise-compactors-property-managers-guide/index.html", "blog/buy-new-used-or-hauler-compactor/index.html", "blog/commercial-trash-compactor-buying-guide/index.html", "blog/compactor-repair-request-checklist/index.html", "blog/how-a-trash-compactor-cuts-your-hauling-bill/index.html", "blog/index.html", "blog/recycler-requirements-before-buying-baler/index.html", "blog/repair-vs-refurbish-commercial-compactor/index.html", "blog/retail-seasonal-cardboard-plan/index.html", "brands/cram-a-lot/index.html", "brands/index.html", "brands/mac-corp/index.html", "brands/marathon/index.html", "brands/ptr/index.html", "index.html", "services/compactor-repair/index.html", "services/equipment-logistics/index.html", "services/equipment-refurbishment/index.html", "services/rigging/index.html", "trash-compactors/auger/index.html", "trash-compactors/front-load-rear-load/index.html", "trash-compactors/index.html", "trash-compactors/pre-crusher/index.html", "trash-compactors/steel-options/index.html", "trash-compactors/used/index.html"]);
 const pagesWritten = [];
 
 // ---------------- helpers ----------------
@@ -43,7 +46,7 @@ function out(path, html, lastmod = TEMPLATE_UPDATED) {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
   if (path.endsWith('index.html')) {
-    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod) });
+    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null) });
   }
 }
 
@@ -232,8 +235,8 @@ const RELATED_GUIDES = {
   '/trash-compactors/front-load-rear-load/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide', 'why-you-need-a-cardboard-baler'],
   '/trash-compactors/steel-options/': ['apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs'],
   '/trash-compactors/used/': ['buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs', 'commercial-trash-compactor-buying-guide'],
-  '/balers-recycling/': ['how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'why-you-need-a-cardboard-baler'],
-  '/balers-recycling/vertical-balers/': ['vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'the-safest-way-to-use-a-baler'],
+  '/balers-recycling/': ['retail-seasonal-cardboard-plan','how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'why-you-need-a-cardboard-baler'],
+  '/balers-recycling/vertical-balers/': ['recycler-requirements-before-buying-baler','vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'the-safest-way-to-use-a-baler'],
   '/balers-recycling/horizontal-balers/': ['vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'how-to-choose-the-right-baler'],
   '/balers-recycling/two-ram-balers/': ['vertical-baler-or-horizontal-baler', 'how-to-choose-the-right-baler', 'differences-single-loop-double-loop-bale-wire'],
   '/balers-recycling/specialty-balers/': ['how-to-choose-the-right-baler', 'why-you-need-a-cardboard-baler', 'how-to-start-a-recycling-program'],
@@ -241,11 +244,11 @@ const RELATED_GUIDES = {
   '/balers-recycling/used-balers/': ['used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'warning-signs-your-equipment-needs-servicing', 'how-to-choose-the-right-baler'],
   '/balers-recycling/baling-wire/': ['differences-single-loop-double-loop-bale-wire', 'cardboard-bale-weight', '5-simple-ways-keep-baler-running-smoothly'],
   '/services/': ['trash-compactor-maintenance-checklist', 'warning-signs-your-equipment-needs-servicing', 'trash-compactor-repair-signs'],
-  '/services/compactor-repair/': ['trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist', 'what-you-should-never-put-into-a-commercial-compactor'],
+  '/services/compactor-repair/': ['compactor-repair-request-checklist','trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist', 'what-you-should-never-put-into-a-commercial-compactor'],
   '/services/baler-service/': ['commercial-baler-troubleshooting', 'benefits-of-having-regular-service-for-your-baler', '5-simple-ways-keep-baler-running-smoothly', 'the-safest-way-to-use-a-baler'],
   '/services/preventive-maintenance/': ['commercial-baler-troubleshooting', 'trash-compactor-maintenance-checklist', 'benefits-of-having-regular-service-for-your-baler', 'warning-signs-your-equipment-needs-servicing'],
   '/services/equipment-evaluations/': ['used-vs-refurbished-balers', 'warning-signs-your-equipment-needs-servicing', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs'],
-  '/services/equipment-refurbishment/': ['4-benefits-to-buying-a-refurbished-baler', 'buy-new-used-or-hauler-compactor', 'service-spotlight-may-2018-equipment-refurbishers'],
+  '/services/equipment-refurbishment/': ['repair-vs-refurbish-commercial-compactor','4-benefits-to-buying-a-refurbished-baler', 'buy-new-used-or-hauler-compactor', 'service-spotlight-may-2018-equipment-refurbishers'],
   '/services/equipment-logistics/': ['commercial-compactor-installation-guide', 'commercial-trash-compactor-buying-guide', 'vertical-baler-or-horizontal-baler', '4-benefits-to-buying-a-refurbished-baler'],
   '/services/rigging/': ['commercial-compactor-installation-guide', 'commercial-trash-compactor-buying-guide', 'apartment-high-rise-compactors-property-managers-guide', 'vertical-baler-or-horizontal-baler'],
   '/services/waste-stream-consultations/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'how-to-start-a-recycling-program', 'top-10-reasons-to-recycle'],

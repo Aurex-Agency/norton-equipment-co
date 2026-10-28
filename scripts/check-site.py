@@ -147,7 +147,7 @@ def main():
     robots = (ROOT / 'robots.txt').read_text()
     check('Allow: /' in robots and 'Disallow: /\n' not in robots, 'Production crawlers blocked')
     check('noindex' in Page((ROOT / '404.html').read_text()).meta.get('robots', ''), '404 should be noindex')
-    for slug in ['commercial-baler-troubleshooting', 'used-vs-refurbished-balers', 'commercial-compactor-installation-guide']:
+    for slug in ['compactor-repair-request-checklist', 'retail-seasonal-cardboard-plan', 'recycler-requirements-before-buying-baler', 'repair-vs-refurbish-commercial-compactor'] + ['commercial-baler-troubleshooting', 'used-vs-refurbished-balers', 'commercial-compactor-installation-guide']:
         path = '/blog/' + slug + '/'
         check(path in pages, 'Missing approved article: ' + path)
         if path in pages:
