@@ -80,18 +80,18 @@ export const SERVICES = [
     metaDesc:
       'Scheduled preventive maintenance for compactors and balers across the Mid-South. Inspections, fluids, adjustments, and documentation that extend equipment life and prevent downtime.',
     intro: [
-      'Every compactor and baler failure we see falls into two piles: the freak accident, and the slow-motion breakdown that a twenty-minute inspection would have caught months earlier. The second pile is much bigger. Preventive maintenance is how you stay out of it.',
-      'Our PM programs put your equipment on a schedule: quarterly is typical, monthly for hard-running machines. Each visit covers hydraulic fluid condition and leaks, cylinder and packing wear, chains, latches, and interlocks, electrical connections and controls, structural inspection of floors, welds, and ram paths, lubrication, and adjustment. You get a written condition report after every visit, so budget surprises become budget line items you saw coming a year away.',
+      'Wear, fluid problems, loose connections, and damaged safeguards can develop before a machine stops. Scheduled preventive maintenance helps identify issues early and supports safer, more reliable operation. It cannot prevent every failure.',
+      'Build a maintenance schedule around the manufacturer’s instructions, operating hours, material, environment, and service history. Discuss hydraulics, controls, safeguards, structure, lubrication, and documentation with Norton so the proposal identifies the work and reporting included for each machine.',
     ],
     features: [
-      { h: 'Scheduled, not someday', p: 'We track the schedule and show up. You do not have to remember the machine exists until the report lands in your inbox.' },
+      { h: 'Scheduled, not someday', p: 'Agree on the service interval, site access, and contact responsible for coordinating each visit.' },
       { h: 'Full-machine checklist', p: 'Hydraulics, electrics, structure, safety systems, and lubrication on a documented checklist tuned per machine type.' },
-      { h: 'Priority service response', p: 'PM customers go to the front of the line when something does break, and it breaks far less often.' },
-      { h: 'Life-cycle budgeting', p: 'Condition reports build a paper trail that turns "the compactor died" into "the compactor is due in Q3 next year, as planned."' },
+      { h: 'Response planning', p: 'Discuss fault reporting and response arrangements in your maintenance proposal. Appointment timing depends on location, parts, and technician availability.' },
+      { h: 'Life-cycle budgeting', p: 'Use documented wear and repair history to compare maintenance, repair, refurbishment, and replacement options.' },
     ],
     faqs: [
-      { q: 'What does a PM program cost?', a: 'Programs are priced per machine per visit, with multi-machine and multi-site discounts. It is consistently a fraction of one emergency repair with downtime. We will quote your fleet from a simple equipment list.' },
-      { q: 'How often should equipment be serviced?', a: 'Quarterly suits most single-shift operations; monthly for high-cycle machines like DC compactors and horizontal balers. We recommend a cadence after the first inspection.' },
+      { q: 'What does a PM program cost?', a: 'Pricing depends on your equipment, location, inspection scope, and service frequency. Send your machine list and operating details for a proposal that identifies included work and any exclusions.' },
+      { q: 'How often should equipment be serviced?', a: 'Follow the manufacturer’s specified intervals and adjust the maintenance plan with a qualified technician for operating hours, duty cycle, environment, and condition. There is no universal schedule for every baler or compactor.' },
       { q: 'Can you take over maintenance on equipment another company installed?', a: 'Absolutely, brand and origin do not matter. The first visit establishes a baseline condition report, and the program runs from there.' },
     ],
     related: ['compactor-repair', 'baler-service', 'equipment-evaluations'],

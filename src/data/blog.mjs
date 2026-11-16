@@ -137,17 +137,18 @@ export const POSTS = [
   },
   {
     slug: 'commercial-trash-compactor-buying-guide',
-    updated: '2026-10-27',
+    updated: '2026-11-16',
+    seoTitle: 'Commercial Trash Compactor Buying Guide: Types & Sizes (2 to 40 Yard)',
     cta: { title: 'Compare equipment for your waste stream.', text: 'Share your material, current collection arrangement and site constraints. Norton can discuss equipment and installation options for your facility.', intent: 'compactor' },
-    related: [{ href: '/services/waste-stream-consultations/', label: 'Waste-stream consultation' }, { href: '/blog/compactor-repair-request-checklist/', label: 'Need repair instead? Prepare a service request' }],
+    related: [{ href: '/blog/commercial-trash-compactor-cost/', label: 'What a commercial compactor costs' }, { href: '/services/waste-stream-consultations/', label: 'Waste-stream consultation' }, { href: '/blog/compactor-repair-request-checklist/', label: 'Need repair instead? Prepare a service request' }],
     img: 'bale-stacks',
-    title: 'The Commercial Trash Compactor Buying Guide: Types, Sizing, and Cost',
+    title: 'The Commercial Trash Compactor Buying Guide: Types, Sizes, and How to Choose',
     date: '2026-07-14',
-    readMins: 9,
+    readMins: 10,
     excerpt:
-      'Everything a first-time compactor buyer needs in one place: the machine types, how sizing actually works, what compactors cost in 2026, and the questions that separate a smart purchase from an expensive mistake.',
+      'Everything a first-time compactor buyer needs in one place: the machine types, compactor sizes from 2 to 40 yards, how sizing actually works, and the questions that separate a smart purchase from an expensive mistake.',
     metaDesc:
-      'Compactor types explained, sizing rules of thumb, 2026 price ranges, and the questions to ask before you buy.',
+      'Commercial trash compactor types explained, compactor sizes from 2 to 40 yards with a dumpster-to-compactor conversion table, and the questions to ask before you buy.',
     body: `
 <p>If you are reading a compactor buying guide, you probably already suspect what your hauling invoices have been telling you: you are paying, month after month, to haul away air. A commercial trash compactor fixes that, but only if you buy the right type, at the right size, from someone who will still answer the phone after the install. This guide covers all three.</p>
 
@@ -164,8 +165,27 @@ export const POSTS = [
 <li><strong><a href="/trash-compactors/front-load-rear-load/">Front-load and rear-load containers</a></strong> are the hauler-compatible boxes your route trucks already lift, supplied and serviced to keep your everyday collection running (no compaction, just the right container).</li>
 </ul>
 
-<h2>Sizing: the 4-to-1 rule and the container question</h2>
+<h2>Commercial trash compactor sizes</h2>
+<p>Compactor sizes are quoted two ways, and mixing them up is the most common confusion in a quote. The <strong>charge box</strong> (or charge chamber) is the opening you feed, measured in cubic yards per cycle. The <strong>container</strong> is where the compacted waste ends up, measured in cubic yards of total capacity. A "2-yard stationary compactor with a 30-yard receiver" has a 2-yard charge box and pushes into a 30-yard roll-off container.</p>
+<div class="article-table" role="region" aria-label="Commercial compactor sizes by type" tabindex="0"><table><caption>Commercial compactor sizes by type</caption><thead><tr><th scope="col">Compactor type</th><th scope="col">Charge box (per cycle)</th><th scope="col">Container or total capacity</th><th scope="col">Typical fit</th></tr></thead><tbody>
+<tr><th scope="row"><a href="/trash-compactors/vertical-apartment/">Vertical and apartment</a></th><td>A few bags to about 1 yard</td><td>Compacts into a 2 to 8 yard front-load container or cart your hauler already lifts</td><td>Apartment trash rooms, behind stores and restaurants, tight sites</td></tr>
+<tr><th scope="row"><a href="/trash-compactors/stationary/">Stationary</a></th><td>About 2 to 6 yards</td><td>Detachable 30 to 40 yard roll-off receiver container</td><td>Warehouses, distribution centers, retail, manufacturing (dry waste)</td></tr>
+<tr><th scope="row"><a href="/trash-compactors/self-contained/">Self-contained</a></th><td>About 2 yards</td><td>Sealed 15 to 35 yard body hauled as one unit</td><td>Grocery, restaurants, hospitals, hotels (wet waste)</td></tr>
+<tr><th scope="row"><a href="/trash-compactors/pre-crusher/">Pre-crusher</a></th><td>About 2 to 5 yards, reinforced</td><td>30 to 40 yard receiver</td><td>Pallets, drums, crates, furniture, product destruction</td></tr>
+<tr><th scope="row"><a href="/trash-compactors/auger/">Auger</a></th><td>Continuous screw feed from a hopper</td><td>30 to 40 yard receiver</td><td>High-volume cardboard and wood waste</td></tr>
+</tbody></table></div>
+<p>Charge box size should fit your largest routine item with room to spare. Container size should match how often you want the hauler to come and what the hauler’s truck can lift when the container is full of compacted, heavy waste.</p>
+
+<h2>Sizing: the 4-to-1 rule and the dumpster conversion</h2>
 <p>Typical dry-waste compaction runs about 4:1, four loose yards become one compacted yard. So start with your current volume: if you fill an 8-yard dumpster daily (roughly 56 loose yards a week), a compactor turns that into ~14 compacted yards a week, which a 30-yard receiver container swallows in two weeks. You just went from seven pickups a week to one every two weeks.</p>
+<div class="article-table" role="region" aria-label="Dumpster service to compactor conversion" tabindex="0"><table><caption>Converting current dumpster service to a compactor, at about 4:1 for dry waste</caption><thead><tr><th scope="col">Current dumpster service</th><th scope="col">Loose yards a week</th><th scope="col">Compacted yards a week</th><th scope="col">Compactor to evaluate</th><th scope="col">Expected pulls</th></tr></thead><tbody>
+<tr><th scope="row">One 4-yard, twice a week</th><td>8</td><td>About 2</td><td>Vertical compactor into a 4 to 6 yard front-load container</td><td>Every two to three weeks</td></tr>
+<tr><th scope="row">One 8-yard, three times a week</th><td>24</td><td>About 6</td><td>Vertical compactor or a 2-yard stationary with a 30-yard receiver</td><td>Weekly for the vertical; about monthly for the receiver</td></tr>
+<tr><th scope="row">One 8-yard, daily</th><td>56</td><td>About 14</td><td>2 to 3 yard stationary with a 30-yard receiver</td><td>About every two weeks</td></tr>
+<tr><th scope="row">Two 8-yard, five days a week each</th><td>80</td><td>About 20</td><td>3 to 4 yard stationary with a 34 to 40 yard receiver</td><td>About weekly</td></tr>
+<tr><th scope="row">Wet waste, any of the above</th><td>Same</td><td>Same</td><td><a href="/trash-compactors/self-contained/">Self-contained</a> sized to total capacity</td><td>Depends on body size</td></tr>
+</tbody></table></div>
+<p>The conversion is a starting point for the conversation, not a specification. Compacted waste is heavy, so the hauler’s weight limit can cap the container size before volume does, and seasonal peaks matter more than the weekly average.</p>
 <p>Three sizing details matter more than buyers expect:</p>
 <ol>
 <li><strong>Charge box size</strong>, the opening you feed. It must fit your largest routine item, or your crew will jam the machine daily. Measure your biggest boxes, not your average ones.</li>
@@ -173,16 +193,9 @@ export const POSTS = [
 <li><strong>Cycle time vs. arrival rate</strong>: if waste arrives faster than the ram cycles, you get queues (and eventually an <a href="/trash-compactors/auger/">auger conversation</a>).</li>
 </ol>
 
-<h2>What compactors cost in 2026</h2>
-<p>Honest ranges, installed cost varying with site work:</p>
-<ul>
-<li><strong>Vertical/apartment compactors:</strong> roughly $8,000-$20,000</li>
-<li><strong>Stationary compactors:</strong> roughly $15,000-$35,000 plus receiver container</li>
-<li><strong>Self-contained compactors:</strong> roughly $20,000-$45,000</li>
-<li><strong>Pre-crushers and augers:</strong> roughly $30,000-$60,000+</li>
-<li><strong>Reconditioned equipment:</strong> commonly 30-60% off new, built to order, see <a href="/trash-compactors/used/">used compactors</a></li>
-</ul>
-<p>Then set those numbers against the savings. A site paying $1,800/month for frequent dumpster service that drops to $700/month of compactor hauling saves $13,200 a year: a three-to-four-year payback on a mid-range machine, faster with a reconditioned unit. This is why compactors are one of the few capital purchases that facilities managers rarely regret.</p>
+<h2>What compactors cost</h2>
+<p>In round numbers: vertical and apartment compactors run roughly $8,000 to $20,000 new, stationary compactors $15,000 to $35,000 plus the receiver container, self-contained units $20,000 to $45,000, and pre-crushers and augers $30,000 to $60,000 or more, with <a href="/trash-compactors/used/">reconditioned equipment</a> commonly 30 to 60 percent below new. Installation adds a pad, power, and often a chute. The <a href="/blog/commercial-trash-compactor-cost/">commercial trash compactor cost guide</a> breaks all of that down line by line, compares new, reconditioned, and hauler-supplied machines over five years, and shows the monthly savings math.</p>
+<p>The short version of the payback: a site paying $1,800 a month for frequent dumpster service that drops to $700 a month of compactor hauling saves $13,200 a year, a three-to-four-year payback on a mid-range machine and faster with a reconditioned unit. This is why compactors are one of the few capital purchases that facilities managers rarely regret.</p>
 
 <h2>Five questions to ask any compactor vendor</h2>
 <ol>
@@ -194,7 +207,7 @@ export const POSTS = [
 </ol>
 
 <h2>The short version</h2>
-<p>Wet waste: self-contained. Dry volume: stationary. Tight space: vertical. Bulky scrap: pre-crusher. Relentless volume: auger. Everyday collection: the right front-load or rear-load container. Size from your real volume with a 4:1 ratio, insist on independent equipment, and make the vendor prove the payback before you sign.</p>
+<p>Wet waste: self-contained. Dry volume: stationary. Tight space: vertical. Bulky scrap: pre-crusher. Relentless volume: auger. Everyday collection: the right front-load or rear-load container. Size from your real volume with a 4:1 ratio, insist on independent equipment, and make the vendor prove the payback before you sign. If you are still deciding between a compactor and a baler for the cardboard, read <a href="/blog/baler-vs-compactor/">baler versus compactor</a> first.</p>
 <p>Or skip straight to the shortcut: Norton Equipment has been sizing compactors across the Mid-South since 1997, and the evaluation costs nothing. Call <a href="tel:+16628387900">(662) 838-7900</a> or <a href="/request-a-quote/">request a quote</a>.</p>
 `,
   },

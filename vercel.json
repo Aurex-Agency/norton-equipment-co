@@ -274,6 +274,41 @@
       "source": "/service-types/service-repair-parts/",
       "destination": "/services/",
       "permanent": true
+    },
+    {
+      "source": "/recycling-equipment/",
+      "destination": "/balers-recycling/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment/cardboard-balers-memphis/",
+      "destination": "/balers-recycling/",
+      "permanent": true
+    },
+    {
+      "source": "/equipment/cardboard-balers-memphis/used-vertical-balers/",
+      "destination": "/balers-recycling/refurbished-balers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/:page/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/baler-safety-tips/",
+      "destination": "/blog/cardboard-baler-safety-training-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/the-safest-way-to-use-a-baler/",
+      "destination": "/blog/cardboard-baler-safety-training-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/vertical-baler-or-horizontal-baler/",
+      "destination": "/blog/horizontal-baler-guide/",
+      "permanent": true
     }
   ],
   "headers": [
