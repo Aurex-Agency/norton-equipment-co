@@ -21,14 +21,15 @@ import { OCTOBER_POSTS } from './data/blog-october.mjs';
 import { SEARCH_META, LOCAL_PLANNING } from './data/search.mjs';
 import { SEPTEMBER_POSTS, SEPTEMBER_UPDATES } from './data/blog-september.mjs';
 import { NOVEMBER_POSTS, NOVEMBER_UPDATES, NOVEMBER_UPDATED, NOVEMBER_UPDATED_PAGES } from './data/blog-november.mjs';
+import { WEEKLY_POSTS, WEEKLY_UPDATES, WEEKLY_UPDATED_PAGES } from './data/blog-weekly.mjs';
 import { SEO_SECTIONS, seoSection } from './data/seo-sections.mjs';
 import { buildResources } from './data/resources.mjs';
-const POSTS = [...NOVEMBER_POSTS, ...OCTOBER_POSTS, ...SEPTEMBER_POSTS, ...APPROVED_POSTS, ...EXISTING_POSTS];
+const POSTS = [...WEEKLY_POSTS, ...NOVEMBER_POSTS, ...OCTOBER_POSTS, ...SEPTEMBER_POSTS, ...APPROVED_POSTS, ...EXISTING_POSTS];
 import { LEGACY_POSTS as ORIGINAL_LEGACY_POSTS } from './data/blog-legacy.mjs';
 // Legacy posts consolidated into the November guides. Each URL 301s in
 // vercel.json; the data stays in blog-legacy.mjs for reference.
 const RETIRED_LEGACY = new Set(['baler-safety-tips', 'the-safest-way-to-use-a-baler', 'vertical-baler-or-horizontal-baler']);
-const LEGACY_POSTS = ORIGINAL_LEGACY_POSTS.filter((p) => !RETIRED_LEGACY.has(p.slug)).map((p) => ({ ...p, ...SEPTEMBER_UPDATES[p.slug], ...NOVEMBER_UPDATES[p.slug] }));
+const LEGACY_POSTS = ORIGINAL_LEGACY_POSTS.filter((p) => !RETIRED_LEGACY.has(p.slug)).map((p) => ({ ...p, ...SEPTEMBER_UPDATES[p.slug], ...NOVEMBER_UPDATES[p.slug], ...WEEKLY_UPDATES[p.slug] }));
 import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDERS, TRUSTED_BY } from './data/testimonials.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -55,7 +56,7 @@ function out(path, html, lastmod = TEMPLATE_UPDATED) {
   writeFileSync(file, html);
   if (path.endsWith('index.html')) {
     const url = '/' + path.replace(/index\.html$/, '');
-    pagesWritten.push({ path: url, lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null, SEO_SECTIONS[url] ? '2026-09-25' : null, NOVEMBER_UPDATED_PAGES.has(path) ? NOVEMBER_UPDATED : null) });
+    pagesWritten.push({ path: url, lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null, SEO_SECTIONS[url] ? '2026-09-25' : null, NOVEMBER_UPDATED_PAGES.has(path) ? NOVEMBER_UPDATED : null, WEEKLY_UPDATED_PAGES.get(path) || null) });
   }
 }
 
