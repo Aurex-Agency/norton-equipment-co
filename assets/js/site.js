@@ -48,6 +48,7 @@
   var interests = {
     repair: 'Service or repair', used: 'Used / reconditioned equipment',
     installation: 'Compactor installation', evaluation: 'Equipment evaluation',
+    consultation: 'Free waste stream consultation',
     maintenance: 'Preventive maintenance program', baler: 'Baler or recycling equipment',
     compactor: 'Trash compactor - purchase', wire: 'Baling wire'
   };

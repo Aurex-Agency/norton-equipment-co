@@ -144,10 +144,14 @@ def main():
             check(file.is_file(), path + ' -> missing ' + href)
             if u.fragment and redirected in pages:
                 check(unquote(u.fragment) in pages[redirected].ids, path + ' -> missing fragment ' + href)
+    for source in ['/baler-safety-tips/', '/the-safest-way-to-use-a-baler/', '/vertical-baler-or-horizontal-baler/']:
+        check(source in redirects and (ROOT / redirects[source].lstrip('/') / 'index.html').is_file(), 'Consolidated post must redirect to a live page: ' + source)
+        check(not (ROOT / source.lstrip('/') / 'index.html').exists(), 'Consolidated post still built: ' + source)
+        check(BASE + source not in (ROOT / 'sitemap.xml').read_text(), 'Consolidated post still in sitemap: ' + source)
     robots = (ROOT / 'robots.txt').read_text()
     check('Allow: /' in robots and 'Disallow: /\n' not in robots, 'Production crawlers blocked')
     check('noindex' in Page((ROOT / '404.html').read_text()).meta.get('robots', ''), '404 should be noindex')
-    for slug in ['compactor-repair-request-checklist', 'retail-seasonal-cardboard-plan', 'recycler-requirements-before-buying-baler', 'repair-vs-refurbish-commercial-compactor'] + ['commercial-baler-troubleshooting', 'used-vs-refurbished-balers', 'commercial-compactor-installation-guide']:
+    for slug in ['cardboard-baler-safety-training-guide', 'commercial-trash-compactor-cost', 'horizontal-baler-guide', 'how-much-does-a-baler-cost'] + ['commercial-baler-maintenance-checklist', 'baler-vs-compactor'] + ['compactor-repair-request-checklist', 'retail-seasonal-cardboard-plan', 'recycler-requirements-before-buying-baler', 'repair-vs-refurbish-commercial-compactor'] + ['commercial-baler-troubleshooting', 'used-vs-refurbished-balers', 'commercial-compactor-installation-guide']:
         path = '/blog/' + slug + '/'
         check(path in pages, 'Missing approved article: ' + path)
         if path in pages:

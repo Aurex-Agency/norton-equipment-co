@@ -12,7 +12,7 @@ const settle = () => new Promise((resolve) => setImmediate(resolve));
 function fixture({ status = 200, result = { ok: true }, reject = false, valid = true, bot = '', query = '', referrer = '', storageDisabled = false, analyticsThrows = false, deferred = false, savedAcquisition = null } = {}) {
   const events = [], requests = [], formEvents = {}, documentEvents = {};
   const location = { pathname: '/request-a-quote/', hostname: 'nortonequipmentco.com', search: query, href: 'https://nortonequipmentco.com/request-a-quote/' + query };
-  const optionNames = ['Service or repair', 'Used / reconditioned equipment', 'Compactor installation', 'Equipment evaluation'];
+  const optionNames = ['Service or repair', 'Used / reconditioned equipment', 'Compactor installation', 'Equipment evaluation', 'Preventive maintenance program', 'Free waste stream consultation'];
   const select = { value: 'Service or repair', options: optionNames.map((value) => ({ value })) };
   const button = { disabled: false }, statusEl = { hidden: true, innerHTML: '' };
   const values = { Name: '<img src=x onerror=alert(1)>', Phone: '555-0101', Email: 'private@example.test', Message: 'private inquiry', 'bot-field': bot, Interest: select.value };
@@ -164,3 +164,13 @@ test('entering the contact journey does not create an inquiry or lead event', ()
   assert.equal(f.events.at(-1)[1], 'quote_click');
   assert.equal(f.events.filter(e => e[1] === 'generate_lead').length, 0);
 });
+
+for (const [key, label] of [['maintenance', 'Preventive maintenance program'], ['consultation', 'Free waste stream consultation']]) {
+  test(`article ${key} CTA prefills and attributes the accepted inquiry`, async () => {
+    const f = fixture({ query: `?interest=${key}` });
+    assert.equal(f.select.value, label);
+    f.submit(); await settle();
+    assert.equal(f.requests[0].payload.Interest, label);
+    assert.equal(f.events.find((e) => e[1] === 'generate_lead')[2].interest_type, key);
+  });
+}

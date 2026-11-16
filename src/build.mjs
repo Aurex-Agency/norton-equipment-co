@@ -19,8 +19,16 @@ import { POSTS as EXISTING_POSTS } from './data/blog.mjs';
 import { APPROVED_POSTS } from './data/blog-approved.mjs';
 import { OCTOBER_POSTS } from './data/blog-october.mjs';
 import { SEARCH_META, LOCAL_PLANNING } from './data/search.mjs';
-const POSTS = [...OCTOBER_POSTS, ...APPROVED_POSTS, ...EXISTING_POSTS];
-import { LEGACY_POSTS } from './data/blog-legacy.mjs';
+import { SEPTEMBER_POSTS, SEPTEMBER_UPDATES } from './data/blog-september.mjs';
+import { NOVEMBER_POSTS, NOVEMBER_UPDATES, NOVEMBER_UPDATED, NOVEMBER_UPDATED_PAGES } from './data/blog-november.mjs';
+import { SEO_SECTIONS, seoSection } from './data/seo-sections.mjs';
+import { buildResources } from './data/resources.mjs';
+const POSTS = [...NOVEMBER_POSTS, ...OCTOBER_POSTS, ...SEPTEMBER_POSTS, ...APPROVED_POSTS, ...EXISTING_POSTS];
+import { LEGACY_POSTS as ORIGINAL_LEGACY_POSTS } from './data/blog-legacy.mjs';
+// Legacy posts consolidated into the November guides. Each URL 301s in
+// vercel.json; the data stays in blog-legacy.mjs for reference.
+const RETIRED_LEGACY = new Set(['baler-safety-tips', 'the-safest-way-to-use-a-baler', 'vertical-baler-or-horizontal-baler']);
+const LEGACY_POSTS = ORIGINAL_LEGACY_POSTS.filter((p) => !RETIRED_LEGACY.has(p.slug)).map((p) => ({ ...p, ...SEPTEMBER_UPDATES[p.slug], ...NOVEMBER_UPDATES[p.slug] }));
 import { TESTIMONIALS, TESTIMONIALS_ARE_PLACEHOLDERS, TRUSTED_BY } from './data/testimonials.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -46,7 +54,8 @@ function out(path, html, lastmod = TEMPLATE_UPDATED) {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
   if (path.endsWith('index.html')) {
-    pagesWritten.push({ path: '/' + path.replace(/index\.html$/, ''), lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null) });
+    const url = '/' + path.replace(/index\.html$/, '');
+    pagesWritten.push({ path: url, lastmod: latest(TEMPLATE_UPDATED, lastmod, OCTOBER_UPDATED_PAGES.has(path) ? '2026-10-27' : null, SEO_SECTIONS[url] ? '2026-09-25' : null, NOVEMBER_UPDATED_PAGES.has(path) ? NOVEMBER_UPDATED : null) });
   }
 }
 
@@ -226,35 +235,35 @@ function reviewedByHtml() {
 // questions buyers on that page actually have. Slugs resolve against both the
 // new /blog/ posts and the legacy root-level archive.
 const RELATED_GUIDES = {
-  '/trash-compactors/': ['commercial-trash-compactor-buying-guide', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
-  '/trash-compactors/self-contained/': ['commercial-compactor-installation-guide', 'self-contained-vs-stationary-compactors', 'what-you-should-never-put-into-a-commercial-compactor', 'compactors-for-hotels'],
-  '/trash-compactors/stationary/': ['commercial-compactor-installation-guide', 'self-contained-vs-stationary-compactors', 'how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide'],
-  '/trash-compactors/vertical-apartment/': ['apartment-high-rise-compactors-property-managers-guide', 'compactors-for-hotels', 'what-you-should-never-put-into-a-commercial-compactor'],
-  '/trash-compactors/pre-crusher/': ['commercial-trash-compactor-buying-guide', 'what-you-should-never-put-into-a-commercial-compactor', 'trash-compactor-maintenance-checklist'],
-  '/trash-compactors/auger/': ['commercial-trash-compactor-buying-guide', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
-  '/trash-compactors/front-load-rear-load/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide', 'why-you-need-a-cardboard-baler'],
-  '/trash-compactors/steel-options/': ['apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs'],
-  '/trash-compactors/used/': ['buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs', 'commercial-trash-compactor-buying-guide'],
-  '/balers-recycling/': ['retail-seasonal-cardboard-plan','how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'why-you-need-a-cardboard-baler'],
-  '/balers-recycling/vertical-balers/': ['recycler-requirements-before-buying-baler','vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'the-safest-way-to-use-a-baler'],
-  '/balers-recycling/horizontal-balers/': ['vertical-baler-or-horizontal-baler', 'cardboard-bale-weight', 'how-to-choose-the-right-baler'],
-  '/balers-recycling/two-ram-balers/': ['vertical-baler-or-horizontal-baler', 'how-to-choose-the-right-baler', 'differences-single-loop-double-loop-bale-wire'],
-  '/balers-recycling/specialty-balers/': ['how-to-choose-the-right-baler', 'why-you-need-a-cardboard-baler', 'how-to-start-a-recycling-program'],
-  '/balers-recycling/refurbished-balers/': ['used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'benefits-of-having-regular-service-for-your-baler', 'how-to-choose-the-right-baler'],
-  '/balers-recycling/used-balers/': ['used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'warning-signs-your-equipment-needs-servicing', 'how-to-choose-the-right-baler'],
-  '/balers-recycling/baling-wire/': ['differences-single-loop-double-loop-bale-wire', 'cardboard-bale-weight', '5-simple-ways-keep-baler-running-smoothly'],
-  '/services/': ['trash-compactor-maintenance-checklist', 'warning-signs-your-equipment-needs-servicing', 'trash-compactor-repair-signs'],
-  '/services/compactor-repair/': ['compactor-repair-request-checklist','trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist', 'what-you-should-never-put-into-a-commercial-compactor'],
-  '/services/baler-service/': ['commercial-baler-troubleshooting', 'benefits-of-having-regular-service-for-your-baler', '5-simple-ways-keep-baler-running-smoothly', 'the-safest-way-to-use-a-baler'],
-  '/services/preventive-maintenance/': ['commercial-baler-troubleshooting', 'trash-compactor-maintenance-checklist', 'benefits-of-having-regular-service-for-your-baler', 'warning-signs-your-equipment-needs-servicing'],
-  '/services/equipment-evaluations/': ['used-vs-refurbished-balers', 'warning-signs-your-equipment-needs-servicing', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs'],
-  '/services/equipment-refurbishment/': ['repair-vs-refurbish-commercial-compactor','4-benefits-to-buying-a-refurbished-baler', 'buy-new-used-or-hauler-compactor', 'service-spotlight-may-2018-equipment-refurbishers'],
-  '/services/equipment-logistics/': ['commercial-compactor-installation-guide', 'commercial-trash-compactor-buying-guide', 'vertical-baler-or-horizontal-baler', '4-benefits-to-buying-a-refurbished-baler'],
-  '/services/rigging/': ['commercial-compactor-installation-guide', 'commercial-trash-compactor-buying-guide', 'apartment-high-rise-compactors-property-managers-guide', 'vertical-baler-or-horizontal-baler'],
-  '/services/waste-stream-consultations/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'how-to-start-a-recycling-program', 'top-10-reasons-to-recycle'],
-  '/brands/': ['commercial-trash-compactor-buying-guide', 'how-to-choose-the-right-baler', 'buy-new-used-or-hauler-compactor'],
-  'brand:compactors': ['commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist'],
-  'brand:balers': ['how-to-choose-the-right-baler', 'vertical-baler-or-horizontal-baler', 'benefits-of-having-regular-service-for-your-baler'],
+  '/trash-compactors/': ['commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'baler-vs-compactor', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/self-contained/': ['commercial-trash-compactor-cost', 'commercial-compactor-installation-guide', 'self-contained-vs-stationary-compactors', 'what-you-should-never-put-into-a-commercial-compactor', 'compactors-for-hotels'],
+  '/trash-compactors/stationary/': ['commercial-trash-compactor-cost', 'commercial-compactor-installation-guide', 'self-contained-vs-stationary-compactors', 'how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-buying-guide'],
+  '/trash-compactors/vertical-apartment/': ['apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-cost', 'compactors-for-hotels', 'what-you-should-never-put-into-a-commercial-compactor'],
+  '/trash-compactors/pre-crusher/': ['commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'what-you-should-never-put-into-a-commercial-compactor', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/auger/': ['commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'how-a-trash-compactor-cuts-your-hauling-bill', 'trash-compactor-maintenance-checklist'],
+  '/trash-compactors/front-load-rear-load/': ['how-a-trash-compactor-cuts-your-hauling-bill', 'commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'why-you-need-a-cardboard-baler'],
+  '/trash-compactors/steel-options/': ['commercial-trash-compactor-cost', 'apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs'],
+  '/trash-compactors/used/': ['commercial-trash-compactor-cost', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs', 'commercial-trash-compactor-buying-guide'],
+  '/balers-recycling/': ['how-much-does-a-baler-cost', 'horizontal-baler-guide', 'retail-seasonal-cardboard-plan', 'how-to-choose-the-right-baler', 'cardboard-baler-safety-training-guide', 'why-you-need-a-cardboard-baler'],
+  '/balers-recycling/vertical-balers/': ['how-much-does-a-baler-cost', 'cardboard-baler-safety-training-guide', 'recycler-requirements-before-buying-baler', 'how-to-choose-the-right-baler', 'cardboard-bale-weight'],
+  '/balers-recycling/horizontal-balers/': ['horizontal-baler-guide', 'how-much-does-a-baler-cost', 'cardboard-bale-weight', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/two-ram-balers/': ['horizontal-baler-guide', 'how-much-does-a-baler-cost', 'differences-single-loop-double-loop-bale-wire', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/specialty-balers/': ['horizontal-baler-guide', 'how-to-choose-the-right-baler', 'why-you-need-a-cardboard-baler', 'how-to-start-a-recycling-program'],
+  '/balers-recycling/refurbished-balers/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'benefits-of-having-regular-service-for-your-baler', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/used-balers/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'warning-signs-your-equipment-needs-servicing', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/baling-wire/': ['differences-single-loop-double-loop-bale-wire', 'cardboard-bale-weight', 'how-much-does-a-baler-cost', '5-simple-ways-keep-baler-running-smoothly'],
+  '/services/': ['cardboard-baler-safety-training-guide', 'trash-compactor-maintenance-checklist', 'trash-compactor-repair-signs', 'warning-signs-your-equipment-needs-servicing'],
+  '/services/compactor-repair/': ['trash-compactor-repair-signs', 'compactor-repair-request-checklist', 'trash-compactor-maintenance-checklist', 'what-you-should-never-put-into-a-commercial-compactor'],
+  '/services/baler-service/': ['commercial-baler-troubleshooting', 'commercial-baler-maintenance-checklist', 'cardboard-baler-safety-training-guide', 'benefits-of-having-regular-service-for-your-baler', '5-simple-ways-keep-baler-running-smoothly'],
+  '/services/preventive-maintenance/': ['commercial-baler-maintenance-checklist', 'cardboard-baler-safety-training-guide', 'trash-compactor-maintenance-checklist', 'commercial-baler-troubleshooting', 'benefits-of-having-regular-service-for-your-baler', 'warning-signs-your-equipment-needs-servicing'],
+  '/services/equipment-evaluations/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', 'warning-signs-your-equipment-needs-servicing', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs'],
+  '/services/equipment-refurbishment/': ['repair-vs-refurbish-commercial-compactor','4-benefits-to-buying-a-refurbished-baler', 'how-much-does-a-baler-cost', 'buy-new-used-or-hauler-compactor', 'service-spotlight-may-2018-equipment-refurbishers'],
+  '/services/equipment-logistics/': ['commercial-compactor-installation-guide', 'horizontal-baler-guide', 'commercial-trash-compactor-buying-guide', '4-benefits-to-buying-a-refurbished-baler'],
+  '/services/rigging/': ['commercial-compactor-installation-guide', 'horizontal-baler-guide', 'commercial-trash-compactor-buying-guide', 'apartment-high-rise-compactors-property-managers-guide'],
+  '/services/waste-stream-consultations/': ['baler-vs-compactor', 'commercial-trash-compactor-cost', 'how-to-choose-the-right-baler', 'how-a-trash-compactor-cuts-your-hauling-bill', 'how-to-start-a-recycling-program', 'top-10-reasons-to-recycle'],
+  '/brands/': ['commercial-trash-compactor-buying-guide', 'how-much-does-a-baler-cost', 'how-to-choose-the-right-baler', 'buy-new-used-or-hauler-compactor'],
+  'brand:compactors': ['commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist'],
+  'brand:balers': ['how-much-does-a-baler-cost', 'horizontal-baler-guide', 'how-to-choose-the-right-baler', 'benefits-of-having-regular-service-for-your-baler'],
 };
 
 function findPost(slug) {
@@ -1065,6 +1074,8 @@ ${pageHero({
   </div>
 </section>
 
+${seoSection(path)}
+
 ${gallerySection(item.gallery, item.galleryEyebrow || 'Our Work', item.galleryHeading || 'Built and installed by Norton.')}
 
 ${phoneStrip()}
@@ -1141,6 +1152,8 @@ ${pageHero({
     <div class="grid-3">${cards}${extraCards}</div>
   </div>
 </section>
+
+${seoSection(basePath)}
 
 ${basePath === '/trash-compactors/' ? finderSection() : ''}
 
@@ -1285,6 +1298,8 @@ ${pageHero({
     </div>
   </div>
 </section>
+
+${seoSection(path)}
 
 ${gallerySection(s.gallery, s.galleryEyebrow || 'Our Work', s.galleryHeading || 'On the job across the Mid-South.')}
 
@@ -1588,6 +1603,7 @@ ${LOCAL_PLANNING[c.slug] ? `<h2>${esc(LOCAL_PLANNING[c.slug][0])}</h2><p>${esc(L
           ${c.industries.map((ind) => `<li>${esc(ind)}</li>`).join('')}
         </ul>
         <p>Not on the list? If your ${esc(c.city)} operation generates waste or recyclables, the conversation is worth thirty minutes. Our <a href="/services/waste-stream-consultations/">waste stream consultation</a> is free and comes with real numbers.</p>
+        <p>Budgeting first? Read <a href="/blog/how-much-does-a-baler-cost/">what a cardboard baler costs</a> and <a href="/blog/commercial-trash-compactor-cost/">what a commercial compactor costs</a> installed. Training a crew on an existing baler? Start with the <a href="/blog/cardboard-baler-safety-training-guide/">baler safety and operator training guide</a>.</p>
       </div>
       <div class="reveal" data-d="1">
         <div class="form-card">
@@ -2168,13 +2184,13 @@ function articleContent(p) {
   });
   const toc = headings.length > 3 ? `<details class="article-toc"><summary>In this guide</summary><nav aria-label="Article sections"><ul>${headings.map((h) => `<li><a href="#${h.id}">${esc(h.label)}</a></li>`).join('')}</ul></nav></details>` : '';
   const answer = p.answer ? `<div class="article-answer"><span class="eyebrow">The short answer</span><p>${esc(p.answer)}</p></div>` : '';
-  const sources = p.sources?.length ? `<aside class="article-sources" aria-label="Further reading"><h2>Safety reference</h2><p>Use the manufacturer’s instructions for your exact machine and your facility’s approved procedures. For background on energy control during service, see:</p><ul>${p.sources.map((r) => `<li><a href="${r.url}">${esc(r.label)}</a></li>`).join('')}</ul></aside>` : '';
+  const sources = p.sources?.length ? `<aside class="article-sources" aria-label="Further reading"><h2>${esc(p.sourcesTitle || 'Safety reference')}</h2><p>${esc(p.sourcesIntro || 'Use the manufacturer’s instructions for your exact machine and your facility’s approved procedures. For background on energy control during service, see:')}</p><ul>${p.sources.map((r) => `<li><a href="${r.url}">${esc(r.label)}</a></li>`).join('')}</ul></aside>` : '';
   return `${answer}${toc}${body}${sources}`;
 }
 
 function articleCta(p) {
   if (!p.cta) return '';
-  return `<aside class="article-cta" aria-label="Talk to Norton"><h2>${esc(p.cta.title)}</h2><p>${esc(p.cta.text)}</p><div class="hero-cta"><a class="btn btn-gold" href="${SITE.phoneHref}">Call ${esc(SITE.phone)}</a><a class="btn btn-dark" href="/request-a-quote/?interest=${esc(p.cta.intent)}">${p.cta.intent === 'repair' ? 'Request service' : 'Discuss your project'} ${IC.arrow}</a></div><p class="article-coverage">Based at ${esc(SITE.address.street)}, Byhalia, MS. <a href="/locations/">See service areas</a>.</p></aside>`;
+  return `<aside class="article-cta" aria-label="Talk to Norton"><h2>${esc(p.cta.title)}</h2><p>${esc(p.cta.text)}</p><div class="hero-cta"><a class="btn btn-gold" href="${SITE.phoneHref}">Call ${esc(SITE.phone)}</a><a class="btn btn-dark" href="/request-a-quote/?interest=${esc(p.cta.intent)}">${esc(p.cta.label || (p.cta.intent === 'repair' ? 'Request service' : 'Discuss your project'))} ${IC.arrow}</a></div><p class="article-coverage">Based at ${esc(SITE.address.street)}, Byhalia, MS. <a href="/locations/">See service areas</a>.</p></aside>`;
 }
 
 function buildBlog() {
@@ -2183,7 +2199,7 @@ function buildBlog() {
     <a class="post-card reveal" data-d="${(i % 3) + 1}" href="${base}${p.slug}/">
       ${p.img ? `<span class="pc-img"><img src="/assets/img/${p.img}.webp"${srcsetAttr(p.img, 1500, '(max-width:480px) 100vw, (max-width:960px) 50vw, 33vw')} alt="" loading="lazy"></span>` : '<div class="pc-top" aria-hidden="true"></div>'}
       <div class="pc-body">
-        <div class="meta"><span>${p.date}</span><span>${p.readMins} min read</span></div>
+        <div class="meta"><span>${p.updated || p.date}</span><span>${p.readMins} min read</span></div>
         <h3>${esc(p.title)}</h3>
         <p>${esc(p.excerpt)}</p>
         <span class="go">Read Article ${IC.arrow}</span>
@@ -2288,6 +2304,7 @@ ${p.answer ? faqSection(p.faqs) : ''}
           dateModified: p.updated || p.date,
           url: SITE.baseUrl + path,
           ...(p.img ? { image: [SITE.baseUrl + `/assets/img/${p.img}.webp`] } : {}),
+          ...(p.about ? { about: p.about } : {}),
           author: ldAuthor(),
           publisher: { '@id': SITE.baseUrl + '/#business' },
           mainEntityOfPage: { '@id': SITE.baseUrl + path + '#webpage' },
@@ -2338,12 +2355,12 @@ function buildLegacyBlog() {
 <div class="hazard" aria-hidden="true"></div>
 <article class="sec sec-paper">
   <div class="wrap">
-    <div class="prose">${reviewedByHtml()}${articleContent(p)}</div>
+    <div class="prose">${reviewedByHtml()}${articleContent(p)}${articleCta(p)}</div>
     ${nextSteps(p.related)}
   </div>
 </article>
 ${phoneStrip('Liked the straight talk? <em>It sounds exactly like our phone calls.</em>')}
-${faqSection(p.faqs)}
+${faqSection(p.faqs || [])}
 <section class="sec sec-paper-2">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Keep Reading</span><h2>More from the blog.</h2></div>
@@ -2483,6 +2500,7 @@ buildTerms();
 buildAccessibility();
 buildBlog();
 buildLegacyBlog();
+buildResources(out);
 build404();
 buildMeta();
 
