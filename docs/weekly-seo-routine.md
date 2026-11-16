@@ -96,5 +96,6 @@ If posts or fixes were merged to `origin/main` since the last report, do the pos
 
 ## Standing items that need Kalob or the client
 
-- GA4: make `generate_lead` the only primary key event and demote `phone_click` and `quote_click`; add a filter or saved comparison excluding the data-center Direct traffic (Ashburn, Singapore, Council Bluffs, Frankfurt); register `traffic_source`, `landing_page`, `interest_type`, and `form_type` as custom dimensions.
+- GA4, done November 16, 2026: `generate_lead` is the only key event with data (`purchase` stays marked because GA4 does not allow unmarking it; `phone_click` and `quote_click` were never key events). A saved comparison named "Real visitors (no data-center cities)" excludes Ashburn, Singapore, Council Bluffs, Frankfurt am Main, Des Moines, and Seoul; apply it together with the built-in "Organic traffic" comparison when reading reports, and add cities to it if new data-center traffic appears. GA4 has no IP list for this traffic, so a property-level data filter is not possible.
+- GA4, still open: register `traffic_source`, `landing_page`, `interest_type`, and `form_type` as event-scoped custom dimensions (Admin, Data display, Custom definitions) so the values the site already sends become reportable.
 - Client-supplied material that would strengthen the content: real job photos with permission, confirmed project examples, current refurbished inventory, named technician experience, and recent reviews. Do not add any of these without confirmation.
