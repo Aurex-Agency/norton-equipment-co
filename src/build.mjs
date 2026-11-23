@@ -246,11 +246,11 @@ const RELATED_GUIDES = {
   '/trash-compactors/steel-options/': ['commercial-trash-compactor-cost', 'apartment-high-rise-compactors-property-managers-guide', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs'],
   '/trash-compactors/used/': ['commercial-trash-compactor-cost', 'buy-new-used-or-hauler-compactor', 'trash-compactor-repair-signs', 'commercial-trash-compactor-buying-guide'],
   '/balers-recycling/': ['how-much-does-a-baler-cost', 'horizontal-baler-guide', 'retail-seasonal-cardboard-plan', 'how-to-choose-the-right-baler', 'cardboard-baler-safety-training-guide', 'why-you-need-a-cardboard-baler'],
-  '/balers-recycling/vertical-balers/': ['how-much-does-a-baler-cost', 'cardboard-baler-safety-training-guide', 'recycler-requirements-before-buying-baler', 'how-to-choose-the-right-baler', 'cardboard-bale-weight'],
+  '/balers-recycling/vertical-balers/': ['vertical-baler-buyers-guide', 'how-much-does-a-baler-cost', 'recycler-requirements-before-buying-baler', 'cardboard-baler-safety-training-guide', 'how-to-choose-the-right-baler', 'cardboard-bale-weight'],
   '/balers-recycling/horizontal-balers/': ['horizontal-baler-guide', 'how-much-does-a-baler-cost', 'cardboard-bale-weight', 'how-to-choose-the-right-baler'],
   '/balers-recycling/two-ram-balers/': ['horizontal-baler-guide', 'how-much-does-a-baler-cost', 'differences-single-loop-double-loop-bale-wire', 'how-to-choose-the-right-baler'],
   '/balers-recycling/specialty-balers/': ['horizontal-baler-guide', 'how-to-choose-the-right-baler', 'why-you-need-a-cardboard-baler', 'how-to-start-a-recycling-program'],
-  '/balers-recycling/refurbished-balers/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'benefits-of-having-regular-service-for-your-baler', 'how-to-choose-the-right-baler'],
+  '/balers-recycling/refurbished-balers/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', 'vertical-baler-buyers-guide', '4-benefits-to-buying-a-refurbished-baler', 'benefits-of-having-regular-service-for-your-baler', 'how-to-choose-the-right-baler'],
   '/balers-recycling/used-balers/': ['how-much-does-a-baler-cost', 'used-vs-refurbished-balers', '4-benefits-to-buying-a-refurbished-baler', 'warning-signs-your-equipment-needs-servicing', 'how-to-choose-the-right-baler'],
   '/balers-recycling/baling-wire/': ['differences-single-loop-double-loop-bale-wire', 'cardboard-bale-weight', 'how-much-does-a-baler-cost', '5-simple-ways-keep-baler-running-smoothly'],
   '/services/': ['cardboard-baler-safety-training-guide', 'trash-compactor-maintenance-checklist', 'trash-compactor-repair-signs', 'warning-signs-your-equipment-needs-servicing'],
@@ -264,7 +264,7 @@ const RELATED_GUIDES = {
   '/services/waste-stream-consultations/': ['baler-vs-compactor', 'commercial-trash-compactor-cost', 'how-to-choose-the-right-baler', 'how-a-trash-compactor-cuts-your-hauling-bill', 'how-to-start-a-recycling-program', 'top-10-reasons-to-recycle'],
   '/brands/': ['commercial-trash-compactor-buying-guide', 'how-much-does-a-baler-cost', 'how-to-choose-the-right-baler', 'buy-new-used-or-hauler-compactor'],
   'brand:compactors': ['commercial-trash-compactor-cost', 'commercial-trash-compactor-buying-guide', 'trash-compactor-repair-signs', 'trash-compactor-maintenance-checklist'],
-  'brand:balers': ['how-much-does-a-baler-cost', 'horizontal-baler-guide', 'how-to-choose-the-right-baler', 'benefits-of-having-regular-service-for-your-baler'],
+  'brand:balers': ['how-much-does-a-baler-cost', 'horizontal-baler-guide', 'vertical-baler-buyers-guide', 'how-to-choose-the-right-baler', 'benefits-of-having-regular-service-for-your-baler'],
 };
 
 function findPost(slug) {
